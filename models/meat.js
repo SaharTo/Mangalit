@@ -18,4 +18,4 @@ const meatScema = new Schema({
   meatImage: [ImageSchema],
 });
 
-module.exports = mongoose.model("Review", reviewSchema);
+module.exports = mongoose.model("Meat", reviewSchema);
