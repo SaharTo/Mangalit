@@ -19,10 +19,14 @@ db.on("error", (err) => {
   console.error("connection error:", err);
 });
 
-//CRUD Handlers
+//CRUD Handlers.
 app.get("/", (req, res) => {
   res.send("Wellwou World");
   //res.sendFile(__Dirname + './index.html')
+});
+
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page Not Found", 404));
 });
 
 app.listen(3000, function () {
