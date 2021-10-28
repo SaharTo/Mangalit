@@ -1,9 +1,21 @@
 const User = require("../models/user");
+const mongoose = require("mongoose");
+
 //functions that handle the render register and login pages an handle
 //the register, login and logout functions issues.
+const userModel = mongoose.model("User");
 
 module.exports.printUser = async(req, res, next) => {
-    res.send(User);
+    // const userM = new userModel();
+    // userM.username = 'Master';
+    // userM.userEmail = 's234@gmail.com';
+    // userM.password = '123';
+    // userM.fullName = 'fullName';
+    // await userM.save();
+
+    User.find({}, function(err, users) {
+        res.send(users);
+    });
 };
 
 module.exports.register = async(req, res, next) => {

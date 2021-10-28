@@ -4,13 +4,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 
-const user = {
-    userEmail: 's2234@gmail.com',
-    username: 'toleMaster',
-    password: '123456',
-    fullName: 'fullName'
-}
-
 const dbUrl =
     "mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
 // Make sure you place body-parser before your CRUD handlers!/
@@ -20,7 +13,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
     console.log("Database connected:", dbUrl);
-    db.collection('Users').insertOne(user); //add user to DB
+    // db.collection('Users').insertOne(user); //add user to DB
 });
 
 db.on("error", (err) => {
@@ -33,9 +26,10 @@ app.get("/", (req, res) => {
     //res.sendFile(__Dirname + './index.html')
 });
 
-app.all("*", (req, res, next) => {
-    next(new ExpressError("Page Not Found", 404));
-});
+// app.all("*", (req, res, next) => {
+//     // next(new ExpressError("Page Not Found", 404));
+// });
+app.use("/users/", require("./routes/user"))
 
 app.listen(3000, function() {
     console.log("listening on port 3000");
