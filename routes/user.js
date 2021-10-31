@@ -5,6 +5,7 @@ const users = require("../controllers/users");
 
 // router.route("/register").get(users.printUser).post(users.register);
 router.get("/", users.printUser)
+router.get("/:id", users.userById)
 router.post("/register", users.register)
 
 module.exports = router;

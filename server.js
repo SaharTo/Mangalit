@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 //     // next(new ExpressError("Page Not Found", 404));
 // });
 app.use("/users/", require("./routes/user"))
+app.use("/sideMeals/", require("./routes/sideMeals"))
 
 app.listen(3000, function() {
     console.log("listening on port 3000");

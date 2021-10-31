@@ -7,16 +7,21 @@ const userModel = mongoose.model("User");
 
 module.exports.printUser = async(req, res, next) => {
     // const userM = new userModel();
-    // userM.username = 'Master';
-    // userM.userEmail = 's234@gmail.com';
-    // userM.password = '123';
-    // userM.fullName = 'fullName';
+    // userM.username = 'Master www';
+    // userM.userEmail = 's111@gmail.com';
+    // userM.password = '111';
+    // userM.fullName = 'www';
     // await userM.save();
 
     User.find({}, function(err, users) {
         res.send(users);
     });
 };
+
+module.exports.userById = async(req, res, next) => {
+    const user = await User.findById(req.params.id);
+    res.send(user);
+}
 
 module.exports.register = async(req, res, next) => {
     try {
