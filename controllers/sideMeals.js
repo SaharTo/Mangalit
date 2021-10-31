@@ -16,19 +16,12 @@ module.exports.printSideMeals = async(req, res) => {
     // 1/2 כפית אבקת שום
     // קצת טימין `
     // sideMeal.sideMealPreperationDescription = `את הבטטות ניתן לקלוף, אך מומלץ לשטוף היטב (עם סקוץ') ולהשאיר את הקליפה.
-
     // חותכים את הבטטות לרצועות דקות, אך לא דקות מידי, בעובי של אצבע.
-
     // מרפדים תבנית תנור בנייר אפייה ומפזרים את צ'יפס הבטטה על התבנית בשכבה אחת.
-
     // בוזקים שמן זית ומערבבים היטב, כל הבטטות צריכות להיות מצופות בשמן, אך לא לשחות בו.
-
     // מפזרים מלח גס, פלפל שחור ואבקת שום באופן שווה ככל שניתן ומערבבים. זה הזמן להוסיף טימין את תבלין גריל.
-
     // מטגנים את צ'יפס הבטטה בשמן עמוק חם 4-6 דקות.
-
     // לאפייה: מחממים תנור ל-200 מעלות ואופים את הצ'יפס בטטה בתנור חם כ-20 דקות. לאחר 10 דקות אפייה, מוציאים את התבנית מהתנור, מערבבים בעדינות ומחזירים את הצ'יפס לתנור עד להזהבה.
-
     // מוציאים מהתנור, ממליחים בשנית (לפי הצורך) ומגישים`
     // sideMeal.sideMealPreperationEstimatedTime = '35'
     // sideMeal.sideMealnumberOfPeopleItSuits = '3'
@@ -36,7 +29,7 @@ module.exports.printSideMeals = async(req, res) => {
 
     SideMeal.find({}, function(err, sideMeals) {
         const sideM = sideMeals.map((sideMeal) => {
-            return sideMeal.sideMealName
+            return sideMeal
         })
         res.send(sideM);
 
