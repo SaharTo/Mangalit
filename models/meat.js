@@ -14,7 +14,8 @@ const meatScema = new Schema({
   meatType: String,
   meatName: String,
   meatDescription: String,
-  meatPricePerHundred: Number,
+  meatNumber: String,
+  meatPricePerOneKg: Number,
   meatImage: [ImageSchema],
 });
 

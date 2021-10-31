@@ -45,6 +45,7 @@ const mealScema = new Schema({
       ref: "Review",
     },
   ],
+  mealIsRecommended: Boolean,
 });
 
 module.exports = mongoose.model("Meal", mealScema);
