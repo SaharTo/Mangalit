@@ -13,10 +13,12 @@ ImageSchema.virtual("thumbnail").get(function () {
 const mealScema = new Schema({
   mealName: String,
   mealSummary: String,
-  mealMeatInfo: {
-    type: Schema.Types.ObjectId,
-    ref: "Meat",
-  },
+  mealMeatInfo: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Meat",
+    },
+  ],
   mealPreparationTechniques: String,
   mealPreparationTime: Number,
   mealPreparationDifficult: Number,
@@ -28,7 +30,7 @@ const mealScema = new Schema({
     },
   ],
 
-  mealImageUrl: [ImageSchema],
+  mealImage: [ImageSchema],
   mealMeatQuantityGram: Number,
   mealEstimatedMeatPrice: Number,
   mealAdditionalIngredients: String,
