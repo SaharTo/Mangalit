@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const dbUrl =
   "mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
 // Make sure you place body-parser before your CRUD handlers!/
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(dbUrl, { useNewUrlParser: true });

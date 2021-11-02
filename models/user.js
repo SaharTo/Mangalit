@@ -16,11 +16,11 @@ const UserSchema = new Schema({
   },
   fullName: {
     type: String,
-    required: true,
+    // required: true,
   },
   userEmail: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 
