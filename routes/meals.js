@@ -7,5 +7,6 @@ router.get("/", meals.index);
 router.get("/mealws/:id", meals.mealById); //wrong route name on purpose
 router.get("/add", meals.createMeal);
 router.get("/delete", meals.deleteMeal);
+router.get("/update", meals.updateMeal);
 
 module.exports = router;

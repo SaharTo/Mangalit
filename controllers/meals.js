@@ -21,11 +21,19 @@ module.exports.deleteMeal = async (req, res) => {
 };
 
 module.exports.updateMeal = async (req, res) => {
-  const { id } = req.params;
-  const meal = await Meal.findByIdAndUpdate(id, { ...req.body.meal });
-  const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-  Meal.mealImage.push(...imgs);
-  await meal.save();
+  //const { id } = req.params;
+  const id = "617fc117314b975934605db2";
+  const updatedName = "updatedNAME";
+  const isExist = await Meal.findById(id);
+  if (isExist) {
+    const meal = await Meal.findByIdAndUpdate(id, { mealName: updatedName });
+    res.send("User Update Successfully", meal);
+  } else {
+    res.send("couldnt find that user");
+  }
+  //const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+  //Meal.mealImage.push(...imgs);
+  //await meal.save();
   //we should make sure that there is option to delete images from edited meals
   /*if (req.body.deleteImages) { 
         for (let filename of req.body.deleteImages) {
