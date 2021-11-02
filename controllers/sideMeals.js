@@ -1,28 +1,33 @@
 const SideMeal = require("../models/sideMeal");
 const mongoose = require("mongoose");
 
-module.exports.sideMeaIIndex = async(req, res) => {
-    SideMeal.find({}, function(err, sideMeals) {
+module.exports.sideMealIndex = async(req, res) => {
+    await SideMeal.find({}, function(err, sideMeals) {
         const sideM = sideMeals.map((sideMeal) => {
             return {
                 id: sideMeal._id,
-                name: sideMeal.sideMealName,
+                name: sideMeal.sideMealName
             }
         })
         res.send(sideM);
-
-    });
-}
+    })
+};
 
 module.exports.sideMealById = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
     res.send(sideMeal);
-}
+};
+
+
+module.exports.sideMealById = async(req, res) => {
+    const sideMeal = await SideMeal.findById(req.params.id);
+    res.send(sideMeal);
+};
 
 module.exports.deleateSideMeal = async(req, res) => {
     await SideMeal.findByIdAndDelete(req.params.id);
     res.redirect("/sideMeals")
-}
+};
 
 module.exports.updateSideMeal = async(req, res) => {
     const { id } = req.params;
@@ -31,20 +36,20 @@ module.exports.updateSideMeal = async(req, res) => {
     SideMeal.sideMealImage.push(...imgs);
     await sideMeal.save();
     res.redirect(`/sideMeals/sideMeal/${req.params.id}`)
-}
+};
 
 module.exports.createSideMeal = async(req, res) => {
-        const sideMeal = new SideMeal(req.body.sideMeal);
-        sideMeal.sideMealImage = req.files.map((f) => ({
-            url: f.path,
-            filename: f.filename,
-        }));
-        sideMeal.sideMealsAuthor = req.user._id;
-        sideMeal.sideMealsReviews = [];
-        await sideMeal.save();
-        res.send(sideMeal);
-    }
-    //for tests
+    const sideMeal = new SideMeal(req.body.sideMeal);
+    sideMeal.sideMealImage = req.files.map((f) => ({
+        url: f.path,
+        filename: f.filename,
+    }));
+    sideMeal.sideMealsAuthor = req.user._id;
+    sideMeal.sideMealsReviews = [];
+    await sideMeal.save();
+    res.send(sideMeal);
+};
+//for tests
 module.exports.createSideMeal2 = async(req, res) => {
     const sideMeal = new SideMeal();
     sideMeal.sideMealName = 'ציפס בטטה';
@@ -68,4 +73,4 @@ module.exports.createSideMeal2 = async(req, res) => {
     sideMeal.sideMealnumberOfPeopleItSuits = '3'
     await sideMeal.save();
     res.send(sideMeal);
-}
+};

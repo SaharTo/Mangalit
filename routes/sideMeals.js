@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sideMeals = require("../controllers/sideMeals");
 
-router.get("/", sideMeals.sideMeaIIndex);
+router.get("/", sideMeals.sideMealIndex);
 router.get("/sideMeal/:id", sideMeals.sideMealById);
 router.delete("/delete/:id", sideMeals.deleateSideMeal);
 router.put("/edit/:id", sideMeals.updateSideMeal);

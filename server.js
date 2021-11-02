@@ -33,6 +33,7 @@ app.use("/users/", require("./routes/user"))
 app.use("/sideMeals/", require("./routes/sideMeals"))
 app.use("/meals/", require("./routes/meals"))
 app.use("/reviews/", require("./routes/review"))
+app.use("/meats/", require("./routes/meats"));
 
 app.listen(3000, function() {
     console.log("listening on port 3000");

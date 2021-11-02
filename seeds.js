@@ -1,4 +1,4 @@
-const Http = new XMLHttpRequest();
+/*const Http = new XMLHttpRequest();
 const url = 'http://localhost:3000';
 Http.open("POST", url);
 Http.send();
@@ -27,4 +27,4 @@ async function postData(url = url, data = { user }) {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-}
+}*/
