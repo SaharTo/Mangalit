@@ -3,10 +3,20 @@ const router = express.Router();
 const meals = require("../controllers/meals");
 //const meal = require("../models/meal");
 
-router.get("/", meals.index);
-router.get("/mealws/:id", meals.mealById); //wrong route name on purpose
-router.get("/add", meals.createMeal);
-router.get("/delete", meals.deleteMeal);
-router.get("/update", meals.updateMeal);
+router.route("/").get(meals.index).post(meals.createMeal); //Here we goona insert the isLoggedIn middleware function
+router
+  .route("/:id")
+  .get(meals.mealById)
+  .delete(meals.deleteMeal)
+  .put(meals.updateMeal);
 
+/*
+router.get("/", meals.index);
+router.delete("/:id", meals.deleteMeal);
+
+router.get("/:id", meals.mealById);
+router.post("/add", meals.createMeal);
+router.get("/update", meals.updateMeal);
+//This is work
+*/
 module.exports = router;
