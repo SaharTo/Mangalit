@@ -1,4 +1,4 @@
-/*const Http = new XMLHttpRequest();
+const Http = new XMLHttpRequest();
 const url = 'http://localhost:3000';
 Http.open("POST", url);
 Http.send();
@@ -27,4 +27,30 @@ async function postData(url = url, data = { user }) {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-}*/
+}
+
+
+
+----------JSON FOR MEAL INPUTS--------------
+{
+    "mealName":"Huburger",
+    "mealSummary":"Hunburger oSol Ta'aim retzah",
+    "mealMeatInfo":"THis DATA should be taken from meatCollection",
+    "mealPreparationTechniques":"Mangal, Pan",
+    "mealPreparationTime":"20",
+    "mealPreparationDifficult":"3",
+    "mealNumberOfPeopleItSuits":"5",
+    "mealRecommendedSideMeals":"FROM SIDEMEALS COLLECTION",
+    "mealImage":[],
+    "mealMeatQuantityGram":"1000",
+    "mealEstimatedMeatPrice":"60",
+    "mealAdditionalIngredients":"Bread, pickels, tomato, maio, ketchop",
+    "mealAdditionalsIngredientsPrice":"20",
+    "mealTotalPrice":"80",
+    "mealDescription":"This Burger will make you feel that you are on stairway to heaven",
+    "mealAuthor":"Tole",
+    "mealReviews":"",
+    "mealIsRecommended":"false"
+
+
+}

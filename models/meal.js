@@ -13,23 +13,24 @@ ImageSchema.virtual("thumbnail").get(function () {
 const mealScema = new Schema({
   mealName: String,
   mealSummary: String,
-  mealMeatInfo: [
+  /*mealMeatInfo: [
     {
       type: Schema.Types.ObjectId,
       ref: "Meat",
     },
-  ],
+  ],*/
+  mealMeatInfo: String,
   mealPreparationTechniques: String,
   mealPreparationTime: Number,
   mealPreparationDifficult: Number,
   mealNumberOfPeopleItSuits: Number,
-  mealRecommendedSideMeals: [
+  /*mealRecommendedSideMeals: [
     {
       type: Schema.Types.ObjectId,
       ref: "SideMeal",
     },
-  ],
-
+  ],*/
+  mealRecommendedSideMeals: String,
   mealImage: [ImageSchema],
   mealMeatQuantityGram: Number,
   mealEstimatedMeatPrice: Number,
@@ -37,16 +38,18 @@ const mealScema = new Schema({
   mealAdditionalsIngredientsPrice: Number,
   mealTotalPrice: Number,
   mealDescription: String,
-  mealAuthor: {
+  /*mealAuthor: {
     type: Schema.Types.ObjectId,
     ref: "User",
-  },
-  mealReviews: [
+  },*/
+  mealAuthor: String,
+  /*mealReviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
-  ],
+  ],*/
+  mealReviews: String,
   mealIsRecommended: Boolean,
 });
 
