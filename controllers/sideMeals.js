@@ -2,22 +2,15 @@ const SideMeal = require("../models/sideMeal");
 const mongoose = require("mongoose");
 
 module.exports.sideMealIndex = async(req, res) => {
-    await SideMeal.find({}, function(err, sideMeals) {
-        const sideM = sideMeals.map((sideMeal) => {
-            return {
-                id: sideMeal._id,
-                name: sideMeal.sideMealName
-            }
-        })
-        res.send(sideM);
+    const sideMeals = await SideMeal.find({});
+    const sideM = sideMeals.map((sideMeal) => {
+        return {
+            id: sideMeal._id,
+            name: sideMeal.sideMealName
+        }
     })
+    res.send(sideM);
 };
-
-module.exports.sideMealById = async(req, res) => {
-    const sideMeal = await SideMeal.findById(req.params.id);
-    res.send(sideMeal);
-};
-
 
 module.exports.sideMealById = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
