@@ -14,8 +14,11 @@ module.exports.deleteReview = async(req, res) => {
 
 }
 module.exports.createReview = async(req, res) => {
-    const review = new Review(req.body.Review);
-    review.reviewAuthor = req.user._id;
-    await Review.save();
+    const review = new Review(req.body);
+    // const review = new Review(req.body.Review);
+    if (req.user) {
+        review.reviewAuthor = req.user._id;
+    }
+    await review.save();
     res.redirect(`/reviews/`);
 }
