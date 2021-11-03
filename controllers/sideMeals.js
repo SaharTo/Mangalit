@@ -25,6 +25,7 @@ module.exports.deleateSideMeal = async(req, res) => {
 module.exports.updateSideMeal = async(req, res) => {
     const { id } = req.params;
     const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body });
+    // const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
     if (req.files) {
         const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
         SideMeal.sideMealImage.push(...imgs);
@@ -34,14 +35,17 @@ module.exports.updateSideMeal = async(req, res) => {
 };
 
 module.exports.createSideMeal = async(req, res) => {
-    const sideMeal = new SideMeal(req.body.sideMeal);
+    const sideMeal = new SideMeal(req.body);
+    // const sideMeal = new SideMeal(req.body.sideMeal);
     if (req.files) {
         sideMeal.sideMealImage = req.files.map((f) => ({
             url: f.path,
             filename: f.filename,
         }));
     }
-    sideMeal.sideMealsAuthor = req.user._id;
+    if (req.user) {
+        sideMeal.sideMealsAuthor = req.user._id;
+    }
     sideMeal.sideMealsReviews = [];
     await sideMeal.save();
     res.send(sideMeal);
