@@ -22,6 +22,41 @@ module.exports.userById = async (req, res, next) => {
   res.send(user);
 };
 
+module.exports.login = async (req, res, next) => {
+  console.log("entered the func");
+  const users = await User.find({});
+  const user = await users.find(
+    (user) => user.userName.toLowerCase() == req.body.userName.toLowerCase()
+  );
+  console.log("This is the user:    " + user);
+  if (user == null) {
+    res.send("There is no such a user, please try again");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      res.send("successfull login");
+    } else {
+      res.send("Not Allowed");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  /*const user = await User.find();
+  const selectedUser = user.map((u) => (u.userName = req.body.userName));
+  if (selectedUser == null) {
+    res.send("There is no such a user, please try again");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, selectedUser.password)) {
+      res.send("successfull login");
+    } else {
+      res.send("Not Allowed");
+    }
+  } catch (e) {
+    console.log(e);
+  }*/
+};
+
 module.exports.register = async (req, res) => {
   /* const user = new User();
   user.userEmail = "Successfull";
