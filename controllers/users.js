@@ -22,6 +22,8 @@ module.exports.userById = async (req, res, next) => {
   res.send(user);
 };
 
+module.exports.logout = async (req, res, next) => {};
+
 module.exports.login = async (req, res, next) => {
   console.log("entered the func");
   const users = await User.find({});
