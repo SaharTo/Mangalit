@@ -48,8 +48,8 @@ async function postData(url = url, data = { user }) {
     "mealAdditionalsIngredientsPrice":"20",
     "mealTotalPrice":"80",
     "mealDescription":"This Burger will make you feel that you are on stairway to heaven",
-    "mealAuthor":"Tole",
-    "mealReviews":"",
+    "mealAuthor":"Tole",//here mongoose expect unique ObjectId of an exist user.
+    "mealReviews":"",//when inserting new meal, you should not add this line because there is not any revies yet
     "mealIsRecommended":"false"
 
 

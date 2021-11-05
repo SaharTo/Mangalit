@@ -38,18 +38,18 @@ const mealScema = new Schema({
   mealAdditionalsIngredientsPrice: Number,
   mealTotalPrice: Number,
   mealDescription: String,
-  /*mealAuthor: {
+  mealAuthor: {
     type: Schema.Types.ObjectId,
     ref: "User",
-  },*/
-  mealAuthor: String,
-  /*mealReviews: [
+  },
+  // mealAuthor: String,
+  mealReviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
-  ],*/
-  mealReviews: String,
+  ],
+  // mealReviews: String,
   mealIsRecommended: Boolean,
 });
 

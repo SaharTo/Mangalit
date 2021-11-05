@@ -88,6 +88,16 @@ module.exports.renderRecommendedMeals = async (req, res) => {
 };
 
 module.exports.mealById = async (req, res) => {
-  const meal = await Meal.findById(req.params.id);
+  const meal = await Meal.findById(req.params.id)
+    .populate({
+      path: "mealReviews",
+      populate: {
+        path: "mealAuthor",
+      },
+    })
+    .populate("mealAuthor");
+  if (!meal) {
+    res.send("Cannot find that meal");
+  }
   res.send(meal);
 };
