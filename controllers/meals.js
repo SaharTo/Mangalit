@@ -24,9 +24,7 @@ module.exports.deleteMeal = async(req, res) => {
 module.exports.updateMeal = async(req, res) => {
     const { id } = req.params;
     console.log(id);
-    const meal = await Meal.findByIdAndUpdate(
-        id, { $set: req.body }, { new: true }
-    );
+    const meal = await Meal.findByIdAndUpdate(id, { $set: req.body }, { new: true })
     console.log("SUCCESS: " + meal);
     res.send(meal);
 };

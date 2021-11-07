@@ -31,6 +31,15 @@ const user = {
     "fullName": "fullName"
 }
 
+//-- -- -- -- --JSON FOR MEAT INPUTS-- -- -- -- -- -- --
+const meat = {
+    "meatType": "בקר",
+    "meatName": " ורד הצלע / אנטריקוט / סטייק עין",
+    "meatDescription": "נתח בעל עובי בינוני, מאופיין בשיוש של שומן ובמרכזו “עין” מרכזית של שומן, המקנה לו צורה של פרח. הוא נמצא בחלקה הקדמי של הבהמה. האנטריקוט מתאים לסטייקים בכל העוביים, לצלייה קצרה ויבשה בנתח אחד, או להכנה על גריל בנתח אחד",
+    "meatNumber": "1",
+    "meatPricePerOneKg": "150-200"
+}
+
 //-- -- -- -- --JSON FOR REVIEW INPUTS-- -- -- -- -- -- --
 const review = {
     "reviewBody": "מושלם",

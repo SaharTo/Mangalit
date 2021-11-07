@@ -1,22 +1,22 @@
 const SideMeal = require("../models/sideMeal");
 const Review = require("../models/review");
-const mongoose = require("mongoose");
 
 
 module.exports.sideMealIndex = async(req, res) => {
-    const sideMeals = await SideMeal.find({});
-    // const sideM = sideMeals.map((sideMeal) => {
-    //     return {
-    //         id: sideMeal._id,
-    //         name: sideMeal.sideMealName
-    //     }
-    // })
-    // res.send(sideM);
+    const sideMeals = await SideMeal.find({})
     res.send(sideMeals);
 };
 
 module.exports.sideMealById = async(req, res) => {
-    const sideMeal = await SideMeal.findById(req.params.id);
+    const sideMeal = await SideMeal.findById(req.params.id)
+        .populate({
+            path: "sideMealsReviews",
+            populate: {
+                path: "reviewAuthor",
+                select: 'fullName',
+            },
+        })
+        .populate("sideMealsAuthor", "fullName");
     res.send(sideMeal);
 };
 
@@ -36,6 +36,26 @@ module.exports.updateSideMeal = async(req, res) => {
     await sideMeal.save();
     res.redirect(`/sideMeals/${req.params.id}`)
 };
+
+module.exports.createSideMeal = async(req, res) => {
+    const sideMeal = new SideMeal(req.body);
+    // const sideMeal = new SideMeal(req.body.sideMeal);
+    if (req.files) {
+        sideMeal.sideMealImage = req.files.map((f) => ({
+            url: f.path,
+            filename: f.filename,
+        }));
+    }
+    if (req.user) {
+        sideMeal.sideMealsAuthor = req.user._id;
+    } else {
+        sideMeal.sideMealsAuthor = '6183a190801d27685741f1a9';
+    }
+    sideMeal.sideMealsReviews = [];
+    await sideMeal.save();
+    res.send(sideMeal);
+};
+
 module.exports.addReview = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
     if (req.files) {
@@ -64,23 +84,4 @@ module.exports.deleteReview = async(req, res) => {
     sideMeal.sideMealsReviews.splice(index, 1);
     await sideMeal.save();
     res.redirect(`/sideMeals/${req.params.id}`)
-};
-
-module.exports.createSideMeal = async(req, res) => {
-    const sideMeal = new SideMeal(req.body);
-    // const sideMeal = new SideMeal(req.body.sideMeal);
-    if (req.files) {
-        sideMeal.sideMealImage = req.files.map((f) => ({
-            url: f.path,
-            filename: f.filename,
-        }));
-    }
-    if (req.user) {
-        sideMeal.sideMealsAuthor = req.user._id;
-    } else {
-        sideMeal.sideMealsAuthor = '6183a190801d27685741f1a9';
-    }
-    sideMeal.sideMealsReviews = [];
-    await sideMeal.save();
-    res.send(sideMeal);
 };

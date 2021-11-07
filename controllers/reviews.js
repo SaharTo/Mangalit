@@ -6,10 +6,12 @@ In addition, we should make sure that each meal schema have a review object that
 of a specific meal.. :)*/
 
 module.exports.reviewIndex = async(req, res) => {
-    const reviews = await Review.find({});
+    const reviews = await Review.find({})
+        .populate("reviewAuthor", "fullName");
     res.send(reviews);
 }
 module.exports.reviewById = async(req, res) => {
-    const review = await Review.findById(req.params.id);
+    const review = await Review.findById(req.params.id)
+        .populate("reviewAuthor", "fullName");
     res.send(review);
 }
