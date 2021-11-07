@@ -1,15 +1,18 @@
 const SideMeal = require("../models/sideMeal");
+const Review = require("../models/review");
 const mongoose = require("mongoose");
+
 
 module.exports.sideMealIndex = async(req, res) => {
     const sideMeals = await SideMeal.find({});
-    const sideM = sideMeals.map((sideMeal) => {
-        return {
-            id: sideMeal._id,
-            name: sideMeal.sideMealName
-        }
-    })
-    res.send(sideM);
+    // const sideM = sideMeals.map((sideMeal) => {
+    //     return {
+    //         id: sideMeal._id,
+    //         name: sideMeal.sideMealName
+    //     }
+    // })
+    // res.send(sideM);
+    res.send(sideMeals);
 };
 
 module.exports.sideMealById = async(req, res) => {
@@ -28,10 +31,40 @@ module.exports.updateSideMeal = async(req, res) => {
     // const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
     if (req.files) {
         const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-        SideMeal.sideMealImage.push(...imgs);
+        sideMeal.sideMealImage.push(...imgs);
     }
     await sideMeal.save();
-    res.redirect(`/sideMeals/sideMeal/${req.params.id}`)
+    res.redirect(`/sideMeals/${req.params.id}`)
+};
+module.exports.addReview = async(req, res) => {
+    const sideMeal = await SideMeal.findById(req.params.id);
+    if (req.files) {
+        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+        sideMeal.sideMealImage.push(...imgs);
+    }
+
+    const review = new Review(req.body);
+    if (req.user) {
+        review.reviewAuthor = req.user._id;
+    } else {
+        review.reviewAuthor = '6183a190801d27685741f1a9';
+    }
+    await review.save();
+    sideMeal.sideMealsReviews.push(review);
+    await sideMeal.save();
+    res.redirect(`/sideMeals/${req.params.id}`)
+};
+module.exports.deleteReview = async(req, res) => {
+    const sideMeal = await SideMeal.findById(req.params.id);
+    if (req.files) {
+        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+        sideMeal.sideMealImage.push(...imgs);
+    }
+    await Review.findByIdAndDelete(req.params.reviewId);
+    const index = sideMeal.sideMealsReviews.indexOf(req.params.reviewId);
+    sideMeal.sideMealsReviews.splice(index, 1);
+    await sideMeal.save();
+    res.redirect(`/sideMeals/${req.params.id}`)
 };
 
 module.exports.createSideMeal = async(req, res) => {
@@ -45,33 +78,10 @@ module.exports.createSideMeal = async(req, res) => {
     }
     if (req.user) {
         sideMeal.sideMealsAuthor = req.user._id;
+    } else {
+        sideMeal.sideMealsAuthor = '6183a190801d27685741f1a9';
     }
     sideMeal.sideMealsReviews = [];
-    await sideMeal.save();
-    res.send(sideMeal);
-};
-//for tests
-module.exports.createSideMeal2 = async(req, res) => {
-    const sideMeal = new SideMeal();
-    sideMeal.sideMealName = 'ציפס בטטה';
-    sideMeal.sideMealSummary = 'רצועות בטטה בתנור'
-    sideMeal.sideMealDifficult = '1'
-    sideMeal.sideMealEstimatedPrice = '7'
-    sideMeal.sideMealIngriedents = `3 בטטות
-    7 כפות שמן זית
-    מלח ופלפל
-    1/2 כפית אבקת שום
-    קצת טימין `
-    sideMeal.sideMealPreperationDescription = `את הבטטות ניתן לקלוף, אך מומלץ לשטוף היטב (עם סקוץ') ולהשאיר את הקליפה.
-    חותכים את הבטטות לרצועות דקות, אך לא דקות מידי, בעובי של אצבע.
-    מרפדים תבנית תנור בנייר אפייה ומפזרים את צ'יפס הבטטה על התבנית בשכבה אחת.
-    בוזקים שמן זית ומערבבים היטב, כל הבטטות צריכות להיות מצופות בשמן, אך לא לשחות בו.
-    מפזרים מלח גס, פלפל שחור ואבקת שום באופן שווה ככל שניתן ומערבבים. זה הזמן להוסיף טימין את תבלין גריל.
-    מטגנים את צ'יפס הבטטה בשמן עמוק חם 4-6 דקות.
-    לאפייה: מחממים תנור ל-200 מעלות ואופים את הצ'יפס בטטה בתנור חם כ-20 דקות. לאחר 10 דקות אפייה, מוציאים את התבנית מהתנור, מערבבים בעדינות ומחזירים את הצ'יפס לתנור עד להזהבה.
-    מוציאים מהתנור, ממליחים בשנית (לפי הצורך) ומגישים`
-    sideMeal.sideMealPreperationEstimatedTime = '35'
-    sideMeal.sideMealnumberOfPeopleItSuits = '3'
     await sideMeal.save();
     res.send(sideMeal);
 };

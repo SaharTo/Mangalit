@@ -8,6 +8,10 @@ module.exports.reviewIndex = async(req, res) => {
     const reviews = await Review.find({});
     res.send(reviews);
 }
+module.exports.reviewById = async(req, res) => {
+    const review = await Review.findById(req.params.id);
+    res.send(review);
+}
 module.exports.deleteReview = async(req, res) => {
     await Review.findByIdAndDelete(req.params.id);
     res.redirect(`/reviews/`);
