@@ -42,7 +42,6 @@ module.exports.addReview = async(req, res) => {
         const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
         sideMeal.sideMealImage.push(...imgs);
     }
-
     const review = new Review(req.body);
     if (req.user) {
         review.reviewAuthor = req.user._id;

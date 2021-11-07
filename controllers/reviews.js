@@ -13,17 +13,3 @@ module.exports.reviewById = async(req, res) => {
     const review = await Review.findById(req.params.id);
     res.send(review);
 }
-module.exports.deleteReview = async(req, res) => {
-    await Review.findByIdAndDelete(req.params.id);
-    res.redirect(`/reviews/`);
-
-  const meal = await Meal.findById(req.params.MealId);
-  console.log("This is the meal ");
-  const review = new Review(req.body);
-  console.log("This is the review ");
-  //review.reviewAuthor = req.user._id; //have to check about the req.user
-  meal.mealReviews.push(review);
-  await review.save();
-  await meal.save();
-  res.send("Successfull added review");
-};*/ //doesnt work yet
