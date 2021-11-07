@@ -5,5 +5,6 @@ router.post("/", review.createReview);
 
 router.get("/", review.reviewIndex);
 router.delete("/:reviewId", review.deleteReview);
+router.post("/", review.createReview);
 
 module.exports = router;
