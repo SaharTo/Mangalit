@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     type: String,
     // required: true,
   },
+  isAdmin: Boolean,
 });
 
 //UserSchema.plugin(passportLocalMongoose); //This will add automatically the username and password to the schema

@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const sideMeals = require("../controllers/sideMeals");
+const { isAuthor, isLoggedIn } = require("../middleware");
 
-router.route("/")
-    .get(sideMeals.sideMealIndex)
-    .post(sideMeals.createSideMeal);
+router
+  .route("/")
+  .get(sideMeals.sideMealIndex)
+  .post(isLoggedIn, sideMeals.createSideMeal);
 
-router.route("/:id")
-    .get(sideMeals.sideMealById)
-    .delete(sideMeals.deleateSideMeal)
-    .put(sideMeals.updateSideMeal);
+router
+  .route("/:id")
+  .get(sideMeals.sideMealById)
+  .delete(isAuthor, sideMeals.deleateSideMeal)
+  .put(isAuthor, sideMeals.updateSideMeal);
 
-router.put("/:id/addReview", sideMeals.addReview);
-router.delete("/:id/deleteReview/:reviewId", sideMeals.deleteReview);
+router.put("/:id/addReview", isLoggedIn, sideMeals.addReview);
+router.delete("/:id/deleteReview/:reviewId", isAuthor, sideMeals.deleteReview);
 
 module.exports = router;

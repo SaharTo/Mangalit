@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const meals = require("../controllers/meals");
 //const meal = require("../models/meal");
+const { isLoggedIn, isAuthor } = require("../middleware");
 
-router.route("/")
-    .get(meals.index)
-    .post(meals.createMeal); //Here we goona insert the isLoggedIn middleware function
+router.route("/").get(meals.index).post(meals.createMeal); //Here we goona insert the isLoggedIn middleware function
 
-router.route("/:id")
-    .get(meals.mealById)
-    .delete(meals.deleteMeal)
-    .put(meals.updateMeal);
+router
+  .route("/:id")
+  .get(meals.mealById)
+  .delete(isAuthor, meals.deleteMeal)
+  .put(meals.updateMeal);
 
 /*
 router.get("/", meals.index);
