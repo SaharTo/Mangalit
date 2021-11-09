@@ -4,17 +4,17 @@ const sideMeals = require("../controllers/sideMeals");
 const { isAuthor, isLoggedIn } = require("../middleware");
 
 router
-  .route("/")
-  .get(sideMeals.sideMealIndex)
-  .post(isLoggedIn, sideMeals.createSideMeal);
+    .route("/")
+    .get(sideMeals.sideMealIndex)
+    .post(isLoggedIn, sideMeals.createSideMeal);
 
 router
-  .route("/:id")
-  .get(sideMeals.sideMealById)
-  .delete(isAuthor, sideMeals.deleateSideMeal)
-  .put(isAuthor, sideMeals.updateSideMeal);
+    .route("/:id")
+    .get(sideMeals.sideMealById)
+    .delete(isAuthor, sideMeals.deleateSideMeal)
+    .put(isAuthor, sideMeals.updateSideMeal);
 
-router.put("/:id/addReview", isLoggedIn, sideMeals.addReview);
-router.delete("/:id/deleteReview/:reviewId", isAuthor, sideMeals.deleteReview);
+router.put("/:id/review", isLoggedIn, sideMeals.addReview);
+router.delete("/:id/review/:reviewId", isAuthor, sideMeals.deleteReview);
 
 module.exports = router;

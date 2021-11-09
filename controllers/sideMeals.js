@@ -46,8 +46,8 @@ module.exports.createSideMeal = async(req, res) => {
             filename: f.filename,
         }));
     }
-    if (req.user) {
-        sideMeal.sideMealsAuthor = req.user._id;
+    if (req.session.user) {
+        sideMeal.sideMealsAuthor = req.session.user._id;
     } else {
         sideMeal.sideMealsAuthor = '6183a190801d27685741f1a9';
     }
@@ -63,8 +63,8 @@ module.exports.addReview = async(req, res) => {
         sideMeal.sideMealImage.push(...imgs);
     }
     const review = new Review(req.body);
-    if (req.user) {
-        review.reviewAuthor = req.user._id;
+    if (req.session.user) {
+        review.reviewAuthor = req.session.user._id;
     } else {
         review.reviewAuthor = '6183a190801d27685741f1a9';
     }
