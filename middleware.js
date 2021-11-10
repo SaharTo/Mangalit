@@ -1,6 +1,7 @@
 const Meal = require("./models/meal");
 const Review = require("./models/review");
 const SideMeal = require("./models/sideMeal");
+const { reviewSchema, mealSchema } = require("./schemas.js");
 
 function isLoggedIn(req, res, next) {
   if (!req.session || !req.session.user) {
@@ -10,15 +11,15 @@ function isLoggedIn(req, res, next) {
   next();
 }
 
-function isAuthorForUpdate(req, res, next) {
-  if (
-    req.body.mealAuthor != req.session.user._id ||
-    req.body.sideMealAuthor != req.session.user._id
-  ) {
-    res.send("failed, isn't the author");
-    return;
+async function validateMeal(req, res, next) {
+  const { error } = mealSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(","); //insert that char between each word in the string in this case, between each obj in the array
+    //throw new ExpressError(msg, 400);
+    console.log("error occured " + error);
+  } else {
+    next();
   }
-  next();
 }
 
 async function isAuthor(req, res, next) {
@@ -40,4 +41,16 @@ async function isAuthor(req, res, next) {
   }
   next();
 }
-module.exports = { isLoggedIn, isAuthor };
+
+async function validateReview(req, res, next) {
+  const { error } = reviewSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(","); //insert that char between each word in the string in this case, between each obj in the array
+    //throw new ExpressError(msg, 400);
+    console.log("error occured " + error);
+  } else {
+    next();
+  }
+}
+
+module.exports = { isLoggedIn, isAuthor, validateReview, validateMeal };
