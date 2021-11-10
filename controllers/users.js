@@ -12,10 +12,10 @@ module.exports.printUser = async(req, res, next) => {
 
 module.exports.updateUser = async(req, res, next) => {
     const { id } = req.params;
-    const sideMeal = await User.findByIdAndUpdate(id, {
-        ...req.body,
+    const user = await User.findByIdAndUpdate(id, {
+        ...req.body.user,
     });
-    await sideMeal.save();
+    await user.save();
     res.send("user updated succssesfully");
 };
 
@@ -31,9 +31,7 @@ module.exports.deleteUser = async(req, res, next) => {
 
 module.exports.userByName = async(req, res, next) => {
     const users = await User.find({});
-    const user = await users.find(
-        (user) => user.userName.toLowerCase() == req.body.userName.toLowerCase()
-    );
+    const user = await users.find((user) => user.userName == req.body.user.userName);
     res.send(user);
 };
 
@@ -50,13 +48,13 @@ module.exports.logout = async(req, res, next) => {
 module.exports.login = async(req, res, next) => {
     console.log("entered the func");
     const users = await User.find({});
-    const user = await users.find((user1) => user1.userName == req.body.userName);
+    const user = await users.find((user1) => user1.userName == req.body.user.userName);
     console.log("This is the user:    " + user);
     if (user == null) {
         res.send("There is no such a user, please try again");
     }
     try {
-        if (await bcrypt.compare(req.body.password, user.password)) {
+        if (await bcrypt.compare(req.body.user.password, user.password)) {
             const newUser = {
                 userName: user.userName,
                 fullName: user.fullName,
@@ -79,14 +77,14 @@ module.exports.register = async(req, res) => {
     try {
         const salt = await bcrypt.genSalt();
         console.log("The salt is:  " + salt);
-        console.log(req.body.password);
-        const hashedPaswword = await bcrypt.hash(req.body.password, salt);
+        console.log(req.body.user.password);
+        const hashedPaswword = await bcrypt.hash(req.body.user.password, salt);
         console.log("the hashed password is :     " + hashedPaswword);
         const user = new User({
-            userName: req.body.userName,
+            userName: req.body.user.userName,
             password: hashedPaswword,
-            userEmail: req.body.userEmail,
-            fullName: req.body.fullName,
+            userEmail: req.body.user.userEmail,
+            fullName: req.body.user.fullName,
             isAdmin: false,
             // pay attention to the fact that we need to insert the rest of the fields (userEmail, fullName)
         });

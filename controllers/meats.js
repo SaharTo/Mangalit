@@ -11,24 +11,13 @@ module.exports.meatById = async(req, res) => {
 };
 
 module.exports.createMeat = async(req, res) => {
-    const meat = new Meat(req.body);
-    if (req.files) {
-        meat.meatImage = req.files.map((f) => ({
-            url: f.path,
-            filename: f.filename,
-        }));
-    }
+    const meat = new Meat(req.body.meat);
     await meat.save();
     res.send(meat);
 };
 module.exports.updateMeat = async(req, res) => {
     const { id } = req.params;
-    const meat = await Meat.findByIdAndUpdate(id, {...req.body });
-    // const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
-    if (req.files) {
-        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-        meat.meatImage.push(...imgs);
-    }
+    const meat = await Meat.findByIdAndUpdate(id, {...req.body.meat });
     await meat.save();
     res.redirect(`/meats/${id}`)
 };

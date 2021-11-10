@@ -24,7 +24,7 @@ module.exports.deleteMeal = async(req, res) => {
 module.exports.updateMeal = async(req, res) => {
     const { id } = req.params;
     console.log(id);
-    const meal = await Meal.findByIdAndUpdate(id, { $set: req.body }, { new: true });
+    const meal = await Meal.findByIdAndUpdate(id, { $set: req.body.meal }, { new: true });
     console.log("SUCCESS: " + meal);
     res.send(meal);
 };
@@ -44,9 +44,9 @@ module.exports.updateMeal = async(req, res) => {
 //res.redirect(`/meals/${meal.__id}`);
 
 module.exports.createMeal = async(req, res) => {
-    console.log(req.body);
+    console.log(req.body.meal);
 
-    const meal = await new Meal(req.body);
+    const meal = await new Meal(req.body.meal);
     try {
         /*meal.mealImage = req.files.map((f) => ({
               url: f.path,
@@ -59,9 +59,7 @@ module.exports.createMeal = async(req, res) => {
         //trying to fetch the meat price from the Meat collection where the id is suits to the meat id in the meal.
         /*const { estMeatPrice } = await Meat.findById(req.body.meal.mealMeatInfo);
             meal.mealEstimatedMeatPrice = estMeatPrice;*/
-        if (req.session.user) {
-            meal.mealAuthor = req.session.user._id;
-        }
+        meal.mealAuthor = req.session.user._id;
         await meal.save();
         console.log(meal);
         res.send(meal);
@@ -112,10 +110,8 @@ module.exports.mealById = async(req, res) => {
 
 module.exports.addReview = async(req, res) => {
     const meal = await Meal.findById(req.params.id)
-    const review = new Review(req.body);
-    if (req.session.user) {
-        review.reviewAuthor = req.session.user._id;
-    }
+    const review = new Review(req.body.review);
+    review.reviewAuthor = req.session.user._id;
     await review.save();
     meal.mealReviews.push(review);
     await meal.save();

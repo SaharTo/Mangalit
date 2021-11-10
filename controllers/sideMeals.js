@@ -27,31 +27,14 @@ module.exports.deleateSideMeal = async(req, res) => {
 
 module.exports.updateSideMeal = async(req, res) => {
     const { id } = req.params;
-    const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body });
-    // const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
-    if (req.files) {
-        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-        sideMeal.sideMealImage.push(...imgs);
-    }
+    const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
     await sideMeal.save();
     res.redirect(`/sideMeals/${req.params.id}`)
 };
 
 module.exports.createSideMeal = async(req, res) => {
-    const sideMeal = new SideMeal(req.body);
-    // const sideMeal = new SideMeal(req.body.sideMeal);
-    if (req.files) {
-        sideMeal.sideMealImage = req.files.map((f) => ({
-            url: f.path,
-            filename: f.filename,
-        }));
-    }
-    if (req.session.user) {
-        sideMeal.sideMealsAuthor = req.session.user._id;
-    } else {
-        sideMeal.sideMealsAuthor = '6183a190801d27685741f1a9';
-    }
-    sideMeal.sideMealsReviews = [];
+    const sideMeal = new SideMeal(req.body.sideMeal);
+    sideMeal.sideMealsAuthor = req.session.user._id;
     await sideMeal.save();
     res.send(sideMeal);
 };
@@ -62,12 +45,8 @@ module.exports.addReview = async(req, res) => {
         const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
         sideMeal.sideMealImage.push(...imgs);
     }
-    const review = new Review(req.body);
-    if (req.session.user) {
-        review.reviewAuthor = req.session.user._id;
-    } else {
-        review.reviewAuthor = '6183a190801d27685741f1a9';
-    }
+    const review = new Review(req.body.review);
+    review.reviewAuthor = req.session.user._id;
     await review.save();
     sideMeal.sideMealsReviews.push(review);
     await sideMeal.save();
@@ -75,10 +54,6 @@ module.exports.addReview = async(req, res) => {
 };
 module.exports.deleteReview = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
-    if (req.files) {
-        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-        sideMeal.sideMealImage.push(...imgs);
-    }
     await Review.findByIdAndDelete(req.params.reviewId);
     const index = sideMeal.sideMealsReviews.indexOf(req.params.reviewId);
     sideMeal.sideMealsReviews.splice(index, 1);
