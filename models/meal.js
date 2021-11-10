@@ -22,7 +22,7 @@ const mealScema = new Schema({
   //mealMeatInfo: String,
   mealPreparationTechniques: String,
   mealPreparationTime: Number,
-  mealPreparationDifficult: Number,
+  mealPreparationDifficult: String,
   mealNumberOfPeopleItSuits: Number,
   mealRecommendedSideMeals: [
     {

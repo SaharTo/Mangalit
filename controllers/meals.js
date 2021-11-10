@@ -45,7 +45,6 @@ module.exports.updateMeal = async(req, res) => {
 
 module.exports.createMeal = async(req, res) => {
     console.log(req.body.meal);
-
     const meal = await new Meal(req.body.meal);
     try {
         /*meal.mealImage = req.files.map((f) => ({
@@ -58,7 +57,7 @@ module.exports.createMeal = async(req, res) => {
             meal.mealIsRecommended = false;*/
         //trying to fetch the meat price from the Meat collection where the id is suits to the meat id in the meal.
         /*const { estMeatPrice } = await Meat.findById(req.body.meal.mealMeatInfo);
-            meal.mealEstimatedMeatPrice = estMeatPrice;*/
+                meal.mealEstimatedMeatPrice = estMeatPrice;*/
         meal.mealAuthor = req.session.user._id;
         await meal.save();
         console.log(meal);
@@ -67,13 +66,13 @@ module.exports.createMeal = async(req, res) => {
         console.log(e);
     }
     /*const meal = new Meal();
-      meal.mealName = "bdika";
-      meal.mealSummary = "Lo Yodea";
-      meal.mealTotalPrice = "100";
+        meal.mealName = "bdika";
+        meal.mealSummary = "Lo Yodea";
+        meal.mealTotalPrice = "100";
 
-      await meal.save();
-      res.send(meal);
-      This is work*/
+        await meal.save();
+        res.send(meal);
+        This is work*/
     //req.flash('success', 'successfully made a new meal!')
     //res.redirect(`/meals/${meal._id}`);
 };
@@ -124,5 +123,5 @@ module.exports.deleteReview = async(req, res) => {
     const index = meal.mealReviews.indexOf(req.params.reviewId);
     meal.mealReviews.splice(index, 1);
     await meal.save();
-    res.redirect(`/meals/${req.params.id}`)
+    res.redirect(`/meals/${req.params.id}`);
 };
