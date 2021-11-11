@@ -6,12 +6,13 @@ const {
   isAuthor,
   validateReview,
   validateMeal,
+  isAdmin,
 } = require("../middleware");
 
 router
   .route("/")
   .get(meals.index)
-  .post(/*isLoggedIn,*/ validateMeal, meals.createMeal);
+  .post(isLoggedIn, validateMeal, meals.createMeal);
 
 router
   .route("/:id")
