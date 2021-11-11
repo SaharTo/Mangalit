@@ -52,25 +52,26 @@ const review = {
 
 //-- -- -- -- --JSON FOR MEAL INPUTS-- -- -- -- -- -- --
 const meal = {
-  mealName: "Huburger",
-  mealSummary: "Hunburger oSol Ta'aim retzah",
-  mealMeatInfo: "THis DATA should be taken from meatCollection",
-  mealPreparationTechniques: "Mangal, Pan",
-  mealPreparationTime: "20",
-  mealPreparationDifficult: "3",
-  mealNumberOfPeopleItSuits: "5",
-  mealRecommendedSideMeals: "FROM SIDEMEALS COLLECTION",
-  mealImage: [],
-  mealMeatQuantityGram: "1000",
-  mealEstimatedMeatPrice: "60",
-  mealAdditionalIngredients: "Bread, pickels, tomato, maio, ketchop",
-  mealAdditionalsIngredientsPrice: "20",
-  mealTotalPrice: "80",
-  mealDescription:
-    "This Burger will make you feel that you are on stairway to heaven",
-  mealAuthor: "Tole", //here mongoose expect unique ObjectId of an exist user.
-  mealReviews: "", //when inserting new meal, you should not add this line because there is not any revies yet
-  mealIsRecommended: "false",
+  /*"meal":
+ 
+    "mealName": "T-bone",
+    "mealSummary": "HT-bone steak",
+    "mealMeatInfo": ["61892930fd0da9c90b381634"],
+    "mealPreparationTechniques": "oven",
+    "mealPreparationTime": "15",
+    "mealPreparationDifficult": "hard",
+    "mealNumberOfPeopleItSuits": "3",
+    "mealMeatQuantityGram": "1200",
+    "mealEstimatedMeatPrice":50,
+    "mealAdditionalIngredients": "egg",
+    "mealAdditionalsIngredientsPrice": "10",
+        "mealTotalPrice":70,
+
+    "mealDescription":
+        "This T-bone steak is one of the famous steak in the world",
+    "mealAuthor": "61817186ca1fa6043ae22e90"
+
+  */
 };
 
 //-- -- -- -- --JSON FOR SIDEMEAL INPUTS-- -- -- -- -- -- --

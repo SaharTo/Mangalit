@@ -6,6 +6,7 @@ const {
     isAuthor,
     validateReview,
     validateMeal,
+    isAdmin,
 } = require("../middleware");
 
 router

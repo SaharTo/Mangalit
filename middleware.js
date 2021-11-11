@@ -11,6 +11,19 @@ function isLoggedIn(req, res, next) {
     next();
 }
 
+function isAdmin(req, res, next) {
+    console.log("inside isAdmin function ");
+    if (!req.session.user || !req.session.user.isAdmin) {
+        res
+            .status(401)
+            .end(
+                "You are not not an admin, so you are not allowed to enter this function authenticated"
+            );
+        return;
+    }
+    next();
+}
+
 async function validateMeal(req, res, next) {
     const { error } = mealSchema.validate(req.body);
     if (error) {
@@ -31,27 +44,6 @@ async function validateSideMeal(req, res, next) {
         next();
     }
 }
-
-async function isAuthor(req, res, next) {
-    const { id, reviewId } = req.params;
-    const meal = await Meal.findById(id);
-    const sideMeal = await SideMeal.findById(id);
-    const review = await Review.findById(reviewId);
-    if (sideMeal && sideMeal.sideMealsAuthor != req.session.user._id) {
-        res.send("failed, isn't the author");
-        return;
-    }
-    if (meal && meal.mealAuthor != req.session.user._id) {
-        res.send("failed, isn't the author");
-        return;
-    }
-    if (review && review.reviewAuthor != req.session.user._id) {
-        res.send("failed, isn't the author");
-        return;
-    }
-    next();
-}
-
 async function validateReview(req, res, next) {
     const { error } = reviewSchema.validate(req.body);
     if (error) {
@@ -63,4 +55,34 @@ async function validateReview(req, res, next) {
     }
 }
 
-module.exports = { isLoggedIn, isAuthor, validateReview, validateMeal, validateSideMeal };
+async function isAuthor(req, res, next) {
+    const { id, reviewId } = req.params;
+    const meal = await Meal.findById(id);
+    const sideMeal = await SideMeal.findById(id);
+    const review = await Review.findById(reviewId);
+    if (!req.session.user.isAdmin) {
+        if (sideMeal && sideMeal.sideMealsAuthor != req.session.user._id) {
+            res.send("failed, isn't the author");
+            return;
+        }
+        if (meal && meal.mealAuthor != req.session.user._id) {
+            res.send("failed, isn't the author");
+            return;
+        }
+        if (review && review.reviewAuthor != req.session.user._id) {
+            res.send("failed, isn't the author");
+            return;
+        }
+    }
+    next();
+}
+
+
+module.exports = {
+    isLoggedIn,
+    isAuthor,
+    validateReview,
+    validateMeal,
+    validateSideMeal,
+    isAdmin,
+};
