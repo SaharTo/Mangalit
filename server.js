@@ -46,6 +46,6 @@ app.use("/reviews/", require("./routes/review"));
 app.use("/meals/", require("./routes/meals"));
 app.use("/meats/", require("./routes/meats"));
 
-app.listen(3000, function () {
-  console.log("listening on port 3000");
+app.listen(3030, function () {
+  console.log("listening on port 3030");
 });
