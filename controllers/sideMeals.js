@@ -29,7 +29,8 @@ module.exports.updateSideMeal = async(req, res) => {
     const { id } = req.params;
     const sideMeal = await SideMeal.findByIdAndUpdate(id, {...req.body.sideMeal });
     await sideMeal.save();
-    res.redirect(`/sideMeals/${req.params.id}`)
+    res.send("update")
+        // res.redirect(`/sideMeals/${req.params.id}`)
 };
 
 module.exports.createSideMeal = async(req, res) => {

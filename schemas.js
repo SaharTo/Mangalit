@@ -62,7 +62,7 @@ module.exports.mealSchema = Joi.object({
         mealAdditionalsIngredientsPrice: Joi.number().min(5).max(50),
         mealTotalPrice: Joi.number().required(),
         mealDescription: Joi.string().required().min(10).max(200).escapeHTML(),
-        mealAuthor: Joi.string().required().escapeHTML(),
+        // mealAuthor: Joi.string().required().escapeHTML(),
         // mealIsRecommended: Joi.bool(),
     }).required(),
 });
@@ -75,7 +75,7 @@ module.exports.sideMealSchema = Joi.object({
             .required()
             .valid("easy", "medium", "hard")
             .escapeHTML(),
-        sideMealEstimatedPrice: Joi.number().required().min(5).max(500),
+        sideMealEstimatedPrice: Joi.number().required().min(5).max(100),
         sideMealImageUrl: Joi.array(),
         sideMealIngriedents: Joi.string().required().min(3).max(200).escapeHTML(),
         sideMealPreperationDescription: Joi.string().required().min(3).escapeHTML(),

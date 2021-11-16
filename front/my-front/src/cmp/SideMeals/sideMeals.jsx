@@ -25,16 +25,18 @@ export class SideMeals extends Component {
     const { sideMeals } = this.state;
     if (!sideMeals) return <h1>Loading...</h1>;
     return (
-      <div className="sideMeals-container">
-        {sideMeals.map((sideMeal) => (
-          <div className="sideMeal-preview" key={sideMeal._id}>
-            <h1>Name: {sideMeal.sideMealName}</h1>
-            <p>Summary: {sideMeal.sideMealSummary}</p>
-            <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
-            {/* <img src='sideMeal.sideMealImageUrl' alt="img" /> */}
-            <Link to={'/sideMeals/' + sideMeal._id}>More Details</Link>
-          </div>
-        ))}
+      <div className="sideMeals">
+        {/* <Link to='/sideMeals/edit/'>Add SideMeal</Link> */}
+        <div className="container">
+          {sideMeals.map((sideMeal) => (
+            <div className="preview" key={sideMeal._id}>
+              <Link to={'/sideMeals/' + sideMeal._id}><h1>Name: {sideMeal.sideMealName}</h1></Link>
+              <p>Summary: {sideMeal.sideMealSummary}</p>
+              <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
+              {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
