@@ -1,0 +1,20 @@
+.edit {
+    padding-inline-start: 10px;
+}
+
+.sideMeal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sideMeal input,
+select,
+textarea {
+    margin-inline-start: 10px;
+}
+
+.sideMeal button {
+    width: 70px;
+    margin-inline-end: 5px;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import styles from './mealEdit.module.css';
 
 export class MealEdit extends Component {
     state = {
@@ -57,9 +57,9 @@ export class MealEdit extends Component {
         const { meal } = this.state;
         if (!meal) return <div>Loading...</div>;
         return (
-            <div /*dir="rtl"*/ className='edit'>
+            <div /*dir="rtl"*/ className={styles.edit}>
                 <h1>Edit Meal</h1>
-                <form className="meal-edit" name='meal'>
+                <form className={styles.meal} name='meal'>
                     <label htmlFor="mealName">Name:
                         <input type="text" value={meal.mealName} id="mealName" name="mealName" onChange={this.handleChange} />
                     </label>

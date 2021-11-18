@@ -1,7 +1,6 @@
 const SideMeal = require("../models/sideMeal");
 const Review = require("../models/review");
 
-
 module.exports.sideMealIndex = async(req, res) => {
     const sideMeals = await SideMeal.find({})
     res.send(sideMeals);
@@ -35,7 +34,8 @@ module.exports.updateSideMeal = async(req, res) => {
 
 module.exports.createSideMeal = async(req, res) => {
     const sideMeal = new SideMeal(req.body.sideMeal);
-    sideMeal.sideMealsAuthor = req.session.user._id;
+    if (req.session.user) sideMeal.sideMealsAuthor = req.session.user._id;
+    // else sideMeal.sideMealsAuthor = '61817186ca1fa6043ae22e90';
     await sideMeal.save();
     res.send(sideMeal);
 };
@@ -53,6 +53,7 @@ module.exports.addReview = async(req, res) => {
     await sideMeal.save();
     res.redirect(`/sideMeals/${req.params.id}`)
 };
+
 module.exports.deleteReview = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
     await Review.findByIdAndDelete(req.params.reviewId);

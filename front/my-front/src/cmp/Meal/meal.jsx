@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import styles from './meal.module.css'
 
 
 export class Meal extends Component {
@@ -36,7 +37,7 @@ export class Meal extends Component {
         const { meal } = this.state;
         if (!meal) return <h1>Loading...</h1>;
         return (
-            <div className="meal" >
+            <div className={styles.meal} >
                 <h1>Name: {meal.mealName}</h1>
                 <p>Summary: {meal.mealSummary}</p>
                 <p>Description: {meal.mealDescription}</p>

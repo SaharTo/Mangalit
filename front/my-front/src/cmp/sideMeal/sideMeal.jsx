@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-
+import styles from './sideMeal.module.css'
 
 export class SideMeal extends Component {
     state = {
@@ -35,7 +35,7 @@ export class SideMeal extends Component {
         const { sideMeal } = this.state;
         if (!sideMeal) return <h1>Loading...</h1>;
         return (
-            <div  className="sideMeal" >
+            <div  className={styles.sideMeal} >
                 <h1>Name: {sideMeal.sideMealName}</h1>
                 <p>Summary: {sideMeal.sideMealSummary}</p>
                 <p>Difficult: {sideMeal.sideMealDifficult}</p>

@@ -1,4 +1,4 @@
-import './sideMeals.module.css';
+import styles from './sideMeals.module.css';
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
@@ -26,10 +26,10 @@ export class SideMeals extends Component {
     if (!sideMeals) return <h1>Loading...</h1>;
     return (
       <div className="sideMeals">
-        {/* <Link to='/sideMeals/edit/'>Add SideMeal</Link> */}
-        <div className="container">
+        <Link className={styles.add} to='/sideMeals/edit/'>Add SideMeal</Link>
+        <div className={styles.container}>
           {sideMeals.map((sideMeal) => (
-            <div className="preview" key={sideMeal._id}>
+            <div className={styles.preview} key={sideMeal._id}>
               <Link to={'/sideMeals/' + sideMeal._id}><h1>Name: {sideMeal.sideMealName}</h1></Link>
               <p>Summary: {sideMeal.sideMealSummary}</p>
               <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>

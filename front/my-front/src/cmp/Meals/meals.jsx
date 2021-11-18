@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-
+import styles from './meals.module.css';
 
 export class Meals extends Component {
   state = {
@@ -24,9 +24,9 @@ export class Meals extends Component {
     const { meals } = this.state;
     if (!meals) return <h1>Loading...</h1>;
     return (
-      <div className="container">
+      <div className={styles.container}>
         {meals.map((meal) => (
-          <div className="preview" key={meal._id}>
+          <div className={styles.preview} key={meal._id}>
             <Link to={'/meals/' + meal._id}><h1>Name: {meal.mealName}</h1></Link>
             <p>Summary: {meal.mealSummary}</p>
             <p>Price: {meal.mealTotalPrice}₪</p>

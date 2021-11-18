@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import styles from './sideMealEdit.module.css';
 
 export class SideMealEdit extends Component {
     state = {
@@ -8,6 +8,7 @@ export class SideMealEdit extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         if (id) this.getSideMeal(id);
+        else this.getEmptySideMeal();
     };
     goBack = () => {
         const id = this.props.match.params.id;
@@ -23,6 +24,19 @@ export class SideMealEdit extends Component {
                 console.log(err);
             })
     };
+    getEmptySideMeal = async () => {
+        const sideMeal = {
+            sideMealName: "",
+            sideMealSummary: "",
+            sideMealDifficult: "",
+            sideMealEstimatedPrice: "",
+            sideMealIngriedents: "",
+            sideMealPreperationDescription: "",
+            sideMealPreperationEstimatedTime: "",
+            sideMealnumberOfPeopleItSuits: "",
+        }
+        this.setState({sideMeal})
+    };
 
     handleChange = ({ target }) => {
         const field = target.id;
@@ -31,9 +45,11 @@ export class SideMealEdit extends Component {
             sideMeal: { ...prevState.sideMeal, [field]: value },
         }));
     };
+
     onSaveSideMeal = async (ev) => {
         ev.preventDefault();
         const { sideMeal } = this.state;
+        console.log(sideMeal);
         const id = this.props.match.params.id;
         if (id) {
             delete sideMeal._id
@@ -49,6 +65,16 @@ export class SideMealEdit extends Component {
             })
                 .then(() => this.goBack())
                 .catch(err => console.log(err))
+        } else {
+            fetch(`http://localhost:3030/sideMeals/`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "sideMeal": sideMeal })
+            })
+                .then(() => this.goBack())
+                .catch(err => console.log(err))
         }
     };
 
@@ -56,9 +82,9 @@ export class SideMealEdit extends Component {
         const { sideMeal } = this.state;
         if (!sideMeal) return <div>Loading...</div>;
         return (
-            <div dir="rtl" className='edit'>
+            <div dir="rtl" className={styles.edit}>
                 <h1>Edit SideMeal</h1>
-                <form className="sideMeal-edit" name='sideMeal'>
+                <form className={styles.sideMeal} name='sideMeal'>
                     <label htmlFor="sideMealName">Name:
                         <input type="text" value={sideMeal.sideMealName} id="sideMealName" name="sideMealName" onChange={this.handleChange} />
                     </label>

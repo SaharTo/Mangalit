@@ -4,7 +4,7 @@ import { About } from "./cmp/about";
 import { Home } from "./cmp/home";
 import { Meals } from "./cmp/Meals/meals";
 import { Meal } from "./cmp/Meal/meal";
-import { Navbar } from "./cmp/navBar";
+import { Navbar } from "./cmp/navBar/navBar";
 import { SideMeals } from "./cmp/SideMeals/sideMeals";
 import { SideMeal } from "./cmp/sideMeal/sideMeal";
 import { SideMealEdit } from "./cmp/sideMealEdit/sideMealEdit";
