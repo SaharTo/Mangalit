@@ -1,12 +1,16 @@
 .container {
-    padding: 0 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .preview {
-    width: 350px;
-    padding-left: 5px;
-    border: 1px solid black;
+  width: 350px;
+  padding-inline-start: 5px;
+  border: 1px solid black;
+}
+.add {
+  margin-inline-start: 5px;
+  padding: 5px;
 }
