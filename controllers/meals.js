@@ -58,7 +58,8 @@ module.exports.createMeal = async(req, res) => {
         //trying to fetch the meat price from the Meat collection where the id is suits to the meat id in the meal.
         /*const { estMeatPrice } = await Meat.findById(req.body.meal.mealMeatInfo);
                 meal.mealEstimatedMeatPrice = estMeatPrice;*/
-        meal.mealAuthor = req.session.user._id;
+
+        if (req.session.user) meal.mealAuthor = req.session.user._id;
         await meal.save();
         console.log(meal);
         res.send(meal);

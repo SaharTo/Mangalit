@@ -22,6 +22,9 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/about">
           About
         </NavLink>
+        <NavLink activeClassName="activeNav" to="/login">
+          Login
+        </NavLink>
       </div>
     </div>
   );

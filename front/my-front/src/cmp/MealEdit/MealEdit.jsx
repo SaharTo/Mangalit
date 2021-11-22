@@ -1,7 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import styles from "./mealEdit.module.css";
 import Chosen from "../helpers/chosen";
-import { MultiSelect } from "react-multi-select-component";
 
 export class MealEdit extends Component {
   state = {
@@ -88,12 +87,17 @@ export class MealEdit extends Component {
   };
 
   handleSelectChange = (data) => {
-    console.log(data);
-    this.state.meal.mealMeatInfo = data.map((m) => m.value);
+    const mealMeatInfo = data.map((m) => m.value);
+    this.setState((prevState) => ({
+      meal: { ...prevState.meal, mealMeatInfo },
+    }));
+
+    // this.state.meal.mealMeatInfo = data.map((m) => m.value);
   };
 
   onSaveMeal = async (ev) => {
     ev.preventDefault();
+    console.log("after     ", this.state);
     const { meal } = this.state;
     const id = this.props.match.params.id;
     if (id) {

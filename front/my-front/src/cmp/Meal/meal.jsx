@@ -41,13 +41,13 @@ export class Meal extends Component {
         <p>Summary: {meal.mealSummary}</p>
         <p>Description: {meal.mealDescription}</p>
         <p>Difficult: {meal.mealPreparationDifficult}</p>
-        {meal.mealMeatInfo.map((meat) => {
-          return (
-            <div key={meat._id}>
-              <p>Meat Name: {meat.meatName}</p>
-            </div>
-          );
-        })}
+        <div>Meat Name:
+          {meal.mealMeatInfo.map((meat) => {
+            return (
+              <p key={meat._id}> {meat.meatName}</p>
+            );
+          })}
+        </div>
         <p>Meat Quantity Gram: {meal.mealMeatQuantityGram}</p>
         {meal.mealRecommendedSideMeals.map((sideMeal) => {
           return (
@@ -62,7 +62,7 @@ export class Meal extends Component {
         <p>Additional Ingredients: {meal.mealAdditionalIngredients}</p>
         <p>number Of People It Suits: {meal.mealNumberOfPeopleItSuits}</p>
         <p>Price: {meal.mealTotalPrice}₪</p>
-        {/* <p>Author: {meal.mealAuthor.fullName}</p> */}
+        {meal.mealAuthor ? <p>Author: {meal.mealAuthor.fullName}</p> : <p>Author: Unknown</p>}
         {meal.mealReviews.map((review) => {
           return (
             <div key={review._id}>

@@ -73,7 +73,7 @@ export class SideMealEdit extends Component {
         },
         body: JSON.stringify({ sideMeal: sideMeal }),
       })
-        .then(() => this.goBack())
+        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
   };
