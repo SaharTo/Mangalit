@@ -66,12 +66,8 @@ module.exports.login = async(req, res, next) => {
                     isAdmin: user.isAdmin,
                     _id: user._id,
                 };
-                delete user.password
-                console.log("user after", newUser);
-                console.log("user after", user);
                 req.session.user = newUser;
-                // res.json(req.session);
-                console.log("req.session", req.session);
+                console.log("req.session", req.session.user);
                 res.send("successfull login");
             } else {
                 res.status(404).send("Not Allowed");

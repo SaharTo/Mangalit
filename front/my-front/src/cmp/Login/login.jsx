@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from './login.module.css';
 
-const Login = () => {
+
+export default function Login() {
     const [user, setUser] = useState({});
 
     const handleChange = ({ target }) => {
@@ -36,4 +37,3 @@ const Login = () => {
     );
 };
 
-export default Login;

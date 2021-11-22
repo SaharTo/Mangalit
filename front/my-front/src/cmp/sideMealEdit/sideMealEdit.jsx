@@ -49,7 +49,6 @@ export class SideMealEdit extends Component {
   onSaveSideMeal = async (ev) => {
     ev.preventDefault();
     const { sideMeal } = this.state;
-    console.log(sideMeal);
     const id = this.props.match.params.id;
     if (id) {
       delete sideMeal._id;
