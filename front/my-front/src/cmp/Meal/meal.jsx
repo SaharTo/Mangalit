@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Reviews from "../reviews/reviews";
 import styles from "./meal.module.css";
 
 export class Meal extends Component {
@@ -63,22 +64,13 @@ export class Meal extends Component {
         <p>number Of People It Suits: {meal.mealNumberOfPeopleItSuits}</p>
         <p>Price: {meal.mealTotalPrice}₪</p>
         {/* <p>Author: {meal.mealAuthor.fullName}</p> */}
-        {meal.mealReviews.map((review) => {
-          return (
-            <div key={review._id}>
-              <p>
-                review: {review.reviewBody} author:{" "}
-                {review.reviewAuthor.fullName}
-              </p>
-            </div>
-          );
-        })}
         <button onClick={(ev) => this.deleteMeal(ev, meal._id)}> delete</button>
         <Link to={"/meals/edit/" + meal._id}>
           <button> Edit</button>
         </Link>
         <button onClick={this.goBack}> Back To All Meals</button>
         {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
+        {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>
     );
   }
