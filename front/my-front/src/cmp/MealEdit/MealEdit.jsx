@@ -56,7 +56,10 @@ export class MealEdit extends Component {
       .catch((err) => {
         console.log(err);
       });
+    this.setState({ meat: this.state.meal.mealMeatInfo });
+
     //console.log("mmmmmmmmmmmmmmm", this.state.meal);
+    //console.log("yyyyy", this.state.meat);
   };
   getEmptyMeal = async () => {
     const meal = {
@@ -129,14 +132,21 @@ export class MealEdit extends Component {
   };
 
   render() {
-    const { meal, meat } = this.state;
+    const { meal, meat, addOrEdit } = this.state;
+    /*if (!meal) {
+      return <div>Searching the meal... please wait.</div>;
+    }
+    if (!meat) {
+      return <div>Searching the meat... please wait.</div>;
+    }*/
     if (!meal || !meat) return <div>Loading...</div>;
     const opt = meat.map((m) => {
       return { label: m.meatName, value: m._id };
     });
     return (
       <div /*dir="rtl"*/ className={styles.edit}>
-        <h1>Edit Meal</h1>
+        {addOrEdit === "edit" && <h1>Edit Meal</h1>}
+        {addOrEdit === "add" && <h1>Add Meal</h1>}
         <form className={styles.meal} name="meal">
           <label htmlFor="mealName">
             Name:
@@ -193,13 +203,16 @@ export class MealEdit extends Component {
               value={meal.mealPreparationTechniques}
               onChange={this.handleChange}
             >
-              <option value="oven">oven</option>
-              <option value="grill">grill</option>
-              <option value="pan">pan</option>
-              <option value="gas">gas</option>
+              <option value="" disabled="disabled">
+                בחר
+              </option>
+              <option value="oven">תנור</option>
+              <option value="grill">מנגל</option>
+              <option value="pan">מחבת</option>
+              <option value="gas">גז</option>
             </select>
           </label>
-          {this.state.addOrEdit === "edit" && (
+          {addOrEdit === "edit" && (
             <label htmlFor="mealMeatInfo">
               Meat Info:
               <input
@@ -209,7 +222,7 @@ export class MealEdit extends Component {
               />
             </label>
           )}
-          {this.state.addOrEdit === "add" && (
+          {addOrEdit === "add" && (
             <label htmlFor="mealMeatInfo">
               Meat Info:
               <Chosen opt={opt} parentCallback={this.handleSelectChange} />
