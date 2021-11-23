@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styles from './login.module.css';
 
 
 export default function Login() {
+    let history = useHistory()
     const [user, setUser] = useState({});
 
     const handleChange = ({ target }) => {
@@ -21,15 +23,23 @@ export default function Login() {
             body: JSON.stringify({ user: user }),
         })
             .then((res) => {
-                if (res.ok) console.log('login', res)
-                else console.log('no user please signup', res)
+                if (res.ok) {
+                    res.json()
+                        .then(data => {
+                            sessionStorage.setItem('logedInUser', JSON.stringify(data))
+                            history.push('/home')
+                            window.location.reload();
+                        });
+                }
+                else res.text()
+                    .then(data => console.log(data));
             })
     }
 
     return (
         <div>
             <form className={styles.login} name="login" onSubmit={login}>
-                <input type="text" id="userName" value={user.userName} onChange={handleChange} placeholder="user name" />
+                <input type="text" id="userName" value={user.userName} onChange={handleChange} placeholder="username" />
                 <input type="password" id="password" value={user.password} onChange={handleChange} placeholder="password" />
                 <button>login</button>
             </form>

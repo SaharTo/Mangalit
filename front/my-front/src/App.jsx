@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import React, { useState } from "react";
 import "./App.css";
 import { About } from "./cmp/about";
 import { Home } from "./cmp/home";
@@ -12,10 +13,15 @@ import { MealEdit } from "./cmp/MealEdit/MealEdit";
 import Login from "./cmp/Login/login";
 
 function App() {
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // if (sessionStorage.getItem('logedInUser')) setIsLoggedIn(true);
+  // else setIsLoggedIn(false);
+
   return (
     <Router>
       <div>
         <Navbar />
+        {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/home" component={Home} />

@@ -41,7 +41,7 @@ module.exports.logout = async(req, res, next) => {
     try {
         req.session.user = null; //req.session.destroy()
         res.json(req.session);
-        //res.send("Successfully logout");
+        res.send("Successfully logout");
     } catch {
         res.send("Something went wrong");
     }
@@ -67,10 +67,10 @@ module.exports.login = async(req, res, next) => {
                     _id: user._id,
                 };
                 req.session.user = newUser;
-                console.log("req.session", req.session.user);
-                res.send("successfull login");
+                // console.log("req.session", req.session.user);
+                res.send(newUser._id);
             } else {
-                res.status(404).send("Not Allowed");
+                res.status(404).send("Incorrect Password");
             }
         } catch (e) {
             console.log(e);

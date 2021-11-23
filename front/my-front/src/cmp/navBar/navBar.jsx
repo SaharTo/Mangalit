@@ -22,9 +22,8 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/about">
           About
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/login">
-          Login
-        </NavLink>
+        {/* {props.isLogged ? <NavLink activeClassName="activeNav" to="/login">Login</NavLink> : <a href='logout'>logout</a>} */}
+        {!sessionStorage.getItem('logedInUser') ? <NavLink activeClassName="activeNav" to="/login" >Login</NavLink> : <a href='logout'>logout</a>}
       </div>
     </div>
   );
