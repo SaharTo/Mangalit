@@ -49,7 +49,6 @@ export class SideMealEdit extends Component {
   onSaveSideMeal = async (ev) => {
     ev.preventDefault();
     const { sideMeal } = this.state;
-    console.log(sideMeal);
     const id = this.props.match.params.id;
     if (id) {
       delete sideMeal._id;
@@ -73,7 +72,7 @@ export class SideMealEdit extends Component {
         },
         body: JSON.stringify({ sideMeal: sideMeal }),
       })
-        .then(() => this.goBack())
+        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
   };

@@ -35,7 +35,7 @@ export class SideMeal extends Component {
         const { sideMeal } = this.state;
         if (!sideMeal) return <h1>Loading...</h1>;
         return (
-            <div  className={styles.sideMeal} >
+            <div className={styles.sideMeal} >
                 <h1>Name: {sideMeal.sideMealName}</h1>
                 <p>Summary: {sideMeal.sideMealSummary}</p>
                 <p>Difficult: {sideMeal.sideMealDifficult}</p>
@@ -44,7 +44,7 @@ export class SideMeal extends Component {
                 <p>Preperation Estimated Time: {sideMeal.sideMealPreperationEstimatedTime}</p>
                 <p>number Of People It Suits: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
                 <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
-                <p>Author: {sideMeal.sideMealsAuthor.fullName}</p>
+                {sideMeal.sideMealsAuthor ? <p>Author: {sideMeal.sideMealsAuthor.fullName}</p> : <p>Author: Unknown</p>}
                 {sideMeal.sideMealsReviews.map((review) => {
                     return <div key={review._id}>
                         <p>review: {review.reviewBody}  author: {review.reviewAuthor.fullName}</p>

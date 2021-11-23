@@ -9,6 +9,7 @@ import { SideMeals } from "./cmp/SideMeals/sideMeals";
 import { SideMeal } from "./cmp/sideMeal/sideMeal";
 import { SideMealEdit } from "./cmp/sideMealEdit/sideMealEdit";
 import { MealEdit } from "./cmp/MealEdit/MealEdit";
+import Login from "./cmp/Login/login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <div>
         <Navbar />
         <Switch>
+          <Route path="/login" component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/meals/edit/:id?" component={MealEdit} />

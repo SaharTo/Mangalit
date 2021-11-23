@@ -62,6 +62,7 @@ module.exports.createMeal = async (req, res) => {
     //trying to fetch the meat price from the Meat collection where the id is suits to the meat id in the meal.
     /*const { estMeatPrice } = await Meat.findById(req.body.meal.mealMeatInfo);
                 meal.mealEstimatedMeatPrice = estMeatPrice;*/
+<<<<<<< HEAD
     if (req.session.user) meal.mealAuthor = req.session.user._id;
 
     //meal.mealAuthor = req.session.user._id;
@@ -72,6 +73,17 @@ module.exports.createMeal = async (req, res) => {
     console.log(e);
   }
   /*const meal = new Meal();
+=======
+
+        if (req.session.user) meal.mealAuthor = req.session.user._id;
+        await meal.save();
+        console.log(meal);
+        res.send(meal);
+    } catch (e) {
+        console.log(e);
+    }
+    /*const meal = new Meal();
+>>>>>>> 24b86139ffa8a24b6e1fbbc34dfa9d63e49749b4
         meal.mealName = "bdika";
         meal.mealSummary = "Lo Yodea";
         meal.mealTotalPrice = "100";

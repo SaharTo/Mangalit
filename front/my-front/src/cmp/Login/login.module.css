@@ -1,0 +1,17 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    margin: auto;
+}
+
+.login input {
+    height: 25px;
+    width: 100%;
+}
+
+.login button {
+    height: 25px;
+    width: 100%;
+}
