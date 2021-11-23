@@ -13,6 +13,8 @@ const Reviews = (props) => {
   };
   //console.log("review state    ", reviews);
   //console.log(props.mealId);
+  //const ifMeal = `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`;
+  // const ifSideMeal = `http://localhost:3030/meals/${props.sideMealId}/review?_method=PUT`;
   return (
     <div>
       <button onClick={showReviewsHandler}>
@@ -37,7 +39,11 @@ const Reviews = (props) => {
       {createReviewIsShown && (
         <form
           method="POST"
-          action={`http://localhost:3030/meals/${props.mealId}/review?_method=PUT`}
+          action={
+            props.mealId
+              ? `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`
+              : `http://localhost:3030/sideMeals/${props.sideMealId}/review?_method=PUT`
+          }
         >
           <label htmlFor="AuthorName">
             {/*here We Need To Insert The LoogedIn User*/}
