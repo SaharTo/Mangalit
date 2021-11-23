@@ -51,17 +51,6 @@ module.exports.createMeal = async (req, res) => {
   console.log(req.body.meal);
   const meal = await new Meal(req.body.meal);
   try {
-    /*meal.mealImage = req.files.map((f) => ({
-              url: f.path,
-              filename: f.filename,
-            }));
-            meal.mealAuthor = req.user._id;
-            meal.mealReviews = [];
-            meal.mealRecommendedSideMeals = []; the user could choose 0-3 sideMeals when add a new Meal, so it will inserted automatically via req.body
-            meal.mealIsRecommended = false;*/
-    //trying to fetch the meat price from the Meat collection where the id is suits to the meat id in the meal.
-    /*const { estMeatPrice } = await Meat.findById(req.body.meal.mealMeatInfo);
-                meal.mealEstimatedMeatPrice = estMeatPrice;*/
     if (req.session.user) meal.mealAuthor = req.session.user._id;
 
     //meal.mealAuthor = req.session.user._id;
@@ -71,16 +60,6 @@ module.exports.createMeal = async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-  /*const meal = new Meal();
-        meal.mealName = "bdika";
-        meal.mealSummary = "Lo Yodea";
-        meal.mealTotalPrice = "100";
-
-        await meal.save();
-        res.send(meal);
-        This is work*/
-  //req.flash('success', 'successfully made a new meal!')
-  //res.redirect(`/meals/${meal._id}`);
 };
 
 module.exports.renderRecommendedMeals = async (req, res) => {

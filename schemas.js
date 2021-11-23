@@ -54,13 +54,13 @@ module.exports.mealSchema = Joi.object({
     mealRecommendedSideMeals: Joi.array(),
     mealImage: Joi.array(),
     mealMeatQuantityGram: Joi.number().min(200).max(5000),
-    mealEstimatedMeatPrice: Joi.number() /*.required()*/,
+    //mealEstimatedMeatPrice: Joi.number() /*.required()*/,
     mealAdditionalIngredients: Joi.string()
       .required()
       .min(3)
       .max(200)
       .escapeHTML(),
-    mealAdditionalsIngredientsPrice: Joi.number().min(5).max(50),
+    //mealAdditionalsIngredientsPrice: Joi.number().min(5).max(50),
     mealTotalPrice: Joi.number().required(),
     mealDescription: Joi.string().required().min(10).max(200).escapeHTML(),
     // mealAuthor: Joi.string().required().escapeHTML(),
