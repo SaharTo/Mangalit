@@ -37,17 +37,16 @@ export class Meal extends Component {
     const { meal } = this.state;
     if (!meal) return <h1>Loading...</h1>;
     return (
-      <div className={styles.meal}>
+      <div dir="rtl" className={styles.meal}>
         <h1>Name: {meal.mealName}</h1>
         <p>Summary: {meal.mealSummary}</p>
-        <p>Description: {meal.mealDescription}</p>
         <p>Difficult: {meal.mealPreparationDifficult}</p>
         <div>Meat Name:
           {meal.mealMeatInfo.map((meat) => {
             return (
               <p key={meat._id}> {meat.meatName}</p>
-            );
-          })}
+              );
+            })}
         </div>
         <p>Meat Quantity Gram: {meal.mealMeatQuantityGram}</p>
         {meal.mealRecommendedSideMeals.map((sideMeal) => {
@@ -59,8 +58,8 @@ export class Meal extends Component {
         })}
         <p>Preparation Techniques: {meal.mealPreparationTechniques}</p>
         <p>Preperation Time: {meal.mealPreparationTime}</p>
-        <p>Preperation Description: {meal.mealPreparationDifficult}</p>
         <p>Additional Ingredients: {meal.mealAdditionalIngredients}</p>
+        <p>Description: {meal.mealDescription}</p>
         <p>number Of People It Suits: {meal.mealNumberOfPeopleItSuits}</p>
         <p>Price: {meal.mealTotalPrice}₪</p>
         {meal.mealAuthor ? <p>Author: {meal.mealAuthor.fullName}</p> : <p>Author: Unknown</p>}

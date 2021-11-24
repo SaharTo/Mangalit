@@ -53,7 +53,6 @@ module.exports.login = async(req, res, next) => {
     const user = await users.find(
         (user1) => user1.userName == req.body.user.userName
     );
-    console.log("This is the user:    " + user);
     if (!user) {
         res.status(404).send("There is no such a user, please try again");
     } else {
@@ -67,7 +66,8 @@ module.exports.login = async(req, res, next) => {
                     _id: user._id,
                 };
                 req.session.user = newUser;
-                // console.log("req.session", req.session.user);
+                req.session.save();
+                console.log(req.session);
                 res.send(newUser._id);
             } else {
                 res.status(404).send("Incorrect Password");

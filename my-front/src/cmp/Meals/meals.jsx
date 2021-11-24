@@ -23,14 +23,14 @@ export class Meals extends Component {
     const { meals } = this.state;
     if (!meals) return <h1>Loading...</h1>;
     return (
-      <div className="meals">
+      <div dir="rtl" className="meals">
         <Link className={styles.add} to="/meals/edit/">
           Add Meal
         </Link>
 
-        <div className={styles.container}>
+        <div dir="rtl" className={styles.container}>
           {meals.map((meal) => (
-            <div className={styles.preview} key={meal._id}>
+            <div dir="rtl" className={styles.preview} key={meal._id}>
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>
               </Link>

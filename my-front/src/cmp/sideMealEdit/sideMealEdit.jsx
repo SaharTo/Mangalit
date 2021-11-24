@@ -17,7 +17,7 @@ export class SideMealEdit extends Component {
   };
 
   getSideMeal = async (id) => {
-    fetch(`http://localhost:3030/sideMeals/${id}`)
+    fetch(`http://localhost:3030/sideMeals/${id}`,{credentials: 'same-origin',})
       .then((res) => res.json())
       .then((sideMeal) => this.setState({ sideMeal }))
       .catch((err) => {
@@ -57,6 +57,7 @@ export class SideMealEdit extends Component {
       delete sideMeal.__v;
       fetch(`http://localhost:3030/sideMeals/${id}`, {
         method: "PUT",
+        credentials: 'same-origin',
         headers: {
           "Content-Type": "application/json",
         },
@@ -70,10 +71,17 @@ export class SideMealEdit extends Component {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'same-origin',
         body: JSON.stringify({ sideMeal: sideMeal }),
       })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then((res) => {
+          if (res.ok) {
+            res.json()
+              .then(data => console.log(data));
+          }
+          else res.text()
+            .then(data => console.log(data));
+        })
     }
   };
 

@@ -5,7 +5,7 @@ import styles from './navBar.module.css';
 
 export function Navbar() {
   return (
-    <div className={styles.header}>
+    <div dir="rtl" className={styles.header}>
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>

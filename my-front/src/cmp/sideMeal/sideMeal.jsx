@@ -16,7 +16,7 @@ export class SideMeal extends Component {
 
   getSideMeal = async () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/sideMeals/${id}`)
+    fetch(`http://localhost:3030/sideMeals/${id}`, { credentials: 'same-origin' })
       .then((res) => res.json())
       .then((sideMeal) => this.setState({ sideMeal }))
       .catch((err) => {
@@ -25,7 +25,10 @@ export class SideMeal extends Component {
   };
 
   deleteSideMeal = async (ev, sideMealId) => {
-    fetch(`http://localhost:3030/sideMeals/${sideMealId}`, { method: "DELETE" })
+    fetch(`http://localhost:3030/sideMeals/${sideMealId}`, {
+      credentials: 'same-origin',
+      method: "DELETE"
+    })
       .then(() => this.goBack())
       .catch((err) => {
         console.log(err);
@@ -36,7 +39,7 @@ export class SideMeal extends Component {
     const { sideMeal } = this.state;
     if (!sideMeal) return <h1>Loading...</h1>;
     return (
-      <div className={styles.sideMeal}>
+      <div dir="rtl" className={styles.sideMeal}>
         <h1>Name: {sideMeal.sideMealName}</h1>
         <p>Summary: {sideMeal.sideMealSummary}</p>
         <p>Difficult: {sideMeal.sideMealDifficult}</p>

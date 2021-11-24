@@ -6,6 +6,6 @@ import React, { Component } from "react";
 // export default Home;
 export class Home extends Component {
   render() {
-    return <h1>home page</h1>;
+    return <h1 dir="rtl">home page</h1>;
   }
 }

@@ -144,7 +144,7 @@ export class MealEdit extends Component {
       return { label: m.meatName, value: m._id };
     });
     return (
-      <div /*dir="rtl"*/ className={styles.edit}>
+      <div dir="rtl" className={styles.edit}>
         {addOrEdit === "edit" && <h1>Edit Meal</h1>}
         {addOrEdit === "add" && <h1>Add Meal</h1>}
         <form className={styles.meal} name="meal">

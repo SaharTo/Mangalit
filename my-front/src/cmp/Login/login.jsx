@@ -20,6 +20,7 @@ export default function Login() {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: 'same-origin',
             body: JSON.stringify({ user: user }),
         })
             .then((res) => {
@@ -28,7 +29,7 @@ export default function Login() {
                         .then(data => {
                             sessionStorage.setItem('logedInUser', JSON.stringify(data))
                             history.push('/home')
-                            window.location.reload();
+                            // window.location.reload();
                         });
                 }
                 else res.text()

@@ -12,7 +12,7 @@ export class SideMeals extends Component {
   }
 
   getSideMeals = async () => {
-    fetch('http://localhost:3030/sideMeals')
+    fetch('http://localhost:3030/sideMeals',{credentials: 'same-origin'})
       .then(res => res.json())
       .then(sideMeals => this.setState({ sideMeals }))
       .catch(err => {
@@ -25,11 +25,11 @@ export class SideMeals extends Component {
     const { sideMeals } = this.state;
     if (!sideMeals) return <h1>Loading...</h1>;
     return (
-      <div className="sideMeals">
+      <div dir="rtl" className="sideMeals">
         <Link className={styles.add} to='/sideMeals/edit/'>Add SideMeal</Link>
-        <div className={styles.container}>
+        <div dir="rtl" className={styles.container}>
           {sideMeals.map((sideMeal) => (
-            <div className={styles.preview} key={sideMeal._id}>
+            <div dir="rtl" className={styles.preview} key={sideMeal._id}>
               <Link to={'/sideMeals/' + sideMeal._id}><h1>Name: {sideMeal.sideMealName}</h1></Link>
               <p>Summary: {sideMeal.sideMealSummary}</p>
               <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
