@@ -42,13 +42,13 @@ module.exports.mealSchema = Joi.object({
     mealMeatInfo: Joi.array().required(),
     mealPreparationTechniques: Joi.string()
       .required()
-      .valid("oven", "grill", "pan", "gas")
+      .valid("תנור", "מנגל", "מחבת", "גז")
       .escapeHTML(),
     mealPreparationTime: Joi.number().required().min(5).max(500),
     mealPreparationDifficult: Joi.string()
       .required()
-      //.valid("קל", "בינוני", "קשה")
-      .valid("easy", "medium", "hard")
+      .valid("קל", "בינוני", "קשה")
+      //.valid("easy", "medium", "hard")
       .escapeHTML(),
     mealNumberOfPeopleItSuits: Joi.number().min(1).max(15).required(),
     mealRecommendedSideMeals: Joi.array(),
@@ -74,7 +74,7 @@ module.exports.sideMealSchema = Joi.object({
     sideMealSummary: Joi.string().required().min(10).max(200).escapeHTML(),
     sideMealDifficult: Joi.string()
       .required()
-      .valid("easy", "medium", "hard")
+      .valid("קל", "בינוני", "קשה")
       .escapeHTML(),
     sideMealEstimatedPrice: Joi.number().required().min(5).max(100),
     sideMealImageUrl: Joi.array(),

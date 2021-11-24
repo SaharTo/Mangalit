@@ -32,10 +32,12 @@ export class Meals extends Component {
           {meals.map((meal) => (
             <div className={styles.preview} key={meal._id}>
               <Link to={"/meals/" + meal._id}>
-                <h1>Name: {meal.mealName}</h1>
+                <h1>שם המנה: {meal.mealName}</h1>
               </Link>
-              <p>Summary: {meal.mealSummary}</p>
-              <p>Price: {meal.mealTotalPrice}₪</p>
+              <p>פירוט על המנה: {meal.mealSummary}</p>
+              <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
+              <p>זמן הכנה: {meal.mealPreparationTime}</p>
+              <p>מחיר: {meal.mealTotalPrice}₪</p>
               {/* <img src='meal.mealImageUrl' alt="img" /> */}
             </div>
           ))}

@@ -75,7 +75,7 @@ export class MealEdit extends Component {
       mealMeatQuantityGram: "",
       //   mealEstimatedMeatPrice: "",
       mealAdditionalIngredients: "",
-      mealAdditionalsIngredientsPrice: 6,
+      //mealAdditionalsIngredientsPrice: 6,
       mealTotalPrice: "",
       mealDescription: "",
     };
@@ -190,9 +190,9 @@ export class MealEdit extends Component {
               <option value="" disabled="disabled">
                 בחר
               </option>
-              <option value="easy">קל</option>
-              <option value="medium">בינוני</option>
-              <option value="hard">קשה</option>
+              <option value="קל">קל</option>
+              <option value="בינוני">בינוני</option>
+              <option value="קשה">קשה</option>
             </select>
           </label>
           <label htmlFor="mealPreparationTechniques">
@@ -206,10 +206,10 @@ export class MealEdit extends Component {
               <option value="" disabled="disabled">
                 בחר
               </option>
-              <option value="oven">תנור</option>
-              <option value="grill">מנגל</option>
-              <option value="pan">מחבת</option>
-              <option value="gas">גז</option>
+              <option value="תנור">תנור</option>
+              <option value="מנגל">מנגל</option>
+              <option value="מחבת">מחבת</option>
+              {/*<option value="גז">גז</option>*/}
             </select>
           </label>
           {addOrEdit === "edit" && (

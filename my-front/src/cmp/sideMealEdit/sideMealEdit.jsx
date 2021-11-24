@@ -115,9 +115,9 @@ export class SideMealEdit extends Component {
               <option value="" disabled="disabled">
                 בחר
               </option>
-              <option value="easy">קל</option>
-              <option value="medium">בינוני</option>
-              <option value="hard">קשה</option>
+              <option value="קל">קל</option>
+              <option value="בינוני">בינוני</option>
+              <option value="קשה">קשה</option>
             </select>
           </label>
           <label htmlFor="sideMealIngriedents">
