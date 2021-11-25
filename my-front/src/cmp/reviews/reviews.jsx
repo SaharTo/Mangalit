@@ -35,7 +35,9 @@ const Reviews = (props) => {
             </div>
           )
       )}
-      <button onClick={createReviewHandler}>Insert A Comment</button>
+      {sessionStorage.getItem("loggedInUser") && (
+        <button onClick={createReviewHandler}>Insert A Comment</button>
+      )}
       {createReviewIsShown && (
         <form
           method="POST"

@@ -11,6 +11,7 @@ import { SideMeal } from "./cmp/sideMeal/sideMeal";
 import { SideMealEdit } from "./cmp/sideMealEdit/sideMealEdit";
 import { MealEdit } from "./cmp/MealEdit/MealEdit";
 import Login from "./cmp/Login/login";
+import Register from "./cmp/Register/register";
 
 function App() {
   //const [isLoggedIn, setIsLoggedIn] = useState("");`
@@ -38,6 +39,7 @@ function App() {
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Register} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/meals/edit/:id?" component={MealEdit} />

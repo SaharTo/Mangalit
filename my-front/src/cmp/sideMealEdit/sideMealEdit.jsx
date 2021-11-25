@@ -88,7 +88,11 @@ export class SideMealEdit extends Component {
     if (!sideMeal) return <div>Loading...</div>;
     return (
       <div dir="rtl" className={styles.edit}>
-        <h1>Edit SideMeal</h1>
+        {this.props.match.params.id ? (
+          <h1>Edit SideMeal</h1>
+        ) : (
+          <h1>New SideMeal</h1>
+        )}
         <form className={styles.sideMeal} name="sideMeal">
           <label htmlFor="sideMealName">
             Name:

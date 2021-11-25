@@ -104,7 +104,7 @@ module.exports.register = async (req, res) => {
     res.send(user);
   } catch (e) {
     console.log(e);
-    res.redirect("/users");
+    res.status(401).send("invalid userName or email");
   }
 };
 module.exports.checkIfLoggedIn = async (req, res) => {

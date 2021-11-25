@@ -69,10 +69,20 @@ export class Meal extends Component {
         ) : (
           <p>Author: Unknown</p>
         )}
-        <button onClick={(ev) => this.deleteMeal(ev, meal._id)}> delete</button>
-        <Link to={"/meals/edit/" + meal._id}>
-          <button> Edit</button>
-        </Link>
+        {meal.mealAuthor &&
+          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            meal.mealAuthor._id && (
+            <button onClick={(ev) => this.deleteMeal(ev, meal._id)}>
+              delete
+            </button>
+          )}
+        {meal.mealAuthor &&
+          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            meal.mealAuthor._id && (
+            <Link to={"/meals/edit/" + meal._id}>
+              <button> Edit</button>
+            </Link>
+          )}
         <button onClick={this.goBack}> Back To All Meals</button>
         {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}

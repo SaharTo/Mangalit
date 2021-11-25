@@ -40,11 +40,17 @@ export function Navbar() {
           About
         </NavLink>
         {/* {props.isLogged ? <NavLink activeClassName="activeNav" to="/login">Login</NavLink> : <a href='logout'>logout</a>} */}
-        {!sessionStorage.getItem("loggedInUser") ? (
+        {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/login">
             Login
           </NavLink>
-        ) : (
+        )}
+        {!sessionStorage.getItem("loggedInUser") && (
+          <NavLink activeClassName="activeNav" to="/signup">
+            Signup
+          </NavLink>
+        )}
+        {sessionStorage.getItem("loggedInUser") && (
           <button onClick={logout}>LogOut</button>
         )}
       </div>

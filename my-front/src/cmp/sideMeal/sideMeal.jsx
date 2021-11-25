@@ -63,13 +63,20 @@ export class SideMeal extends Component {
         ) : (
           <p>Author: Unknown</p>
         )}
-
-        <button onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
-          Delete
-        </button>
-        <Link to={"/sideMeals/edit/" + sideMeal._id}>
-          <button> Edit</button>
-        </Link>
+        {sideMeal.sideMealsAuthor &&
+          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            sideMeal.sideMealsAuthor._id && (
+            <button onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
+              Delete
+            </button>
+          )}
+        {sideMeal.sideMealsAuthor &&
+          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            sideMeal.sideMealsAuthor._id && (
+            <Link to={"/sideMeals/edit/" + sideMeal._id}>
+              <button> Edit</button>
+            </Link>
+          )}
         <button onClick={this.goBack}> Back To All SideMeals</button>
         {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
         {
