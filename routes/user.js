@@ -5,6 +5,7 @@ const users = require("../controllers/users");
 const { isAdmin } = require("../middleware");
 
 router.get("/", users.printUser);
+router.get("/checkIfLoggedIn", users.checkIfLoggedIn);
 router
   .route("/:id")
   .get(users.userById)

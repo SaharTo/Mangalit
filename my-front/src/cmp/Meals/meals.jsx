@@ -11,7 +11,7 @@ export class Meals extends Component {
   }
 
   getMeals = async () => {
-    fetch("http://localhost:3030/meals")
+    fetch("http://localhost:3030/meals", { credentials: "include" })
       .then((res) => res.json())
       .then((meals) => this.setState({ meals }))
       .catch((err) => {

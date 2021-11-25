@@ -82,5 +82,6 @@ module.exports.sideMealSchema = Joi.object({
     sideMealPreperationDescription: Joi.string().required().min(3).escapeHTML(),
     sideMealPreperationEstimatedTime: Joi.number().required().min(5).max(60),
     sideMealnumberOfPeopleItSuits: Joi.number().required().min(1).max(30),
+    //sideMealAuthor: Joi.string().required(),
   }).required(),
 });

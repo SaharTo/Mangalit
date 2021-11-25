@@ -17,7 +17,7 @@ export class Meal extends Component {
 
   getMeal = async () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/meals/${id}`)
+    fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
       .then((res) => res.json())
       .then((meal) => this.setState({ meal }))
       .catch((err) => {
@@ -26,7 +26,10 @@ export class Meal extends Component {
   };
 
   deleteMeal = async (ev, mealId) => {
-    fetch(`http://localhost:3030/meals/${mealId}`, { method: "DELETE" })
+    fetch(`http://localhost:3030/meals/${mealId}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
       .then(() => this.goBack())
       .catch((err) => {
         console.log(err);
@@ -41,12 +44,11 @@ export class Meal extends Component {
         <h1>Name: {meal.mealName}</h1>
         <p>Summary: {meal.mealSummary}</p>
         <p>Difficult: {meal.mealPreparationDifficult}</p>
-        <div>Meat Name:
+        <div>
+          Meat Name:
           {meal.mealMeatInfo.map((meat) => {
-            return (
-              <p key={meat._id}> {meat.meatName}</p>
-              );
-            })}
+            return <p key={meat._id}> {meat.meatName}</p>;
+          })}
         </div>
         <p>Meat Quantity Gram: {meal.mealMeatQuantityGram}</p>
         {meal.mealRecommendedSideMeals.map((sideMeal) => {
@@ -62,7 +64,11 @@ export class Meal extends Component {
         <p>Description: {meal.mealDescription}</p>
         <p>number Of People It Suits: {meal.mealNumberOfPeopleItSuits}</p>
         <p>Price: {meal.mealTotalPrice}₪</p>
-        {meal.mealAuthor ? <p>Author: {meal.mealAuthor.fullName}</p> : <p>Author: Unknown</p>}
+        {meal.mealAuthor ? (
+          <p>Author: {meal.mealAuthor.fullName}</p>
+        ) : (
+          <p>Author: Unknown</p>
+        )}
         <button onClick={(ev) => this.deleteMeal(ev, meal._id)}> delete</button>
         <Link to={"/meals/edit/" + meal._id}>
           <button> Edit</button>

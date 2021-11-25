@@ -20,6 +20,7 @@ module.exports.sideMealById = async (req, res) => {
 };
 
 module.exports.deleateSideMeal = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   await SideMeal.findByIdAndDelete(req.params.id);
   res.redirect("/sideMeals");
 };
@@ -35,6 +36,8 @@ module.exports.updateSideMeal = async (req, res) => {
 };
 
 module.exports.createSideMeal = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  console.log("create sideMeal controller  ", req.session);
   const sideMeal = new SideMeal(req.body.sideMeal);
   if (req.session.user) sideMeal.sideMealsAuthor = req.session.user._id;
   // else sideMeal.sideMealsAuthor = '61817186ca1fa6043ae22e90';

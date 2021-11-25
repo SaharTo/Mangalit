@@ -16,7 +16,9 @@ export class SideMeal extends Component {
 
   getSideMeal = async () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/sideMeals/${id}`, { credentials: 'same-origin' })
+    fetch(`http://localhost:3030/sideMeals/${id}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((sideMeal) => this.setState({ sideMeal }))
       .catch((err) => {
@@ -24,11 +26,12 @@ export class SideMeal extends Component {
       });
   };
 
-  deleteSideMeal = async (ev, sideMealId) => {
+  deleteSideMeal = async (sideMealId) => {
     fetch(`http://localhost:3030/sideMeals/${sideMealId}`, {
-      credentials: 'same-origin',
-      method: "DELETE"
+      credentials: "include",
+      method: "DELETE",
     })
+      //.then((res) => res.json())
       .then(() => this.goBack())
       .catch((err) => {
         console.log(err);
@@ -61,8 +64,7 @@ export class SideMeal extends Component {
           <p>Author: Unknown</p>
         )}
 
-        <button onClick={(ev) => this.deleteSideMeal(ev, sideMeal._id)}>
-          {" "}
+        <button onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
           Delete
         </button>
         <Link to={"/sideMeals/edit/" + sideMeal._id}>

@@ -33,7 +33,7 @@ export class MealEdit extends Component {
   };
 
   getMeatInfo = async () => {
-    fetch(`http://localhost:3030/meats`)
+    fetch(`http://localhost:3030/meats`, { credentials: "include" })
       .then((res) => res.json())
       .then((meat) => this.setState({ meat }))
       //.then((meat) => this.setState({ meat }))
@@ -50,7 +50,7 @@ export class MealEdit extends Component {
   };
 
   getMeal = async (id) => {
-    await fetch(`http://localhost:3030/meals/${id}`)
+    await fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
       .then((res) => res.json())
       .then((meal) => this.setState({ meal }))
       .catch((err) => {
@@ -114,6 +114,7 @@ export class MealEdit extends Component {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ meal: meal }),
       })
         .then(() => this.goBack())
@@ -124,6 +125,7 @@ export class MealEdit extends Component {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ meal: meal }),
       })
         .then(() => this.goBack())
