@@ -1,0 +1,6 @@
+.hideTen {
+  display: none;
+}
+.numberTen:hover + .hideTen {
+  display: block;
+}
