@@ -34,22 +34,25 @@ const Beef = () => {
 
   const onHoverDiv = async (el) => {
     // console.log("something in the console", el.target.id);
-    document.getElementById("name").classList.remove(`${styles.hide}`);
-    document.getElementById("desc").classList.remove(`${styles.hide}`);
-    const meatInfo = getMeatInfo(el.target.id);
-    console.log(meatInfo);
-    if (meatInfo) {
-      document.getElementById("name").innerText = meatInfo.meatName;
-      document.getElementById("desc").innerText = meatInfo.meatDescription;
-      setMarkedMeat(meatInfo);
-      console.log("afterSetMeatInfo ", markedMeat);
-    } else console.log("please hover over exist meat");
-
-    // <div>Hoveringgggg</div>;
+    if (meatState.meats) {
+      document.getElementById("name").classList.remove(`${styles.hide}`);
+      document.getElementById("desc").classList.remove(`${styles.hide}`);
+      const meatInfo = getMeatInfo(el.target.id);
+      console.log(meatInfo);
+      if (meatInfo) {
+        document.getElementById("name").innerText = meatInfo.meatName;
+        document.getElementById("desc").innerText = meatInfo.meatDescription;
+        setMarkedMeat(meatInfo);
+        console.log("afterSetMeatInfo ", markedMeat);
+      } else console.log("please hover over exist meat");
+      // <div>Hoveringgggg</div>;
+    }
   };
   const outHoverDiv = (el) => {
-    document.getElementById("name").classList.add(`${styles.hide}`);
-    document.getElementById("desc").classList.add(`${styles.hide}`);
+    if (meatState.meats) {
+      document.getElementById("name").classList.add(`${styles.hide}`);
+      document.getElementById("desc").classList.add(`${styles.hide}`);
+    }
   };
   const getMeatInfo = (meatNumber) => {
     console.log("should print the meats array ", meatState.meats);
@@ -77,7 +80,6 @@ const Beef = () => {
         <div>
           <h1 id="name">רחף עם העכבר מעל לחלק מסויים</h1>
           <div id="desc" className={styles.hide}>
-            info
           </div>
         </div>
 
