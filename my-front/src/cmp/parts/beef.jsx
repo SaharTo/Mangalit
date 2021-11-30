@@ -1,6 +1,6 @@
 import { object } from "joi";
 import React, { useState, useEffect } from "react";
-import beefImage from "../../assets/beef.png";
+import beefImage from "../../assets/newbeef.png";
 import styles from "./beef.module.css";
 import meatInfo from "./meatInfoTemp";
 
@@ -52,6 +52,9 @@ const Beef = () => {
     if (meatState.meats) {
       document.getElementById("name").classList.add(`${styles.hide}`);
       document.getElementById("desc").classList.add(`${styles.hide}`);
+      setMarkedMeat("");
+      document.getElementById("name").innerText = "";
+      document.getElementById("desc").innerText = "";
     }
   };
   const getMeatInfo = (meatNumber) => {
@@ -74,13 +77,17 @@ const Beef = () => {
   };
 
   return (
-    <div>
-      <h1>The map and area elements</h1>
+    <div className={styles.meatMap}>
+      <img
+        src={beefImage}
+        useMap="#beefIt"
+        alt="Beef Image"
+        className={styles.beefImage}
+      ></img>
       <map name="beefIt">
         <div>
           <h1 id="name">רחף עם העכבר מעל לחלק מסויים</h1>
-          <div id="desc" className={styles.hide}>
-          </div>
+          <div id="desc" className={styles.hide}></div>
         </div>
 
         <area
@@ -286,7 +293,6 @@ const Beef = () => {
           alt="number 19"
         ></area>
       </map>
-      <img src={beefImage} useMap="#beefIt" alt="Beef Image"></img>
     </div>
   );
 };
