@@ -5,3 +5,10 @@
 .numberTen:hover + .hide {
   display: block;
 }
+.meatMap {
+  text-align: center;
+}
+.beefImage {
+  width: 700px;
+  height: 455px;
+}
