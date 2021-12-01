@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Reviews = (props) => {
+  let history = useHistory();
   const [reviews, setReviews] = useState([]);
   const [reviewsIsShown, setReviewsIsShown] = useState(false);
   const [createReviewIsShown, setCreateReviewIsShown] = useState(false);
@@ -11,12 +13,42 @@ const Reviews = (props) => {
   const createReviewHandler = () => {
     setCreateReviewIsShown(!createReviewIsShown);
   };
+  const deleteReview = (ev, id) => {
+    ev.preventDefault();
+    console.log(`${props.mealId}/review/${id}`);
+    if (props.mealId) {
+      fetch(`http://localhost:3030/meals/${props.mealId}/review/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      })
+        .then(() => {
+          console.log('Delete Review Successfully')
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if (props.sideMealId) {
+      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/review/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      })
+        .then(() => {
+          window.location.reload();
+          console.log('Delete Review Successfully')
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
   //console.log("review state    ", reviews);
   //console.log(props.mealId);
   //const ifMeal = `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`;
   // const ifSideMeal = `http://localhost:3030/meals/${props.sideMealId}/review?_method=PUT`;
   return (
-    <div>
+    <div >
       <button onClick={showReviewsHandler}>
         click me to see/not see reviews
       </button>
@@ -26,12 +58,17 @@ const Reviews = (props) => {
           reviewsIsShown && (
             <div key={r._id}>
               {r.reviewAuthor ? (
-                <h3>Author Name:{r.reviewAuthor.fullName}</h3>
+                <h3 >Author Name: {r.reviewAuthor.fullName}</h3>
               ) : (
                 <h3>Author: Unknown</h3>
               )}
               <h4>{r.reviewRating}</h4>
               <p>{r.reviewBody}</p>
+              {r.reviewAuthor &&
+                JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+                r.reviewAuthor._id && (
+                  <button onClick={(ev) => deleteReview(ev, r._id)}>delete review</button>
+                )}
             </div>
           )
       )}
