@@ -50,10 +50,11 @@ const Beef = () => {
   };
   const outHoverDiv = (el) => {
     if (meatState.meats) {
-      document.getElementById("name").classList.add(`${styles.hide}`);
+      //document.getElementById("name").classList.add(`${styles.hide}`);
       document.getElementById("desc").classList.add(`${styles.hide}`);
       setMarkedMeat("");
-      document.getElementById("name").innerText = "";
+      document.getElementById("name").innerText =
+        "רחף עם העכבר מעל לחלק מסויים לפירוט אודותיו";
       document.getElementById("desc").innerText = "";
     }
   };
@@ -92,7 +93,7 @@ const Beef = () => {
 
         <area
           shape="poly"
-          coords="325,283,369,334,425,158,368,128"
+          coords="136,31,108,129,136,161,164,104,173,50"
           className="numberTen"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
@@ -102,7 +103,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="426,158,412,243,452,267,551,249,582,179"
+          coords="174,49,164,105,190,118,254,107,273,60,214,56"
           className="numberTwo"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
@@ -112,7 +113,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="411,247,383,317,391,321,449,324,477,267,454,269"
+          coords="164,105,146,152,187,156,207,118,190,118"
           className="numberNine"
           onMouseOut={outHoverDiv}
           onMouseOver={onHoverDiv}
@@ -122,7 +123,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="383,320,367,337,397,416,465,442,453,402,462,385,447,364,449,338,445,337,449,325"
+          coords="145,153,136,163,156,215,200,231,192,205,195,193,187,181,188,165,185,163,189,155"
           className="numberThree"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
@@ -132,7 +133,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="485,502,533,497,555,440,560,406,552,391,541,397,516,398,523,324,494,314,473,329,449,336,448,364,462,382,454,402,466,441"
+          coords="188,165,189,182,197,193,192,207,212,269,243,267,257,230,260,208,256,198,248,203,233,205,237,155,217,149,205,159"
           className="numberEight"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
@@ -142,7 +143,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="445,337,479,327,552,250,478,263"
+          coords="186,162,207,11,254,108,205,159"
           className="numberSix"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
@@ -152,7 +153,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="495,313,523,325,595,297,595,255,583,250,552,249"
+          coords="218,149,237,156,268,141,283,138,282,109,255,107"
           className="numberFive"
           href=""
           onMouseOver={onHoverDiv}
@@ -162,7 +163,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="516,398,542,397,579,353,577,351,594,297,572,300,525,323"
+          coords="236,155,233,204,246,204,273,177,271,172,282,138,264,142"
           className="numberFour"
           href=""
           onMouseOver={onHoverDiv}
@@ -172,7 +173,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="552,250,563,253,588,251,598,257,597,289,694,293,693,226,675,171,581,178"
+          coords="285,134,347,135,346,92,334,5,273,62,256,107,283,110"
           className="numberOne"
           href=""
           onMouseOver={onHoverDiv}
@@ -182,7 +183,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="599,290,578,350,694,350,694,292"
+          coords="272,172,284,133,348,135,347,173"
           className="numberNine"
           href=""
           onMouseOver={onHoverDiv}
@@ -193,7 +194,7 @@ const Beef = () => {
         <area
           //number three is marked twice becuse its still the breast part
           shape="poly"
-          coords="579,351,579,354,553,390,559,404,556,438,666,420,683,397,693,350"
+          coords="271,173,272,177,257,198,260,207,257,230,329,218,341,201,346,173"
           className="numberThree"
           href=""
           onMouseOver={onHoverDiv}
@@ -203,7 +204,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="667,420,799,418,793,425,812,450,855,454,861,459,891,420,817,351,812,323,828,303,696,293,694,349,692,396"
+          coords="348,137,348,173,339,203,329,218,411,219,423,237,447,238,459,243,475,217,427,174,422,156,433,143"
           className="numberSeventeen"
           href=""
           onMouseOver={onHoverDiv}
@@ -213,7 +214,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="674,171,692,228,696,293,880,305,884,255,909,220,859,212,796,243,766,242,769,219,725,212,785,181,751,166"
+          coords="334,58,345,92,348,135,467,145,469,113,486,90,454,84,416,104,394,103,396,90,367,83,404,64,387,56"
           className="numberEleven"
           href=""
           onMouseOver={onHoverDiv}
@@ -224,7 +225,7 @@ const Beef = () => {
         <area
           //number twelve is inside number eleven, make sure its works fine, actually it doesnt worked, so I change a liitle bit number eleven
           shape="poly"
-          coords="726,213,770,220,767,243,803,241,858,214,831,200,788,183,775,184,726,210"
+          coords="368,86,395,88,395,104,413,105,453,86,406,64"
           className="numberTwelve"
           href=""
           onMouseOver={onHoverDiv}
@@ -234,7 +235,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="750,165,795,184,857,211,908,218,956,155,890,146"
+          coords="385,55,411,64,453,84,486,88,518,47,473,42"
           className="numberThirteen"
           href=""
           onMouseOver={onHoverDiv}
@@ -244,7 +245,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="908,219,962,223,989,173,982,156,958,155"
+          coords="486,90,519,90,538,60,532,49,519,46"
           className="numberSixteen"
           href=""
           onMouseOver={onHoverDiv}
@@ -254,7 +255,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="909,220,883,257,879,307,874,307,868,344,881,378,948,393,996,440,973,394,971,396,949,311,953,240,962,224"
+          coords="467,191,459,173,464,145,467,145,469,115,486,90,520,92,514,102,511,146,534,220,505,198,481,190"
           className="numberFifteen"
           href=""
           onMouseOver={onHoverDiv}
@@ -264,7 +265,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="827,304,812,324,818,354,895,422,869,349,874,306"
+          coords="434,144,423,156,427,173,476,18,459,172,463,146"
           className="numberFourteen"
           href=""
           onMouseOver={onHoverDiv}
@@ -274,7 +275,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="882,381,895,422,990,510,1023,487,1002,447,950,395,909,379"
+          coords="468,191,478,220,498,244,539,276,559,262,543,235,510,200"
           className="numberEighteen"
           href=""
           onMouseOver={onHoverDiv}
@@ -284,7 +285,7 @@ const Beef = () => {
         ></area>
         <area
           shape="poly"
-          coords="971,396,1008,262,990,173,951,242,948,307"
+          coords="537,60,514,102,511,147,526,203,549,117"
           className="numberNineteen"
           href=""
           onMouseOver={onHoverDiv}

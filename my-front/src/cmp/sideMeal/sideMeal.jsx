@@ -6,9 +6,17 @@ import styles from "./sideMeal.module.css";
 export class SideMeal extends Component {
   state = {
     sideMeal: null,
+    //isAuthor: false,
   };
-  componentDidMount() {
-    this.getSideMeal();
+  async componentDidMount() {
+    await this.getSideMeal();
+    /*if (
+      this.state.sideMeal &&
+      JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+        this.state.sideMeal.sideMealsAuthor._id
+    ) {
+      this.setState(true);
+    }*/
   }
   goBack = () => {
     this.props.history.push("/sideMeals");

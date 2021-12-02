@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Beef from "./parts/beef";
 
 // const Home = () => {
 //   return <div>This is the home page of the god dam Mangalit</div>;
@@ -6,6 +7,6 @@ import React, { Component } from "react";
 // export default Home;
 export class Home extends Component {
   render() {
-    return <h1 dir="rtl">home page</h1>;
+    return <Beef></Beef>;
   }
 }
