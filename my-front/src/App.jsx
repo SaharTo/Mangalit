@@ -12,6 +12,7 @@ import { SideMealEdit } from "./cmp/sideMealEdit/sideMealEdit";
 import { MealEdit } from "./cmp/MealEdit/MealEdit";
 import Login from "./cmp/Login/login";
 import Register from "./cmp/Register/register";
+import Roulette from "./cmp/roulette/roulette";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/sideMeals/edit/:id?" component={SideMealEdit} />
           <Route path="/sideMeals/:id" component={SideMeal} />
           <Route path="/sideMeals" component={SideMeals} />
+          <Route path="/roulette" component={Roulette} />
         </Switch>
       </div>
     </Router>
