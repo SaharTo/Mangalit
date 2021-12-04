@@ -24,9 +24,9 @@ export class Meals extends Component {
     if (!meals) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className="meals">
-        <Link className={styles.add} to="/meals/edit/">
+        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
           Add Meal
-        </Link>
+        </Link>)}
 
         <div dir="rtl" className={styles.container}>
           {meals.map((meal) => (

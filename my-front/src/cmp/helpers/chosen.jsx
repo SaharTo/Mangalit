@@ -3,14 +3,14 @@ import { MultiSelect } from "react-multi-select-component";
 
 const Chosen = ({ opt, parentCallback }) => {
   const [selected, setSelected] = useState([]);
-  //console.log(selected);
   const onTrigger = async (e) => {
     setSelected(e);
     parentCallback(e);
   };
+
   return (
-    <div>
-      <MultiSelect
+    <div >
+      <MultiSelect className="multiSelect"
         options={opt}
         value={selected}
         onChange={onTrigger}

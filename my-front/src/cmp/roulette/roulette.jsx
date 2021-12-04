@@ -9,21 +9,15 @@ export default function Roulette() {
   const [rouletteMeals, setRouletteMeals] = useState([]);
 
   useEffect(async () => {
-    await fetch("http://localhost:3030/meals/rndMeals", {
-      credentials: "include",
-    })
+    await fetch("http://localhost:3030/meals/rndMeals", { credentials: "include", })
       .then((res) => res.json())
       .then((meals) => setRouletteMeals(meals))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }, []);
 
   const data = rouletteMeals.map((meal) => {
     return { option: meal.mealName, mealId: meal._id };
   });
-
-  console.log("this is data ", data);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -45,9 +39,7 @@ export default function Roulette() {
         onStopSpinning={() => {
           setMustSpin(false);
           document.getElementById("spinBtn").disabled = false;
-          document
-            .getElementById("mealLink")
-            .classList.remove(`${styles.hidden}`);
+          document.getElementById("mealLink").classList.remove(`${styles.hidden}`);
         }}
         backgroundColors={["#3e3e3e", "#df3428"]}
         textColors={["#ffffff"]}
@@ -59,7 +51,7 @@ export default function Roulette() {
           className={styles.hidden}
           to={`/meals/${data[prizeNumber].mealId}`}
         >
-          לחץ כדי לעבור למנה: {data[prizeNumber].option}{" "}
+          לחץ כדי לעבור למנה: {data[prizeNumber].option}
         </NavLink>
       )}
     </div>

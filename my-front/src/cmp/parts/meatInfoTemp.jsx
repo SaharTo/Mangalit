@@ -1,4 +1,4 @@
-import styles from "./meatInfoTemp.module.css";
+// import styles from "./meatInfoTemp.module.css";
 import { Card } from "react-bootstrap";
 const meatInfo = (props) => {
   //Im not sure if we will use it

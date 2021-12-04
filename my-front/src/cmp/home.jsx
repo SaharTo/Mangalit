@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Beef from "./parts/beef";
 //import Roulette from "./roulette/roulette";
 
@@ -9,8 +10,9 @@ import Beef from "./parts/beef";
 export class Home extends Component {
   render() {
     return (
-      <div>
-        <h1 dir="rtl">home page</h1>
+      <div dir="rtl">
+        <h1 >home page</h1>
+        <NavLink className="rndMealsLink" to={`/roulette/`}> לחץ כדי לעבור גלגל של מנות רנדומליות</NavLink>
         <Beef></Beef>
       </div>
     );

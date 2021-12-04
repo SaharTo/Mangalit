@@ -12,11 +12,12 @@
 .roulette button {
     padding: 5px 15px;
     font-weight: bold;
-    background-color: lightslategray;
+    background-color: rgba(161, 170, 179, 0.35);
     border: none;
 }
 
 .roulette a {
     font-weight: bold;
     padding: 5px 15px;
+    background-color: rgba(161, 170, 179, 0.35);
 }

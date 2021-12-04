@@ -24,9 +24,9 @@ export class SideMeals extends Component {
     if (!sideMeals) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className="sideMeals">
-        <Link className={styles.add} to="/sideMeals/edit/">
+        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
           Add SideMeal
-        </Link>
+        </Link>)}
         <div dir="rtl" className={styles.container}>
           {sideMeals.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>

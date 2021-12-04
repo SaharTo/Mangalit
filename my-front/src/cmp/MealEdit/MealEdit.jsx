@@ -7,10 +7,8 @@ export class MealEdit extends Component {
     meal: null,
     addOrEdit: null,
     meat: null,
+    sideMeals: null
   };
-  /*state = {
-    addOrEdit: null,
-  };*/
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -21,6 +19,7 @@ export class MealEdit extends Component {
       this.setState({ addOrEdit: "add" });
       this.getEmptyMeal();
       this.getMeatInfo();
+      this.getRecommendeSideMeals();
     }
   }
   goBack = () => {
@@ -36,17 +35,18 @@ export class MealEdit extends Component {
     fetch(`http://localhost:3030/meats`, { credentials: "include" })
       .then((res) => res.json())
       .then((meat) => this.setState({ meat }))
-      //.then((meat) => this.setState({ meat }))
       .catch((error) => {
         console.log(error);
       });
-    //const { meat } = this.state;
-    console.log("before     ", this.state);
-    /*const meatList = this.state.meat.map((mt) => (
-      <option value={this.state.meal.mealMeatInfo}>{mt.meatName}</option>
-    ));
-    this.setState({ meat: meatList });*/
-    //console.log("This is the list after   ", this.state.meat);
+  };
+
+  getRecommendeSideMeals = async () => {
+    fetch(`http://localhost:3030/sideMeals`, { credentials: "include" })
+      .then((res) => res.json())
+      .then((sideMeals) => this.setState({ sideMeals }))
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   getMeal = async (id) => {
@@ -56,11 +56,9 @@ export class MealEdit extends Component {
       .catch((err) => {
         console.log(err);
       });
-    this.setState({ meat: this.state.meal.mealMeatInfo });
-
-    //console.log("mmmmmmmmmmmmmmm", this.state.meal);
-    //console.log("yyyyy", this.state.meat);
+    this.setState({ meat: this.state.meal.mealMeatInfo, sideMeals: this.state.meal.mealRecommendedSideMeals });
   };
+
   getEmptyMeal = async () => {
     const meal = {
       mealName: "",
@@ -73,9 +71,7 @@ export class MealEdit extends Component {
       mealRecommendedSideMeals: [],
       mealImage: [],
       mealMeatQuantityGram: "",
-      //   mealEstimatedMeatPrice: "",
       mealAdditionalIngredients: "",
-      //mealAdditionalsIngredientsPrice: 6,
       mealTotalPrice: "",
       mealDescription: "",
     };
@@ -89,13 +85,17 @@ export class MealEdit extends Component {
     }));
   };
 
-  handleSelectChange = (data) => {
+  handleSelectChangeMeat = (data) => {
     const mealMeatInfo = data.map((m) => m.value);
     this.setState((prevState) => ({
       meal: { ...prevState.meal, mealMeatInfo },
     }));
-
-    // this.state.meal.mealMeatInfo = data.map((m) => m.value);
+  };
+  handleSelectChangeSideMeals = (data) => {
+    const mealRecommendedSideMeals = data.map((m) => m.value);
+    this.setState((prevState) => ({
+      meal: { ...prevState.meal, mealRecommendedSideMeals },
+    }));
   };
 
   onSaveMeal = async (ev) => {
@@ -134,16 +134,14 @@ export class MealEdit extends Component {
   };
 
   render() {
-    const { meal, meat, addOrEdit } = this.state;
-    /*if (!meal) {
-      return <div>Searching the meal... please wait.</div>;
-    }
-    if (!meat) {
-      return <div>Searching the meat... please wait.</div>;
-    }*/
-    if (!meal || !meat) return <div>Loading...</div>;
-    const opt = meat.map((m) => {
+    const { meal, meat, addOrEdit, sideMeals } = this.state;
+    if (!meal || !meat || !sideMeals) return <div>Loading...</div>;
+    console.log(meal);
+    const optMeat = meat.map((m) => {
       return { label: m.meatName, value: m._id };
+    });
+    const optSideMeals = sideMeals.map((sm) => {
+      return { label: sm.sideMealName, value: sm._id };
     });
     return (
       <div dir="rtl" className={styles.edit}>
@@ -227,28 +225,31 @@ export class MealEdit extends Component {
           {addOrEdit === "add" && (
             <label htmlFor="mealMeatInfo">
               Meat Info:
-              <Chosen opt={opt} parentCallback={this.handleSelectChange} />
-              {/* <MultiSelect
-                // id="mealMeatInfo"
-                name="mealMeatInfo"
-                value={meal.mealMeatInfo}
-                onChange={}
-                // multiple
-                options={opt}
-              >
-                { {meat.map((opt) => (
-                  <option key={opt._id} value={opt._id}>
-                    {opt.meatName}
-                  </option>
-                ))} }
-              </MultiSelect> */}
+              <Chosen opt={optMeat} parentCallback={this.handleSelectChangeMeat} />
+            </label>
+          )}
+          {addOrEdit === "edit" && (
+            <label htmlFor="mealRecommendedSideMeals">
+              Recommended SideMeals:
+              <input
+                type="text"
+                value={meal.mealRecommendedSideMeals.map((sm) => sm.sideMealName)}
+                disabled="disabled"
+              />
+            </label>
+          )}
+          {addOrEdit === "add" && (
+            <label htmlFor="mealRecommendedSideMeals">
+              Recommended SideMeals:
+              <Chosen opt={optSideMeals} parentCallback={this.handleSelectChangeSideMeals} />
             </label>
           )}
           <label htmlFor="mealMeatQuantityGram">
             Meat Quantity Gram:
             <input
               type="number"
-              min="100"
+              max="5000"
+              min="200"
               value={meal.mealMeatQuantityGram}
               name="mealMeatQuantityGram"
               id="mealMeatQuantityGram"
@@ -259,7 +260,8 @@ export class MealEdit extends Component {
             Preparation Time:
             <input
               type="number"
-              min="100"
+              min="5"
+              max="500"
               value={meal.mealPreparationTime}
               name="mealPreparationTime"
               id="mealPreparationTime"

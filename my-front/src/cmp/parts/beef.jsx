@@ -1,8 +1,7 @@
-import { object } from "joi";
 import React, { useState, useEffect } from "react";
 import beefImage from "../../assets/newbeef.png";
 import styles from "./beef.module.css";
-import meatInfo from "./meatInfoTemp";
+// import meatInfo from "./meatInfoTemp";
 
 const Beef = () => {
   const [meatState, setMeatState] = useState([]);

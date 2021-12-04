@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 const Reviews = (props) => {
-  let history = useHistory();
   const [reviews, setReviews] = useState([]);
   const [reviewsIsShown, setReviewsIsShown] = useState(false);
   const [createReviewIsShown, setCreateReviewIsShown] = useState(false);
