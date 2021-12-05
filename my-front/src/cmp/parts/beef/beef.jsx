@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import beefImage from "../../assets/newbeef.png";
+import beefImage from "../../../assets/beef.png";
 import styles from "./beef.module.css";
 // import meatInfo from "./meatInfoTemp";
 
