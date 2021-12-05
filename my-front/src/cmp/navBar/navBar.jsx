@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import logoSrc from "../../assets/blackLogo.png";
+import { useHistory } from "react-router-dom";
 import styles from "./navBar.module.css";
 
 export function Navbar() {
+  let history = useHistory();
   const logout = () => {
     fetch(`http://localhost:3030/users/logout`, {
       method: "POST",
@@ -13,9 +15,10 @@ export function Navbar() {
       //body: JSON.stringify({ user }),
     }).then((res) => {
       if (res.ok) {
-        res.text().then((data) => {
+        res.text().then(() => {
           sessionStorage.removeItem("loggedInUser");
-          // history.push("/home");
+          sessionStorage.removeItem("loggedInUserIsadmin");
+          history.push("/home");
           window.location.reload();
         });
       } else res.text().then((data) => console.log(data));
@@ -39,6 +42,9 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/about">
           About
         </NavLink>
+        {sessionStorage.getItem("loggedInUserIsadmin") && <NavLink activeClassName="activeNav" to="/admin">
+          Admin
+        </NavLink>}
         {/* {props.isLogged ? <NavLink activeClassName="activeNav" to="/login">Login</NavLink> : <a href='logout'>logout</a>} */}
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/login">

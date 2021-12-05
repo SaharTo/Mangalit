@@ -13,6 +13,7 @@ import { MealEdit } from "./cmp/MealEdit/MealEdit";
 import Login from "./cmp/Login/login";
 import Register from "./cmp/Register/register";
 import Roulette from "./cmp/roulette/roulette";
+import {Admin} from "./cmp/Admin/admin";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
       if (res.ok) {
         res.text().then((data) => {
           sessionStorage.setItem("loggedInUser", JSON.stringify(data));
-          //setIsLoggedIn(data);
+          // setIsLoggedIn(data);
           window.location.reload();
         });
       } else res.text().then((data) => console.log(data));
@@ -42,6 +43,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Register} />
+          <Route path="/admin" component={Admin} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/meals/edit/:id?" component={MealEdit} />

@@ -13,7 +13,8 @@ module.exports.meatById = async(req, res) => {
 module.exports.createMeat = async(req, res) => {
     const meat = new Meat(req.body.meat);
     await meat.save();
-    res.send(meat);
+    res.redirect(`http://localhost:3000/home/`);
+    // res.send('success');
 };
 module.exports.updateMeat = async(req, res) => {
     const { id } = req.params;

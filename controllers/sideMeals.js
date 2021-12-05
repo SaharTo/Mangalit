@@ -56,8 +56,8 @@ module.exports.addReview = async(req, res) => {
     await review.save();
     sideMeal.sideMealsReviews.push(review);
     await sideMeal.save();
-    // res.redirect(`http://localhost:3000/sideMeals/${req.params.id}`);
-    res.send('add side meal review');
+    res.redirect(`http://localhost:3000/sideMeals/${req.params.id}`);
+    // res.send('add side meal review');
 };
 
 module.exports.deleteReview = async(req, res) => {

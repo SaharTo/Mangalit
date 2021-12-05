@@ -12,6 +12,7 @@ export default function Login() {
     user[field] = value;
     setUser(user);
   };
+
   const login = (ev) => {
     ev.preventDefault();
     if (user.password && user.userName) {
@@ -25,7 +26,8 @@ export default function Login() {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            sessionStorage.setItem("loggedInUser", JSON.stringify(data));
+            sessionStorage.setItem("loggedInUser", JSON.stringify(data.id));
+            if (data.isAdmin) sessionStorage.setItem("loggedInUserIsadmin", JSON.stringify(data.isAdmin));
             history.push("/home");
             window.location.reload();
           });

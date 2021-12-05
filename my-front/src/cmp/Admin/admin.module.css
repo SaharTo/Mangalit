@@ -1,0 +1,18 @@
+.meat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-inline-start: 10px;
+}
+
+.meat input,
+select,
+textarea {
+    margin: 0;
+    width: 300px;
+}
+
+.meat button {
+    margin-inline-start: 10px;
+    width: 100px;
+}
