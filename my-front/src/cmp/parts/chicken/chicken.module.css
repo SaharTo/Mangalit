@@ -1,0 +1,16 @@
+.hide {
+  /*display: none;*/
+  visibility: hidden;
+}
+.numberTen:hover + .hide {
+  display: block;
+}
+.meatMap {
+  text-align: center;
+  color: white;
+}
+.chickenImage {
+  /*width: 600px;
+  height: 390px;*/
+  background-color: rgba(219, 25, 25, 0.151);
+}
