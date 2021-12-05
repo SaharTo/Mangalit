@@ -5,6 +5,8 @@ import styles from "./meals.module.css";
 export class Meals extends Component {
   state = {
     meals: null,
+    filter: '',
+    mToshow: null,
   };
   componentDidMount() {
     this.getMeals();
@@ -13,23 +15,36 @@ export class Meals extends Component {
   getMeals = async () => {
     fetch("http://localhost:3030/meals", { credentials: "include" })
       .then((res) => res.json())
-      .then((meals) => this.setState({ meals }))
+      .then((meals) => {
+        this.setState({ meals })
+        this.setState({ mToshow: meals })
+      })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  handleChange = async (ev) => {
+    this.setState({ filter: ev.target.value });
+    const filterM = this.state.meals.filter((m) => m.mealName.toLowerCase().includes(ev.target.value.toLowerCase()))
+    this.setState({ mToshow: filterM })
+  };
+
   render() {
-    const { meals } = this.state;
-    if (!meals) return <h1>Loading...</h1>;
+    const { meals, mToshow } = this.state;
+    if (!meals || !mToshow) return <h1>Loading...</h1>;
     return (
-      <div dir="rtl" className="meals">
+      <div dir="rtl" className={styles.meals}>
+        <label htmlFor="filter">
+          חיפוש
+          <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
+        </label>
         {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
           Add Meal
         </Link>)}
 
         <div dir="rtl" className={styles.container}>
-          {meals.map((meal) => (
+          {mToshow.map((meal) => (
             <div dir="rtl" className={styles.preview} key={meal._id}>
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>

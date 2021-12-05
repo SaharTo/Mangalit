@@ -5,6 +5,11 @@
     gap: 20px;
 }
 
+.meals input,
+label {
+    margin-inline-start: 10px;
+}
+
 .preview {
     width: 350px;
     color: black;

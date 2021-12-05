@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 export class SideMeals extends Component {
   state = {
     sideMeals: null,
+    filter: '',
+    smToshow: null,
   };
   componentDidMount() {
     this.getSideMeals();
@@ -13,22 +15,35 @@ export class SideMeals extends Component {
   getSideMeals = async () => {
     fetch("http://localhost:3030/sideMeals", { credentials: "include" })
       .then((res) => res.json())
-      .then((sideMeals) => this.setState({ sideMeals }))
+      .then((sideMeals) => {
+        this.setState({ sideMeals })
+        this.setState({ smToshow: sideMeals })
+      })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  handleChange = async (ev) => {
+    this.setState({ filter: ev.target.value });
+    const filterSM = this.state.sideMeals.filter((sm) => sm.sideMealName.toLowerCase().includes(ev.target.value.toLowerCase()))
+    this.setState({ smToshow: filterSM })
+  };
+
   render() {
-    const { sideMeals } = this.state;
-    if (!sideMeals) return <h1>Loading...</h1>;
+    const { sideMeals, smToshow } = this.state;
+    if (!sideMeals || !smToshow) return <h1>Loading...</h1>;
     return (
-      <div dir="rtl" className="sideMeals">
+      <div dir="rtl" className={styles.sideMeals}>
+        <label htmlFor="filter">
+          חיפוש
+          <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
+        </label>
         {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
           Add SideMeal
         </Link>)}
         <div dir="rtl" className={styles.container}>
-          {sideMeals.map((sideMeal) => (
+          {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>
               <Link to={"/sideMeals/" + sideMeal._id}>
                 <h1>Name: {sideMeal.sideMealName}</h1>
