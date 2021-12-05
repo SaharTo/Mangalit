@@ -51,7 +51,7 @@ export function Navbar() {
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUser") && (
-          <button onClick={logout}>LogOut</button>
+          <a className={styles.logOut} onClick={logout}>LogOut</a>
         )}
       </div>
     </div>
