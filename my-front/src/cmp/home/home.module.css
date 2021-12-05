@@ -1,0 +1,22 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-inline-start: 10px;
+}
+
+.homePage label {
+    margin: 0;
+}
+
+.homePage select {
+    width: 80px;
+    margin-inline-start: 10px;
+}
+
+.rndMealsLink {
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    padding-inline-start: 0;
+}

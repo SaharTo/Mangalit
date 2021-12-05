@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import React, { useState } from "react";
 import "./App.css";
 import { About } from "./cmp/about";
-import { Home } from "./cmp/home";
+import { Home } from "./cmp/home/home";
 import { Meals } from "./cmp/Meals/meals";
 import { Meal } from "./cmp/Meal/meal";
 import { Navbar } from "./cmp/navBar/navBar";
