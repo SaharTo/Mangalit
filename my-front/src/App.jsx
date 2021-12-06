@@ -14,10 +14,7 @@ import Login from "./cmp/Login/login";
 import Register from "./cmp/Register/register";
 import Roulette from "./cmp/roulette/roulette";
 import { Admin } from "./cmp/Admin/admin";
-<<<<<<< HEAD
 import Calculator from "./cmp/calculator/calculator";
-=======
->>>>>>> de01e6c2590e86271657aaef7929f9ceff91b111
 //import Beef from "./cmp/parts/beef";
 
 function App() {
