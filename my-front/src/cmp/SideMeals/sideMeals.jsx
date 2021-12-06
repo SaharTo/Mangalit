@@ -40,16 +40,16 @@ export class SideMeals extends Component {
           <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
         </label>
         {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
-          Add SideMeal
+          הוספת מנת צד
         </Link>)}
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>
               <Link to={"/sideMeals/" + sideMeal._id}>
-                <h1>Name: {sideMeal.sideMealName}</h1>
+                <h1>שם המנה: {sideMeal.sideMealName}</h1>
               </Link>
-              <p>Summary: {sideMeal.sideMealSummary}</p>
-              <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
+              <p>פירוט על המנה: {sideMeal.sideMealSummary}</p>
+              <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
               {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
             </div>
           ))}

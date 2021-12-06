@@ -13,16 +13,16 @@ module.exports.meatById = async(req, res) => {
 module.exports.createMeat = async(req, res) => {
     const meat = new Meat(req.body.meat);
     await meat.save();
-    res.redirect(`http://localhost:3000/home/`);
+    res.redirect(`http://localhost:3000/admin/`);
     // res.send('success');
 };
 module.exports.updateMeat = async(req, res) => {
     const { id } = req.params;
     const meat = await Meat.findByIdAndUpdate(id, {...req.body.meat });
     await meat.save();
-    res.redirect(`/meats/${id}`)
+    res.redirect(`http://localhost:3000/admin/`)
 };
 module.exports.deleteMeat = async(req, res) => {
     await Meat.findByIdAndDelete(req.params.id);
-    res.redirect("/meats")
+    res.redirect(`http://localhost:3000/admin/`)
 };

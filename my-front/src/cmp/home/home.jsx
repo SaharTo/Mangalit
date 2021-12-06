@@ -21,7 +21,6 @@ export class Home extends Component {
 
   render() {
     const { type } = this.state;
-    console.log(type);
     if (!type) return <div>Loading...</div>;
     return (
       <div dir="rtl">
