@@ -20,7 +20,7 @@ const Reviews = (props) => {
         credentials: "include",
       })
         .then(() => {
-          console.log('Delete Review Successfully')
+          console.log("Delete Review Successfully");
           window.location.reload();
         })
         .catch((err) => {
@@ -28,44 +28,47 @@ const Reviews = (props) => {
         });
     }
     if (props.sideMealId) {
-      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/review/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      })
+      fetch(
+        `http://localhost:3030/sideMeals/${props.sideMealId}/review/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      )
         .then(() => {
           window.location.reload();
-          console.log('Delete Review Successfully')
+          console.log("Delete Review Successfully");
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }
+  };
   //console.log("review state    ", reviews);
   //console.log(props.mealId);
   //const ifMeal = `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`;
   // const ifSideMeal = `http://localhost:3030/meals/${props.sideMealId}/review?_method=PUT`;
   return (
-    <div >
-      <button onClick={showReviewsHandler}>
-        click me to see/not see reviews
-      </button>
+    <div>
+      <button onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
       {/*<button onClick={setReviewsIsShown(!reviewsIsShown)}>x</button>*/}
       {reviews.map(
         (r) =>
           reviewsIsShown && (
             <div key={r._id}>
               {r.reviewAuthor ? (
-                <h3 >Author Name: {r.reviewAuthor.fullName}</h3>
+                <h3>כותב: {r.reviewAuthor.fullName}</h3>
               ) : (
-                <h3>Author: Unknown</h3>
+                <h3>כותב: Unknown</h3>
               )}
               <h4>{r.reviewRating}</h4>
               <p>{r.reviewBody}</p>
               {r.reviewAuthor &&
                 JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-                r.reviewAuthor._id && (
-                  <button onClick={(ev) => deleteReview(ev, r._id)}>delete review</button>
+                  r.reviewAuthor._id && (
+                  <button onClick={(ev) => deleteReview(ev, r._id)}>
+                    מחק/י תגובה
+                  </button>
                 )}
             </div>
           )

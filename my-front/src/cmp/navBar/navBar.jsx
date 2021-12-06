@@ -29,35 +29,39 @@ export function Navbar() {
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
-      <div className={styles.links}>
+      <div className={styles.links} dir="ltr">
         <NavLink activeClassName="activeNav" to="/home">
-          Home
+          עמוד הבית
         </NavLink>
         <NavLink activeClassName="activeNav" to="/meals">
-          All Meals
+          מנות
         </NavLink>
         <NavLink activeClassName="activeNav" to="/sideMeals">
-          All Side Meals
+          מנות צד
         </NavLink>
         <NavLink activeClassName="activeNav" to="/about">
-          About
+          אודות
         </NavLink>
-        {sessionStorage.getItem("loggedInUserIsadmin") && <NavLink activeClassName="activeNav" to="/admin">
-          Admin
-        </NavLink>}
+        {sessionStorage.getItem("loggedInUserIsadmin") && (
+          <NavLink activeClassName="activeNav" to="/admin">
+            אדמין
+          </NavLink>
+        )}
         {/* {props.isLogged ? <NavLink activeClassName="activeNav" to="/login">Login</NavLink> : <a href='logout'>logout</a>} */}
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/login">
-            Login
+            התחברות
           </NavLink>
         )}
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/signup">
-            Signup
+            הרשמה
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUser") && (
-          <a className={styles.logOut} onClick={logout}>LogOut</a>
+          <a className={styles.logOut} onClick={logout}>
+            LogOut
+          </a>
         )}
       </div>
     </div>

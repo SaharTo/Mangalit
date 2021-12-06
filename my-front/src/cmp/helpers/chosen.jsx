@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import styles from "./chosen.module.css";
 
 const Chosen = ({ opt, parentCallback }) => {
   const [selected, setSelected] = useState([]);
@@ -9,12 +10,14 @@ const Chosen = ({ opt, parentCallback }) => {
   };
 
   return (
-    <div >
-      <MultiSelect className="multiSelect"
+    <div className={styles.multiSelect}>
+      <MultiSelect
+        className={styles.multi}
         options={opt}
         value={selected}
         onChange={onTrigger}
         labelledBy="Select"
+        disableSearch="true"
       />
     </div>
   );

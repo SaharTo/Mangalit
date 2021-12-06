@@ -1,20 +1,23 @@
 .edit {
-    padding-inline-start: 10px;
+  padding-inline-start: 10px;
 }
 
 .meal {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .meal input,
 select,
 textarea {
-    margin-inline-start: 10px;
+  margin-inline-start: 10px;
 }
 
 .meal button {
-    width: 70px;
-    margin-inline-end: 5px;
+  width: 70px;
+  margin-inline-end: 5px;
 }
+/*.chosen {
+  width: 30px;
+}*/

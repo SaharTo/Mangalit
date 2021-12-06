@@ -51,41 +51,34 @@ export class SideMeal extends Component {
     if (!sideMeal) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeal}>
-        <h1>Name: {sideMeal.sideMealName}</h1>
-        <p>Summary: {sideMeal.sideMealSummary}</p>
-        <p>Difficult: {sideMeal.sideMealDifficult}</p>
-        <p>Ingriedents: {sideMeal.sideMealIngriedents}</p>
-        <p>
-          Preperation Description: {sideMeal.sideMealPreperationDescription}
-        </p>
-        <p>
-          Preperation Estimated Time:{" "}
-          {sideMeal.sideMealPreperationEstimatedTime}
-        </p>
-        <p>
-          number Of People It Suits: {sideMeal.sideMealnumberOfPeopleItSuits}
-        </p>
-        <p>Price: {sideMeal.sideMealEstimatedPrice}₪</p>
+        <h1>שם המנה: {sideMeal.sideMealName}</h1>
+        <p>פירוט: {sideMeal.sideMealSummary}</p>
+        <p>רמת קושי: {sideMeal.sideMealDifficult}</p>
+        <p>מרכיבים: {sideMeal.sideMealIngriedents}</p>
+        <p>אופן ההכנה: {sideMeal.sideMealPreperationDescription}</p>
+        <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime}</p>
+        <p>לכמה אנשים זה מתאים: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
+        <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
         {sideMeal.sideMealsAuthor ? (
-          <p>Author: {sideMeal.sideMealsAuthor.fullName}</p>
+          <p>יוצר: {sideMeal.sideMealsAuthor.fullName}</p>
         ) : (
-          <p>Author: Unknown</p>
+          <p>יוצר: Unknown</p>
         )}
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
             <button onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
-              Delete
+              מחיקה{" "}
             </button>
           )}
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
             <Link to={"/sideMeals/edit/" + sideMeal._id}>
-              <button> Edit</button>
+              <button>עריכה</button>
             </Link>
           )}
-        <button onClick={this.goBack}> Back To All SideMeals</button>
+        <button onClick={this.goBack}>חזרה למנות צד</button>
         {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
         {
           <Reviews

@@ -8,10 +8,10 @@ import Lamb from "../parts/lamb/lamb";
 export class Home extends Component {
   state = {
     type: null,
-  }
+  };
 
   componentDidMount() {
-    this.setState({ type: 'בקר' });
+    this.setState({ type: "בקר" });
   }
 
   handleChange({ target }) {
@@ -20,34 +20,35 @@ export class Home extends Component {
   }
 
   render() {
-    const { type } = this.state
+    const { type } = this.state;
     console.log(type);
-    if (!type) return <div>Loading...</div>
+    if (!type) return <div>Loading...</div>;
     return (
       <div dir="rtl">
+        <h1 className={styles.title}>מנגלית.</h1>
+        <h4>כל מה שצריך לדעת לפני שמכינים בשר.</h4>
+        <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
+          לחץ כדי לעבור גלגל של מנות רנדומליות
+        </NavLink>
         <div className={styles.homePage}>
-          <h1>home page</h1>
-          <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
-            לחץ כדי לעבור גלגל של מנות רנדומליות
-          </NavLink>
           <label htmlFor="type">
             בחירת סוג בשר
-            <select name="type" id="type" value={type} onChange={this.handleChange.bind(this)}>
-              <option value="בקר">
-                בקר
-              </option>
-              <option value="כבש">
-                כבש
-              </option>
-              <option value="עוף">
-                עוף
-              </option>
+            <select
+              name="type"
+              id="type"
+              value={type}
+              onChange={this.handleChange.bind(this)}
+            >
+              <option value="בקר">בקר</option>
+              <option value="כבש">כבש</option>
+              <option value="עוף">עוף</option>
             </select>
           </label>
+
+          {type === "בקר" && <Beef />}
+          {type === "כבש" && <Lamb />}
+          {type === "עוף" && <Chicken />}
         </div>
-        {type === 'בקר' && <Beef />}
-        {type === 'כבש' && <Lamb />}
-        {type === 'עוף' && <Chicken />}
       </div>
     );
   }

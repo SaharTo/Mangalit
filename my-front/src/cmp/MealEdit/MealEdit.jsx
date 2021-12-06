@@ -7,7 +7,7 @@ export class MealEdit extends Component {
     meal: null,
     addOrEdit: null,
     meat: null,
-    sideMeals: null
+    sideMeals: null,
   };
 
   componentDidMount() {
@@ -56,7 +56,10 @@ export class MealEdit extends Component {
       .catch((err) => {
         console.log(err);
       });
-    this.setState({ meat: this.state.meal.mealMeatInfo, sideMeals: this.state.meal.mealRecommendedSideMeals });
+    this.setState({
+      meat: this.state.meal.mealMeatInfo,
+      sideMeals: this.state.meal.mealRecommendedSideMeals,
+    });
   };
 
   getEmptyMeal = async () => {
@@ -225,7 +228,10 @@ export class MealEdit extends Component {
           {addOrEdit === "add" && (
             <label htmlFor="mealMeatInfo">
               Meat Info:
-              <Chosen opt={optMeat} parentCallback={this.handleSelectChangeMeat} />
+              <Chosen
+                opt={optMeat}
+                parentCallback={this.handleSelectChangeMeat}
+              />
             </label>
           )}
           {addOrEdit === "edit" && (
@@ -233,7 +239,9 @@ export class MealEdit extends Component {
               Recommended SideMeals:
               <input
                 type="text"
-                value={meal.mealRecommendedSideMeals.map((sm) => sm.sideMealName)}
+                value={meal.mealRecommendedSideMeals.map(
+                  (sm) => sm.sideMealName
+                )}
                 disabled="disabled"
               />
             </label>
@@ -241,7 +249,10 @@ export class MealEdit extends Component {
           {addOrEdit === "add" && (
             <label htmlFor="mealRecommendedSideMeals">
               Recommended SideMeals:
-              <Chosen opt={optSideMeals} parentCallback={this.handleSelectChangeSideMeals} />
+              <Chosen
+                opt={optSideMeals}
+                parentCallback={this.handleSelectChangeSideMeals}
+              />
             </label>
           )}
           <label htmlFor="mealMeatQuantityGram">

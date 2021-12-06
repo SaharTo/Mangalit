@@ -1,19 +1,23 @@
 .hide {
-    /*display: none;*/
-    visibility: hidden;
+  /*display: none;*/
+  visibility: hidden;
 }
 
-.numberTen:hover+.hide {
-    display: block;
+.numberTen:hover + .hide {
+  display: block;
 }
 
 .meatMap {
-    text-align: center;
-    color: white;
+  /*text-align: center;
+  color: white;
+  /*width: 650px;
+  height: 4300px;
+  background-color: rgba(245, 158, 158, 0.116);*/
 }
 
 .lambImage {
-    /* width: 600px;
-  height: 390px;*/
-    background-color: rgba(219, 25, 25, 0.151);
+  width: 450px;
+  height: 400px;
+  /*background-color: rgba(219, 25, 25, 0.151);*/
+  margin: auto;
 }

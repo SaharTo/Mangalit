@@ -41,49 +41,49 @@ export class Meal extends Component {
     if (!meal) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className={styles.meal}>
-        <h1>Name: {meal.mealName}</h1>
-        <p>Summary: {meal.mealSummary}</p>
-        <p>Difficult: {meal.mealPreparationDifficult}</p>
+        <h1>שם המנה: {meal.mealName}</h1>
+        <p>פירוט: {meal.mealSummary}</p>
+        <p>רמת קושי: {meal.mealPreparationDifficult}</p>
         <div>
-          Meat Name:
+          סוג בשר:
           {meal.mealMeatInfo.map((meat) => {
-            return <p key={meat._id}> {meat.meatName}</p>;
+            return <p key={meat._id}> - {meat.meatName}</p>;
           })}
         </div>
-        <p>Meat Quantity Gram: {meal.mealMeatQuantityGram}</p>
+        <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
         {meal.mealRecommendedSideMeals.map((sideMeal) => {
           return (
             <div key={sideMeal._id}>
-              <p>Recommended SideMeals: {sideMeal.sideMealName}</p>
+              <p>מנות צד מומלצות: {sideMeal.sideMealName}</p>
             </div>
           );
         })}
-        <p>Preparation Techniques: {meal.mealPreparationTechniques}</p>
-        <p>Preperation Time: {meal.mealPreparationTime}</p>
-        <p>Additional Ingredients: {meal.mealAdditionalIngredients}</p>
-        <p>Description: {meal.mealDescription}</p>
-        <p>number Of People It Suits: {meal.mealNumberOfPeopleItSuits}</p>
-        <p>Price: {meal.mealTotalPrice}₪</p>
+        <p>טכניקת הכנה: {meal.mealPreparationTechniques}</p>
+        <p>זמן הכנה: {meal.mealPreparationTime}</p>
+        <p>מרכיבים נוספים: {meal.mealAdditionalIngredients}</p>
+        <p>אופן ההכנה: {meal.mealDescription}</p>
+        <p>לכמה אנשים זה מתאים: {meal.mealNumberOfPeopleItSuits}</p>
+        <p>מחיר: {meal.mealTotalPrice}₪</p>
         {meal.mealAuthor ? (
-          <p>Author: {meal.mealAuthor.fullName}</p>
+          <p>יוצר: {meal.mealAuthor.fullName}</p>
         ) : (
-          <p>Author: Unknown</p>
+          <p>יוצר: Unknown</p>
         )}
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
             <button onClick={(ev) => this.deleteMeal(ev, meal._id)}>
-              delete
+              מחיקת מנה
             </button>
           )}
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
             <Link to={"/meals/edit/" + meal._id}>
-              <button> Edit</button>
+              <button>עריכת מנה</button>
             </Link>
           )}
-        <button onClick={this.goBack}> Back To All Meals</button>
+        <button onClick={this.goBack}>חזרה לכל המנות</button>
         {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>

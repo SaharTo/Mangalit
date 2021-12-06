@@ -1,19 +1,24 @@
 .hide {
-    /*display: none;*/
-    visibility: hidden;
+  /*display: none;*/
+  visibility: hidden;
 }
 
-.numberTen:hover+.hide {
-    display: block;
+.numberTen:hover + .hide {
+  display: block;
 }
 
 .meatMap {
-    text-align: center;
-    color: white;
+  /*text-align: center;
+  color: white;
+
+  background-color: rgba(245, 158, 158, 0.116);
 }
 
 .chickenImage {
-    /*width: 600px;
+  /*width: 600px;
   height: 390px;*/
-    background-color: rgba(219, 25, 25, 0.151);
+  /*background-color: rgba(219, 25, 25, 0.151);*/
+  margin: auto;
+  width: 350px;
+  height: 400px;
 }

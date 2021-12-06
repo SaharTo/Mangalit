@@ -18,11 +18,10 @@ function isLoggedIn(req, res, next) {
 function isAdmin(req, res, next) {
   console.log("inside isAdmin function ");
   if (!req.session.user || !req.session.user.isAdmin) {
-    res
-      .status(401)
-      .end(
+    res.status(401);
+    /*.end(
         "You are not not an admin, so you are not allowed to enter this function authenticated"
-      );
+      );*/
     return;
   }
   next();
