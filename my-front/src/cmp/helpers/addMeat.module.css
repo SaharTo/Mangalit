@@ -1,0 +1,27 @@
+.meatAddContiner {
+    padding-inline-start: 10px;
+}
+
+.meatAddContiner h2 {
+    margin: 0;
+    padding-inline-start: 10px;
+    padding-bottom: 5px;
+}
+
+.meat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meat input,
+select,
+textarea {
+    margin: 0;
+    width: 300px;
+}
+
+.meat button {
+    margin-inline-start: 10px;
+    width: 50px;
+}

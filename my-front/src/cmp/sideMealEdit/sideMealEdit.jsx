@@ -89,13 +89,14 @@ export class SideMealEdit extends Component {
     return (
       <div dir="rtl" className={styles.edit}>
         {this.props.match.params.id ? (
-          <h1>Edit SideMeal</h1>
+          <h1>עריכת מנת צד</h1>
         ) : (
-          <h1>New SideMeal</h1>
+          <h1>יצירת מנה חדשה</h1>
         )}
         <form className={styles.sideMeal} name="sideMeal">
           <label htmlFor="sideMealName">
-            Name:
+            שם המנה:
+          </label>
             <input
               type="text"
               value={sideMeal.sideMealName}
@@ -103,9 +104,9 @@ export class SideMealEdit extends Component {
               name="sideMealName"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealSummary">
-            Summary:
+          פירוט:
+          </label>
             <input
               type="text"
               value={sideMeal.sideMealSummary}
@@ -113,9 +114,9 @@ export class SideMealEdit extends Component {
               id="sideMealSummary"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealDifficult">
-            Difficult:
+          רמת קושי:
+          </label>
             <select
               id="sideMealDifficult"
               name="sideMealDifficult"
@@ -129,9 +130,9 @@ export class SideMealEdit extends Component {
               <option value="בינוני">בינוני</option>
               <option value="קשה">קשה</option>
             </select>
-          </label>
           <label htmlFor="sideMealIngriedents">
-            Ingriedents:
+          מרכיבים:
+            </label>
             <textarea
               rows="3"
               cols="30"
@@ -140,9 +141,9 @@ export class SideMealEdit extends Component {
               id="sideMealIngriedents"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealPreperationDescription">
-            Description:
+          אופן ההכנה:
+          </label>
             <textarea
               rows="10"
               cols="50"
@@ -151,9 +152,9 @@ export class SideMealEdit extends Component {
               id="sideMealPreperationDescription"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealPreperationEstimatedTime">
-            Preperation Time:
+          זמן ההכנה:
+          </label>
             <input
               type="number"
               min="5"
@@ -163,9 +164,9 @@ export class SideMealEdit extends Component {
               id="sideMealPreperationEstimatedTime"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealnumberOfPeopleItSuits">
-            People It Suits:
+          לכמה אנשים זה מתאים:
+          </label>
             <input
               type="number"
               min="1"
@@ -175,9 +176,9 @@ export class SideMealEdit extends Component {
               id="sideMealnumberOfPeopleItSuits"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="sideMealEstimatedPrice">
-            Price:
+          מחיר:
+          </label>
             <input
               type="number"
               min="5"
@@ -187,12 +188,11 @@ export class SideMealEdit extends Component {
               id="sideMealEstimatedPrice"
               onChange={this.handleChange}
             />
-          </label>
-          <div>
-            <button onClick={this.onSaveSideMeal}>Save</button>
-            <button onClick={this.goBack}> Go Back</button>
-          </div>
         </form>
+          <div className={styles.buttons} >
+            <button onClick={this.onSaveSideMeal}>שמור</button>
+            <button onClick={this.goBack}>חזרה לדף הקודם</button>
+          </div>
       </div>
     );
   }

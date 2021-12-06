@@ -40,7 +40,7 @@ export class Meals extends Component {
           <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
         </label>
         {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
-          Add Meal
+          הוספת מנה
         </Link>)}
 
         <div dir="rtl" className={styles.container}>

@@ -1,77 +1,44 @@
 import React, { Component } from "react";
 import styles from "./admin.module.css";
+import { AddMeat } from "../helpers/addMeat";
+import { EditMeat } from "../helpers/editMeat";
+import { DeleteMeat } from "../helpers/deleteMeat";
+
 
 export class Admin extends Component {
     state = {
-        meat: null,
-    }
+        page: null,
+    };
+
     componentDidMount() {
-        this.getEmptyMeat();
+        this.setState({ page: 'add' });
     }
 
-    getEmptyMeat = async () => {
-        const meat = {
-            meatType: "",
-            meatName: "",
-            meatDescription: "",
-            meatNumber: "",
-            meatImage: [],
-        };
-        this.setState({ meat });
-    };
-
-    handleChange = ({ target }) => {
-        const field = target.id;
-        const value = target.value;
-        this.setState((prevState) => ({
-            meat: { ...prevState.meat, [field]: value },
-        }));
-    };
-
+    handleChange({ target }) {
+        this.setState({ page: target.value });
+    }
 
     render() {
-        const { meat } = this.state;
-        if (!meat) return <div>Loading...</div>;
+        const { page } = this.state;
+        if (!page) return <div>Loading...</div>;
         return (
-            <div dir='rtl'>
-                <form
-                    method="POST"
-                    action='http://localhost:3030/meats/'
-                    className={styles.meat}
-                >
-                    <label htmlFor="meatName">
-                        <input type="text" name="meat[meatName]" id="meatName" value={meat.meatName} placeholder="Meat Name" onChange={this.handleChange} />
-                    </label>
-                    <label htmlFor="meatType">
-                        <select id="meatType" name="meat[meatType]" value={meat.meatType} onChange={this.handleChange}>
-                            <option value="" disabled="disabled">
-                                בחר
-                            </option>
-                            <option value="בקר">
-                                בקר
-                            </option>
-                            <option value="כבש">
-                                כבש
-                            </option>
-                            <option value="עוף">
-                                עוף
-                            </option>
-                        </select>
-                    </label>
-                    <label htmlFor="">
-                        <textarea
-                            rows="10"
-                            cols="50"
-                            name="meat[meatDescription]"
-                            id="meatDescription"
-                            placeholder="Meat Description"
-                            onChange={this.handleChange} />
-                    </label>
-                    <label htmlFor="">
-                        <input type="number" name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="Meat Number" onChange={this.handleChange} />
-                    </label>
-                    <button>save meat</button>
-                </form>
+            <div dir='rtl' className={styles.admin}>
+                <label htmlFor="page" className={styles.pageLabel}>
+                    בחירת דף
+                    <select
+                        className={styles.pageSelect}
+                        id="page"
+                        value={page}
+                        onChange={this.handleChange.bind(this)}
+                    >
+                        <option value="add">add</option>
+                        <option value="edit">edit</option>
+                        <option value="delete">delete</option>
+                    </select>
+                </label>
+                {page === "add" && <AddMeat />}
+                {page === "edit" && <EditMeat />}
+                {page === "delete" && <DeleteMeat />}
             </div>
         );
     }

@@ -1,35 +1,36 @@
 .homePage {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  padding-inline-start: 10px;
-  text-align: center;
-  color: white;
-  background-color: rgba(243, 212, 212, 0.281);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-inline-start: 10px;
+    text-align: center;
+    color: white;
+    background-color: rgba(243, 212, 212, 0.281);
 }
 
 .title {
-  color: rgb(255, 255, 255);
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 115px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 0.5;
-  text-align: right;
+    color: rgb(255, 255, 255);
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 100px;
+    margin-top: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 0.5;
+    text-align: right;
 }
 
 .homePage label {
-  margin: 0;
+    margin: 0;
 }
 
 .homePage select {
-  width: 80px;
-  margin-inline-start: 10px;
+    width: 80px;
+    margin-inline-start: 10px;
 }
 
 .rndMealsLink {
-  font-weight: bold;
-  color: white;
-  padding: 5px;
-  padding-inline-start: 0;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    padding-inline-start: 0;
 }

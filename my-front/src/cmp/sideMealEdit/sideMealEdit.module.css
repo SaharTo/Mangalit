@@ -3,18 +3,20 @@
 }
 
 .sideMeal {
-    display: flex;
-    flex-direction: column;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 165px 300px;
     gap: 10px;
 }
 
-.sideMeal input,
-select,
-textarea {
-    margin-inline-start: 10px;
+.sideMeal label {
+    margin: 0;
 }
 
-.sideMeal button {
-    width: 70px;
-    margin-inline-end: 5px;
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 110px;
+    margin-top: 10px;
 }

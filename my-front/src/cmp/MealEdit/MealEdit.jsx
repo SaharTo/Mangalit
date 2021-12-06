@@ -148,11 +148,12 @@ export class MealEdit extends Component {
     });
     return (
       <div dir="rtl" className={styles.edit}>
-        {addOrEdit === "edit" && <h1>Edit Meal</h1>}
-        {addOrEdit === "add" && <h1>Add Meal</h1>}
+        {addOrEdit === "edit" && <h1>עדכון מנה</h1>}
+        {addOrEdit === "add" && <h1>יצירת מנה חדשה</h1>}
         <form className={styles.meal} name="meal">
           <label htmlFor="mealName">
-            Name:
+            שם המנה:
+          </label>
             <input
               type="text"
               value={meal.mealName}
@@ -160,9 +161,9 @@ export class MealEdit extends Component {
               name="mealName"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealSummary">
-            Summary:
+            פירוט המנה:
+          </label>
             <input
               type="text"
               value={meal.mealSummary}
@@ -170,9 +171,9 @@ export class MealEdit extends Component {
               id="mealSummary"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealDescription">
-            Description:
+          אופן ההכנה:
+          </label>
             <textarea
               rows="10"
               cols="50"
@@ -181,9 +182,9 @@ export class MealEdit extends Component {
               id="mealDescription"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealPreparationDifficult">
-            Difficult:
+            רמת קושי:
+          </label>
             <select
               id="mealPreparationDifficult"
               name="mealPreparationDifficult"
@@ -197,9 +198,9 @@ export class MealEdit extends Component {
               <option value="בינוני">בינוני</option>
               <option value="קשה">קשה</option>
             </select>
-          </label>
           <label htmlFor="mealPreparationTechniques">
-            Techniques:
+          טכניקת הכנה:
+          </label>
             <select
               id="mealPreparationTechniques"
               name="mealPreparationTechniques"
@@ -214,29 +215,32 @@ export class MealEdit extends Component {
               <option value="מחבת">מחבת</option>
               {/*<option value="גז">גז</option>*/}
             </select>
-          </label>
           {addOrEdit === "edit" && (
             <label htmlFor="mealMeatInfo">
-              Meat Info:
+              סוג בשר:
+            </label>)}
+              {addOrEdit === "edit" && (
               <input
                 type="text"
                 value={meal.mealMeatInfo.map((m) => m.meatName)}
                 disabled="disabled"
               />
-            </label>
           )}
           {addOrEdit === "add" && (
             <label htmlFor="mealMeatInfo">
-              Meat Info:
+              סוג בשר:
+            </label>)}
+          {addOrEdit === "add" && (
               <Chosen
                 opt={optMeat}
                 parentCallback={this.handleSelectChangeMeat}
               />
-            </label>
           )}
           {addOrEdit === "edit" && (
             <label htmlFor="mealRecommendedSideMeals">
-              Recommended SideMeals:
+              מנות צד מומלצות:
+            </label>)}
+              {addOrEdit === "edit" && (
               <input
                 type="text"
                 value={meal.mealRecommendedSideMeals.map(
@@ -244,19 +248,20 @@ export class MealEdit extends Component {
                 )}
                 disabled="disabled"
               />
-            </label>
           )}
           {addOrEdit === "add" && (
             <label htmlFor="mealRecommendedSideMeals">
-              Recommended SideMeals:
+              מנות צד מומלצות:
+            </label>)}
+              {addOrEdit === "add" && (
               <Chosen
                 opt={optSideMeals}
                 parentCallback={this.handleSelectChangeSideMeals}
               />
-            </label>
           )}
           <label htmlFor="mealMeatQuantityGram">
-            Meat Quantity Gram:
+          משקל הבשר (בגרם):
+          </label>
             <input
               type="number"
               max="5000"
@@ -266,9 +271,9 @@ export class MealEdit extends Component {
               id="mealMeatQuantityGram"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealPreparationTime">
-            Preparation Time:
+          זמן הכנה (דקות):
+          </label>
             <input
               type="number"
               min="5"
@@ -278,9 +283,9 @@ export class MealEdit extends Component {
               id="mealPreparationTime"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealAdditionalIngredients">
-            Ingriedents:
+          מרכיבים נוספים:
+          </label>
             <textarea
               rows="3"
               cols="30"
@@ -289,9 +294,9 @@ export class MealEdit extends Component {
               id="mealAdditionalIngredients"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealNumberOfPeopleItSuits">
-            People It Suits:
+          לכמה אנשים זה מתאים:
+          </label>
             <input
               type="number"
               min="1"
@@ -301,9 +306,9 @@ export class MealEdit extends Component {
               id="mealNumberOfPeopleItSuits"
               onChange={this.handleChange}
             />
-          </label>
           <label htmlFor="mealTotalPrice">
-            Price:
+          מחיר:
+          </label>
             <input
               type="number"
               min="5"
@@ -312,12 +317,11 @@ export class MealEdit extends Component {
               id="mealTotalPrice"
               onChange={this.handleChange}
             />
-          </label>
-          <div>
-            <button onClick={this.onSaveMeal}>Save</button>
-            <button onClick={this.goBack}> Go Back</button>
-          </div>
         </form>
+          <div className={styles.buttons}>
+            <button onClick={this.onSaveMeal}>שמור</button>
+            <button onClick={this.goBack}>חזרה לדף הקודם</button>
+          </div>
       </div>
     );
   }

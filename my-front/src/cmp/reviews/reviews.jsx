@@ -74,7 +74,7 @@ const Reviews = (props) => {
           )
       )}
       {sessionStorage.getItem("loggedInUser") && (
-        <button onClick={createReviewHandler}>Insert A Comment</button>
+        <button onClick={createReviewHandler}>הוספת תגובה</button>
       )}
       {createReviewIsShown && (
         <form
@@ -88,7 +88,7 @@ const Reviews = (props) => {
           <label htmlFor="AuthorName">
             {/*here We Need To Insert The LoogedIn User*/}
           </label>
-          <label htmlFor="reviewRating">Rate It</label>
+          <label htmlFor="reviewRating">דירוג תגובה</label>
           <input
             id="reviewRating"
             type="number"
@@ -96,7 +96,7 @@ const Reviews = (props) => {
             max="10"
             name="review[reviewRating]"
           />
-          <label htmlFor="reviewBody">Write your review</label>
+          <label htmlFor="reviewBody">תוכן תגובה</label>
           <input
             id="reviewBody"
             type="text"
@@ -104,7 +104,7 @@ const Reviews = (props) => {
             max="100"
             name="review[reviewBody]"
           ></input>
-          <button> miao</button>
+          <button>הוסף</button>
         </form>
       )}
     </div>
