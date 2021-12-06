@@ -13,7 +13,8 @@ import { MealEdit } from "./cmp/MealEdit/MealEdit";
 import Login from "./cmp/Login/login";
 import Register from "./cmp/Register/register";
 import Roulette from "./cmp/roulette/roulette";
-import {Admin} from "./cmp/Admin/admin";
+import { Admin } from "./cmp/Admin/admin";
+import Calculator from "./cmp/calculator/calculator";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
