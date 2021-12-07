@@ -37,8 +37,8 @@ export class EditMeat extends Component {
             <div className={styles.meatAddContiner}>
                 <h2> בחירת סוג בשר לעדכון</h2>
                 <label htmlFor="meatToEdit">
-                    <select id="meatToEdit" onChange={this.handleChangeMeat}>
-                        <option value="" disabled="disabled">
+                    <select id="meatToEdit" className={styles.meatSelect} value={JSON.stringify(meatToEdit)} onChange={this.handleChangeMeat}>
+                        <option value="null" disabled="disabled">
                             בשר לעדכון
                         </option>
                         {meats.map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>

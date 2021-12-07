@@ -17,12 +17,15 @@ export class DeleteMeat extends Component {
             .catch((error) => {
                 console.log(error);
             });
+
+
     };
 
     handleChangeMeat = ({ target }) => {
         const value = JSON.parse(target.value);
         this.setState({ meatToDelete: value });
     };
+
     render() {
         const { meats, meatToDelete } = this.state;
         if (!meats) return <div>Loading...</div>;
@@ -30,8 +33,8 @@ export class DeleteMeat extends Component {
             <div className={styles.meatAddContiner}>
                 <h2> בחירת סוג בשר למחיקה</h2>
                 <label htmlFor="meatToDelete">
-                    <select id="meatToDelete" onChange={this.handleChangeMeat}>
-                        <option value="" disabled="disabled">
+                    <select id="meatToDelete" className={styles.meatSelect} value={JSON.stringify(meatToDelete)} onChange={this.handleChangeMeat}>
+                        <option value="null" disabled="disabled">
                             בשר למחיקה
                         </option>
                         {meats.map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
