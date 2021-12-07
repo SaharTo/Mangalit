@@ -44,6 +44,7 @@ function App() {
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/calculator" component={Calculator} />
           <Route path="/signup" component={Register} />
           <Route path="/admin" component={Admin} />
           <Route path="/parts" component={Parts} />

@@ -35,13 +35,13 @@ export class SideMeals extends Component {
     if (!sideMeals || !smToshow) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeals}>
+        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
+          הוספת מנת צד
+        </Link>)}
         <label htmlFor="filter">
           חיפוש
           <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
         </label>
-        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
-          הוספת מנת צד
-        </Link>)}
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>

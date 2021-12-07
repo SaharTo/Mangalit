@@ -1,28 +1,28 @@
 .header {
-  margin-bottom: 0px;
-  display: flex;
-  background-color: rgba(141, 135, 135, 0.63);
-  height: 50px;
+    margin-bottom: 0px;
+    display: flex;
+    background-color: rgba(141, 135, 135, 0.63);
+    height: 50px;
 }
 
 .links {
-  flex: 1;
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  padding-inline-end: 10px;
-  align-items: center;
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding-inline-end: 20px;
+    align-items: center;
 }
 
 .links a {
-  color: white;
+    color: white;
 }
 
 .logOut {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .logo {
-  height: 50px;
-  padding-right: 10px;
+    height: 50px;
+    padding-right: 10px;
 }

@@ -1,12 +1,20 @@
 .container {
-    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    margin-bottom: 10px;
 }
 
-.meals input,
-label {
+.meals {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline-start: 10px;
+    gap: 10px;
+}
+
+.meals input {
     margin-inline-start: 10px;
 }
 
@@ -14,12 +22,17 @@ label {
     width: 350px;
     color: black;
     padding-inline-start: 5px;
-    /* border: 1px solid black; */
     background-color: rgba(255, 255, 255, 0.35);
 }
 
 .add {
-    margin-inline-start: 10px;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.35);
+}
+
+.rndMealsLink {
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    padding-inline-start: 0;
 }

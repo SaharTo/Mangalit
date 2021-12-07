@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./meals.module.css";
 
 export class Meals extends Component {
@@ -35,13 +36,16 @@ export class Meals extends Component {
     if (!meals || !mToshow) return <h1>Loading...</h1>;
     return (
       <div dir="rtl" className={styles.meals}>
+        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
+          הוספת מנה
+        </Link>)}
         <label htmlFor="filter">
           חיפוש
           <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
         </label>
-        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
-          הוספת מנה
-        </Link>)}
+        <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
+          לחץ כדי לעבור גלגל של מנות רנדומליות
+        </NavLink>
 
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (

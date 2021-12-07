@@ -33,9 +33,9 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/home">
+        {/* <NavLink activeClassName="activeNav" to="/home">
           עמוד הבית
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="activeNav" to="/meals">
           מנות
         </NavLink>
@@ -45,20 +45,17 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/about">
           אודות
         </NavLink>
-        {sessionStorage.getItem("loggedInUserIsadmin") && (
-          <NavLink activeClassName="activeNav" to="/admin">
-            אדמין
-          </NavLink>
-        )}
-        {/* {props.isLogged ? <NavLink activeClassName="activeNav" to="/login">Login</NavLink> : <a href='logout'>logout</a>} */}
-        {!sessionStorage.getItem("loggedInUser") && (
-          <NavLink activeClassName="activeNav" to="/login">
-            התחברות
-          </NavLink>
-        )}
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/signup">
             הרשמה
+          </NavLink>)}
+        {!sessionStorage.getItem("loggedInUser") && (
+          <NavLink activeClassName="activeNav" to="/login">
+            התחברות
+          </NavLink>)}
+        {sessionStorage.getItem("loggedInUserIsadmin") && (
+          <NavLink activeClassName="activeNav" to="/admin">
+            אדמין
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUser") && (
