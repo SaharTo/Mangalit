@@ -15,6 +15,7 @@ import Register from "./cmp/Register/register";
 import Roulette from "./cmp/roulette/roulette";
 import { Admin } from "./cmp/Admin/admin";
 import Calculator from "./cmp/calculator/calculator";
+import { Parts } from "./cmp/parts/parts";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Register} />
           <Route path="/admin" component={Admin} />
+          <Route path="/parts" component={Parts} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/meals/edit/:id?" component={MealEdit} />

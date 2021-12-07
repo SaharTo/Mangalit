@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import logoSrc from "../../assets/blackLogo.png";
+import logoSrc from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 import styles from "./navBar.module.css";
 
@@ -29,7 +29,10 @@ export function Navbar() {
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
-      <div className={styles.links} /*dir="ltr"*/>
+      <div className={styles.links} dir="ltr">
+        <NavLink activeClassName="activeNav" to="/parts">
+          מידע על חלקים
+        </NavLink>
         <NavLink activeClassName="activeNav" to="/home">
           עמוד הבית
         </NavLink>
