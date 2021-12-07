@@ -1,7 +1,7 @@
 .header {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   display: flex;
-  background-color: rgb(63, 61, 61);
+  background-color: rgba(141, 135, 135, 0.63);
   height: 50px;
 }
 

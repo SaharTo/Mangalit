@@ -24,12 +24,14 @@ export class Home extends Component {
     if (!type) return <div>Loading...</div>;
     return (
       <div dir="rtl">
-        <h1 className={styles.title}>מנגלית.</h1>
-        <h4>כל מה שצריך לדעת לפני שמכינים בשר.</h4>
+        <h1 className={styles.title}>מנגלית</h1>
+
+        <h4 className={styles.subtitle}>כל מה שצריך לדעת</h4>
+        <h5 className={styles.subtitle}>לפני שמכינים בשר.</h5>
         <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות
         </NavLink>
-        <div className={styles.homePage}>
+        {/*<div className={styles.homePage}>
           <label htmlFor="type">
             בחירת סוג בשר
             <select
@@ -48,6 +50,7 @@ export class Home extends Component {
           {type === "כבש" && <Lamb />}
           {type === "עוף" && <Chicken />}
         </div>
+    */}
       </div>
     );
   }
