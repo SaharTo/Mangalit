@@ -18,10 +18,10 @@ router.get('/rndMeals', meals.rnd8Meals)
 router
     .route("/:id")
     .get(meals.mealById)
-    .delete(isAuthor, meals.deleteMeal)
-    .put(isAuthor, validateMeal, meals.updateMeal);
+    .delete(isLoggedIn, isAuthor, meals.deleteMeal)
+    .put(isLoggedIn, isAuthor, validateMeal, meals.updateMeal);
 
-router.put("/:id/review", /*isLoggedIn,*/ validateReview, meals.addReview);
-router.delete("/:id/review/:reviewId", isAuthor, meals.deleteReview);
+router.put("/:id/review", isLoggedIn, validateReview, meals.addReview);
+router.delete("/:id/review/:reviewId", isLoggedIn, isAuthor, meals.deleteReview);
 
 module.exports = router;

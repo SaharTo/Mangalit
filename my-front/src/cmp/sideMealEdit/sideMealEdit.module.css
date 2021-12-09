@@ -5,8 +5,10 @@
 .sideMeal {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 165px 300px;
+    grid-template-columns: 200px 300px;
     gap: 10px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .sideMeal label {

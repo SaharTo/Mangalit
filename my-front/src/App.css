@@ -1,70 +1,98 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
+
 /* Style the links inside the sidenav */
+
 #mySidenav a {
-  position: absolute; /* Position them relative to the browser window */
-  left: -80px; /* Position them outside of the screen */
-  transition: 0.3s; /* Add transition on hover */
-  padding: 15px; /* 15px padding */
-  width: 100px; /* Set a specific width */
-  text-decoration: none; /* Remove underline */
-  font-size: 20px; /* Increase font size */
-  color: white; /* White text color */
-  border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+    position: absolute;
+    /* Position them relative to the browser window */
+    left: -80px;
+    /* Position them outside of the screen */
+    transition: 0.3s;
+    /* Add transition on hover */
+    padding: 15px;
+    /* 15px padding */
+    width: 100px;
+    /* Set a specific width */
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 20px;
+    /* Increase font size */
+    color: white;
+    /* White text color */
+    border-radius: 0 5px 5px 0;
+    /* Rounded corners on the top right and bottom right side */
 }
 
 .chatBotButton:hover {
-  left: 20px; /* On mouse-over, make the elements appear as they should */
+    /* left: 20px; */
+    background-color: rgba(172, 234, 240, 0.5);
+    /* On mouse-over, make the elements appear as they should */
 }
 
 .chatBotButton {
-  text-align: right;
-  border-radius: 15px;
-  position: absolute; /* Position them relative to the browser window */
-  left: -40px; /* Position them outside of the screen */
-  transition: 0.3s; /* Add transition on hover */
-  padding: 15px; /* 15px padding */
-  width: 150px; /* Set a specific width */
-  text-decoration: none; /* Remove underline */
-  font-size: 20px; /* Increase font size */
-  color: rgb(221, 208, 208); /* White text color */
-  background-color: rgba(225, 245, 247, 0.493);
-  bottom: 25%;
+    text-align: right;
+    border-radius: 15px;
+    position: fixed;
+    cursor: pointer;
+    /* Position them relative to the browser window */
+    bottom: 0;
+    /* Position them outside of the screen */
+    transition: 0.3s;
+    /* Add transition on hover */
+    padding: 15px;
+    /* 15px padding */
+    width: 100px;
+    /* Set a specific width */
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 20px;
+    font-weight: bold;
+    /* Increase font size */
+    color: rgb(221, 208, 208);
+    /* White text color */
+    background-color: rgba(225, 245, 247, 0.4);
+}
+
+.rsc {
+    position: fixed;
+    left: 0;
+    bottom: 60px;
 }
