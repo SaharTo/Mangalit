@@ -14,18 +14,19 @@ const Reviews = (props) => {
   };
   const deleteReview = (ev, id) => {
     ev.preventDefault();
-    console.log(`${props.mealId}/review/${id}`);
+    // console.log(`${props.mealId}/review/${id}`);
     if (props.mealId) {
       fetch(`http://localhost:3030/meals/${props.mealId}/review/${id}`, {
         method: "DELETE",
         credentials: "include",
       })
-        .then(() => {
-          console.log("Delete Review Successfully");
-          window.location.reload();
-        })
-        .catch((err) => {
-          console.log(err);
+        .then((res) => {
+          if (res.ok) {
+            res.text().then((data) => {
+              console.log(data);
+              window.location.reload();
+            });
+          } else res.text().then((data) => console.log(data));
         });
     }
     if (props.sideMealId) {
@@ -36,12 +37,13 @@ const Reviews = (props) => {
           credentials: "include",
         }
       )
-        .then(() => {
-          window.location.reload();
-          console.log("Delete Review Successfully");
-        })
-        .catch((err) => {
-          console.log(err);
+        .then((res) => {
+          if (res.ok) {
+            res.text().then((data) => {
+              console.log(data);
+              window.location.reload();
+            });
+          } else res.text().then((data) => console.log(data));
         });
     }
   };
@@ -64,13 +66,19 @@ const Reviews = (props) => {
               )}
               <p>{r.reviewBody}</p>
               <h4>{r.reviewRating}</h4>
-              {r.reviewAuthor &&
+              {(
+                sessionStorage.getItem("loggedInUserIsadmin") === 'true' &&
+                <button className={styles.btn} onClick={(ev) => deleteReview(ev, r._id)}>
+                  מחק/י תגובה
+                </button>
+              ) || ((r.reviewAuthor &&
                 JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-                  r.reviewAuthor._id && (
+                r.reviewAuthor._id) && (
                   <button className={styles.btn} onClick={(ev) => deleteReview(ev, r._id)}>
                     מחק/י תגובה
                   </button>
-                )}
+                ))
+              }
             </div>
           )
       )}
@@ -79,7 +87,7 @@ const Reviews = (props) => {
       )}
       {createReviewIsShown && (
         <form
-        className={styles.grid}
+          className={styles.grid}
           method="POST"
           action={
             props.mealId
