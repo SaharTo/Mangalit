@@ -1,155 +1,111 @@
-import React, { useState } from "react";
-
-import Wrapper from "./components/Wrapper";
-import Screen from "./components/Screen";
-import ButtonBox from "./components/ButtonBox";
-import Button from "./components/Button";
-
-const btnValues = [
-  ["C", "+-", "%", "/"],
-  [7, 8, 9, "X"],
-  [4, 5, 6, "-"],
-  [1, 2, 3, "+"],
-  [0, ".", "="],
-];
-
-const toLocaleString = (num) =>
-  String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1 ");
-
-const removeSpaces = (num) => num.toString().replace(/\s/g, "");
-
+import { useEffect, useState } from "react";
+import styles from "./calculator.module.css";
 const Calculator = () => {
-  let [calc, setCalc] = useState({
-    sign: "",
-    num: 0,
-    res: 0,
+  const [men, setMen] = useState("");
+  const [women, setWomen] = useState("");
+  const [pitotSalatim, setPitotSalatim] = useState(false);
+
+  /* useEffect(async () => {
+    /*const questionsArray = [
+      "כמה גברים?",
+      "כמה נשים?",
+      "עם או בלי פיתות וסלטים?",
+    ];
+    //console.log("meats list ", meats);
   });
-
-  const numClickHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.innerHTML;
-
-    if (removeSpaces(calc.num).length < 16) {
-      setCalc({
-        ...calc,
-        num:
-          calc.num === 0 && value === "0"
-            ? "0"
-            : removeSpaces(calc.num) % 1 === 0
-            ? toLocaleString(Number(removeSpaces(calc.num + value)))
-            : toLocaleString(calc.num + value),
-        res: !calc.sign ? 0 : calc.res,
-      });
+  */
+  const addToScreen = (e) => {
+    const s = String.concat(document.getElementById("screen"), e);
+    document.getElementById("screen").innerHTML = s;
+  };
+  const finishHandler = () => {
+    if (pitotSalatim) {
+      const meatQuantity = parseInt(men) * 0.4 + parseInt(women) * 0.3; //Avg meat quantity for men and women consumers with Pitot and Salatim
+      document.getElementById("screen").innerHTML = meatQuantity;
     }
   };
-
-  const comaClickHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.innerHTML;
-
-    setCalc({
-      ...calc,
-      num: !calc.num.toString().includes(".") ? calc.num + value : calc.num,
-    });
-  };
-
-  const signClickHandler = (e) => {
-    setCalc({
-      ...calc,
-      sign: e.target.innerHTML,
-      res: !calc.res && calc.num ? calc.num : calc.res,
-      num: 0,
-    });
-  };
-
-  const equalsClickHandler = () => {
-    if (calc.sign && calc.num) {
-      const math = (a, b, sign) =>
-        sign === "+"
-          ? a + b
-          : sign === "-"
-          ? a - b
-          : sign === "X"
-          ? a * b
-          : a / b;
-
-      setCalc({
-        ...calc,
-        res:
-          calc.num === "0" && calc.sign === "/"
-            ? "Can't divide with 0"
-            : toLocaleString(
-                math(
-                  Number(removeSpaces(calc.res)),
-                  Number(removeSpaces(calc.num)),
-                  calc.sign
-                )
-              ),
-        sign: "",
-        num: 0,
-      });
+  const onsubmitHandler = () => {
+    // console.log(document.getElementById("screen").value);
+    if (document.getElementById("q") === "כמה גברים?") {
+      setMen(document.getElementById("screen"));
+      document.getElementById("screen").innerHTML = "";
+      document.getElementById("q").innerHTML = "כמה נשים?";
+    }
+    if (document.getElementById("q") === "כמה נשים?") {
+      setWomen(document.getElementById("screen"));
+      document.getElementById("screen").innerHTML = "";
+      document.getElementById("q").innerHTML = "עם או בלי פיתות וסלטים";
+    }
+    if (document.getElementById("q") === "עם או בלי פיתות וסלטים") {
+      if (document.getElementById("screen") === "עם") {
+        setPitotSalatim(true);
+      }
+      document.getElementById("screen").innerHTML = "";
+      document.getElementById("q").innerHTML = "=";
+      finishHandler();
     }
   };
-
-  const invertClickHandler = () => {
-    setCalc({
-      ...calc,
-      num: calc.num ? toLocaleString(removeSpaces(calc.num) * -1) : 0,
-      res: calc.res ? toLocaleString(removeSpaces(calc.res) * -1) : 0,
-      sign: "",
-    });
-  };
-
-  const percentClickHandler = () => {
-    let num = calc.num ? parseFloat(removeSpaces(calc.num)) : 0;
-    let res = calc.res ? parseFloat(removeSpaces(calc.res)) : 0;
-    setCalc({
-      ...calc,
-      num: (num /= Math.pow(100, 1)),
-      res: (res /= Math.pow(100, 1)),
-      sign: "",
-    });
-  };
-
-  const resetClickHandler = () => {
-    setCalc({
-      ...calc,
-      sign: "",
-      num: 0,
-      res: 0,
-    });
-  };
-
   return (
-    <Wrapper>
-      <Screen value={calc.num ? calc.num : calc.res} />
-      <ButtonBox>
-        {btnValues.flat().map((btn, i) => {
-          return (
-            <Button
-              key={i}
-              className={btn === "=" ? "equals" : ""}
-              value={btn}
-              onClick={
-                btn === "C"
-                  ? resetClickHandler
-                  : btn === "+-"
-                  ? invertClickHandler
-                  : btn === "%"
-                  ? percentClickHandler
-                  : btn === "="
-                  ? equalsClickHandler
-                  : btn === "/" || btn === "X" || btn === "-" || btn === "+"
-                  ? signClickHandler
-                  : btn === "."
-                  ? comaClickHandler
-                  : numClickHandler
-              }
-            />
-          );
-        })}
-      </ButtonBox>
-    </Wrapper>
+    <div dir="rtl" className={styles.calculatorDiv}>
+      <div>
+        <label value="כמה גברים?" htmlFor="screen" className={styles.q}>
+          כמה גברים?
+        </label>
+      </div>
+      <div>
+        <input
+          value={men}
+          className={styles.screenInpt}
+          id="screen"
+          type="text"
+        />
+      </div>
+      <div>
+        <button className={styles.firstLine} id="one">
+          1
+        </button>
+        <button className={styles.firstLine} id="two">
+          2
+        </button>
+        <button className={styles.firstLine} id="three">
+          3
+        </button>
+      </div>
+      <div>
+        <button className={styles.secondLine} id="four">
+          4
+        </button>
+        <button className={styles.secondLine} id="five">
+          5
+        </button>
+        <button className={styles.secondLine} id="six">
+          6
+        </button>
+      </div>
+      <div>
+        <button className={styles.thirdLine} id="seven">
+          7
+        </button>
+        <button className={styles.thirdLine} id="eight">
+          8
+        </button>
+        <button className={styles.thirdLine} id="nine">
+          9
+        </button>
+      </div>
+      <span className={styles.fourthLine}>
+        <button className={styles.zeroButton} id="zero">
+          0
+        </button>
+        <button
+          className={styles.submitButton}
+          id="submit"
+          onClick={onsubmitHandler}
+        >
+          V
+        </button>
+      </span>
+    </div>
   );
 };
 export default Calculator;
