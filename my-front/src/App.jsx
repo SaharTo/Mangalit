@@ -16,6 +16,8 @@ import Roulette from "./cmp/roulette/roulette";
 import { Admin } from "./cmp/Admin/admin";
 import Calculator from "./cmp/calculator/calculator";
 import { Parts } from "./cmp/parts/parts";
+import SimpleForm from "./cmp/calculator/chatbot";
+import { useState } from "react";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -36,11 +38,24 @@ function App() {
       } else res.text().then((data) => console.log(data));
     });
   }
-
+  const [botIsShown, setBotIsShown] = useState(false);
+  const showBotHandler = () => {
+    setBotIsShown(!botIsShown);
+  };
   return (
     <Router>
       <div>
         <Navbar />
+        <button id="chatbot" className="chatBotButton" onClick={showBotHandler}>
+          מנגלבוט
+        </button>
+        {botIsShown && <SimpleForm />}
+        {/*<div id="mySidenav" class="sideBot">
+          <a href="#" id="mangalBot">
+            מנגלבוט
+          </a>{" "}
+        </div>*/}
+
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
           <Route path="/login" component={Login} />
@@ -57,6 +72,7 @@ function App() {
           <Route path="/sideMeals/:id" component={SideMeal} />
           <Route path="/sideMeals" component={SideMeals} />
           <Route path="/roulette" component={Roulette} />
+          <Route path="/calculator" component={Calculator} />
         </Switch>
       </div>
     </Router>

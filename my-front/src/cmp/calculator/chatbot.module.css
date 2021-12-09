@@ -1,0 +1,17 @@
+.td {
+  border-bottom: 1px solid #ddd;
+}
+.total {
+  border-bottom: 1px solid #ddd;
+  background-color: #ebe5e246;
+  color: white;
+}
+.header {
+  font-family: Arial;
+  height: 50px;
+  letter-spacing: 1px;
+  font-size: 30px;
+  color: #664646;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.089);
+}

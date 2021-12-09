@@ -3,6 +3,7 @@ import styles from "./home.module.css";
 import Beef from "../parts/beef/beef";
 import Chicken from "../parts/chicken/chicken";
 import Lamb from "../parts/lamb/lamb";
+import CalculatorForm from "../calculator/calculatorForm";
 
 export class Home extends Component {
   state = {
@@ -22,11 +23,12 @@ export class Home extends Component {
     const { type } = this.state;
     if (!type) return <div>Loading...</div>;
     return (
-      <div dir="rtl" >
+      <div dir="rtl">
         <h1 className={styles.title}>מנגלית</h1>
-
-        <h4 className={styles.subtitle}>כל מה שצריך לדעת</h4>
-        <h5 className={styles.subtitle}>לפני שמכינים בשר.</h5>
+        <h4 className={styles.subtitle}>כל מה</h4>
+        <h4 className={styles.subtitle}>שצריך לדעת</h4>
+        <h4 className={styles.subtitle}>לפני</h4>
+        <h4 className={styles.subtitle}>שמכינים בשר.</h4>
         {/* <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות
         </NavLink> */}
