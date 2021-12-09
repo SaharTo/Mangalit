@@ -85,7 +85,7 @@ export class EditMeat extends Component {
                     <label htmlFor="meatNumber">
                         <input type="number" value={meatToEdit.meatNumber} name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
                     </label>
-                    <button>שמור</button>
+                    <button className={styles.btn}>שמור</button>
                 </form>}
             </div >
         );

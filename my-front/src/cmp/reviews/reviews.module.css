@@ -1,3 +1,26 @@
+.review {
+    padding: 5px 0;
+    margin-bottom: 5px;
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.review h3,
+h4,
+p {
+    margin: 0;
+}
+
+.author {
+    /* color: black; */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    gap: 5px;
+}
+
 .btn {
     margin-inline-end: 5px;
     margin-bottom: 5px;

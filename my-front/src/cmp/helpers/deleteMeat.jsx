@@ -52,7 +52,7 @@ export class DeleteMeat extends Component {
                     <label htmlFor="meatName">
                         {meatToDelete.meatName}
                     </label>
-                    <button>מחק</button>
+                    <button className={styles.btn}>מחק</button>
                 </form>}
             </div >
         );

@@ -70,7 +70,7 @@ export class AddMeat extends Component {
                     <label htmlFor="">
                         <input type="number" name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
                     </label>
-                    <button>שמור</button>
+                    <button className={styles.btn}>שמור</button>
                 </form>
             </div>
         );

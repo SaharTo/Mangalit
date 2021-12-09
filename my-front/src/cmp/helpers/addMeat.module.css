@@ -26,7 +26,16 @@ textarea {
     width: 100%;
 }
 
-.meat button {
-    margin-inline-start: 10px;
-    width: 50px;
+.btn {
+    width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(238, 96, 96);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: rgb(233, 68, 68);
 }

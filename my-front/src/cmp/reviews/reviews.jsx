@@ -56,14 +56,14 @@ const Reviews = (props) => {
       {reviews.map(
         (r) =>
           reviewsIsShown && (
-            <div key={r._id}>
+            <div className={styles.review} key={r._id}>
               {r.reviewAuthor ? (
-                <h3>כותב: {r.reviewAuthor.fullName}</h3>
+                <h3 className={styles.author}>{r.reviewAuthor.fullName}</h3>
               ) : (
-                <h3>כותב: Unknown</h3>
+                <h3 className={styles.author}>כותב לא ידוע</h3>
               )}
-              <h4>{r.reviewRating}</h4>
               <p>{r.reviewBody}</p>
+              <h4>{r.reviewRating}</h4>
               {r.reviewAuthor &&
                 JSON.parse(sessionStorage.getItem("loggedInUser")) ===
                   r.reviewAuthor._id && (
@@ -79,6 +79,7 @@ const Reviews = (props) => {
       )}
       {createReviewIsShown && (
         <form
+        className={styles.grid}
           method="POST"
           action={
             props.mealId
@@ -86,9 +87,6 @@ const Reviews = (props) => {
               : `http://localhost:3030/sideMeals/${props.sideMealId}/review?_method=PUT`
           }
         >
-          <label htmlFor="AuthorName">
-            {/*here We Need To Insert The LoogedIn User*/}
-          </label>
           <label htmlFor="reviewRating">דירוג תגובה</label>
           <input
             id="reviewRating"
@@ -105,7 +103,7 @@ const Reviews = (props) => {
             max="100"
             name="review[reviewBody]"
           ></input>
-          <button className={styles.btn}>הוסף</button>
+          <button className={styles.btn}> הוסף תגובה</button>
         </form>
       )}
     </div>
