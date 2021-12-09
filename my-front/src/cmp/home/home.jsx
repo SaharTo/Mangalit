@@ -3,7 +3,6 @@ import styles from "./home.module.css";
 import Beef from "../parts/beef/beef";
 import Chicken from "../parts/chicken/chicken";
 import Lamb from "../parts/lamb/lamb";
-import CalculatorForm from "../calculator/calculatorForm";
 
 export class Home extends Component {
   state = {

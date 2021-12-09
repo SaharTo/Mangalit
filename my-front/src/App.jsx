@@ -14,7 +14,6 @@ import Login from "./cmp/Login/login";
 import Register from "./cmp/Register/register";
 import Roulette from "./cmp/roulette/roulette";
 import { Admin } from "./cmp/Admin/admin";
-import Calculator from "./cmp/calculator/calculator";
 import { Parts } from "./cmp/parts/parts";
 import SimpleForm from "./cmp/calculator/chatbot";
 import { useState } from "react";
@@ -59,7 +58,6 @@ function App() {
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/calculator" component={Calculator} />
           <Route path="/signup" component={Register} />
           <Route path="/admin" component={Admin} />
           <Route path="/parts" component={Parts} />
@@ -72,7 +70,6 @@ function App() {
           <Route path="/sideMeals/:id" component={SideMeal} />
           <Route path="/sideMeals" component={SideMeals} />
           <Route path="/roulette" component={Roulette} />
-          <Route path="/calculator" component={Calculator} />
         </Switch>
       </div>
     </Router>
