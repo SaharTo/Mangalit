@@ -1,17 +1,44 @@
 .register {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
 }
 
-.register input {
-  height: 25px;
-  width: 100%;
+.logo {
+    margin: 10px auto;
+    height: 10vh;
+    text-align: center;
 }
 
-.register button {
-  height: 25px;
-  width: 100%;
+.logo img {
+    height: 100%;
+}
+
+.registerInput {
+    height: 40px;
+    font-size: 16px;
+    width: 300px;
+    padding-inline-start: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn {
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    width: 300px;
+    color: black;
+    background-color: rgb(238, 96, 96);
+}
+
+.btn:hover {
+    background-color: rgb(233, 68, 68);
 }

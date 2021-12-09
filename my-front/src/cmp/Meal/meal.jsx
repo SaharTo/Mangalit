@@ -72,7 +72,7 @@ export class Meal extends Component {
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
-            <button onClick={(ev) => this.deleteMeal(ev, meal._id)}>
+            <button className={styles.btn} onClick={(ev) => this.deleteMeal(ev, meal._id)}>
               מחיקת מנה
             </button>
           )}
@@ -80,10 +80,10 @@ export class Meal extends Component {
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
             <Link to={"/meals/edit/" + meal._id}>
-              <button>עריכת מנה</button>
+              <button className={styles.btn}>עריכת מנה</button>
             </Link>
           )}
-        <button onClick={this.goBack}>חזרה לכל המנות</button>
+        <button className={styles.btn} onClick={this.goBack}>חזרה לכל המנות</button>
         {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>

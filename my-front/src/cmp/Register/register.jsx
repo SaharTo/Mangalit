@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logoSrc from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 import styles from "./register.module.css";
 
@@ -36,36 +37,43 @@ export default function Register() {
 
   return (
     <div>
-      <form className={styles.register} name="register" onSubmit={register}>
+       <div className={styles.logo}>
+        <img src={logoSrc} alt="" />
+      </div>
+      <form dir='rtl' className={styles.register} name="register" onSubmit={register}>
         <input
           type="text"
           id="userName"
+          className={styles.registerInput}
           value={user.userName}
           onChange={handleChange}
-          placeholder="username"
+          placeholder="שם משתמש"
         />
         <input
           type="email"
           id="userEmail"
+          className={styles.registerInput}
           value={user.userEmail}
           onChange={handleChange}
-          placeholder="Email"
+          placeholder='מייל'
         />
         <input
           type="text"
           id="fullName"
+          className={styles.registerInput}
           value={user.fullName}
           onChange={handleChange}
-          placeholder="fullName"
+          placeholder="שם מלא"
         />
         <input
           type="password"
           id="password"
+          className={styles.registerInput}
           value={user.password}
           onChange={handleChange}
-          placeholder="password"
+          placeholder="סיסמה"
         />
-        <button>signup</button>
+        <button className={styles.btn}>הרשמה</button>
       </form>
     </div>
   );

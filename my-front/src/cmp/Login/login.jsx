@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logoSrc from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 import styles from "./login.module.css";
 
@@ -38,23 +39,27 @@ export default function Login() {
 
   return (
     <div>
-      {/*}  <form method='POST' action='http://localhost:3030/users/login'></form>*/}
-      <form className={styles.login} name="login" onSubmit={login}>
+      <div className={styles.logo}>
+        <img  src={logoSrc} alt="" />
+      </div>
+      <form dir='rtl' className={styles.login} name="login" onSubmit={login}>
         <input
           type="text"
           id="userName"
+          className={styles.loginInput}
           value={user.userName}
           onChange={handleChange}
-          placeholder="username"
+          placeholder="שם משתמש"
         />
         <input
           type="password"
+          className={styles.loginInput}
           id="password"
           value={user.password}
           onChange={handleChange}
-          placeholder="password"
+          placeholder="סיסמה"
         />
-        <button>login</button>
+        <button className={styles.btn}>התחברות</button>
       </form>
     </div>
   );

@@ -2,16 +2,43 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    margin: 10px auto;
+    height: 10vh;
+    text-align: center;
+}
+
+.logo img {
+    height: 100%;
+}
+
+.loginInput {
+    height: 40px;
+    font-size: 16px;
     width: 300px;
-    margin: auto;
+    padding-inline-start: 10px;
+    border-radius: 10px;
+    border: none;
 }
 
-.login input {
-    height: 25px;
-    width: 100%;
+.btn {
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    width: 300px;
+    color: black;
+    background-color: rgb(238, 96, 96);
 }
 
-.login button {
-    height: 25px;
-    width: 100%;
+.btn:hover {
+    background-color: rgb(233, 68, 68);
 }

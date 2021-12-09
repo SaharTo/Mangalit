@@ -30,7 +30,7 @@ export default function Roulette() {
   return (
     <div className={styles.roulette}>
       <button id="spinBtn" onClick={handleSpinClick}>
-        SPIN
+        סובב את הגלגל
       </button>
       <Wheel
         mustStartSpinning={mustSpin}

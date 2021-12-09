@@ -190,8 +190,8 @@ export class SideMealEdit extends Component {
             />
         </form>
           <div className={styles.buttons} >
-            <button onClick={this.onSaveSideMeal}>שמור</button>
-            <button onClick={this.goBack}>חזרה לדף הקודם</button>
+            <button className={styles.btn} onClick={this.onSaveSideMeal}>שמירה</button>
+            <button className={styles.btn} onClick={this.goBack}>חזרה לדף הקודם</button>
           </div>
       </div>
     );

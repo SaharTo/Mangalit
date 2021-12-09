@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./reviews.module.css";
 
 const Reviews = (props) => {
   const [reviews, setReviews] = useState([]);
@@ -50,7 +51,7 @@ const Reviews = (props) => {
   // const ifSideMeal = `http://localhost:3030/meals/${props.sideMealId}/review?_method=PUT`;
   return (
     <div>
-      <button onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
+      <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
       {/*<button onClick={setReviewsIsShown(!reviewsIsShown)}>x</button>*/}
       {reviews.map(
         (r) =>
@@ -66,7 +67,7 @@ const Reviews = (props) => {
               {r.reviewAuthor &&
                 JSON.parse(sessionStorage.getItem("loggedInUser")) ===
                   r.reviewAuthor._id && (
-                  <button onClick={(ev) => deleteReview(ev, r._id)}>
+                  <button className={styles.btn} onClick={(ev) => deleteReview(ev, r._id)}>
                     מחק/י תגובה
                   </button>
                 )}
@@ -74,7 +75,7 @@ const Reviews = (props) => {
           )
       )}
       {sessionStorage.getItem("loggedInUser") && (
-        <button onClick={createReviewHandler}>הוספת תגובה</button>
+        <button onClick={createReviewHandler} className={styles.btn}>הוספת תגובה</button>
       )}
       {createReviewIsShown && (
         <form
@@ -104,7 +105,7 @@ const Reviews = (props) => {
             max="100"
             name="review[reviewBody]"
           ></input>
-          <button>הוסף</button>
+          <button className={styles.btn}>הוסף</button>
         </form>
       )}
     </div>

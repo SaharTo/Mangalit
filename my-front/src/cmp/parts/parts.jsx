@@ -22,7 +22,7 @@ export class Parts extends Component {
     if (!type) return <div>Loading...</div>;
     return (
       <div className={styles.parts}>
-        <label htmlFor="type">
+        <label dir="rtl" htmlFor="type">
           בחירת סוג בשר
           <select
             name="type"

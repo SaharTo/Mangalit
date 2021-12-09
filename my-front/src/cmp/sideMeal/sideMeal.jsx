@@ -67,7 +67,7 @@ export class SideMeal extends Component {
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
-            <button onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
+            <button className={styles.btn} onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
               מחיקה{" "}
             </button>
           )}
@@ -75,10 +75,10 @@ export class SideMeal extends Component {
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
             <Link to={"/sideMeals/edit/" + sideMeal._id}>
-              <button>עריכה</button>
+              <button className={styles.btn}>עריכה</button>
             </Link>
           )}
-        <button onClick={this.goBack}>חזרה למנות צד</button>
+        <button className={styles.btn} onClick={this.goBack}>חזרה למנות צד</button>
         {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
         {
           <Reviews
