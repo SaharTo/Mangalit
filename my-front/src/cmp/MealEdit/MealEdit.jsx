@@ -101,6 +101,18 @@ export class MealEdit extends Component {
     }));
   };
 
+  handleFiles = async ({ target }) => {
+    const field = target.id;
+    const files = target.files
+    const images = [];
+    for (let i = 0; i < files.length; i++) {
+      images.push(files[i])
+    }
+    this.setState((prevState) => ({
+      meal: { ...prevState.meal, [field]: images },
+    }));
+  };
+
   onSaveMeal = async (ev) => {
     ev.preventDefault();
     console.log("after     ", this.state);
@@ -123,6 +135,7 @@ export class MealEdit extends Component {
         .then(() => this.goBack())
         .catch((err) => console.log(err));
     } else {
+      console.log('post meal ',meal);
       fetch(`http://localhost:3030/meals/`, {
         method: "POST",
         headers: {
@@ -292,7 +305,12 @@ export class MealEdit extends Component {
             id="mealTotalPrice"
             onChange={this.handleChange}
           />
+          <label htmlFor="mealImage" className={styles.btn}>
+            לחץ כדי להוסיף תמונות
+            <input type="file" id="mealImage" hidden onChange={this.handleFiles} multiple />
+          </label>
         </form>
+        {meal.mealImage.length > 0 && meal.mealImage.map((img) => <p>{img.name}</p>)}
         <div className={styles.buttons}>
           <button className={styles.btn} onClick={this.onSaveMeal}>
             שמירה

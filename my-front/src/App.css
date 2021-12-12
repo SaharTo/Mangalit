@@ -64,16 +64,19 @@
 .chatBotButton:hover {
     /* left: 20px; */
     background-color: rgba(172, 234, 240, 0.5);
+    border: 1px solid black;
     /* On mouse-over, make the elements appear as they should */
 }
 
 .chatBotButton {
     text-align: right;
     border-radius: 15px;
+    border: 1px solid rgba(225, 245, 247, 0.4);
     position: fixed;
     cursor: pointer;
     /* Position them relative to the browser window */
-    bottom: 0;
+    bottom: 2px;
+    left: 5px;
     /* Position them outside of the screen */
     transition: 0.3s;
     /* Add transition on hover */
@@ -93,6 +96,6 @@
 
 .rsc {
     position: fixed;
-    left: 0;
+    left: 5px;
     bottom: 60px;
 }

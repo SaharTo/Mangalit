@@ -19,6 +19,25 @@ export class AddMeat extends Component {
         };
         this.setState({ meat });
     };
+    creatMeat = async (ev) => {
+        ev.preventDefault();
+        const { meat } = this.state;
+        fetch(`http://localhost:3030/meats/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({ meat: meat }),
+        }).then((res) => {
+            if (res.ok) {
+                res.text().then((data) => {
+                    console.log(data)
+                    window.location.reload();
+                });
+            } else res.text().then((data) => console.log(data));
+        });
+    }
 
     handleChange = ({ target }) => {
         const field = target.id;
@@ -27,23 +46,31 @@ export class AddMeat extends Component {
             meat: { ...prevState.meat, [field]: value },
         }));
     };
-    
+    handleFiles = async ({ target }) => {
+        const field = target.id;
+        const files = target.files
+        const images = [];
+        for (let i = 0; i < files.length; i++) {
+            // const res = await uploadImg(files[i])
+            images.push(files[i])
+        }
+        this.setState((prevState) => ({
+            meat: { ...prevState.meat, [field]: images },
+        }));
+    };
+
     render() {
         const { meat } = this.state;
         if (!meat) return <div>Loading...</div>;
         return (
             <div className={styles.meatAddContiner}>
                 <h2> הוספת סוג בשר</h2>
-                <form
-                    method="POST"
-                    action='http://localhost:3030/meats/'
-                    className={styles.meat}
-                >
+                <form className={styles.meat} onSubmit={this.creatMeat}>
                     <label htmlFor="meatName">
-                        <input type="text" name="meat[meatName]" id="meatName" value={meat.meatName} placeholder="שם הבשר" onChange={this.handleChange} />
+                        <input type="text" id="meatName" value={meat.meatName} placeholder="שם הבשר" onChange={this.handleChange} />
                     </label>
                     <label htmlFor="meatType">
-                        <select id="meatType" name="meat[meatType]" value={meat.meatType} onChange={this.handleChange}>
+                        <select id="meatType" value={meat.meatType} onChange={this.handleChange}>
                             <option value="" disabled="disabled">
                                 סוג בשר
                             </option>
@@ -58,20 +85,25 @@ export class AddMeat extends Component {
                             </option>
                         </select>
                     </label>
-                    <label htmlFor="">
+                    <label htmlFor="meatDescription">
                         <textarea
+                            value={meat.meatDescription}
                             rows="10"
                             cols="50"
-                            name="meat[meatDescription]"
                             id="meatDescription"
                             placeholder="פירוט על הבשר"
                             onChange={this.handleChange} />
                     </label>
-                    <label htmlFor="">
-                        <input type="number" name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
+                    <label htmlFor="meatNumber">
+                        <input type="number" value={meat.meatNumber} id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
+                    </label>
+                    <label htmlFor="meatImage" className={styles.btn}>
+                        לחץ כדי להוסיף תמונות
+                        <input type="file" id="meatImage" hidden onChange={this.handleFiles} multiple />
                     </label>
                     <button className={styles.btn}>שמור</button>
                 </form>
+                {/* {meat.meatImage.length > 0 && meat.meatImage.map((img) => <img src={img} key={img} />)} */}
             </div>
         );
     }

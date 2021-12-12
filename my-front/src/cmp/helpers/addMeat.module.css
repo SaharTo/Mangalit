@@ -28,6 +28,7 @@ textarea {
 
 .btn {
     width: 100px;
+    cursor: pointer;
     padding: 5px;
     border-radius: 10px;
     border: none;
@@ -38,4 +39,9 @@ textarea {
 
 .btn:hover {
     background-color: rgb(233, 68, 68);
+}
+
+label.btn {
+    width: 160px;
+    color: black;
 }

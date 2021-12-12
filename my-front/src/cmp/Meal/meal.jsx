@@ -71,7 +71,7 @@ export class Meal extends Component {
         )}
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-            meal.mealAuthor._id && (
+          meal.mealAuthor._id && (
             <button
               className={styles.btn}
               onClick={(ev) => this.deleteMeal(ev, meal._id)}
@@ -79,9 +79,11 @@ export class Meal extends Component {
               מחיקת מנה
             </button>
           )}
+        {/* {meal.mealImage.length > 0 && meal.mealImage.map((img) => <img src={img} key={img}/> <p key={img}>{img}</p>)}
+         */}
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-            meal.mealAuthor._id && (
+          meal.mealAuthor._id && (
             <Link to={"/meals/edit/" + meal._id}>
               <button className={styles.btn}>עריכת מנה</button>
             </Link>

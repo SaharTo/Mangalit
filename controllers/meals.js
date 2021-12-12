@@ -1,6 +1,7 @@
 const Meal = require("../models/meal");
 const Meat = require("../models/meat");
 const Review = require("../models/review");
+const uploadImg = require("../helpers/uploadImg")
 
 module.exports.index = async(req, res) => {
     const meals = await Meal.find({});
@@ -60,12 +61,17 @@ module.exports.updateMeal = async(req, res) => {
 //res.redirect(`/meals/${meal.__id}`);
 
 module.exports.createMeal = async(req, res) => {
-    console.log(req.body.meal);
+    console.log('body', req.body.meal);
     const meal = await new Meal(req.body.meal);
     try {
         if (req.session.user) meal.mealAuthor = req.session.user._id;
-
         //meal.mealAuthor = req.session.user._id;
+        meal.mealImage = meal.mealImage.map(async(f) => {
+            console.log('f', f);
+            const res = await uploadImg(f)
+            console.log('res', res);
+            return res.url
+        })
         await meal.save();
         console.log(meal);
         res.send(meal);
@@ -97,6 +103,7 @@ module.exports.mealById = async(req, res) => {
             select: "sideMealName",
         })
         .populate("mealMeatInfo", "meatName")
+        .populate("mealImage", "url")
         .populate("mealAuthor", "fullName");
     if (!meal) {
         res.send("Cannot find that meal");
