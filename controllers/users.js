@@ -5,7 +5,23 @@ const nodemailer = require("nodemailer");
 //functions that handle the render register and login pages an handle
 //the register, login and logout functions issues.
 //const userModel = mongoose.model("User");
-
+module.exports.changePassword = async (req, res, next) => {
+  const userName = req.body.user.userName;
+  const user = await User.findOne({ userName });
+  console.log("inside changePassword func ", user);
+  if (user.oldPassword == req.body.user.password) {
+    const salt = await bcrypt.genSalt();
+    console.log("The salt is:  " + salt);
+    console.log("The new password: ", req.body.user.firstNewPassword);
+    const hashedPaswword = await bcrypt.hash(
+      req.body.user.firstNewPassword,
+      salt
+    );
+    console.log("the new hashed password is :     " + hashedPaswword);
+    user.password = hashedPaswword;
+    await user.save();
+  } else console.log("invalid values");
+};
 module.exports.forgotPassword = async (req, res, next) => {
   const mangalitEmail = {
     user: process.env.EMAIL_USER,
@@ -15,7 +31,17 @@ module.exports.forgotPassword = async (req, res, next) => {
   const userName = req.body.user.userName;
   const user = await User.findOne({ userName });
   console.log("inside forgotpassword func ", user);
-  //here I need to send to the User Email his password
+  //here I need to send to the User Email his new password
+  const salt = await bcrypt.genSalt();
+  console.log("The salt is:  " + salt);
+  const newPassword = Math.random()
+    .toString(36)
+    .slice(-8);
+  console.log("This is the new random password ", newPassword);
+  const hashedPaswword = await bcrypt.hash(newPassword, salt);
+  console.log("the hashed password is :     " + hashedPaswword);
+  user.password = hashedPaswword;
+  await user.save();
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -29,7 +55,8 @@ module.exports.forgotPassword = async (req, res, next) => {
     from: process.env.EMAIL_USER,
     to: user.userEmail,
     subject: "שכחת את הסיסמא שלך למנגלית?",
-    text: "שחזרנו לך את הסיסמא, נא לא להגיב למייל זה, מנגלית :)",
+    //text: `${newpassw}שחזרנו לך את הסיסמא, נא לא להגיב למייל זה, מנגלית :)`,
+    html: `<div><p>הסיסמא החדשה שלך היא:<b> ${newPassword}</b></p><p>נא לא להשיב למייל זה,</p><p>צוות מנגלית :)</p></div>`,
   };
 
   transporter.sendMail(mailOptions, function(error, info) {
@@ -39,10 +66,6 @@ module.exports.forgotPassword = async (req, res, next) => {
       console.log("Email sent: " + info.response);
     }
   });
-
-  // await user.save();
-  //console.log(req.body.user.userName);
-
   await user.save();
   res.send("user updated succssesfully");
 };

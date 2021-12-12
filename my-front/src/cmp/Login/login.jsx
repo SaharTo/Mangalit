@@ -26,9 +26,12 @@ export default function Login() {
       }).then((res) => {
         if (res.ok) {
           //sent to email
-        } else res.text().then((data) => console.log(data));
+        } else
+          res.text().then((data) => console.log("-------------------", data));
       });
-    } else console.log("please enter userName");
+    } else {
+      console.log("please enter userName");
+    }
   };
   const login = (ev) => {
     ev.preventDefault();
