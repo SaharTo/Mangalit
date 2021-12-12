@@ -33,6 +33,9 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
+        <NavLink activeClassName="activeNav" to="/changePassword">
+          שנה סיסמא{" "}
+        </NavLink>
         {/* <NavLink activeClassName="activeNav" to="/home">
           עמוד הבית
         </NavLink> */}
@@ -48,11 +51,13 @@ export function Navbar() {
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/signup">
             הרשמה
-          </NavLink>)}
+          </NavLink>
+        )}
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/login">
             התחברות
-          </NavLink>)}
+          </NavLink>
+        )}
         {sessionStorage.getItem("loggedInUserIsadmin") && (
           <NavLink activeClassName="activeNav" to="/admin">
             אדמין

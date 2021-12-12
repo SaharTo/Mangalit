@@ -17,6 +17,7 @@ import { Admin } from "./cmp/Admin/admin";
 import { Parts } from "./cmp/parts/parts";
 import SimpleForm from "./cmp/calculator/chatbot";
 import { useState } from "react";
+import ChangePassword from "./cmp/changePassword/changePassword";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
         <button id="chatbot" className="chatBotButton" onClick={showBotHandler}>
           מנגלבוט
         </button>
-        {botIsShown && <SimpleForm  />}
+        {botIsShown && <SimpleForm />}
         {/*<div id="mySidenav" class="sideBot">
           <a href="#" id="mangalBot">
             מנגלבוט
@@ -57,6 +58,7 @@ function App() {
 
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
+          <Route path="/changePassword" component={ChangePassword} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Register} />
           <Route path="/admin" component={Admin} />
