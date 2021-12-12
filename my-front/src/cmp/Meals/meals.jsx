@@ -6,7 +6,7 @@ import styles from "./meals.module.css";
 export class Meals extends Component {
   state = {
     meals: null,
-    filter: '',
+    filter: "",
     mToshow: null,
   };
   componentDidMount() {
@@ -17,8 +17,8 @@ export class Meals extends Component {
     fetch("http://localhost:3030/meals", { credentials: "include" })
       .then((res) => res.json())
       .then((meals) => {
-        this.setState({ meals })
-        this.setState({ mToshow: meals })
+        this.setState({ meals });
+        this.setState({ mToshow: meals });
       })
       .catch((err) => {
         console.log(err);
@@ -27,21 +27,30 @@ export class Meals extends Component {
 
   handleChange = async (ev) => {
     this.setState({ filter: ev.target.value });
-    const filterM = this.state.meals.filter((m) => m.mealName.toLowerCase().includes(ev.target.value.toLowerCase()))
-    this.setState({ mToshow: filterM })
+    const filterM = this.state.meals.filter((m) =>
+      m.mealName.toLowerCase().includes(ev.target.value.toLowerCase())
+    );
+    this.setState({ mToshow: filterM });
   };
 
   render() {
     const { meals, mToshow } = this.state;
-    if (!meals || !mToshow) return <h1>Loading...</h1>;
+    if (!meals || !mToshow) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meals}>
-        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/meals/edit/">
-          הוספת מנה
-        </Link>)}
+        {sessionStorage.getItem("loggedInUser") && (
+          <Link className={styles.add} to="/meals/edit/">
+            הוספת מנה
+          </Link>
+        )}
         <label htmlFor="filter">
           חיפוש
-          <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="filter"
+            value={this.state.filter}
+            onChange={this.handleChange}
+          />
         </label>
         <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות

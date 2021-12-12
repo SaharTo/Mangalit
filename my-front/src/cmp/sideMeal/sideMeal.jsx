@@ -48,7 +48,7 @@ export class SideMeal extends Component {
 
   render() {
     const { sideMeal } = this.state;
-    if (!sideMeal) return <h1>Loading...</h1>;
+    if (!sideMeal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeal}>
         <h1>שם המנה: {sideMeal.sideMealName}</h1>
@@ -67,7 +67,10 @@ export class SideMeal extends Component {
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
-            <button className={styles.btn} onClick={(ev) => this.deleteSideMeal(sideMeal._id)}>
+            <button
+              className={styles.btn}
+              onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
+            >
               מחיקה{" "}
             </button>
           )}
@@ -78,7 +81,9 @@ export class SideMeal extends Component {
               <button className={styles.btn}>עריכה</button>
             </Link>
           )}
-        <button className={styles.btn} onClick={this.goBack}>חזרה למנות צד</button>
+        <button className={styles.btn} onClick={this.goBack}>
+          חזרה למנות צד
+        </button>
         {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
         {
           <Reviews

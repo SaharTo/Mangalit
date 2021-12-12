@@ -38,7 +38,7 @@ export class Meal extends Component {
 
   render() {
     const { meal } = this.state;
-    if (!meal) return <h1>Loading...</h1>;
+    if (!meal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meal}>
         <h1>שם המנה: {meal.mealName}</h1>
@@ -72,7 +72,10 @@ export class Meal extends Component {
         {meal.mealAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
-            <button className={styles.btn} onClick={(ev) => this.deleteMeal(ev, meal._id)}>
+            <button
+              className={styles.btn}
+              onClick={(ev) => this.deleteMeal(ev, meal._id)}
+            >
               מחיקת מנה
             </button>
           )}
@@ -83,7 +86,9 @@ export class Meal extends Component {
               <button className={styles.btn}>עריכת מנה</button>
             </Link>
           )}
-        <button className={styles.btn} onClick={this.goBack}>חזרה לכל המנות</button>
+        <button className={styles.btn} onClick={this.goBack}>
+          חזרה לכל המנות
+        </button>
         {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>

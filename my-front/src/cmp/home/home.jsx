@@ -20,7 +20,7 @@ export class Home extends Component {
 
   render() {
     const { type } = this.state;
-    if (!type) return <div>Loading...</div>;
+    if (!type) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl">
         <h1 className={styles.title}>מנגלית</h1>

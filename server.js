@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { GridFSBucketReadStream } = require("mongodb");
+require("dotenv").config();
 
 const dbUrl =
   "mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
@@ -70,6 +71,6 @@ app.use("/reviews/", require("./routes/review"));
 app.use("/meals/", require("./routes/meals"));
 app.use("/meats/", require("./routes/meats"));
 
-app.listen(3030, function () {
+app.listen(3030, function() {
   console.log("listening on port 3030");
 });

@@ -13,7 +13,23 @@ export default function Login() {
     user[field] = value;
     setUser(user);
   };
-
+  const forgetPassword = (ev) => {
+    ev.preventDefault();
+    if (user.userName) {
+      fetch(`http://localhost:3030/users/sendMyPassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ user }),
+      }).then((res) => {
+        if (res.ok) {
+          //sent to email
+        } else res.text().then((data) => console.log(data));
+      });
+    } else console.log("please enter userName");
+  };
   const login = (ev) => {
     ev.preventDefault();
     if (user.password && user.userName) {
@@ -28,7 +44,11 @@ export default function Login() {
         if (res.ok) {
           res.json().then((data) => {
             sessionStorage.setItem("loggedInUser", JSON.stringify(data.id));
-            if (data.isAdmin) sessionStorage.setItem("loggedInUserIsadmin", JSON.stringify(data.isAdmin));
+            if (data.isAdmin)
+              sessionStorage.setItem(
+                "loggedInUserIsadmin",
+                JSON.stringify(data.isAdmin)
+              );
             history.push("/home");
             window.location.reload();
           });
@@ -40,9 +60,9 @@ export default function Login() {
   return (
     <div>
       <div className={styles.logo}>
-        <img  src={logoSrc} alt="" />
+        <img src={logoSrc} alt="" />
       </div>
-      <form dir='rtl' className={styles.login} name="login" onSubmit={login}>
+      <form dir="rtl" className={styles.login} name="login" onSubmit={login}>
         <input
           type="text"
           id="userName"
@@ -60,6 +80,13 @@ export default function Login() {
           placeholder="סיסמה"
         />
         <button className={styles.btn}>התחברות</button>
+      </form>
+      <form
+        dir="rtl"
+        /*className={styles.forget}*/ name="forget"
+        onSubmit={forgetPassword}
+      >
+        <button className={styles.btn}>שכחתי סיסמא</button>
       </form>
     </div>
   );

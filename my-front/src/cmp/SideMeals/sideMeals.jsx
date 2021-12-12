@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export class SideMeals extends Component {
   state = {
     sideMeals: null,
-    filter: '',
+    filter: "",
     smToshow: null,
   };
   componentDidMount() {
@@ -16,8 +16,8 @@ export class SideMeals extends Component {
     fetch("http://localhost:3030/sideMeals", { credentials: "include" })
       .then((res) => res.json())
       .then((sideMeals) => {
-        this.setState({ sideMeals })
-        this.setState({ smToshow: sideMeals })
+        this.setState({ sideMeals });
+        this.setState({ smToshow: sideMeals });
       })
       .catch((err) => {
         console.log(err);
@@ -26,21 +26,30 @@ export class SideMeals extends Component {
 
   handleChange = async (ev) => {
     this.setState({ filter: ev.target.value });
-    const filterSM = this.state.sideMeals.filter((sm) => sm.sideMealName.toLowerCase().includes(ev.target.value.toLowerCase()))
-    this.setState({ smToshow: filterSM })
+    const filterSM = this.state.sideMeals.filter((sm) =>
+      sm.sideMealName.toLowerCase().includes(ev.target.value.toLowerCase())
+    );
+    this.setState({ smToshow: filterSM });
   };
 
   render() {
     const { sideMeals, smToshow } = this.state;
-    if (!sideMeals || !smToshow) return <h1>Loading...</h1>;
+    if (!sideMeals || !smToshow) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeals}>
-        {sessionStorage.getItem("loggedInUser") && (<Link className={styles.add} to="/sideMeals/edit/">
-          הוספת מנת צד
-        </Link>)}
+        {sessionStorage.getItem("loggedInUser") && (
+          <Link className={styles.add} to="/sideMeals/edit/">
+            הוספת מנת צד
+          </Link>
+        )}
         <label htmlFor="filter">
           חיפוש
-          <input type="text" id="filter" value={this.state.filter} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="filter"
+            value={this.state.filter}
+            onChange={this.handleChange}
+          />
         </label>
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (

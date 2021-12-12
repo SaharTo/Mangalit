@@ -19,7 +19,7 @@ export class Parts extends Component {
   }
   render() {
     const { type } = this.state;
-    if (!type) return <div>Loading...</div>;
+    if (!type) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div className={styles.parts}>
         <label dir="rtl" htmlFor="type">

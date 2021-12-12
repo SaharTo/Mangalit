@@ -85,7 +85,7 @@ export class SideMealEdit extends Component {
 
   render() {
     const { sideMeal } = this.state;
-    if (!sideMeal) return <div>Loading...</div>;
+    if (!sideMeal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.edit}>
         {this.props.match.params.id ? (
@@ -94,105 +94,95 @@ export class SideMealEdit extends Component {
           <h1>יצירת מנה חדשה</h1>
         )}
         <form className={styles.sideMeal} name="sideMeal">
-          <label htmlFor="sideMealName">
-            שם המנה:
-          </label>
-            <input
-              type="text"
-              value={sideMeal.sideMealName}
-              id="sideMealName"
-              name="sideMealName"
-              onChange={this.handleChange}
-            />
-          <label htmlFor="sideMealSummary">
-          פירוט:
-          </label>
-            <input
-              type="text"
-              value={sideMeal.sideMealSummary}
-              name="sideMealSummary"
-              id="sideMealSummary"
-              onChange={this.handleChange}
-            />
-          <label htmlFor="sideMealDifficult">
-          רמת קושי:
-          </label>
-            <select
-              id="sideMealDifficult"
-              name="sideMealDifficult"
-              value={sideMeal.sideMealDifficult}
-              onChange={this.handleChange}
-            >
-              <option value="" disabled="disabled">
-                בחר
-              </option>
-              <option value="קל">קל</option>
-              <option value="בינוני">בינוני</option>
-              <option value="קשה">קשה</option>
-            </select>
-          <label htmlFor="sideMealIngriedents">
-          מרכיבים:
-            </label>
-            <textarea
-              rows="3"
-              cols="30"
-              value={sideMeal.sideMealIngriedents}
-              name="sideMealIngriedents"
-              id="sideMealIngriedents"
-              onChange={this.handleChange}
-            />
-          <label htmlFor="sideMealPreperationDescription">
-          אופן ההכנה:
-          </label>
-            <textarea
-              rows="10"
-              cols="50"
-              value={sideMeal.sideMealPreperationDescription}
-              name="sideMealPreperationDescription"
-              id="sideMealPreperationDescription"
-              onChange={this.handleChange}
-            />
-          <label htmlFor="sideMealPreperationEstimatedTime">
-          זמן ההכנה:
-          </label>
-            <input
-              type="number"
-              min="5"
-              max="60"
-              value={sideMeal.sideMealPreperationEstimatedTime}
-              name="sideMealPreperationEstimatedTime"
-              id="sideMealPreperationEstimatedTime"
-              onChange={this.handleChange}
-            />
+          <label htmlFor="sideMealName">שם המנה:</label>
+          <input
+            type="text"
+            value={sideMeal.sideMealName}
+            id="sideMealName"
+            name="sideMealName"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="sideMealSummary">פירוט:</label>
+          <input
+            type="text"
+            value={sideMeal.sideMealSummary}
+            name="sideMealSummary"
+            id="sideMealSummary"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="sideMealDifficult">רמת קושי:</label>
+          <select
+            id="sideMealDifficult"
+            name="sideMealDifficult"
+            value={sideMeal.sideMealDifficult}
+            onChange={this.handleChange}
+          >
+            <option value="" disabled="disabled">
+              בחר
+            </option>
+            <option value="קל">קל</option>
+            <option value="בינוני">בינוני</option>
+            <option value="קשה">קשה</option>
+          </select>
+          <label htmlFor="sideMealIngriedents">מרכיבים:</label>
+          <textarea
+            rows="3"
+            cols="30"
+            value={sideMeal.sideMealIngriedents}
+            name="sideMealIngriedents"
+            id="sideMealIngriedents"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="sideMealPreperationDescription">אופן ההכנה:</label>
+          <textarea
+            rows="10"
+            cols="50"
+            value={sideMeal.sideMealPreperationDescription}
+            name="sideMealPreperationDescription"
+            id="sideMealPreperationDescription"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="sideMealPreperationEstimatedTime">זמן ההכנה:</label>
+          <input
+            type="number"
+            min="5"
+            max="60"
+            value={sideMeal.sideMealPreperationEstimatedTime}
+            name="sideMealPreperationEstimatedTime"
+            id="sideMealPreperationEstimatedTime"
+            onChange={this.handleChange}
+          />
           <label htmlFor="sideMealnumberOfPeopleItSuits">
-          לכמה אנשים זה מתאים:
+            לכמה אנשים זה מתאים:
           </label>
-            <input
-              type="number"
-              min="1"
-              max="30"
-              value={sideMeal.sideMealnumberOfPeopleItSuits}
-              name="sideMealnumberOfPeopleItSuits"
-              id="sideMealnumberOfPeopleItSuits"
-              onChange={this.handleChange}
-            />
-          <label htmlFor="sideMealEstimatedPrice">
-          מחיר:
-          </label>
-            <input
-              type="number"
-              min="5"
-              max="100"
-              value={sideMeal.sideMealEstimatedPrice}
-              name="sideMealEstimatedPrice"
-              id="sideMealEstimatedPrice"
-              onChange={this.handleChange}
-            />
+          <input
+            type="number"
+            min="1"
+            max="30"
+            value={sideMeal.sideMealnumberOfPeopleItSuits}
+            name="sideMealnumberOfPeopleItSuits"
+            id="sideMealnumberOfPeopleItSuits"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="sideMealEstimatedPrice">מחיר:</label>
+          <input
+            type="number"
+            min="5"
+            max="100"
+            value={sideMeal.sideMealEstimatedPrice}
+            name="sideMealEstimatedPrice"
+            id="sideMealEstimatedPrice"
+            onChange={this.handleChange}
+          />
         </form>
-          <div className={styles.buttons} >
-            <button className={styles.btn} onClick={this.onSaveSideMeal}>שמירה</button>
-            <button className={styles.btn} onClick={this.goBack}>חזרה לדף הקודם</button>
-          </div>
+        <div className={styles.buttons}>
+          <button className={styles.btn} onClick={this.onSaveSideMeal}>
+            שמירה
+          </button>
+          <button className={styles.btn} onClick={this.goBack}>
+            חזרה לדף הקודם
+          </button>
+        </div>
       </div>
     );
   }
