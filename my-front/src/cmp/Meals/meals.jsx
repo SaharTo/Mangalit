@@ -39,11 +39,11 @@ export class Meals extends Component {
     return (
       <div dir="rtl" className={styles.meals}>
         {sessionStorage.getItem("loggedInUser") && (
-          <Link className={styles.add} to="/meals/edit/">
+          <Link className={styles.add} to="/meals/save/">
             הוספת מנה
           </Link>
         )}
-        <label htmlFor="filter">
+        <label htmlFor="filter" className={styles.filter} >
           חיפוש
           <input
             type="text"

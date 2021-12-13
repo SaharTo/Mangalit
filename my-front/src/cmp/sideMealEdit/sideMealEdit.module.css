@@ -35,3 +35,8 @@
 .btn:hover {
     background-color: rgb(233, 68, 68);
 }
+
+label.btn {
+    width: 160px;
+    color: black;
+}

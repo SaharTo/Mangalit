@@ -64,6 +64,7 @@ export class SideMeal extends Component {
         ) : (
           <p>יוצר: Unknown</p>
         )}
+
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
@@ -71,13 +72,13 @@ export class SideMeal extends Component {
               className={styles.btn}
               onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
             >
-              מחיקה{" "}
+              מחיקה
             </button>
           )}
         {sideMeal.sideMealsAuthor &&
           JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             sideMeal.sideMealsAuthor._id && (
-            <Link to={"/sideMeals/edit/" + sideMeal._id}>
+            <Link to={"/sideMeals/save/" + sideMeal._id}>
               <button className={styles.btn}>עריכה</button>
             </Link>
           )}
@@ -85,6 +86,7 @@ export class SideMeal extends Component {
           חזרה למנות צד
         </button>
         {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
+        {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((img) => <img src={img} key={img} />)}
         {
           <Reviews
             sideMealId={sideMeal._id}

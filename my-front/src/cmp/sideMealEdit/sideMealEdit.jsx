@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { uploadImg } from "../helpers/uploadImg";
 import styles from "./sideMealEdit.module.css";
 
 export class SideMealEdit extends Component {
@@ -33,6 +34,7 @@ export class SideMealEdit extends Component {
       sideMealDifficult: "",
       sideMealEstimatedPrice: "",
       sideMealIngriedents: "",
+      sideMealImageUrl:[],
       sideMealPreperationDescription: "",
       sideMealPreperationEstimatedTime: "",
       sideMealnumberOfPeopleItSuits: "",
@@ -48,10 +50,28 @@ export class SideMealEdit extends Component {
     }));
   };
 
+  handleFiles = async ({ target }) => {
+    const field = target.id;
+    const files = target.files
+    const image = [];
+    for (let i = 0; i < files.length; i++) {
+      image.push(files[i]);
+    }
+    this.setState((prevState) => ({
+      sideMeal: { ...prevState.sideMeal, [field]: image },
+    }));
+  };
+
   onSaveSideMeal = async (ev) => {
     ev.preventDefault();
     const { sideMeal } = this.state;
     const id = this.props.match.params.id;
+    const images = []
+    for (let i = 0; i < sideMeal.sideMealImageUrl.length; i++) {
+      const res = await uploadImg(sideMeal.sideMealImageUrl[i])
+      images.push(res)
+    }
+    sideMeal.sideMealImageUrl = images;
     if (id) {
       delete sideMeal._id;
       delete sideMeal.sideMealsReviews;
@@ -78,6 +98,7 @@ export class SideMealEdit extends Component {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => console.log(data));
+          this.goBack()
         } else res.text().then((data) => console.log(data));
       });
     }
@@ -175,6 +196,10 @@ export class SideMealEdit extends Component {
             onChange={this.handleChange}
           />
         </form>
+        <label htmlFor="sideMealImageUrl" className={styles.btn}>
+            לחץ כדי להוסיף תמונות
+            <input type="file" id="sideMealImageUrl" name="files[]" hidden onChange={this.handleFiles} multiple />
+          </label>
         <div className={styles.buttons}>
           <button className={styles.btn} onClick={this.onSaveSideMeal}>
             שמירה

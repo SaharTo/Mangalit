@@ -65,10 +65,10 @@ function App() {
           <Route path="/parts" component={Parts} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/meals/edit/:id?" component={MealEdit} />
+          <Route path="/meals/save/:id?" component={MealEdit} />
           <Route path="/meals/:id" component={Meal} />
           <Route path="/meals" component={Meals} />
-          <Route path="/sideMeals/edit/:id?" component={SideMealEdit} />
+          <Route path="/sideMeals/save/:id?" component={SideMealEdit} />
           <Route path="/sideMeals/:id" component={SideMeal} />
           <Route path="/sideMeals" component={SideMeals} />
           <Route path="/roulette" component={Roulette} />

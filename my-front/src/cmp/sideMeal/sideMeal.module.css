@@ -2,6 +2,13 @@
     padding-inline-start: 10px;
 }
 
+.sideMeal img {
+    width: 300px;
+    position: fixed;
+    top: 100px;
+    left: 10px;
+}
+
 .btn {
     margin-inline-end: 5px;
     margin-bottom: 5px;

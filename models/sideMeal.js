@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ImageSchema = new Schema({
-    url: String,
-    filename: String,
-});
+// const ImageSchema = new Schema({
+//     url: String,
+//     filename: String,
+// });
 
-ImageSchema.virtual("thumbnail").get(function() {
-    return this.url.replace("/upload", "/upload/w_200");
-});
+// ImageSchema.virtual("thumbnail").get(function() {
+//     return this.url.replace("/upload", "/upload/w_200");
+// });
 
 const sideMealScema = new Schema({
     sideMealName: String,
@@ -23,7 +23,7 @@ const sideMealScema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Review",
     }, ],
-    sideMealImageUrl: [ImageSchema],
+    sideMealImageUrl: [String],
     sideMealIngriedents: String,
     sideMealPreperationDescription: String,
     sideMealPreperationEstimatedTime: Number,

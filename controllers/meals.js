@@ -1,7 +1,6 @@
 const Meal = require("../models/meal");
 const Meat = require("../models/meat");
 const Review = require("../models/review");
-const uploadImg = require("../helpers/uploadImg")
 
 module.exports.index = async(req, res) => {
     const meals = await Meal.find({});
@@ -24,10 +23,8 @@ module.exports.rnd8Meals = async(rec, res) => {
 };
 
 module.exports.deleteMeal = async(req, res) => {
-    console.log("mitzi");
     const { id } = await req.params;
-    console.log(id);
-    //const id = "617eba66174386a21c2716c8";
+    console.log("deleteMeal", id);
     try {
         await Meal.findByIdAndDelete(id);
         res.send("delete success");
@@ -38,7 +35,7 @@ module.exports.deleteMeal = async(req, res) => {
 
 module.exports.updateMeal = async(req, res) => {
     const { id } = req.params;
-    console.log(id);
+    console.log("updateMeal", id);
     const meal = await Meal.findByIdAndUpdate(
         id, { $set: req.body.meal }, { new: true }
     );
@@ -65,13 +62,6 @@ module.exports.createMeal = async(req, res) => {
     const meal = await new Meal(req.body.meal);
     try {
         if (req.session.user) meal.mealAuthor = req.session.user._id;
-        //meal.mealAuthor = req.session.user._id;
-        meal.mealImage = meal.mealImage.map(async(f) => {
-            console.log('f', f);
-            const res = await uploadImg(f)
-            console.log('res', res);
-            return res.url
-        })
         await meal.save();
         console.log(meal);
         res.send(meal);
@@ -103,7 +93,6 @@ module.exports.mealById = async(req, res) => {
             select: "sideMealName",
         })
         .populate("mealMeatInfo", "meatName")
-        .populate("mealImage", "url")
         .populate("mealAuthor", "fullName");
     if (!meal) {
         res.send("Cannot find that meal");

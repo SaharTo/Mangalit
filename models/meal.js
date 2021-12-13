@@ -1,15 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ImageSchema = new Schema({
-    url: String,
-    filename: String,
-});
-
-ImageSchema.virtual("thumbnail").get(function() {
-    return this.url.replace("/upload", "/upload/w_200");
-});
-
 const mealScema = new Schema({
     mealName: String,
     mealSummary: String,
@@ -27,7 +18,7 @@ const mealScema = new Schema({
         ref: "SideMeal",
     }, ],
     // mealRecommendedSideMeals: String,
-    mealImage: [],
+    mealImage: [String],
     mealMeatQuantityGram: Number,
     //mealEstimatedMeatPrice: Number,
     mealAdditionalIngredients: String,
