@@ -6,6 +6,7 @@ import styles from "./meal.module.css";
 export class Meal extends Component {
   state = {
     meal: null,
+    slideIndex: 1,
   };
   componentDidMount() {
     this.getMeal();
@@ -35,62 +36,97 @@ export class Meal extends Component {
         console.log(err);
       });
   };
+  prevSlides = () => {
+    const index = this.state.slideIndex - 1
+    this.setState({ slideIndex: index })
+    this.showSlides(index);
+  }
+  nextSlides = () => {
+    const index = this.state.slideIndex + 1
+    this.setState({ slideIndex: index })
+    this.showSlides(index);
+  }
+  showSlides = (num) => {
+    const slides = document.getElementsByName("mealSlide");
+    if (slides.length > 0) {
+      if (num > slides.length) this.setState({ slideIndex: 1 });
+      if (num < 1) this.setState({ slideIndex: slides.length })
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove(styles.show);
+      }
+      slides[this.state.slideIndex - 1].classList.add(styles.show);
+    }
+  }
 
   render() {
     const { meal } = this.state;
     if (!meal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meal}>
-        <h1>שם המנה: {meal.mealName}</h1>
-        <p>פירוט: {meal.mealSummary}</p>
-        <p>רמת קושי: {meal.mealPreparationDifficult}</p>
-        <div>
-          סוג בשר:
-          {meal.mealMeatInfo.map((meat) => {
-            return <p key={meat._id}> - {meat.meatName}</p>;
+        <div className={styles.continer}>
+          <h1>שם המנה: {meal.mealName}</h1>
+          <p>פירוט: {meal.mealSummary}</p>
+          <p>רמת קושי: {meal.mealPreparationDifficult}</p>
+          <div>
+            סוג בשר:
+            {meal.mealMeatInfo.map((meat) => {
+              return <p key={meat._id}> - {meat.meatName}</p>;
+            })}
+          </div>
+          <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
+          {meal.mealRecommendedSideMeals.map((sideMeal) => {
+            return (
+              <div key={sideMeal._id}>
+                <p>מנות צד מומלצות: {sideMeal.sideMealName}</p>
+              </div>
+            );
           })}
+          <p>טכניקת הכנה: {meal.mealPreparationTechniques}</p>
+          <p>זמן הכנה: {meal.mealPreparationTime}</p>
+          <p>מרכיבים נוספים: {meal.mealAdditionalIngredients}</p>
+          <p>אופן ההכנה: {meal.mealDescription}</p>
+          <p>לכמה אנשים זה מתאים: {meal.mealNumberOfPeopleItSuits}</p>
+          <p>מחיר: {meal.mealTotalPrice}₪</p>
+          {meal.mealAuthor ? (
+            <p>יוצר: {meal.mealAuthor.fullName}</p>
+          ) : (
+            <p>יוצר: Unknown</p>
+          )}
         </div>
-        <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
-        {meal.mealRecommendedSideMeals.map((sideMeal) => {
-          return (
-            <div key={sideMeal._id}>
-              <p>מנות צד מומלצות: {sideMeal.sideMealName}</p>
+        <div className={styles.btns}>
+          {meal.mealAuthor &&
+            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            meal.mealAuthor._id && (
+              <button
+                className={styles.btn}
+                onClick={(ev) => this.deleteMeal(ev, meal._id)}
+              >
+                מחיקת מנה
+              </button>
+            )}
+          {meal.mealAuthor &&
+            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+            meal.mealAuthor._id && (
+              <Link to={"/meals/save/" + meal._id}>
+                <button className={styles.btn}>עריכת מנה</button>
+              </Link>
+            )}
+          <button className={styles.btn} onClick={this.goBack}>
+            חזרה לכל המנות
+          </button>
+        </div>
+        <div className={styles.images}>
+          {meal.mealImage.length > 0 && <div className={styles.prevNext}>
+            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
+            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
+          </div>}
+          {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
+            <div name="mealSlide" key={url}>
+              <img src={url} alt="" />
             </div>
-          );
-        })}
-        <p>טכניקת הכנה: {meal.mealPreparationTechniques}</p>
-        <p>זמן הכנה: {meal.mealPreparationTime}</p>
-        <p>מרכיבים נוספים: {meal.mealAdditionalIngredients}</p>
-        <p>אופן ההכנה: {meal.mealDescription}</p>
-        <p>לכמה אנשים זה מתאים: {meal.mealNumberOfPeopleItSuits}</p>
-        <p>מחיר: {meal.mealTotalPrice}₪</p>
-        {meal.mealAuthor ? (
-          <p>יוצר: {meal.mealAuthor.fullName}</p>
-        ) : (
-          <p>יוצר: Unknown</p>
-        )}
-        {meal.mealAuthor &&
-          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-          meal.mealAuthor._id && (
-            <button
-              className={styles.btn}
-              onClick={(ev) => this.deleteMeal(ev, meal._id)}
-            >
-              מחיקת מנה
-            </button>
           )}
-        {meal.mealAuthor &&
-          JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-          meal.mealAuthor._id && (
-            <Link to={"/meals/save/" + meal._id}>
-              <button className={styles.btn}>עריכת מנה</button>
-            </Link>
-          )}
-        <button className={styles.btn} onClick={this.goBack}>
-          חזרה לכל המנות
-        </button>
-        {/* <Link to={'/meals/' + meal._id}><img src='meal.sideMealImageUrl' alt="img" /></Link> */}
-        {meal.mealImage.length > 0 && meal.mealImage.map((img) => <img src={img} key={img} />)}
+          {/* {this.showSlides(this.state.slideIndex)} */}
+        </div>
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>
     );
