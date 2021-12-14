@@ -104,7 +104,7 @@ export class MealEdit extends Component {
 
   handleFiles = async ({ target }) => {
     const field = target.id;
-    const files = target.files
+    const files = target.files;
     const image = [];
     for (let i = 0; i < files.length; i++) {
       image.push(files[i]);
@@ -119,10 +119,11 @@ export class MealEdit extends Component {
     console.log("after     ", this.state);
     const { meal } = this.state;
     const id = this.props.match.params.id;
-    const images = []
+    const images = [];
     for (let i = 0; i < meal.mealImage.length; i++) {
-      const res = await uploadImg(meal.mealImage[i])
-      images.push(res)
+      const res = await uploadImg(meal.mealImage[i]);
+      //uploadImg is a function that upload the following files to cloudinary and return the cloudinary url for this file
+      images.push(res);
     }
     meal.mealImage = images;
     if (id) {
@@ -142,7 +143,7 @@ export class MealEdit extends Component {
         .then(() => this.goBack())
         .catch((err) => console.log(err));
     } else {
-      console.log('post meal ',meal);
+      console.log("post meal ", meal);
       fetch(`http://localhost:3030/meals/`, {
         method: "POST",
         headers: {
@@ -314,7 +315,14 @@ export class MealEdit extends Component {
           />
           <label htmlFor="mealImage" className={styles.btn}>
             לחץ כדי להוסיף תמונות
-            <input type="file" id="mealImage" name="files[]" hidden onChange={this.handleFiles} multiple />
+            <input
+              type="file"
+              id="mealImage"
+              name="files[]"
+              hidden
+              onChange={this.handleFiles}
+              multiple
+            />
           </label>
         </form>
         {/* {meal.mealImage.length > 0 && meal.mealImage.map((img) => <p key={img.name}>{img.name}</p>)} */}

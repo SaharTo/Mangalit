@@ -29,29 +29,16 @@ export class Home extends Component {
         <h4 className={styles.subtitle}>לדעת</h4>
         <h4 className={styles.subtitle}>לפני</h4>
         <h4 className={styles.subtitle}>שמכינים בשר.</h4>
-        {/* <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
-          לחץ כדי לעבור גלגל של מנות רנדומליות
-        </NavLink> */}
-        {/*<div className={styles.homePage}>
-          <label htmlFor="type">
-            בחירת סוג בשר
-            <select
-              name="type"
-              id="type"
-              value={type}
-              onChange={this.handleChange.bind(this)}
-            >
-              <option value="בקר">בקר</option>
-              <option value="כבש">כבש</option>
-              <option value="עוף">עוף</option>
-            </select>
-          </label>
-
-          {type === "בקר" && <Beef />}
-          {type === "כבש" && <Lamb />}
-          {type === "עוף" && <Chicken />}
+        <div className={styles.recMeals}>
+          <h2>לחץ/י כאן למנות מומלצות</h2>
+          <p>רשימת המנות המומלצות של מנגלית</p>
+          <p>בהתאם לבחירת הגולשים</p>
         </div>
-    */}
+        <div className={styles.recSideMeals}>
+          <h2>לחץ/י כאן למנות צד המומלצות</h2>
+          <p>רשימת מנות הצד המומלצות של מנגלית</p>
+          <p>בהתאם לבחירת הגולשים</p>
+        </div>
       </div>
     );
   }
