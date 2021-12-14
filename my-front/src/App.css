@@ -88,13 +88,30 @@
   font-size: 20px;
   font-weight: bold;
   /* Increase font size */
-  color: rgb(221, 208, 208);
+  color: rgb(20, 17, 17);
   /* White text color */
-  background-color: rgba(247, 208, 199, 0.4);
+  background-color: rgba(236, 231, 231, 0.582);
 }
 
 .rsc {
   position: fixed;
   left: 5px;
   bottom: 60px;
+}
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  /* display: none; */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+body.open .screen {
+  pointer-events: auto;
+  opacity: 1;
 }

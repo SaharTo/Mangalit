@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import React, { useState } from "react";
 import "./App.css";
+import styles from "./cmp/navBar/navBar.module.css";
 import { About } from "./cmp/about";
 import { Home } from "./cmp/home/home";
 import { Meals } from "./cmp/Meals/meals";
@@ -42,9 +43,14 @@ function App() {
   const showBotHandler = () => {
     setBotIsShown(!botIsShown);
   };
+  const toggelScreen = () => {
+    document.getElementById("links").classList.toggle(styles.open);
+    document.body.classList.toggle("open");
+  };
   return (
     <Router>
       <div>
+        <div className="screen" onClick={toggelScreen}></div>
         <Navbar />
         <button id="chatbot" className="chatBotButton" onClick={showBotHandler}>
           מנגלבוט

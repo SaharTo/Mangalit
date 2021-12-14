@@ -105,6 +105,7 @@ export class MealEdit extends Component {
   handleFiles = async ({ target }) => {
     const field = target.id;
     const files = target.files;
+    //console.log("files ", files);
     const image = [];
     for (let i = 0; i < files.length; i++) {
       image.push(files[i]);

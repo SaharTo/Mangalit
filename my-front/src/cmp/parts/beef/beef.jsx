@@ -37,12 +37,12 @@ const Beef = () => {
       document.getElementById("name").classList.remove(`${styles.hide}`);
       document.getElementById("desc").classList.remove(`${styles.hide}`);
       const meatInfo = getMeatInfo(el.target.id);
-      console.log(meatInfo);
+      //console.log(meatInfo);
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;
         setMarkedMeat(meatInfo);
-        console.log("afterSetMeatInfo ", markedMeat);
+        //console.log("afterSetMeatInfo ", markedMeat);
       } else console.log("please hover over exist meat");
       // <div>Hoveringgggg</div>;
     }
@@ -58,18 +58,18 @@ const Beef = () => {
     }
   };
   const getMeatInfo = (meatNumber) => {
-    console.log("should print the meats array ", meatState.meats);
+    // console.log("should print the meats array ", meatState.meats);
     const result = meatState.meats.filter(
       (meat) => meat.meatNumber === meatNumber
     );
-    console.log("RES ", result);
+    //console.log("RES ", result);
     if (Object.keys(result).length > 0) {
-      console.log("result ", result);
+      //console.log("result ", result);
       const relevantResult = {
         meatName: result[0].meatName,
         meatDescription: result[0].meatDescription,
       };
-      console.log("relevant result ", relevantResult);
+      //console.log("relevant result ", relevantResult);
       return relevantResult;
     } else console.log("error");
 
@@ -86,8 +86,10 @@ const Beef = () => {
       ></img>
       <map name="beefIt">
         <div>
-          <h1 id="name">רחף עם העכבר מעל לחלק מסויים</h1>
-          <div id="desc" className={styles.hide}></div>
+          <h1 id="name" className={styles.name}>
+            רחף עם העכבר מעל לחלק מסויים
+          </h1>
+          <div id="desc" className={styles.hide} className={styles.name}></div>
         </div>
 
         <area
@@ -96,7 +98,6 @@ const Beef = () => {
           className="numberTen"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="10"
           alt="number 10"
         ></area>
@@ -106,7 +107,6 @@ const Beef = () => {
           className="numberTwo"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="2"
           alt="number 2"
         ></area>
@@ -116,7 +116,6 @@ const Beef = () => {
           className="numberNine"
           onMouseOut={outHoverDiv}
           onMouseOver={onHoverDiv}
-          href=""
           id="9"
           alt="number 9"
         ></area>
@@ -126,7 +125,6 @@ const Beef = () => {
           className="numberThree"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="3"
           alt="number 3"
         ></area>
@@ -136,7 +134,6 @@ const Beef = () => {
           className="numberEight"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="8"
           alt="number 8"
         ></area>
@@ -146,7 +143,6 @@ const Beef = () => {
           className="numberSix"
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="6"
           alt="number 6"
         ></area>
@@ -154,7 +150,6 @@ const Beef = () => {
           shape="poly"
           coords="218,149,237,156,268,141,283,138,282,109,255,107"
           className="numberFive"
-          href=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
           id="5"
@@ -164,7 +159,6 @@ const Beef = () => {
           shape="poly"
           coords="236,155,233,204,246,204,273,177,271,172,282,138,264,142"
           className="numberFour"
-          href=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
           id="4"
@@ -174,7 +168,6 @@ const Beef = () => {
           shape="poly"
           coords="285,134,347,135,346,92,334,5,273,62,256,107,283,110"
           className="numberOne"
-          href=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
           id="1"
@@ -184,7 +177,6 @@ const Beef = () => {
           shape="poly"
           coords="272,172,284,133,348,135,347,173"
           className="numberNine"
-          href=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
           id="9"
@@ -195,7 +187,6 @@ const Beef = () => {
           shape="poly"
           coords="271,173,272,177,257,198,260,207,257,230,329,218,341,201,346,173"
           className="numberThree"
-          href=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
           id="3"

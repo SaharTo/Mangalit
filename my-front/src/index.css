@@ -38,3 +38,7 @@ a {
 .multiSelect {
   color: black;
 }
+
+/*.open .links {
+  transform: translateX(0);
+}*/

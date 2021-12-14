@@ -24,12 +24,16 @@ export function Navbar() {
       } else res.text().then((data) => console.log(data));
     });
   };
+  const sideNavClickHandler = () => {
+    document.getElementById("links").classList.toggle(styles.open);
+    document.body.classList.toggle("open");
+  };
   return (
-    <div dir="rtl" className={styles.header}>
+    <div dir="rtl" id="header" className={styles.header}>
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
-      <div className={styles.links} dir="ltr">
+      <div id="links" className={styles.links} dir="ltr">
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
@@ -69,6 +73,9 @@ export function Navbar() {
           </a>
         )}
       </div>
+      <button onClick={sideNavClickHandler} className={styles.openSideNav}>
+        ☰
+      </button>
     </div>
   );
 }
