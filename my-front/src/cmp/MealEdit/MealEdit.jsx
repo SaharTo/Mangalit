@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./mealEdit.module.css";
 import Chosen from "../helpers/chosen";
+import { uploadImg } from "../helpers/uploadImg";
 
 export class MealEdit extends Component {
   state = {
@@ -104,12 +105,12 @@ export class MealEdit extends Component {
   handleFiles = async ({ target }) => {
     const field = target.id;
     const files = target.files
-    const images = [];
+    const image = [];
     for (let i = 0; i < files.length; i++) {
-      images.push(files[i])
+      image.push(files[i]);
     }
     this.setState((prevState) => ({
-      meal: { ...prevState.meal, [field]: images },
+      meal: { ...prevState.meal, [field]: image },
     }));
   };
 
@@ -118,6 +119,12 @@ export class MealEdit extends Component {
     console.log("after     ", this.state);
     const { meal } = this.state;
     const id = this.props.match.params.id;
+    const images = []
+    for (let i = 0; i < meal.mealImage.length; i++) {
+      const res = await uploadImg(meal.mealImage[i])
+      images.push(res)
+    }
+    meal.mealImage = images;
     if (id) {
       delete meal._id;
       delete meal.mealReviews;
@@ -307,10 +314,10 @@ export class MealEdit extends Component {
           />
           <label htmlFor="mealImage" className={styles.btn}>
             לחץ כדי להוסיף תמונות
-            <input type="file" id="mealImage" hidden onChange={this.handleFiles} multiple />
+            <input type="file" id="mealImage" name="files[]" hidden onChange={this.handleFiles} multiple />
           </label>
         </form>
-        {meal.mealImage.length > 0 && meal.mealImage.map((img) => <p>{img.name}</p>)}
+        {/* {meal.mealImage.length > 0 && meal.mealImage.map((img) => <p key={img.name}>{img.name}</p>)} */}
         <div className={styles.buttons}>
           <button className={styles.btn} onClick={this.onSaveMeal}>
             שמירה

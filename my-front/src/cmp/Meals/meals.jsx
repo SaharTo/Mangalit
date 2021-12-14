@@ -39,7 +39,7 @@ export class Meals extends Component {
     return (
       <div dir="rtl" className={styles.meals}>
         {sessionStorage.getItem("loggedInUser") && (
-          <Link className={styles.add} to="/meals/edit/">
+          <Link className={styles.add} to="/meals/save/">
             הוספת מנה
           </Link>
         )}

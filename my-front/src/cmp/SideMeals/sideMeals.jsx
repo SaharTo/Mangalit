@@ -38,7 +38,7 @@ export class SideMeals extends Component {
     return (
       <div dir="rtl" className={styles.sideMeals}>
         {sessionStorage.getItem("loggedInUser") && (
-          <Link className={styles.add} to="/sideMeals/edit/">
+          <Link className={styles.add} to="/sideMeals/save/">
             הוספת מנת צד
           </Link>
         )}
