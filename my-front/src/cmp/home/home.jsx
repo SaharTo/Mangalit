@@ -24,8 +24,9 @@ export class Home extends Component {
     return (
       <div dir="rtl">
         <h1 className={styles.title}>מנגלית</h1>
-        <h4 className={styles.subtitle}>כל מה</h4>
-        <h4 className={styles.subtitle}>שצריך לדעת</h4>
+        <h4 className={styles.subtitle}>כל</h4>
+        <h4 className={styles.subtitle}>שצריך</h4>{" "}
+        <h4 className={styles.subtitle}>לדעת</h4>
         <h4 className={styles.subtitle}>לפני</h4>
         <h4 className={styles.subtitle}>שמכינים בשר.</h4>
         {/* <NavLink className={styles.rndMealsLink} to={`/roulette/`}>

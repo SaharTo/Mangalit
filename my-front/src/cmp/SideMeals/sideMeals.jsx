@@ -42,15 +42,21 @@ export class SideMeals extends Component {
             הוספת מנת צד
           </Link>
         )}
-        <label htmlFor="filter">
-          חיפוש
+        <div className={styles.searchDiv}>
+          <label className={styles.searchLabel} htmlFor="filter">
+            חיפוש{" "}
+          </label>
+        </div>
+        <div className={styles.searchDiv}>
           <input
+            className={styles.searchInput}
             type="text"
             id="filter"
             value={this.state.filter}
             onChange={this.handleChange}
+            placeholder="חפש/י כאן..."
           />
-        </label>
+        </div>
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>

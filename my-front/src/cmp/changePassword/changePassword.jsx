@@ -39,12 +39,16 @@ export default function ChangePassword() {
       <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>
+
       <form
         dir="rtl"
         className={styles.change}
         name="changePassword"
         onSubmit={changePasswordHandler}
       >
+        <div className={styles.title}>
+          <h1>שינוי סיסמא</h1>
+        </div>
         <input
           type="text"
           id="userName"

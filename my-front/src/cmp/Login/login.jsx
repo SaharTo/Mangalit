@@ -66,6 +66,9 @@ export default function Login() {
         <img src={logoSrc} alt="" />
       </div>
       <form dir="rtl" className={styles.login} name="login" onSubmit={login}>
+        <div className={styles.title}>
+          <h1>התחברות</h1>
+        </div>
         <input
           type="text"
           id="userName"

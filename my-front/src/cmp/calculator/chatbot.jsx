@@ -44,10 +44,10 @@ class Review extends Component {
     const { name, men, women, withPitot } = this.state;
     let meatQuantity = 0;
     if (withPitot.value === "עם") {
-      meatQuantity = parseInt(men.value) * 0.5 + parseInt(women.value) * 0.3;
+      meatQuantity = parseInt(men.value) * 0.6 + parseInt(women.value) * 0.45;
     }
     if (withPitot.value === "בלי") {
-      meatQuantity = parseInt(men.value) * 0.7 + parseInt(women.value) * 0.5;
+      meatQuantity = parseInt(men.value) * 0.7 + parseInt(women.value) * 0.55;
     }
     return (
       <div style={{ width: "100%" }}>
@@ -91,7 +91,7 @@ class Review extends Component {
                 כמה בשר להביא (ק"ג)
               </td>
               <td className={styles.total} dir="rtl">
-                {meatQuantity}
+                {meatQuantity.toFixed(2)}
               </td>
             </tr>
           </tbody>
@@ -134,7 +134,7 @@ class SimpleForm extends Component {
             {
               id: "3",
               message:
-                " שלום {previousValue}  :) , ברשותך, נשאל אותך כמה שאלות בנוגע לעלהאש",
+                " שלום {previousValue}  :) , ברשותך, נשאל אותך כמה שאלות בנוגע לעלהאש על מנת לעזור לך עם הכמויות.",
               trigger: "4",
             },
             {

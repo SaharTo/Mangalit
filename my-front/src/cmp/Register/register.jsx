@@ -37,10 +37,18 @@ export default function Register() {
 
   return (
     <div>
-       <div className={styles.logo}>
+      <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>
-      <form dir='rtl' className={styles.register} name="register" onSubmit={register}>
+      <form
+        dir="rtl"
+        className={styles.register}
+        name="register"
+        onSubmit={register}
+      >
+        <div className={styles.title}>
+          <h1>הרשמה</h1>
+        </div>
         <input
           type="text"
           id="userName"
@@ -55,7 +63,7 @@ export default function Register() {
           className={styles.registerInput}
           value={user.userEmail}
           onChange={handleChange}
-          placeholder='מייל'
+          placeholder="מייל"
         />
         <input
           type="text"

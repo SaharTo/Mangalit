@@ -11,20 +11,20 @@
 .title {
   color: rgb(255, 255, 255);
   font-family: "times New Roman", Arial;
-  font-size: 220px;
+  font-size: 170px;
   margin-top: 50px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 0.5;
   text-align: right;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 h4.subtitle {
   color: rgb(255, 255, 255);
   font-family: "times New Roman", Arial;
   font-size: 60px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-right: 0px;
   font-weight: bold;
   letter-spacing: 1px;

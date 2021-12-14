@@ -43,15 +43,21 @@ export class Meals extends Component {
             הוספת מנה
           </Link>
         )}
-        <label htmlFor="filter">
-          חיפוש
+        <div className={styles.searchDiv}>
+          <label className={styles.searchLabel} htmlFor="filter">
+            חיפוש{" "}
+          </label>
+        </div>
+        <div className={styles.searchDiv}>
           <input
+            className={styles.searchInput}
             type="text"
             id="filter"
             value={this.state.filter}
             onChange={this.handleChange}
+            placeholder="חפש/י כאן..."
           />
-        </label>
+        </div>
         <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות
         </NavLink>
