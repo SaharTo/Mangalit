@@ -1,62 +1,69 @@
 .header {
-  margin-bottom: 0px;
-  display: flex;
-  background-color: rgba(141, 135, 135, 0.63);
-  height: 50px;
-  width: 100vw;
+    margin-bottom: 0px;
+    padding-inline-start: 10px;
+    display: flex;
+    background-color: rgba(42, 39, 39, 0.7);
+    height: 50px;
+    width: 100vw;
+    position: sticky;
+    top: 0;
 }
 
 .links {
-  display: flex;
-  gap: 10px;
-  padding-inline-end: 20px;
-  align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+    gap: 10px;
+    padding-inline-end: 30px;
+    align-items: center;
 }
 
 .links a {
-  color: white;
+    color: white;
 }
 
 .logOut {
-  cursor: pointer;
-}
-.openSideNav {
-  display: none;
-}
-.logo {
-  height: 50px;
-  padding-right: 10px;
-}
-@media (max-width: 700px) {
-  .openSideNav {
-    background: none;
-    color: white;
-    font-size: 30px;
-    border: none;
     cursor: pointer;
-    display: block;
-  }
-  .header {
-    justify-content: space-between;
-    padding-inline-end: 1.5%;
-  }
-  .links {
-    position: fixed;
-    top: 50px;
-    right: 0;
-    height: 100%;
-    width: 200px;
-    flex-direction: column;
-    background-color: lightcoral;
-    padding-inline-end: 0;
-    padding-top: 10px;
-    gap: 20px;
-    transform: translateX(100%);
-    transition: transform 0.6s;
-  }
+}
 
-  .open.links {
-    /*background-color: black;*/
-    transform: translateX(0);
-  }
+.openSideNav {
+    display: none;
+}
+
+.logo {
+    height: 50px;
+    padding-right: 10px;
+}
+
+@media (max-width: 700px) {
+    .openSideNav {
+        background: none;
+        color: white;
+        font-size: 30px;
+        border: none;
+        cursor: pointer;
+        display: block;
+    }
+    .header {
+        justify-content: space-between;
+        padding-inline-end: 1.5%;
+    }
+    .links {
+        position: fixed;
+        top: 50px;
+        right: 0;
+        height: 100%;
+        width: 200px;
+        flex-direction: column;
+        background-color: lightcoral;
+        padding-inline-end: 0;
+        padding-top: 10px;
+        gap: 20px;
+        transform: translateX(100%);
+        transition: transform 0.6s;
+    }
+    .open.links {
+        /*background-color: black;*/
+        transform: translateX(0);
+    }
 }

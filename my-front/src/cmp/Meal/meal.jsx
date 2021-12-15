@@ -12,6 +12,9 @@ export class Meal extends Component {
   componentDidMount() {
     this.getMeal();
   }
+  componentDidUpdate() {
+    this.showSlides(this.state.slideIndex)
+  }
 
   goBack = () => {
     this.props.history.push("/meals");
@@ -79,7 +82,7 @@ export class Meal extends Component {
       method: "PUT",
       credentials: "include"
     })
-      .then(() => this.goBack())
+      .then(() => window.location.reload())
       .catch((err) => {
         console.log(err);
       });
@@ -91,7 +94,7 @@ export class Meal extends Component {
       method: "DELETE",
       credentials: "include",
     })
-      .then(() => this.goBack())
+      .then(() => window.location.reload())
       .catch((err) => {
         console.log(err);
       });
@@ -154,15 +157,15 @@ export class Meal extends Component {
             )}
         </div>
         <div className={styles.images}>
-          {meal.mealImage.length > 0 && <div className={styles.prevNext}>
-            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
-            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
-          </div>}
           {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
             <div name="mealSlide" key={url}>
               <img src={url} alt="" />
             </div>
           )}
+          {meal.mealImage.length > 1 && <div className={styles.prevNext}>
+            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
+            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
+          </div>}
           {/* {this.showSlides(this.state.slideIndex)} */}
         </div>
         {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}

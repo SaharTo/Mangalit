@@ -32,11 +32,11 @@ export function Navbar() {
   };
 
   return (
-    <div dir="rtl" id="header" className={styles.header}>
+    <div id="header" className={styles.header}>
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
-      <div id="links" className={styles.links} dir="ltr">
+      <div id="links" className={styles.links} >
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>

@@ -12,6 +12,9 @@ export class SideMeal extends Component {
   componentDidMount() {
     this.getSideMeal();
   };
+  componentDidUpdate() {
+    this.showSlides(this.state.slideIndex)
+  }
 
   goBack = () => {
     this.props.history.push("/sideMeals");
@@ -83,7 +86,7 @@ export class SideMeal extends Component {
       method: "PUT",
       credentials: "include",
     })
-      .then(() => this.goBack())
+      .then(() => window.location.reload())
       .catch((err) => {
         console.log(err);
       });
@@ -95,7 +98,7 @@ export class SideMeal extends Component {
       method: "DELETE",
       credentials: "include",
     })
-      .then(() => this.goBack())
+      .then(() => window.location.reload())
       .catch((err) => {
         console.log(err);
       });

@@ -22,6 +22,19 @@ module.exports.rnd8Meals = async(rec, res) => {
     res.send(rndMeals);
 };
 
+module.exports.topTenMeals = async(rec, res) => {
+    const meals = await Meal.find({});
+    const newMeals = meals;
+    newMeals.sort((a, b) => {
+        const aLen = a.mealLikes.length
+        const bLen = b.mealLikes.length
+        return bLen - aLen
+    })
+    newMeals.splice(10, newMeals.length);
+    console.log("backend topTenMeals data ");
+    res.send(newMeals);
+};
+
 module.exports.deleteMeal = async(req, res) => {
     const { id } = await req.params;
     console.log("deleteMeal", id);

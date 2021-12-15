@@ -15,6 +15,7 @@ router
     .post(isLoggedIn, validateMeal, meals.createMeal);
 
 router.get('/rndMeals', meals.rnd8Meals)
+router.get('/topTenMeals', meals.topTenMeals)
 router
     .route("/:id")
     .get(meals.mealById)
