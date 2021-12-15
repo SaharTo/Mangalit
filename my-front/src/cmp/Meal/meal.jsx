@@ -7,6 +7,7 @@ export class Meal extends Component {
   state = {
     meal: null,
     slideIndex: 1,
+    islike: false,
   };
   componentDidMount() {
     this.getMeal();
@@ -20,7 +21,10 @@ export class Meal extends Component {
     const id = this.props.match.params.id;
     fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
       .then((res) => res.json())
-      .then((meal) => this.setState({ meal }))
+      .then((meal) => {
+        this.setState({ meal });
+        this.checkLike();
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -57,9 +61,44 @@ export class Meal extends Component {
       slides[this.state.slideIndex - 1].classList.add(styles.show);
     }
   }
+  checkLike = () => {
+    const { meal } = this.state;
+    if (meal.mealLikes && meal.mealLikes.length > 0) {
+      for (let i = 0; i < meal.mealLikes.length; i++) {
+        const id = meal.mealLikes[i];
+        if (JSON.parse(sessionStorage.getItem("loggedInUser")) === id) {
+          this.setState({ islike: true })
+        }
+      }
+    }
+  }
+
+  like = () => {
+    const id = this.props.match.params.id;
+    fetch(`http://localhost:3030/meals/${id}/like`, {
+      method: "PUT",
+      credentials: "include"
+    })
+      .then(() => this.goBack())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  unLike = () => {
+    const id = this.props.match.params.id;
+    fetch(`http://localhost:3030/meals/${id}/like`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then(() => this.goBack())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
-    const { meal } = this.state;
+    const { meal, islike } = this.state;
     if (!meal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meal}>
@@ -75,11 +114,9 @@ export class Meal extends Component {
           </div>
           <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
           {meal.mealRecommendedSideMeals.map((sideMeal) => {
-            return (
-              <div key={sideMeal._id}>
-                <p>מנות צד מומלצות: {sideMeal.sideMealName}</p>
-              </div>
-            );
+            return (<div key={sideMeal._id}>
+              <p>מנות צד מומלצות: {sideMeal.sideMealName}</p>
+            </div>)
           })}
           <p>טכניקת הכנה: {meal.mealPreparationTechniques}</p>
           <p>זמן הכנה: {meal.mealPreparationTime}</p>
@@ -92,8 +129,12 @@ export class Meal extends Component {
           ) : (
             <p>יוצר: Unknown</p>
           )}
+          {JSON.parse(sessionStorage.getItem("loggedInUser")) && (!islike ? <button className={styles.btn} onClick={this.like}>like</button> : <button className={styles.btn} onClick={this.unLike}>unLike</button>)}
         </div>
         <div className={styles.btns}>
+          <button className={styles.btn} onClick={this.goBack}>
+            חזרה לכל המנות
+          </button>
           {meal.mealAuthor &&
             JSON.parse(sessionStorage.getItem("loggedInUser")) ===
             meal.mealAuthor._id && (
@@ -111,9 +152,6 @@ export class Meal extends Component {
                 <button className={styles.btn}>עריכת מנה</button>
               </Link>
             )}
-          <button className={styles.btn} onClick={this.goBack}>
-            חזרה לכל המנות
-          </button>
         </div>
         <div className={styles.images}>
           {meal.mealImage.length > 0 && <div className={styles.prevNext}>

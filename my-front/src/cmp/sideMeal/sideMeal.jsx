@@ -6,6 +6,7 @@ export class SideMeal extends Component {
   state = {
     sideMeal: null,
     slideIndex: 1,
+    islike: false,
   };
 
   componentDidMount() {
@@ -22,7 +23,10 @@ export class SideMeal extends Component {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((sideMeal) => this.setState({ sideMeal }))
+      .then((sideMeal) => {
+        this.setState({ sideMeal })
+        this.checkLike();
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -33,7 +37,6 @@ export class SideMeal extends Component {
       credentials: "include",
       method: "DELETE",
     })
-      //.then((res) => res.json())
       .then(() => this.goBack())
       .catch((err) => {
         console.log(err);
@@ -62,8 +65,44 @@ export class SideMeal extends Component {
     }
   }
 
-  render() {
+  checkLike = () => {
     const { sideMeal } = this.state;
+    if (sideMeal.sideMealLikes && sideMeal.sideMealLikes.length > 0) {
+      for (let i = 0; i < sideMeal.sideMealLikes.length; i++) {
+        const id = sideMeal.sideMealLikes[i];
+        if (JSON.parse(sessionStorage.getItem("loggedInUser")) === id) {
+          this.setState({ islike: true })
+        }
+      }
+    }
+  }
+
+  like = () => {
+    const id = this.props.match.params.id;
+    fetch(`http://localhost:3030/sideMeals/${id}/like`, {
+      method: "PUT",
+      credentials: "include",
+    })
+      .then(() => this.goBack())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  unLike = () => {
+    const id = this.props.match.params.id;
+    fetch(`http://localhost:3030/sideMeals/${id}/like`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then(() => this.goBack())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  render() {
+    const { sideMeal, islike } = this.state;
     if (!sideMeal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeal}>
@@ -81,6 +120,7 @@ export class SideMeal extends Component {
           ) : (
             <p>יוצר: Unknown</p>
           )}
+          {JSON.parse(sessionStorage.getItem("loggedInUser")) && (!islike ? <button className={styles.btn} onClick={this.like}>like</button> : <button className={styles.btn} onClick={this.unLike}>unLike</button>)}
         </div>
         <div>
           <button className={styles.btn} onClick={this.goBack}>
@@ -104,8 +144,6 @@ export class SideMeal extends Component {
               </Link>
             )}
         </div>
-        {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
-        {/* {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((img) => <img src={img} key={img} />)} */}
         <div className={styles.images}>
           {sideMeal.sideMealImageUrl.length > 0 && <div className={styles.prevNext}>
             <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
@@ -116,7 +154,6 @@ export class SideMeal extends Component {
               <img src={url} alt='' />
             </div>
           )}
-          {/* {this.showSlides(this.state.slideIndex)} */}
         </div>
         {
           <Reviews

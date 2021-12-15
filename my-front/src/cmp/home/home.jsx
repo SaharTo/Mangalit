@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styles from "./home.module.css";
-import Beef from "../parts/beef/beef";
-import Chicken from "../parts/chicken/chicken";
-import Lamb from "../parts/lamb/lamb";
+// import Beef from "../parts/beef/beef";
+// import Chicken from "../parts/chicken/chicken";
+// import Lamb from "../parts/lamb/lamb";
 
 export class Home extends Component {
   state = {

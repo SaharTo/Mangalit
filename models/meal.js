@@ -36,6 +36,10 @@ const mealScema = new Schema({
     }, ],
     // mealReviews: String,
     mealIsRecommended: Boolean,
+    mealLikes: [{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    }]
 });
 
 module.exports = mongoose.model("Meal", mealScema);

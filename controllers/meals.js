@@ -120,3 +120,18 @@ module.exports.deleteReview = async(req, res) => {
     await meal.save();
     res.send("delete meal review");
 };
+module.exports.addLike = async(req, res) => {
+    const meal = await Meal.findById(req.params.id);
+    const userId = req.session.user._id;
+    meal.mealLikes.push(userId)
+    await meal.save();
+    res.send(meal);
+};
+module.exports.deleteLike = async(req, res) => {
+    const meal = await Meal.findById(req.params.id);
+    const userId = req.session.user._id;
+    const index = meal.mealLikes.indexOf(userId);
+    meal.mealLikes.splice(index, 1);
+    await meal.save();
+    res.send(meal);
+};

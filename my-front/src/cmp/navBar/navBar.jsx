@@ -5,6 +5,7 @@ import styles from "./navBar.module.css";
 
 export function Navbar() {
   let history = useHistory();
+
   const logout = () => {
     fetch(`http://localhost:3030/users/logout`, {
       method: "POST",
@@ -24,10 +25,12 @@ export function Navbar() {
       } else res.text().then((data) => console.log(data));
     });
   };
+
   const sideNavClickHandler = () => {
     document.getElementById("links").classList.toggle(styles.open);
     document.body.classList.toggle("open");
   };
+
   return (
     <div dir="rtl" id="header" className={styles.header}>
       <NavLink activeClassName="activeNav" to="/home">
@@ -68,7 +71,7 @@ export function Navbar() {
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUser") && (
-          <a className={styles.logOut} onClick={logout}>
+          <a className={styles.logOut} onClick={logout} href="">
             התנתקות
           </a>
         )}

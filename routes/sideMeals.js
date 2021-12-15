@@ -19,6 +19,11 @@ router
     .delete(isLoggedIn, isAuthor, sideMeals.deleateSideMeal)
     .put(isLoggedIn, isAuthor, validateSideMeal, sideMeals.updateSideMeal);
 
+router
+    .route("/:id/like")
+    .put(isLoggedIn, sideMeals.addLike)
+    .delete(isLoggedIn, sideMeals.deleteLike);
+
 router.put("/:id/review", isLoggedIn, validateReview, sideMeals.addReview);
 router.delete("/:id/review/:reviewId", isLoggedIn, isAuthor, sideMeals.deleteReview);
 

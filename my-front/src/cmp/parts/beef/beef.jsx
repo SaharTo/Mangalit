@@ -5,7 +5,8 @@ import styles from "./beef.module.css";
 
 const Beef = () => {
   const [meatState, setMeatState] = useState([]);
-  const [markedMeat, setMarkedMeat] = useState([]);
+  // const [markedMeat, setMarkedMeat] = useState([]);
+
   useEffect(async () => {
     await fetch("http://localhost:3030/meats", { credentials: "include" })
       .then((res) => res.json())
@@ -21,16 +22,6 @@ const Beef = () => {
     meats: null,
   };
   }*/
-  /*const getMeats = async () => {
-    await fetch("http://localhost:3030/meats", { credentials: "include" })
-      .then((res) => res.json())
-      .then((meats) => setMeatState({ meats }))
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log("meats list ", meats);
-  };*/
-
   const onHoverDiv = async (el) => {
     // console.log("something in the console", el.target.id);
     if (meatState.meats) {
@@ -41,8 +32,8 @@ const Beef = () => {
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;
-        setMarkedMeat(meatInfo);
-        //console.log("afterSetMeatInfo ", markedMeat);
+        // setMarkedMeat(meatInfo);
+        // console.log("afterSetMeatInfo ", markedMeat);
       } else console.log("please hover over exist meat");
       // <div>Hoveringgggg</div>;
     }
@@ -51,7 +42,7 @@ const Beef = () => {
     if (meatState.meats) {
       //document.getElementById("name").classList.add(`${styles.hide}`);
       document.getElementById("desc").classList.add(`${styles.hide}`);
-      setMarkedMeat("");
+      // setMarkedMeat("");
       document.getElementById("name").innerText =
         "רחף עם העכבר מעל לחלק מסויים לפירוט אודותיו";
       document.getElementById("desc").innerText = "";

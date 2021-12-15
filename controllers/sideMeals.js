@@ -47,10 +47,6 @@ module.exports.createSideMeal = async(req, res) => {
 
 module.exports.addReview = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id);
-    if (req.files) {
-        const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-        sideMeal.sideMealImage.push(...imgs);
-    }
     const review = new Review(req.body.review);
     if (req.session.user) review.reviewAuthor = req.session.user._id;
     await review.save();
@@ -69,3 +65,21 @@ module.exports.deleteReview = async(req, res) => {
     // res.redirect(`/sideMeals/${req.params.id}`);
     res.send('delete side meal review');
 };
+module.exports.addLike = async(req, res) => {
+    const sideMeal = await SideMeal.findById(req.params.id);
+    const userId = req.session.user._id;
+    sideMeal.sideMealLikes.push(userId)
+    await sideMeal.save();
+    res.send(sideMeal);
+}
+module.exports.deleteLike = async(req, res) => {
+    console.log('deleteLike');
+    const sideMeal = await SideMeal.findById(req.params.id);
+    const userId = req.session.user._id;
+    console.log(userId);
+    const index = sideMeal.sideMealLikes.indexOf(userId);
+    console.log(index);
+    sideMeal.sideMealLikes.splice(index, 1);
+    await sideMeal.save();
+    res.send(sideMeal);
+}
