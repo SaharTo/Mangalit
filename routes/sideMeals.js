@@ -17,7 +17,7 @@ router.get("/topTenSideMeals", sideMeals.topTenSideMeals);
 router
   .route("/:id")
   .get(sideMeals.sideMealById)
-  .delete(isLoggedIn, isAuthor, sideMeals.deleateSideMeal)
+  .delete(isLoggedIn, isAuthor, sideMeals.deleteSideMeal)
   .put(isLoggedIn, isAuthor, validateSideMeal, sideMeals.updateSideMeal);
 
 router

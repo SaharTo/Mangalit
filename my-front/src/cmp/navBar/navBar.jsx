@@ -36,7 +36,7 @@ export function Navbar() {
       <NavLink activeClassName="activeNav" to="/home">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
-      <div id="links" className={styles.links} >
+      <div id="links" className={styles.links}>
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
@@ -71,7 +71,7 @@ export function Navbar() {
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUser") && (
-          <a className={styles.logOut} onClick={logout} href="">
+          <a className={styles.logOut} onClick={logout}>
             התנתקות
           </a>
         )}

@@ -11,9 +11,9 @@ export class SideMeal extends Component {
 
   componentDidMount() {
     this.getSideMeal();
-  };
+  }
   componentDidUpdate() {
-    this.showSlides(this.state.slideIndex)
+    this.showSlides(this.state.slideIndex);
   }
 
   goBack = () => {
@@ -27,7 +27,7 @@ export class SideMeal extends Component {
     })
       .then((res) => res.json())
       .then((sideMeal) => {
-        this.setState({ sideMeal })
+        this.setState({ sideMeal });
         this.checkLike();
       })
       .catch((err) => {
@@ -47,26 +47,26 @@ export class SideMeal extends Component {
   };
 
   prevSlides = () => {
-    const index = this.state.slideIndex - 1
-    this.setState({ slideIndex: index })
+    const index = this.state.slideIndex - 1;
+    this.setState({ slideIndex: index });
     this.showSlides(index);
-  }
+  };
   nextSlides = () => {
-    const index = this.state.slideIndex + 1
-    this.setState({ slideIndex: index })
+    const index = this.state.slideIndex + 1;
+    this.setState({ slideIndex: index });
     this.showSlides(index);
-  }
+  };
   showSlides = (num) => {
     const slides = document.getElementsByName("sideMealSlide");
     if (slides.length > 0) {
-      if (num > slides.length) this.setState({ slideIndex: 1 })
-      if (num < 1) this.setState({ slideIndex: slides.length })
+      if (num > slides.length) this.setState({ slideIndex: 1 });
+      if (num < 1) this.setState({ slideIndex: slides.length });
       for (let i = 0; i < slides.length; i++) {
         slides[i].classList.remove(styles.show);
       }
       slides[this.state.slideIndex - 1].classList.add(styles.show);
     }
-  }
+  };
 
   checkLike = () => {
     const { sideMeal } = this.state;
@@ -74,11 +74,11 @@ export class SideMeal extends Component {
       for (let i = 0; i < sideMeal.sideMealLikes.length; i++) {
         const id = sideMeal.sideMealLikes[i];
         if (JSON.parse(sessionStorage.getItem("loggedInUser")) === id) {
-          this.setState({ islike: true })
+          this.setState({ islike: true });
         }
       }
     }
-  }
+  };
 
   like = () => {
     const id = this.props.match.params.id;
@@ -86,11 +86,15 @@ export class SideMeal extends Component {
       method: "PUT",
       credentials: "include",
     })
-      .then(() => window.location.reload())
+      .then((res) => res.json())
+      .then((sideMeal) => {
+        this.setState({ sideMeal });
+        this.checkLike();
+      })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   unLike = () => {
     const id = this.props.match.params.id;
@@ -98,11 +102,16 @@ export class SideMeal extends Component {
       method: "DELETE",
       credentials: "include",
     })
-      .then(() => window.location.reload())
+      .then((res) => res.json())
+      .then((sideMeal) => {
+        this.setState({ sideMeal });
+        this.setState({ islike: false });
+        this.checkLike();
+      })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const { sideMeal, islike } = this.state;
@@ -123,40 +132,72 @@ export class SideMeal extends Component {
           ) : (
             <p>יוצר: Unknown</p>
           )}
-          {JSON.parse(sessionStorage.getItem("loggedInUser")) && (!islike ? <button className={styles.btn} onClick={this.like}>like</button> : <button className={styles.btn} onClick={this.unLike}>unLike</button>)}
+          {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
+            (!islike ? (
+              <button className={styles.btnLike} onClick={this.like}>
+                🤍
+              </button>
+            ) : (
+              <button className={styles.btnLike} onClick={this.unLike}>
+                ❤️
+              </button>
+            ))}
         </div>
         <div>
           <button className={styles.btn} onClick={this.goBack}>
             חזרה למנות צד
           </button>
-          {sideMeal.sideMealsAuthor &&
+
+          {(sideMeal.sideMealsAuthor &&
             JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-            sideMeal.sideMealsAuthor._id && (
+              sideMeal.sideMealsAuthor._id && (
               <button
                 className={styles.btn}
                 onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
               >
                 מחיקה
               </button>
-            )}
-          {sideMeal.sideMealsAuthor &&
+            )) ||
+            (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+              true && (
+              <button
+                className={styles.btn}
+                onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
+              >
+                מחיקה
+              </button>
+            ))}
+          {(sideMeal.sideMealsAuthor &&
             JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-            sideMeal.sideMealsAuthor._id && (
+              sideMeal.sideMealsAuthor._id && (
               <Link to={"/sideMeals/save/" + sideMeal._id}>
                 <button className={styles.btn}>עריכה</button>
               </Link>
-            )}
+            )) ||
+            (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+              true && (
+              <Link to={"/sideMeals/save/" + sideMeal._id}>
+                <button className={styles.btn}>עריכה</button>
+              </Link>
+            ))}
         </div>
         <div className={styles.images}>
-          {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((url) =>
-            <div name="sideMealSlide" key={url}>
-              <img src={url} alt='' />
+          {sideMeal.sideMealImageUrl.length > 0 &&
+            sideMeal.sideMealImageUrl.map((url) => (
+              <div name="sideMealSlide" key={url}>
+                <img src={url} alt="" />
+              </div>
+            ))}
+          {sideMeal.sideMealImageUrl.length > 1 && (
+            <div className={styles.prevNext}>
+              <button className={styles.prev} onClick={this.prevSlides}>
+                &#10094;
+              </button>
+              <button className={styles.next} onClick={this.nextSlides}>
+                &#10095;
+              </button>
             </div>
           )}
-          {sideMeal.sideMealImageUrl.length > 1 && <div className={styles.prevNext}>
-            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
-            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
-          </div>}
         </div>
         {
           <Reviews

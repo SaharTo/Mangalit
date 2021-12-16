@@ -33,10 +33,11 @@ module.exports.sideMealById = async (req, res) => {
   res.send(sideMeal);
 };
 
-module.exports.deleateSideMeal = async (req, res) => {
+module.exports.deleteSideMeal = async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   await SideMeal.findByIdAndDelete(req.params.id);
-  res.redirect("/sideMeals");
+  res.send("delete");
+  // res.redirect("/sideMeals");
 };
 
 module.exports.updateSideMeal = async (req, res) => {
@@ -80,7 +81,15 @@ module.exports.deleteReview = async (req, res) => {
   res.send("delete side meal review");
 };
 module.exports.addLike = async (req, res) => {
-  const sideMeal = await SideMeal.findById(req.params.id);
+  const sideMeal = await SideMeal.findById(req.params.id)
+    .populate({
+      path: "sideMealsReviews",
+      populate: {
+        path: "reviewAuthor",
+        select: "fullName",
+      },
+    })
+    .populate("sideMealsAuthor", "fullName");
   const userId = req.session.user._id;
   sideMeal.sideMealLikes.push(userId);
   await sideMeal.save();
@@ -88,7 +97,15 @@ module.exports.addLike = async (req, res) => {
 };
 module.exports.deleteLike = async (req, res) => {
   console.log("deleteLike");
-  const sideMeal = await SideMeal.findById(req.params.id);
+  const sideMeal = await SideMeal.findById(req.params.id)
+    .populate({
+      path: "sideMealsReviews",
+      populate: {
+        path: "reviewAuthor",
+        select: "fullName",
+      },
+    })
+    .populate("sideMealsAuthor", "fullName");
   const userId = req.session.user._id;
   console.log(userId);
   const index = sideMeal.sideMealLikes.indexOf(userId);
