@@ -9,6 +9,8 @@ export class MealEdit extends Component {
     addOrEdit: null,
     meat: null,
     sideMeals: null,
+    slideIndex: 1,
+    files: [],
   };
 
   componentDidMount() {
@@ -23,13 +25,15 @@ export class MealEdit extends Component {
       this.getRecommendeSideMeals();
     }
   }
+
+  componentDidUpdate() {
+    this.showSlides(this.state.slideIndex)
+  }
+
   goBack = () => {
     const id = this.props.match.params.id;
-    if (id) {
-      this.props.history.push(`/meals/${id}`);
-    } else {
-      this.props.history.push("/meals/");
-    }
+    if (id) this.props.history.push(`/meals/${id}`);
+    else this.props.history.push("/meals/");
   };
 
   getMeatInfo = async () => {
@@ -103,30 +107,24 @@ export class MealEdit extends Component {
   };
 
   handleFiles = async ({ target }) => {
-    const field = target.id;
-    const files = target.files;
-    //console.log("files ", files);
-    const image = [];
-    for (let i = 0; i < files.length; i++) {
-      image.push(files[i]);
+    const file = target.files
+    const arrFiles = [];
+    for (let i = 0; i < file.length; i++) {
+      arrFiles.push(file[i]);
     }
-    this.setState((prevState) => ({
-      meal: { ...prevState.meal, [field]: image },
-    }));
+    this.setState({ files: arrFiles });
   };
 
   onSaveMeal = async (ev) => {
     ev.preventDefault();
     console.log("after     ", this.state);
-    const { meal } = this.state;
+    const { meal, files } = this.state;
     const id = this.props.match.params.id;
-    const images = [];
-    for (let i = 0; i < meal.mealImage.length; i++) {
-      const res = await uploadImg(meal.mealImage[i]);
+    for (let i = 0; i < files.length; i++) {
+      const url = await uploadImg(files[i])
       //uploadImg is a function that upload the following files to cloudinary and return the cloudinary url for this file
-      images.push(res);
+      meal.mealImage.push(url)
     }
-    meal.mealImage = images;
     if (id) {
       delete meal._id;
       delete meal.mealReviews;
@@ -158,8 +156,48 @@ export class MealEdit extends Component {
     }
   };
 
+  deleteImg = () => {
+    const index = this.state.slideIndex;
+    console.log(index);
+    const newImgs = this.state.meal.mealImage;
+    const newFiles = this.state.files;
+    if (index > newImgs.length) {
+      newFiles.splice(index - newImgs.length - 1, 1);
+      this.setState({ files: newFiles });
+    }
+    else {
+      newImgs.splice(index - 1, 1);
+      this.setState((prevState) => ({
+        meal: { ...prevState.meal, mealImage: newImgs },
+      }));
+    }
+    this.setState({ slideIndex: 1 })
+  }
+
+  prevSlides = () => {
+    const index = this.state.slideIndex - 1
+    this.setState({ slideIndex: index })
+    this.showSlides(index);
+  }
+  nextSlides = () => {
+    const index = this.state.slideIndex + 1
+    this.setState({ slideIndex: index })
+    this.showSlides(index);
+  }
+  showSlides = (num) => {
+    const slides = document.getElementsByName("mealEditSlide");
+    if (slides.length > 0) {
+      if (num > slides.length) this.setState({ slideIndex: 1 })
+      if (num < 1) this.setState({ slideIndex: slides.length })
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove(styles.show);
+      }
+      slides[this.state.slideIndex - 1].classList.add(styles.show);
+    }
+  }
+
   render() {
-    const { meal, meat, addOrEdit, sideMeals } = this.state;
+    const { meal, meat, addOrEdit, sideMeals, files } = this.state;
     if (!meal || !meat || !sideMeals) return <h1 dir="rtl">טוען...</h1>;
     const optMeat = meat.map((m) => {
       return { label: m.meatName, value: m._id };
@@ -171,6 +209,7 @@ export class MealEdit extends Component {
       <div dir="rtl" className={styles.edit}>
         {addOrEdit === "edit" && <h1>עדכון מנה</h1>}
         {addOrEdit === "add" && <h1>יצירת מנה חדשה</h1>}
+        <div className={styles.formImage}>
         <form className={styles.meal} name="meal">
           <label htmlFor="mealName">שם המנה:</label>
           <input
@@ -326,7 +365,32 @@ export class MealEdit extends Component {
             />
           </label>
         </form>
-        {/* {meal.mealImage.length > 0 && meal.mealImage.map((img) => <p key={img.name}>{img.name}</p>)} */}
+        {addOrEdit === "edit" && <div className={styles.images}>
+            {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
+              <div name="mealEditSlide" key={url}>
+                <img src={url} alt='' />
+              </div>
+            )}
+            {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
+              <img src={URL.createObjectURL(f)} alt='' />
+            </div>)}
+            {meal.mealImage.length + files.length > 0 && <div className={styles.prevNext}>
+              {meal.mealImage.length + files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+              {meal.mealImage.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+            </div>}
+          </div>}
+          {addOrEdit === "add" && <div className={styles.images}>
+            {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
+              <img src={URL.createObjectURL(f)} alt='' />
+            </div>)}
+            {files.length > 0 && <div className={styles.prevNext}>
+              {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+              {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+            </div>}
+          </div>}
+        </div>
         <div className={styles.buttons}>
           <button className={styles.btn} onClick={this.onSaveMeal}>
             שמירה

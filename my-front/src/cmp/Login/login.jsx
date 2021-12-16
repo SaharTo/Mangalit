@@ -76,6 +76,7 @@ export default function Login() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
+          required 
         />
         <input
           type="password"

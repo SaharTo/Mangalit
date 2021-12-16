@@ -2,6 +2,11 @@
     padding-inline-start: 10px;
 }
 
+.formImage {
+    display: flex;
+    gap: 10px;
+}
+
 .meal {
     margin-top: 10px;
     display: grid;
@@ -13,6 +18,70 @@
 
 .meal label {
     margin: 0;
+}
+
+.images {
+    align-items: center;
+    width: 500px;
+    height: 400px;
+}
+
+.images img {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.file {
+    direction: ltr;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    color: black;
+}
+
+[name='mealEditSlide'] {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.prevNext {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+}
+
+.prev,
+.next,
+.deleteImg {
+    background: none;
+    background-color: rgb(238, 96, 96);
+    border: none;
+    cursor: pointer;
+    width: auto;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    /* transition: 0.6s ease; */
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgb(233, 68, 68);
 }
 
 .buttons {

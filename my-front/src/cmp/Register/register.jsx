@@ -56,14 +56,18 @@ export default function Register() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
+          required
         />
         <input
           type="email"
+          pattern=".+@gmail\.com"
+          title=".+@gmail\.com"
           id="userEmail"
           className={styles.registerInput}
           value={user.userEmail}
           onChange={handleChange}
           placeholder="מייל"
+          required
         />
         <input
           type="text"
@@ -72,6 +76,7 @@ export default function Register() {
           value={user.fullName}
           onChange={handleChange}
           placeholder="שם מלא"
+          required
         />
         <input
           type="password"
@@ -80,6 +85,7 @@ export default function Register() {
           value={user.password}
           onChange={handleChange}
           placeholder="סיסמה"
+          required
         />
         <button className={styles.btn}>הרשמה</button>
       </form>

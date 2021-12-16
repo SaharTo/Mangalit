@@ -148,15 +148,15 @@ export class SideMeal extends Component {
             )}
         </div>
         <div className={styles.images}>
-          {sideMeal.sideMealImageUrl.length > 0 && <div className={styles.prevNext}>
-            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
-            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
-          </div>}
           {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((url) =>
             <div name="sideMealSlide" key={url}>
               <img src={url} alt='' />
             </div>
           )}
+          {sideMeal.sideMealImageUrl.length > 1 && <div className={styles.prevNext}>
+            <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>
+            <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>
+          </div>}
         </div>
         {
           <Reviews
