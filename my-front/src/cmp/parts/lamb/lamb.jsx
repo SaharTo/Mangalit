@@ -94,7 +94,6 @@ const Lamb = () => {
           className=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="כתף טלה"
           alt="כתף טלה"
         ></area>

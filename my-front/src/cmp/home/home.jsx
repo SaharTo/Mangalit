@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import styles from "./home.module.css";
+import { Link } from "react-router-dom";
+import fries from "../../assets/fries.jpg";
+import meatimg from "../../assets/meat.jpg";
+
 // import Beef from "../parts/beef/beef";
 // import Chicken from "../parts/chicken/chicken";
 // import Lamb from "../parts/lamb/lamb";
@@ -30,14 +34,18 @@ export class Home extends Component {
         <h4 className={styles.subtitle}>לפני</h4>
         <h4 className={styles.subtitle}>שמכינים בשר.</h4>
         <div className={styles.recMeals}>
-          <h2>לחץ/י כאן למנות מומלצות</h2>
-          <p>רשימת המנות המומלצות של מנגלית</p>
-          <p>בהתאם לבחירת הגולשים</p>
+          <img className={styles.recImage} src={meatimg} alt="steakImage" />
+          <Link to={"/recommendedMeals/"}>
+            <h2>לחץ/י כאן למנות מומלצות</h2>
+          </Link>
+          <p>10 המנות האהובות על משתמשי מנגלית</p>
         </div>
         <div className={styles.recSideMeals}>
-          <h2>לחץ/י כאן למנות צד המומלצות</h2>
-          <p>רשימת מנות הצד המומלצות של מנגלית</p>
-          <p>בהתאם לבחירת הגולשים</p>
+          <img className={styles.recImage} src={fries} alt="friesImage" />
+          <Link to={"/recommendedSideMeals/"}>
+            <h2>לחץ/י כאן למנות צד מומלצות</h2>
+          </Link>
+          <p>10 מנות הצד האהובות על משתמשי מנגלית</p>
         </div>
       </div>
     );

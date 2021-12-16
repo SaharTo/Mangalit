@@ -19,6 +19,8 @@ import { Parts } from "./cmp/parts/parts";
 import SimpleForm from "./cmp/calculator/chatbot";
 import { useState } from "react";
 import ChangePassword from "./cmp/changePassword/changePassword";
+import { topTenMeals } from "./cmp/topTenMeals/topTenMeals";
+import { topTenSideMeals } from "./cmp/topTenSideMeals/topTenSideMeals";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -64,6 +66,8 @@ function App() {
 
         {/* <Navbar isLogged={isLoggedIn}/> */}
         <Switch>
+          <Route path="/recommendedMeals" component={topTenMeals} />
+          <Route path="/recommendedSideMeals" component={topTenSideMeals} />
           <Route path="/changePassword" component={ChangePassword} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Register} />

@@ -94,7 +94,6 @@ const Chicken = () => {
           className=""
           onMouseOver={onHoverDiv}
           onMouseOut={outHoverDiv}
-          href=""
           id="חזה עוף"
           alt="חזה עוף"
         ></area>
