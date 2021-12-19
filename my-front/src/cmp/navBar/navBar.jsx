@@ -43,9 +43,6 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/changePassword">
-          שנה סיסמא{" "}
-        </NavLink>
         <NavLink activeClassName="activeNav" to="/meals">
           מנות
         </NavLink>
@@ -54,6 +51,9 @@ export function Navbar() {
         </NavLink>
         <NavLink activeClassName="activeNav" to="/about">
           אודות
+        </NavLink>
+        <NavLink activeClassName="activeNav" to="/changePassword">
+          שנה סיסמא
         </NavLink>
         {!sessionStorage.getItem("loggedInUser") && (
           <NavLink activeClassName="activeNav" to="/signup">

@@ -33,14 +33,14 @@ export class Home extends Component {
         <h4 className={styles.subtitle}>לדעת</h4>
         <h4 className={styles.subtitle}>לפני</h4>
         <h4 className={styles.subtitle}>שמכינים בשר.</h4>
-        <div className={styles.recMeals}>
+        <div className={styles.recMeals} name='recMeals'>
           <img className={styles.recImage} src={meatimg} alt="steakImage" />
           <Link to={"/recommendedMeals/"}>
             <h2>לחץ/י כאן למנות מומלצות</h2>
           </Link>
           <p>10 המנות האהובות על משתמשי מנגלית</p>
         </div>
-        <div className={styles.recSideMeals}>
+        <div className={styles.recSideMeals} name='recSideMeals'>
           <img className={styles.recImage} src={fries} alt="friesImage" />
           <Link to={"/recommendedSideMeals/"}>
             <h2>לחץ/י כאן למנות צד מומלצות</h2>

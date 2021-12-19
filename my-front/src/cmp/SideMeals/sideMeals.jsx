@@ -38,16 +38,14 @@ export class SideMeals extends Component {
     return (
       <div dir="rtl" className={styles.sideMeals}>
         {sessionStorage.getItem("loggedInUser") && (
-          <Link className={styles.add} to="/sideMeals/save/">
+          <Link className={styles.add} name='add' to="/sideMeals/save/">
             הוספת מנת צד
           </Link>
         )}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
-            חיפוש{" "}
+            חיפוש
           </label>
-        </div>
-        <div className={styles.searchDiv}>
           <input
             className={styles.searchInput}
             type="text"

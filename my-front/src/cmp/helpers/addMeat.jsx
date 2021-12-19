@@ -15,7 +15,6 @@ export class AddMeat extends Component {
             meatName: "",
             meatDescription: "",
             meatNumber: "",
-            meatImage: [],
         };
         this.setState({ meat });
     };
@@ -44,18 +43,6 @@ export class AddMeat extends Component {
         const value = target.value;
         this.setState((prevState) => ({
             meat: { ...prevState.meat, [field]: value },
-        }));
-    };
-    handleFiles = async ({ target }) => {
-        const field = target.id;
-        const files = target.files
-        const images = [];
-        for (let i = 0; i < files.length; i++) {
-            // const res = await uploadImg(files[i])
-            images.push(files[i])
-        }
-        this.setState((prevState) => ({
-            meat: { ...prevState.meat, [field]: images },
         }));
     };
 
@@ -97,13 +84,8 @@ export class AddMeat extends Component {
                     <label htmlFor="meatNumber">
                         <input type="number" value={meat.meatNumber} id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
                     </label>
-                    <label htmlFor="meatImage" className={styles.btn}>
-                        לחץ כדי להוסיף תמונות
-                        <input type="file" id="meatImage" hidden onChange={this.handleFiles} multiple />
-                    </label>
                     <button className={styles.btn}>שמור</button>
                 </form>
-                {/* {meat.meatImage.length > 0 && meat.meatImage.map((img) => <img src={img} key={img} />)} */}
             </div>
         );
     }

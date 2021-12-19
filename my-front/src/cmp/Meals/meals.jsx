@@ -39,16 +39,14 @@ export class Meals extends Component {
     return (
       <div dir="rtl" className={styles.meals}>
         {sessionStorage.getItem("loggedInUser") && (
-          <Link className={styles.add} to="/meals/save/">
+          <Link className={styles.add} name='add' to="/meals/save/">
             הוספת מנה
           </Link>
         )}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
-            חיפוש{" "}
+            חיפוש
           </label>
-        </div>
-        <div className={styles.searchDiv}>
           <input
             className={styles.searchInput}
             type="text"
@@ -58,9 +56,9 @@ export class Meals extends Component {
             placeholder="חפש/י כאן..."
           />
         </div>
-        <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
+        {/* <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות
-        </NavLink>
+        </NavLink> */}
 
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
