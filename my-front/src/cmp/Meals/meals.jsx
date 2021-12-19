@@ -71,7 +71,7 @@ export class Meals extends Component {
               <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
               <p>זמן הכנה: {meal.mealPreparationTime}</p>
               <p>מחיר: {meal.mealTotalPrice}₪</p>
-              <label>❤️ {meal.mealLikes.length}</label>
+              <p dir="ltr">❤️ {meal.mealLikes.length}</p>
               {/* <img src='meal.mealImageUrl' alt="img" /> */}
             </div>
           ))}

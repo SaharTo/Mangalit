@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./mealEdit.module.css";
 import Chosen from "../helpers/chosen";
 import { uploadImg } from "../helpers/uploadImg";
+import { data } from "jquery";
 
 export class MealEdit extends Component {
   state = {
@@ -139,8 +140,13 @@ export class MealEdit extends Component {
         credentials: "include",
         body: JSON.stringify({ meal: meal }),
       })
-        .then(() => this.goBack())
-        .catch((err) => console.log(err));
+        .then((res) => {
+          if (res.ok) {
+            res.text().then((data) => {
+              this.goBack();
+            });
+          } else res.text().then((data) => console.log(data));
+        });
     } else {
       console.log("post meal ", meal);
       fetch(`http://localhost:3030/meals/`, {
@@ -151,8 +157,13 @@ export class MealEdit extends Component {
         credentials: "include",
         body: JSON.stringify({ meal: meal }),
       })
-        .then(() => this.goBack())
-        .catch((err) => console.log(err));
+        .then((res) => {
+          if (res.ok) {
+            res.text().then((data) => {
+              this.goBack();
+            });
+          } else res.text().then((data) => console.log(data));
+        });
     }
   };
 
@@ -210,162 +221,162 @@ export class MealEdit extends Component {
         {addOrEdit === "edit" && <h1>עדכון מנה</h1>}
         {addOrEdit === "add" && <h1>יצירת מנה חדשה</h1>}
         <div className={styles.formImage}>
-        <form className={styles.meal} name="meal">
-          <label htmlFor="mealName">שם המנה:</label>
-          <input
-            type="text"
-            value={meal.mealName}
-            id="mealName"
-            name="mealName"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealSummary">פירוט המנה:</label>
-          <input
-            type="text"
-            value={meal.mealSummary}
-            name="mealSummary"
-            id="mealSummary"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealDescription">אופן ההכנה:</label>
-          <textarea
-            rows="10"
-            cols="50"
-            value={meal.mealDescription}
-            name="mealDescription"
-            id="mealDescription"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealPreparationDifficult">רמת קושי:</label>
-          <select
-            id="mealPreparationDifficult"
-            name="mealPreparationDifficult"
-            value={meal.mealPreparationDifficult}
-            onChange={this.handleChange}
-          >
-            <option value="" disabled="disabled">
-              בחר
-            </option>
-            <option value="קל">קל</option>
-            <option value="בינוני">בינוני</option>
-            <option value="קשה">קשה</option>
-          </select>
-          <label htmlFor="mealPreparationTechniques">טכניקת הכנה:</label>
-          <select
-            id="mealPreparationTechniques"
-            name="mealPreparationTechniques"
-            value={meal.mealPreparationTechniques}
-            onChange={this.handleChange}
-          >
-            <option value="" disabled="disabled">
-              בחר
-            </option>
-            <option value="תנור">תנור</option>
-            <option value="מנגל">מנגל</option>
-            <option value="מחבת">מחבת</option>
-            {/*<option value="גז">גז</option>*/}
-          </select>
-          {addOrEdit === "edit" && (
-            <label htmlFor="mealMeatInfo">סוג בשר:</label>
-          )}
-          {addOrEdit === "edit" && (
+          <form className={styles.meal} name="meal">
+            <label htmlFor="mealName">שם המנה:</label>
             <input
               type="text"
-              value={meal.mealMeatInfo.map((m) => m.meatName)}
-              disabled="disabled"
+              value={meal.mealName}
+              id="mealName"
+              name="mealName"
+              onChange={this.handleChange}
             />
-          )}
-          {addOrEdit === "add" && (
-            <label htmlFor="mealMeatInfo">סוג בשר:</label>
-          )}
-          {addOrEdit === "add" && (
-            <Chosen
-              opt={optMeat}
-              parentCallback={this.handleSelectChangeMeat}
-            />
-          )}
-          {addOrEdit === "edit" && (
-            <label htmlFor="mealRecommendedSideMeals">מנות צד מומלצות:</label>
-          )}
-          {addOrEdit === "edit" && (
+            <label htmlFor="mealSummary">פירוט המנה:</label>
             <input
               type="text"
-              value={meal.mealRecommendedSideMeals.map((sm) => sm.sideMealName)}
-              disabled="disabled"
+              value={meal.mealSummary}
+              name="mealSummary"
+              id="mealSummary"
+              onChange={this.handleChange}
             />
-          )}
-          {addOrEdit === "add" && (
-            <label htmlFor="mealRecommendedSideMeals">מנות צד מומלצות:</label>
-          )}
-          {addOrEdit === "add" && (
-            <Chosen
-              opt={optSideMeals}
-              parentCallback={this.handleSelectChangeSideMeals}
+            <label htmlFor="mealDescription">אופן ההכנה:</label>
+            <textarea
+              rows="10"
+              cols="50"
+              value={meal.mealDescription}
+              name="mealDescription"
+              id="mealDescription"
+              onChange={this.handleChange}
             />
-          )}
-          <label htmlFor="mealMeatQuantityGram">משקל הבשר (בגרם):</label>
-          <input
-            type="number"
-            max="5000"
-            min="200"
-            value={meal.mealMeatQuantityGram}
-            name="mealMeatQuantityGram"
-            id="mealMeatQuantityGram"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealPreparationTime">זמן הכנה (דקות):</label>
-          <input
-            type="number"
-            min="5"
-            max="500"
-            value={meal.mealPreparationTime}
-            name="mealPreparationTime"
-            id="mealPreparationTime"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealAdditionalIngredients">מרכיבים נוספים:</label>
-          <textarea
-            rows="3"
-            cols="30"
-            value={meal.mealAdditionalIngredients}
-            name="mealAdditionalIngredients"
-            id="mealAdditionalIngredients"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealNumberOfPeopleItSuits">
-            לכמה אנשים זה מתאים:
-          </label>
-          <input
-            type="number"
-            min="1"
-            max="30"
-            value={meal.mealNumberOfPeopleItSuits}
-            name="mealNumberOfPeopleItSuits"
-            id="mealNumberOfPeopleItSuits"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealTotalPrice">מחיר:</label>
-          <input
-            type="number"
-            min="5"
-            value={meal.mealTotalPrice}
-            name="mealTotalPrice"
-            id="mealTotalPrice"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="mealImage" className={styles.btn}>
-            לחץ כדי להוסיף תמונות
+            <label htmlFor="mealPreparationDifficult">רמת קושי:</label>
+            <select
+              id="mealPreparationDifficult"
+              name="mealPreparationDifficult"
+              value={meal.mealPreparationDifficult}
+              onChange={this.handleChange}
+            >
+              <option value="" disabled="disabled">
+                בחר
+              </option>
+              <option value="קל">קל</option>
+              <option value="בינוני">בינוני</option>
+              <option value="קשה">קשה</option>
+            </select>
+            <label htmlFor="mealPreparationTechniques">טכניקת הכנה:</label>
+            <select
+              id="mealPreparationTechniques"
+              name="mealPreparationTechniques"
+              value={meal.mealPreparationTechniques}
+              onChange={this.handleChange}
+            >
+              <option value="" disabled="disabled">
+                בחר
+              </option>
+              <option value="תנור">תנור</option>
+              <option value="מנגל">מנגל</option>
+              <option value="מחבת">מחבת</option>
+              {/*<option value="גז">גז</option>*/}
+            </select>
+            {addOrEdit === "edit" && (
+              <label htmlFor="mealMeatInfo">סוג בשר:</label>
+            )}
+            {addOrEdit === "edit" && (
+              <input
+                type="text"
+                value={meal.mealMeatInfo.map((m) => m.meatName)}
+                disabled="disabled"
+              />
+            )}
+            {addOrEdit === "add" && (
+              <label htmlFor="mealMeatInfo">סוג בשר:</label>
+            )}
+            {addOrEdit === "add" && (
+              <Chosen
+                opt={optMeat}
+                parentCallback={this.handleSelectChangeMeat}
+              />
+            )}
+            {addOrEdit === "edit" && (
+              <label htmlFor="mealRecommendedSideMeals">מנות צד מומלצות:</label>
+            )}
+            {addOrEdit === "edit" && (
+              <input
+                type="text"
+                value={meal.mealRecommendedSideMeals.map((sm) => sm.sideMealName)}
+                disabled="disabled"
+              />
+            )}
+            {addOrEdit === "add" && (
+              <label htmlFor="mealRecommendedSideMeals">מנות צד מומלצות:</label>
+            )}
+            {addOrEdit === "add" && (
+              <Chosen
+                opt={optSideMeals}
+                parentCallback={this.handleSelectChangeSideMeals}
+              />
+            )}
+            <label htmlFor="mealMeatQuantityGram">משקל הבשר (בגרם):</label>
             <input
-              type="file"
-              id="mealImage"
-              name="files[]"
-              hidden
-              onChange={this.handleFiles}
-              multiple
+              type="number"
+              max="5000"
+              min="200"
+              value={meal.mealMeatQuantityGram}
+              name="mealMeatQuantityGram"
+              id="mealMeatQuantityGram"
+              onChange={this.handleChange}
             />
-          </label>
-        </form>
-        {addOrEdit === "edit" && <div className={styles.images}>
+            <label htmlFor="mealPreparationTime">זמן הכנה (דקות):</label>
+            <input
+              type="number"
+              min="5"
+              max="500"
+              value={meal.mealPreparationTime}
+              name="mealPreparationTime"
+              id="mealPreparationTime"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="mealAdditionalIngredients">מרכיבים נוספים:</label>
+            <textarea
+              rows="3"
+              cols="30"
+              value={meal.mealAdditionalIngredients}
+              name="mealAdditionalIngredients"
+              id="mealAdditionalIngredients"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="mealNumberOfPeopleItSuits">
+              לכמה אנשים זה מתאים:
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="30"
+              value={meal.mealNumberOfPeopleItSuits}
+              name="mealNumberOfPeopleItSuits"
+              id="mealNumberOfPeopleItSuits"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="mealTotalPrice">מחיר:</label>
+            <input
+              type="number"
+              min="5"
+              value={meal.mealTotalPrice}
+              name="mealTotalPrice"
+              id="mealTotalPrice"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="mealImage" className={styles.btn}>
+              לחץ כדי להוסיף תמונות
+              <input
+                type="file"
+                id="mealImage"
+                name="files[]"
+                hidden
+                onChange={this.handleFiles}
+                multiple
+              />
+            </label>
+          </form>
+          {addOrEdit === "edit" && <div className={styles.images}>
             {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
               <div name="mealEditSlide" key={url}>
                 <img src={url} alt='' />

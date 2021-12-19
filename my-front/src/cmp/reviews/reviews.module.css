@@ -1,8 +1,23 @@
 .review {
-    padding: 5px 0;
-    margin-bottom: 5px;
-    width: 50%;
-    background-color: rgba(255, 255, 255, 0.35);
+    padding: 10px;
+    margin: 5px auto;
+    width: 75%;
+    background-color: rgb(7 10 13 / 71%);
+    border-radius: 40px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.reviewName {
+    display: flex;
+    padding-inline-start: 5px;
+}
+
+.reviewComment {
+    display: flex;
+    padding-inline-start: 5px;
+    gap: 10px;
 }
 
 .review h3,
@@ -15,10 +30,17 @@ p {
     /* color: black; */
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 100px 200px;
-    gap: 5px;
+.grid {}
+
+.grid input:nth-child(2) {
+    width: 50%;
+}
+
+.grid input {
+    border: none;
+    margin-inline-end: 10px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .btn {
@@ -26,12 +48,25 @@ p {
     margin-bottom: 5px;
     padding: 5px;
     border-radius: 10px;
+    cursor: pointer;
     border: none;
     background-color: rgb(238, 96, 96);
     font-weight: bold;
     font-size: 14px;
 }
 
-.btn:hover {
+.deleteBtn {
+    padding: 5px;
+    margin-right: auto;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(238, 96, 96);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.btn:hover,
+.deleteBtn:hover {
     background-color: rgb(233, 68, 68);
 }

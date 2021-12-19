@@ -1,91 +1,151 @@
 .meal {
-  padding-inline-start: 5px;
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: 45vw 45vw;
-  gap: 10px;
-  /*margin: 0 auto;*/
+    padding-inline-start: 5px;
+    display: grid;
+    grid-template-columns: 105px 2fr 1fr;
+    gap: 10px;
+    margin: 10px auto;
+    max-width: 1200px;
 }
 
 .continer {
-  color: black;
-  background-color: rgba(255, 255, 255, 0.35);
-  padding-inline-start: 10px;
-  padding-bottom: 10px;
-  border-radius: 10px;
-  margin: 0 auto;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.35);
+    padding-inline-start: 10px;
+    border-radius: 10px;
 }
 
 .meal img {
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  object-fit: contain;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: contain;
 }
 
 .images {
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 [name="mealSlide"] {
-  display: none;
+    display: none;
 }
 
 .show {
-  display: block;
+    display: block;
 }
 
 .prevNext {
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
 }
 
 .prev,
 .next {
-  background: none;
-  background-color: rgb(238, 96, 96);
-  border: none;
-  cursor: pointer;
-  width: auto;
-  padding: 16px;
-  color: black;
-  font-weight: bold;
-  font-size: 20px;
-  /* transition: 0.6s ease; */
-  border-radius: 3px 0 0 3px;
+    background: none;
+    background-color: rgb(238, 96, 96);
+    border: none;
+    cursor: pointer;
+    width: auto;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    /* transition: 0.6s ease; */
+    border-radius: 3px 0 0 3px;
 }
 
 .next {
-  left: 0;
-  border-radius: 0 3px 3px 0;
+    left: 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .prev:hover,
 .next:hover {
-  background-color: rgb(233, 68, 68);
+    background-color: rgb(233, 68, 68);
+}
+
+.returnBtn {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 .btn {
-  margin-inline-end: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgb(238, 96, 96);
-  font-weight: bold;
-  font-size: 14px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(238, 96, 96);
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .btn:hover {
-  background-color: rgb(233, 68, 68);
+    background-color: rgb(233, 68, 68);
 }
+
 .btnLike {
-  font-size: 25px;
-  border: none;
-  background: none;
-  cursor: pointer;
+    font-size: 25px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.continerBtn {
+    margin-right: auto;
+    width: 110px;
+    padding-bottom: 5px;
+}
+
+.continerBtn button:last-child {
+    margin-inline-start: 10px;
+}
+
+.reviews {
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+@media (max-width:700px) {
+    .meal {
+        grid-template-columns: 2fr 1fr;
+        padding-inline-start: 0;
+        padding-bottom: 30px;
+    }
+    .btns {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .images {
+        grid-row-start: 2;
+        grid-column-start: 2;
+        grid-column-end: 3;
+    }
+    .continer {
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .reviews {
+        grid-row-start: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+}
+
+@media (max-width:500px) {
+    .meal {
+        display: flex;
+        flex-direction: column;
+    }
+    .btns {
+        order: -1
+    }
 }

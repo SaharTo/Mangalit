@@ -33,7 +33,7 @@ export class Meal extends Component {
       });
   };
 
-  deleteMeal = async (ev, mealId) => {
+  deleteMeal = async (mealId) => {
     fetch(`http://localhost:3030/meals/${mealId}`, {
       method: "DELETE",
       credentials: "include",
@@ -162,61 +162,46 @@ export class Meal extends Component {
           {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
             <label>❤️ {meal.mealLikes.length}</label>
           )}
+          <div className={styles.continerBtn}>
+            {(meal.mealAuthor &&
+              JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+              meal.mealAuthor._id && (
+                <button
+                  className={styles.btn}
+                  onClick={(ev) => this.deleteMeal(meal._id)}
+                >
+                  מחיקה
+                </button>
+              )) ||
+              (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+                true && (
+                  <button
+                    className={styles.btn}
+                    onClick={(ev) => this.deleteMeal(meal._id)}
+                  >
+                    מחיקה
+                  </button>
+                ))}
+
+            {(meal.mealAuthor &&
+              JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+              meal.mealAuthor._id && (
+                <Link to={"/meals/save/" + meal._id}>
+                  <button className={styles.btn}>עריכה</button>
+                </Link>
+              )) ||
+              (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+                true && (
+                  <Link to={"/meals/save/" + meal._id}>
+                    <button className={styles.btn}>עריכה</button>
+                  </Link>
+                ))}
+          </div>
         </div>
-        <div className={styles.btns}>
+        <div className={styles.returnBtn}>
           <button className={styles.btn} onClick={this.goBack}>
             חזרה לכל המנות
           </button>
-          {(meal.mealAuthor &&
-            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              meal.mealAuthor._id && (
-              <button
-                className={styles.btn}
-                onClick={(ev) => this.deleteMeal(meal._id)}
-              >
-                מחיקה
-              </button>
-            )) ||
-            (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
-              true && (
-              <button
-                className={styles.btn}
-                onClick={(ev) => this.deleteMeal(meal._id)}
-              >
-                מחיקה
-              </button>
-            ))}
-          {(meal.mealAuthor &&
-            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              meal.mealAuthor._id && (
-              <Link to={"/meals/save/" + meal._id}>
-                <button className={styles.btn}>עריכה</button>
-              </Link>
-            )) ||
-            (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
-              true && (
-              <Link to={"/meals/save/" + meal._id}>
-                <button className={styles.btn}>עריכה</button>
-              </Link>
-            ))}
-          {/*--------
-          {meal.mealAuthor &&
-            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              meal.mealAuthor._id && (
-              <button
-                className={styles.btn}
-                onClick={(ev) => this.deleteMeal(ev, meal._id)}
-              >
-                מחיקת מנה
-              </button>
-            )}
-          {meal.mealAuthor &&
-            JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              meal.mealAuthor._id && (
-              <Link to={"/meals/save/" + meal._id}>
-                <button className={styles.btn}>עריכת מנה</button>
-              </Link>
-              )}*/}
         </div>
         <div className={styles.images}>
           {meal.mealImage.length > 0 &&
@@ -237,7 +222,7 @@ export class Meal extends Component {
           )}
           {/* {this.showSlides(this.state.slideIndex)} */}
         </div>
-        {<Reviews mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
+        {<Reviews className={styles.reviews} mealId={meal._id} reviewList={meal.mealReviews}></Reviews>}
       </div>
     );
   }

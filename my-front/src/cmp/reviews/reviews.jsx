@@ -4,14 +4,60 @@ import styles from "./reviews.module.css";
 const Reviews = (props) => {
   const [reviews, setReviews] = useState([]);
   const [reviewsIsShown, setReviewsIsShown] = useState(false);
-  const [createReviewIsShown, setCreateReviewIsShown] = useState(false);
+  const [reviewToadd, setReviewToadd] = useState({});
+
   const showReviewsHandler = () => {
     setReviewsIsShown(!reviewsIsShown);
     setReviews(props.reviewList);
   };
-  const createReviewHandler = () => {
-    setCreateReviewIsShown(!createReviewIsShown);
+  const getReviews = () => {
+    //bring from back 
+  }
+
+  const addReview = (ev) => {
+    ev.preventDefault();
+    if (props.mealId) {
+      fetch(`http://localhost:3030/meals/${props.mealId}/review`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ review: reviewToadd }),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            //adjust
+            setReviewToadd({})
+            console.log(data);
+            setReviews(data);
+            //
+          });
+        } else res.text().then((data) => console.log(data));
+      });
+    };
+    if (props.sideMealId) {
+      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/review`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ review: reviewToadd }),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            //adjust
+            setReviewToadd({})
+            console.log(data);
+            setReviews(data);
+            //
+          });
+        } else res.text().then((data) => console.log(data));
+      });
+    };
   };
+
   const deleteReview = (ev, id) => {
     ev.preventDefault();
     // console.log(`${props.mealId}/review/${id}`);
@@ -22,9 +68,11 @@ const Reviews = (props) => {
       })
         .then((res) => {
           if (res.ok) {
-            res.text().then((data) => {
+            res.json().then((data) => {
+              //adjust
               console.log(data);
-              window.location.reload();
+              setReviews(data);
+              //
             });
           } else res.text().then((data) => console.log(data));
         });
@@ -39,81 +87,87 @@ const Reviews = (props) => {
       )
         .then((res) => {
           if (res.ok) {
-            res.text().then((data) => {
+            res.json().then((data) => {
+               //adjust
               console.log(data);
-              window.location.reload();
+              setReviews(data);
+              //
             });
           } else res.text().then((data) => console.log(data));
         });
     }
   };
-  //console.log("review state    ", reviews);
-  //console.log(props.mealId);
-  //const ifMeal = `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`;
-  // const ifSideMeal = `http://localhost:3030/meals/${props.sideMealId}/review?_method=PUT`;
+
+  const handleChange = ({ target }) => {
+    const field = target.id;
+    const value = target.value;
+    reviewToadd[field] = value;
+    setReviewToadd(reviewToadd)
+  };
+
   return (
-    <div>
-      <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
-      {/*<button onClick={setReviewsIsShown(!reviewsIsShown)}>x</button>*/}
-      {reviews.map(
-        (r) =>
-          reviewsIsShown && (
-            <div className={styles.review} key={r._id}>
-              {r.reviewAuthor ? (
-                <h3 className={styles.author}>{r.reviewAuthor.fullName}</h3>
-              ) : (
-                <h3 className={styles.author}>כותב לא ידוע</h3>
-              )}
-              <p>{r.reviewBody}</p>
-              <h4>{r.reviewRating}</h4>
-              {(
-                sessionStorage.getItem("loggedInUserIsadmin") === 'true' &&
-                <button className={styles.btn} onClick={(ev) => deleteReview(ev, r._id)}>
-                  מחק/י תגובה
-                </button>
-              ) || ((r.reviewAuthor &&
-                JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-                r.reviewAuthor._id) && (
-                  <button className={styles.btn} onClick={(ev) => deleteReview(ev, r._id)}>
-                    מחק/י תגובה
-                  </button>
-                ))
-              }
-            </div>
-          )
-      )}
+    <div className={props.className}>
       {sessionStorage.getItem("loggedInUser") && (
-        <button onClick={createReviewHandler} className={styles.btn}>הוספת תגובה</button>
-      )}
-      {createReviewIsShown && (
         <form
           className={styles.grid}
-          method="POST"
-          action={
-            props.mealId
-              ? `http://localhost:3030/meals/${props.mealId}/review?_method=PUT`
-              : `http://localhost:3030/sideMeals/${props.sideMealId}/review?_method=PUT`
-          }
+          onSubmit={addReview}
         >
-          <label htmlFor="reviewRating">דירוג תגובה</label>
           <input
             id="reviewRating"
             type="number"
             min="0"
             max="10"
-            name="review[reviewRating]"
+            value={reviewToadd.reviewRating}
+            placeholder="דירוג"
+            onChange={handleChange}
+            required
           />
-          <label htmlFor="reviewBody">תוכן תגובה</label>
           <input
             id="reviewBody"
             type="text"
+            value={reviewToadd.reviewBody}
             min="3"
             max="100"
-            name="review[reviewBody]"
+            onChange={handleChange}
+            placeholder="תוכן"
+            required
           ></input>
-          <button className={styles.btn}> הוסף תגובה</button>
+          <button className={styles.btn} > הוסף תגובה</button>
         </form>
       )}
+      <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
+      {reviews.length > 0 && reviews.map(
+        (r) =>
+          reviewsIsShown && (
+            <div className={styles.review} key={r._id}>
+              <div className={styles.reviewName}>
+                {r.reviewAuthor ? (
+                  <h3 className={styles.author}>{r.reviewAuthor.fullName}</h3>
+                ) : (
+                  <h3 className={styles.author}>כותב לא ידוע</h3>
+                )}
+                {(
+                  sessionStorage.getItem("loggedInUserIsadmin") === 'true' &&
+                  <button className={styles.deleteBtn} onClick={(ev) => deleteReview(ev, r._id)}>
+                    ❌
+                  </button>
+                ) || ((r.reviewAuthor &&
+                  JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+                  r.reviewAuthor._id) && (
+                    <button className={styles.deleteBtn} onClick={(ev) => deleteReview(ev, r._id)}>
+                      ❌
+                    </button>
+                  ))}
+              </div>
+              <div className={styles.reviewComment}>
+                <h4>{r.reviewRating}</h4>
+                <p>{r.reviewBody}</p>
+              </div>
+
+            </div>
+          )
+      )}
+
     </div>
   );
 };

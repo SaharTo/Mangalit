@@ -26,7 +26,7 @@ export class Home extends Component {
     const { type } = this.state;
     if (!type) return <h1 dir="rtl">טוען...</h1>;
     return (
-      <div dir="rtl">
+      <div dir="rtl" /*className={styles.homePage}*/>
         <h1 className={styles.title}>מנגלית</h1>
         <h4 className={styles.subtitle}>כל</h4>
         <h4 className={styles.subtitle}>שצריך</h4>{" "}

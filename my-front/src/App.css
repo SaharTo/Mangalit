@@ -69,6 +69,7 @@
 }
 
 .chatBotButton {
+    z-index: 1;
     text-align: right;
     border-radius: 15px;
     border: 1px solid rgba(248, 203, 189, 0.4);
