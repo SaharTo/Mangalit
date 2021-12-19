@@ -71,7 +71,7 @@
   text-align: right;
   border-radius: 15px;
   border: 1px solid rgba(248, 203, 189, 0.4);
-  position: fixed;
+  position: absolute;
   cursor: pointer;
   /* Position them relative to the browser window */
   bottom: 2px;

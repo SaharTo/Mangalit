@@ -73,7 +73,6 @@ function App() {
           <Route path="/signup" component={Register} />
           <Route path="/admin" component={Admin} />
           <Route path="/parts" component={Parts} />
-          <Route path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/meals/save/:id?" component={MealEdit} />
           <Route path="/meals/:id" component={Meal} />
@@ -82,6 +81,7 @@ function App() {
           <Route path="/sideMeals/:id" component={SideMeal} />
           <Route path="/sideMeals" component={SideMeals} />
           <Route path="/roulette" component={Roulette} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </Router>

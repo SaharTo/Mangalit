@@ -73,6 +73,8 @@ export class topTenMeals extends Component {
               <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
               <p>זמן הכנה: {meal.mealPreparationTime}</p>
               <p>מחיר: {meal.mealTotalPrice}₪</p>
+              <label>❤️ {meal.mealLikes.length}</label>
+
               {/* <img src='meal.mealImageUrl' alt="img" /> */}
             </div>
           ))}

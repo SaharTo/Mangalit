@@ -65,7 +65,7 @@ export class Meals extends Component {
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
             <div dir="rtl" className={styles.preview} key={meal._id}>
-              <img src={meal.mealImage[0]}  />
+              <img src={meal.mealImage[0]} />
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>
               </Link>
@@ -73,6 +73,7 @@ export class Meals extends Component {
               <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
               <p>זמן הכנה: {meal.mealPreparationTime}</p>
               <p>מחיר: {meal.mealTotalPrice}₪</p>
+              <label>❤️ {meal.mealLikes.length}</label>
               {/* <img src='meal.mealImageUrl' alt="img" /> */}
             </div>
           ))}

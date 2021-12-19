@@ -142,6 +142,7 @@ export class SideMeal extends Component {
                 ❤️
               </button>
             ))}
+          <label>❤️ {sideMeal.sideMealLikes.length}</label>
         </div>
         <div>
           <button className={styles.btn} onClick={this.goBack}>

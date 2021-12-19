@@ -122,8 +122,14 @@ class SimpleForm extends Component {
           floatingStyle="right"
           steps={[
             {
+              id: "0",
+              message:
+                "ברוך הבא למנגלית, הצ'אט-בוט שיעזור לך לתכנן את הכמויות לעל האש הבא",
+              trigger: "1",
+            },
+            {
               id: "1",
-              message: "?מה השם שלך",
+              message: "מה השם שלך?",
               trigger: "name",
             },
             {

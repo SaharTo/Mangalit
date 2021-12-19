@@ -19,7 +19,7 @@ export function Navbar() {
         res.text().then(() => {
           sessionStorage.removeItem("loggedInUser");
           sessionStorage.removeItem("loggedInUserIsadmin");
-          history.push("/home");
+          history.push("/");
           window.location.reload();
         });
       } else res.text().then((data) => console.log(data));
@@ -33,19 +33,19 @@ export function Navbar() {
 
   return (
     <div id="header" className={styles.header}>
-      <NavLink activeClassName="activeNav" to="/home">
+      <NavLink activeClassName="activeNav" to="/">
         <img className={styles.logo} src={logoSrc} alt="miao" />
       </NavLink>
       <div id="links" className={styles.links}>
+        <NavLink activeClassName="activeNav" to="/">
+          דף הבית
+        </NavLink>
         <NavLink activeClassName="activeNav" to="/parts">
           מידע על חלקים
         </NavLink>
         <NavLink activeClassName="activeNav" to="/changePassword">
           שנה סיסמא{" "}
         </NavLink>
-        {/* <NavLink activeClassName="activeNav" to="/home">
-          עמוד הבית
-        </NavLink> */}
         <NavLink activeClassName="activeNav" to="/meals">
           מנות
         </NavLink>

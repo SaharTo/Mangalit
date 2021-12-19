@@ -27,7 +27,7 @@ export default function Register() {
         console.log(res);
         if (res.ok) {
           res.json().then(() => {
-            history.push("/home");
+            history.push("/");
             window.location.reload();
           });
         } else res.text().then((data) => console.log(data));

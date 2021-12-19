@@ -52,7 +52,7 @@ export default function Login() {
                 "loggedInUserIsadmin",
                 JSON.stringify(data.isAdmin)
               );
-            history.push("/home");
+            history.push("/");
             window.location.reload();
           });
         } else res.text().then((data) => console.log(data));
@@ -76,7 +76,7 @@ export default function Login() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
-          required 
+          required
         />
         <input
           type="password"

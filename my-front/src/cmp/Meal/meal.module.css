@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 45vw 45vw;
   gap: 10px;
+  /*margin: 0 auto;*/
 }
 
 .continer {
@@ -11,6 +12,8 @@
   background-color: rgba(255, 255, 255, 0.35);
   padding-inline-start: 10px;
   padding-bottom: 10px;
+  border-radius: 10px;
+  margin: 0 auto;
 }
 
 .meal img {

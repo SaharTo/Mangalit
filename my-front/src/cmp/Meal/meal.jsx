@@ -145,14 +145,23 @@ export class Meal extends Component {
           )}
           {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
             (!islike ? (
-              <button className={styles.btnLike} onClick={this.like}>
-                🤍
-              </button>
+              <div>
+                <button className={styles.btnLike} onClick={this.like}>
+                  🤍
+                </button>
+                <label>{meal.mealLikes.length}</label>
+              </div>
             ) : (
-              <button className={styles.btnLike} onClick={this.unLike}>
-                ❤️
-              </button>
+              <div>
+                <button className={styles.btnLike} onClick={this.unLike}>
+                  ❤️
+                </button>
+                <label className={styles}>{meal.mealLikes.length}</label>
+              </div>
             ))}
+          {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
+            <label>❤️ {meal.mealLikes.length}</label>
+          )}
         </div>
         <div className={styles.btns}>
           <button className={styles.btn} onClick={this.goBack}>
