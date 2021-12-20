@@ -401,7 +401,7 @@ export class MealEdit extends Component {
               onChange={this.handleChange}
               required
             />
-            <button className={styles.btn} onClick={this.onSaveMeal}>
+            <button className={styles.btn} /*onClick={this.onSaveMeal}*/>
               שמירה
             </button>
           </form>
@@ -416,9 +416,9 @@ export class MealEdit extends Component {
                 multiple
               />
             </label>
-            <button className={styles.btn} /*onClick={this.onSaveMeal}*/>
+            {/*<button className={styles.btn} onClick={this.onSaveMeal}>
               שמירה
-          </button>
+          </button>*/}
 
             {addOrEdit === "edit" && <div className={styles.images}>
               {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
