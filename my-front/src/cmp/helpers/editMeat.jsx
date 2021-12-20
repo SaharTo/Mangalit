@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./addMeat.module.css";
+import styles from "./meat.module.css";
 
 export class EditMeat extends Component {
     state = {
@@ -110,7 +110,7 @@ export class EditMeat extends Component {
                     <label htmlFor="meatNumber">
                         <input type="number" value={meatToEdit.meatNumber} name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
                     </label>
-                    <button /*onClick={this.updateMeat}*/ className={styles.btn}>שמור</button>
+                    <button className={styles.btn}>שמור</button>
                 </form>}
             </div >
         );

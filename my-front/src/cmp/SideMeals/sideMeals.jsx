@@ -64,7 +64,7 @@ export class SideMeals extends Component {
               </Link>
               <p>פירוט על המנה: {sideMeal.sideMealSummary}</p>
               <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
-              <label>❤️ {sideMeal.sideMealLikes.length}</label>
+              <p dir="ltr">❤️ {sideMeal.sideMealLikes.length}</p>
 
               {/* <Link to={'/sideMeals/' + sideMeal._id}><img src='sideMeal.sideMealImageUrl' alt="img" /></Link> */}
             </div>

@@ -94,7 +94,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log(err);
+        console.log('cant like: ',err);
       });
   };
 
@@ -111,7 +111,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log(err);
+        console.log('cant unlike: ',err);
       });
   };
 
@@ -151,14 +151,14 @@ export class Meal extends Component {
           )}
           {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
             (!islike ? (
-              <div>
+              <div dir="ltr">
                 <button className={styles.btnLike} onClick={this.like}>
                   🤍
                 </button>
                 <label>{meal.mealLikes.length}</label>
               </div>
             ) : (
-              <div>
+              <div dir="ltr">
                 <button className={styles.btnLike} onClick={this.unLike}>
                   ❤️
                 </button>
@@ -166,7 +166,7 @@ export class Meal extends Component {
               </div>
             ))}
           {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
-            <label>❤️ {meal.mealLikes.length}</label>
+            <div dir="ltr">❤️ {meal.mealLikes.length}</div>
           )}
           <div className={styles.continerBtn}>
             {(meal.mealAuthor &&

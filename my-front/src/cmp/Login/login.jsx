@@ -90,7 +90,7 @@ export default function Login() {
       </form>
       <form
         dir="rtl"
-        /*className={styles.forget}*/ name="forget"
+        name="forget"
         onSubmit={forgetPassword}
       >
         <button className={styles.btn}>שכחתי סיסמא</button>

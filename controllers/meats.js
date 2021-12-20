@@ -11,10 +11,9 @@ module.exports.meatById = async(req, res) => {
 };
 
 module.exports.createMeat = async(req, res) => {
-    console.log(req.body.meat);
+    // console.log(req.body.meat);
     const meat = new Meat(req.body.meat);
     await meat.save();
-    // res.redirect(`http://localhost:3000/admin/`);
     res.send('success');
 };
 module.exports.updateMeat = async(req, res) => {
@@ -22,10 +21,9 @@ module.exports.updateMeat = async(req, res) => {
     const meat = await Meat.findByIdAndUpdate(id, {...req.body.meat });
     await meat.save();
     console.log(meat);
-    // res.redirect(`http://localhost:3000/admin/`)
     res.send("update Meat")
 };
 module.exports.deleteMeat = async(req, res) => {
     await Meat.findByIdAndDelete(req.params.id);
-    res.redirect(`http://localhost:3000/admin/`)
+    res.send("delete Meat")
 };

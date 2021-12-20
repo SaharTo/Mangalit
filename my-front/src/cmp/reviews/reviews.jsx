@@ -7,8 +7,8 @@ const Reviews = (props) => {
   const [reviewToadd, setReviewToadd] = useState({});
 
   const showReviewsHandler = () => {
+    if (!reviewsIsShown) getReviews();
     setReviewsIsShown(!reviewsIsShown);
-    getReviews()
   };
   const getReviews = () => {
     //bring from back
@@ -23,12 +23,12 @@ const Reviews = (props) => {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            console.log("inside getReviews func, this is the return data ", data);
+            // console.log("inside getReviews func, this is the return data ", data);
             //adjust
             //setReviews()
             //console.log(data);
             setReviews(data);
-            console.log("this is the reviews state ", reviews)
+            // console.log("this is the reviews state ", reviews)
             //
           });
         } else res.text().then((data) => console.log(data));
@@ -93,7 +93,6 @@ const Reviews = (props) => {
             //adjust
             setReviewToadd({})
             //getReviews()
-
             /*console.log(data);*/
             setReviews(data);
             //
@@ -115,7 +114,7 @@ const Reviews = (props) => {
           if (res.ok) {
             res.json().then((data) => {
               //adjust
-              console.log(data);
+              // console.log(data);
               setReviews(data);
               //
             });
@@ -134,7 +133,7 @@ const Reviews = (props) => {
           if (res.ok) {
             res.json().then((data) => {
               //adjust
-              console.log(data);
+              // console.log(data);
               setReviews(data);
               //
             });
@@ -147,6 +146,7 @@ const Reviews = (props) => {
     const field = target.id;
     const value = target.value;
     reviewToadd[field] = value;
+    console.log(reviewToadd);
     setReviewToadd(reviewToadd)
   };
 
@@ -160,7 +160,7 @@ const Reviews = (props) => {
           <input
             id="reviewRating"
             type="number"
-            min="0"
+            min="1"
             max="10"
             value={reviewToadd.reviewRating}
             placeholder="דירוג"

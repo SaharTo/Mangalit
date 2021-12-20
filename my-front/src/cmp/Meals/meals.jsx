@@ -21,7 +21,7 @@ export class Meals extends Component {
         this.setState({ mToshow: meals });
       })
       .catch((err) => {
-        console.log(err);
+        console.log('cant get meals: ',err);
       });
   };
 

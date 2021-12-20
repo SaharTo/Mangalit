@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./addMeat.module.css";
+import styles from "./meat.module.css";
 
 export class DeleteMeat extends Component {
     state = {
@@ -18,6 +18,23 @@ export class DeleteMeat extends Component {
                 console.log(error);
             });
     };
+
+    deleteMeat = async (ev) => {
+        ev.preventDefault();
+        const { meatToDelete } = this.state;
+        fetch(`http://localhost:3030/meats/${meatToDelete._id}/`, {
+            method: "DELETE",
+            credentials: "include",
+        }).then((res) => {
+            if (res.ok) {
+                res.text().then((data) => {
+                    // console.log("after res ok ", data);
+                    this.setState({ meatToDelete: null })
+                    this.getMeats();
+                });
+            } else res.text().then((data) => console.log(data));
+        })
+    }
 
     handleChangeMeat = ({ target }) => {
         const value = JSON.parse(target.value);
@@ -42,15 +59,11 @@ export class DeleteMeat extends Component {
                 </label>
 
                 <h2> מחיקת סוג בשר</h2>
-                {meatToDelete && <form
-                    method="POST"
-                    action={`http://localhost:3030/meats/${meatToDelete._id}/?_method=DELETE`}
-                    className={styles.meat}
-                >
+                {meatToDelete && <form className={styles.meat} onSubmit={this.deleteMeat} >
                     <label htmlFor="meatName">
                         {meatToDelete.meatName}
                     </label>
-                    <button className={styles.btn}>מחק</button>
+                    <button className={styles.btn}>מחק בשר</button>
                 </form>}
             </div >
         );

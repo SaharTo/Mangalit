@@ -5,5 +5,11 @@
 }
 
 .pageLabel {
-    padding-inline-start: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.admin {
+    width: 300px;
+    margin: 10px auto;
 }

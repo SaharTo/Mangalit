@@ -92,7 +92,7 @@ export class SideMeal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log(err);
+        console.log("cant like: ", err);
       });
   };
 
@@ -109,7 +109,7 @@ export class SideMeal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log(err);
+        console.log("cant unlike: ", err);
       });
   };
 
@@ -124,30 +124,33 @@ export class SideMeal extends Component {
           <p>רמת קושי: {sideMeal.sideMealDifficult}</p>
           <p>מרכיבים: {sideMeal.sideMealIngriedents}</p>
           <p>אופן ההכנה: {sideMeal.sideMealPreperationDescription}</p>
-          <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime}</p>
+          <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime} דקות</p>
           <p>לכמה אנשים זה מתאים: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
           <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
           {sideMeal.sideMealsAuthor ? (
             <p>יוצר: {sideMeal.sideMealsAuthor.fullName}</p>
           ) : (
-            <p>יוצר: Unknown</p>
+            <p>יוצר: לא ידוע</p>
           )}
           {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
             (!islike ? (
-              <div>
+              <div dir="ltr">
                 <button className={styles.btnLike} onClick={this.like}>
                   🤍
                 </button>
                 <label>{sideMeal.sideMealLikes.length}</label>
               </div>
             ) : (
-              <div>
+              <div dir="ltr">
                 <button className={styles.btnLike} onClick={this.unLike}>
                   ❤️
                 </button>
                 <label>{sideMeal.sideMealLikes.length}</label>
               </div>
             ))}
+          {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
+            <div dir="ltr">❤️ {sideMeal.sideMealLikes.length}</div>
+          )}
           <div className={styles.continerBtn}>
             {(sideMeal.sideMealsAuthor &&
               JSON.parse(sessionStorage.getItem("loggedInUser")) ===
@@ -208,8 +211,8 @@ export class SideMeal extends Component {
           )}
         </div>
         {
-          <Reviews 
-          className={styles.reviews}
+          <Reviews
+            className={styles.reviews}
             sideMealId={sideMeal._id}
             reviewList={sideMeal.sideMealsReviews}
           ></Reviews>

@@ -4,27 +4,9 @@ import { Link } from "react-router-dom";
 import fries from "../../assets/fries.jpg";
 import meatimg from "../../assets/meat.jpg";
 
-// import Beef from "../parts/beef/beef";
-// import Chicken from "../parts/chicken/chicken";
-// import Lamb from "../parts/lamb/lamb";
 
 export class Home extends Component {
-  state = {
-    type: null,
-  };
-
-  componentDidMount() {
-    this.setState({ type: "בקר" });
-  }
-
-  handleChange({ target }) {
-    console.log(target.value);
-    this.setState({ type: target.value });
-  }
-
   render() {
-    const { type } = this.state;
-    if (!type) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" /*className={styles.homePage}*/>
         <h1 className={styles.title}>מנגלית</h1>

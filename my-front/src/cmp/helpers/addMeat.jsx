@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./addMeat.module.css";
+import styles from "./meat.module.css";
 
 export class AddMeat extends Component {
     state = {
@@ -31,8 +31,8 @@ export class AddMeat extends Component {
         }).then((res) => {
             if (res.ok) {
                 res.text().then((data) => {
-                    console.log(data)
-                    window.location.reload();
+                    // console.log(data)
+                    this.getEmptyMeat();
                 });
             } else res.text().then((data) => console.log(data));
         });
