@@ -1,16 +1,20 @@
 .edit {
-    padding-inline-start: 10px;
+    padding: 0 10px;
+    padding-bottom: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .formImage {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     gap: 10px;
 }
 
 .meal {
-    margin-top: 10px;
     display: grid;
-    grid-template-columns: 200px 300px;
+    grid-template-columns: 2fr 3fr;
+    /* grid-template-columns: 200px 300px; */
     gap: 10px;
     font-weight: bold;
     font-size: 18px;
@@ -20,9 +24,26 @@
     margin: 0;
 }
 
+.mealInput,
+.meal textarea,
+.meal select {
+    margin: 0;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.imagesBtn {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
 .images {
     align-items: center;
-    width: 500px;
+    max-width: 500px;
     height: 400px;
 }
 
@@ -71,24 +92,20 @@
     font-weight: bold;
     font-size: 20px;
     /* transition: 0.6s ease; */
-    border-radius: 3px 0 0 3px;
+    border-radius: 5px;
 }
 
 .next {
     left: 0;
-    border-radius: 0 3px 3px 0;
 }
 
 .prev:hover,
-.next:hover {
+.next:hover,
+.deleteImg:hover {
     background-color: rgb(233, 68, 68);
 }
 
 .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 110px;
     margin-top: 10px;
 }
 
@@ -96,6 +113,7 @@
     padding: 5px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
     background-color: rgb(238, 96, 96);
     font-weight: bold;
     font-size: 14px;
@@ -109,4 +127,12 @@
 label.btn {
     width: 160px;
     color: black;
+}
+
+@media (max-width:700px) {
+    .formImage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

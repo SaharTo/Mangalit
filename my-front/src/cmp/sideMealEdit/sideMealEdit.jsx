@@ -150,12 +150,18 @@ export class SideMealEdit extends Component {
     if (!sideMeal) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.edit}>
+         <div className={styles.buttons}>
+            <button className={styles.btn} onClick={this.goBack}>
+              חזרה לדף הקודם
+            </button>
+          </div>
         {id ? (
           <h1>עריכת מנת צד</h1>
         ) : (
           <h1>יצירת מנה חדשה</h1>
         )}
         <div className={styles.formImage}>
+         
           <form className={styles.sideMeal} name="sideMeal">
             <label htmlFor="sideMealName">שם המנה:</label>
             <input
@@ -237,47 +243,46 @@ export class SideMealEdit extends Component {
               id="sideMealEstimatedPrice"
               onChange={this.handleChange}
             />
+            <button className={styles.btn} onClick={this.onSaveSideMeal}>
+              שמירה
+            </button>
           </form>
-          {id && <div className={styles.images}>
-            {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((url) =>
-              <div name="sideMealEditSlide" key={url}>
-                <img src={url} alt='' />
-              </div>
-            )}
-            {files.length > 0 && files.map(f => <div name="sideMealEditSlide" key={f.name}>
-              <img src={URL.createObjectURL(f)} alt='' />
-            </div>)}
-            {sideMeal.sideMealImageUrl.length + files.length > 0 && <div className={styles.prevNext}>
-              {sideMeal.sideMealImageUrl.length + files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
-              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
-              {sideMeal.sideMealImageUrl.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+          <div className={styles.imagesBtn}>
+            <label htmlFor="sideMealImageUrl" className={styles.btn}>
+              לחץ כדי להוסיף תמונות
+              <input type="file" id="sideMealImageUrl" name="files[]" hidden onChange={this.handleFiles} multiple />
+            </label>
+
+            {id && <div className={styles.images}>
+              {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((url) =>
+                <div name="sideMealEditSlide" key={url}>
+                  <img src={url} alt='' />
+                </div>
+              )}
+              {files.length > 0 && files.map(f => <div name="sideMealEditSlide" key={f.name}>
+                <img src={URL.createObjectURL(f)} alt='' />
+              </div>)}
+              {sideMeal.sideMealImageUrl.length + files.length > 0 && <div className={styles.prevNext}>
+                {sideMeal.sideMealImageUrl.length + files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+                <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+                {sideMeal.sideMealImageUrl.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+              </div>}
             </div>}
-          </div>}
-          {!id && <div className={styles.images}>
-            {files.length > 0 && files.map(f => <div name="sideMealEditSlide" key={f.name}>
-              <img src={URL.createObjectURL(f)} alt='' />
-            </div>)}
-            {files.length > 0 && <div className={styles.prevNext}>
-              {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
-              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
-              {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+            {!id && <div className={styles.images}>
+              {files.length > 0 && files.map(f => <div name="sideMealEditSlide" key={f.name}>
+                <img src={URL.createObjectURL(f)} alt='' />
+              </div>)}
+              {files.length > 0 && <div className={styles.prevNext}>
+                {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+                <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+                {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+              </div>}
             </div>}
-          </div>}
+          </div>
+
+
         </div>
 
-        <label htmlFor="sideMealImageUrl" className={styles.btn}>
-          לחץ כדי להוסיף תמונות
-          <input type="file" id="sideMealImageUrl" name="files[]" hidden onChange={this.handleFiles} multiple />
-        </label>
-
-        <div className={styles.buttons}>
-          <button className={styles.btn} onClick={this.onSaveSideMeal}>
-            שמירה
-          </button>
-          <button className={styles.btn} onClick={this.goBack}>
-            חזרה לדף הקודם
-          </button>
-        </div>
       </div>
     );
   }

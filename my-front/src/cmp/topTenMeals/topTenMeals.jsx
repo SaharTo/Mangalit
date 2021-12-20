@@ -38,11 +38,11 @@ export class topTenMeals extends Component {
     if (!meals || !mToshow) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meals}>
-        {/*sessionStorage.getItem("loggedInUser") && (
+        {/* {sessionStorage.getItem("loggedInUser") && (
           <Link className={styles.add} to="/meals/save/">
             הוספת מנה
           </Link>
-        )*/}
+        )} */}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
             חיפוש{" "}
@@ -58,9 +58,9 @@ export class topTenMeals extends Component {
             placeholder="חפש/י כאן..."
           />
         </div>
-        <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
+        {/* <NavLink className={styles.rndMealsLink} to={`/roulette/`}>
           לחץ כדי לעבור גלגל של מנות רנדומליות
-        </NavLink>
+        </NavLink> */}
 
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
@@ -73,8 +73,7 @@ export class topTenMeals extends Component {
               <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
               <p>זמן הכנה: {meal.mealPreparationTime}</p>
               <p>מחיר: {meal.mealTotalPrice}₪</p>
-              <label>❤️ {meal.mealLikes.length}</label>
-
+              <p dir="ltr">❤️ {meal.mealLikes.length}</p>
               {/* <img src='meal.mealImageUrl' alt="img" /> */}
             </div>
           ))}
