@@ -153,7 +153,7 @@ export class SideMealEdit extends Component {
         <div className={styles.buttons}>
           <button className={styles.btn} onClick={this.goBack}>
             חזרה לדף הקודם
-            </button>
+          </button>
         </div>
         {id ? (
           <h1>עריכת מנת צד</h1>
@@ -264,7 +264,7 @@ export class SideMealEdit extends Component {
             />
             <button className={styles.btn} /*onClick={this.onSaveSideMeal}*/>
               שמירה
-          </button>
+            </button>
           </form>
           <div className={styles.imagesBtn}>
             <label htmlFor="sideMealImageUrl" className={styles.btn}>
@@ -298,15 +298,6 @@ export class SideMealEdit extends Component {
               </div>}
             </div>}
           </div>
-
-
-          <div className={styles.buttons}>
-
-            <button className={styles.btn} onClick={this.goBack}>
-              חזרה לדף הקודם
-          </button>
-          </div>
-
         </div>
       </div>
     );

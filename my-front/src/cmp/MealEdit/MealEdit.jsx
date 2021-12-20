@@ -446,14 +446,6 @@ export class MealEdit extends Component {
               </div>}
             </div>}
           </div>
-          <div className={styles.buttons}>
-
-            <button className={styles.btn} onClick={this.goBack}>
-              חזרה לדף הקודם
-          </button>
-          </div >
-
-
         </div >
       </div >
     );

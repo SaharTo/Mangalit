@@ -62,7 +62,7 @@ export class topTenSideMeals extends Component {
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>
-              <img src={sideMeal.sideMealImageUrl[0]} />
+              <img src={sideMeal.sideMealImageUrl[0]} alt="" />
               <Link to={"/sideMeals/" + sideMeal._id}>
                 <h1>שם המנה: {sideMeal.sideMealName}</h1>
               </Link>

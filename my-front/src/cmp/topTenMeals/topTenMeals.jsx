@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import styles from "./topTenMeals.module.css";
 
 export class topTenMeals extends Component {
@@ -65,7 +65,7 @@ export class topTenMeals extends Component {
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
             <div dir="rtl" className={styles.preview} key={meal._id}>
-              <img src={meal.mealImage[0]} />
+              <img src={meal.mealImage[0]} alt=""/>
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>
               </Link>
