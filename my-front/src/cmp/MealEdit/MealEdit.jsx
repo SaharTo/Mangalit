@@ -118,7 +118,7 @@ export class MealEdit extends Component {
 
   onSaveMeal = async (ev) => {
     ev.preventDefault();
-    console.log("after     ", this.state);
+    // console.log("after     ", this.state);
     const { meal, files } = this.state;
     const id = this.props.match.params.id;
     for (let i = 0; i < files.length; i++) {
@@ -148,7 +148,7 @@ export class MealEdit extends Component {
           } else res.text().then((data) => console.log(data));
         });
     } else {
-      console.log("post meal ", meal);
+      // console.log("post meal ", meal);
       fetch(`http://localhost:3030/meals/`, {
         method: "POST",
         headers: {
@@ -169,7 +169,6 @@ export class MealEdit extends Component {
 
   deleteImg = () => {
     const index = this.state.slideIndex;
-    console.log(index);
     const newImgs = this.state.meal.mealImage;
     const newFiles = this.state.files;
     if (index > newImgs.length) {
@@ -218,6 +217,11 @@ export class MealEdit extends Component {
     });
     return (
       <div dir="rtl" className={styles.edit}>
+        <div className={styles.buttons}>
+          <button className={styles.btn} onClick={this.goBack}>
+            חזרה לדף הקודם
+          </button>
+        </div>
         {addOrEdit === "edit" && <h1>עדכון מנה</h1>}
         {addOrEdit === "add" && <h1>יצירת מנה חדשה</h1>}
         <div className={styles.formImage}>
@@ -225,6 +229,7 @@ export class MealEdit extends Component {
           >
             <label htmlFor="mealName">שם המנה:</label>
             <input
+              className={styles.mealInput}
               type="text"
               value={meal.mealName}
               id="mealName"
@@ -236,6 +241,7 @@ export class MealEdit extends Component {
             />
             <label htmlFor="mealSummary">פירוט המנה:</label>
             <input
+              className={styles.mealInput}
               type="text"
               value={meal.mealSummary}
               name="mealSummary"
@@ -295,6 +301,7 @@ export class MealEdit extends Component {
             )}
             {addOrEdit === "edit" && (
               <input
+                className={styles.mealInput}
                 type="text"
                 value={meal.mealMeatInfo.map((m) => m.meatName)}
                 disabled="disabled"
@@ -314,6 +321,7 @@ export class MealEdit extends Component {
             )}
             {addOrEdit === "edit" && (
               <input
+                className={styles.mealInput}
                 type="text"
                 value={meal.mealRecommendedSideMeals.map((sm) => sm.sideMealName)}
                 disabled="disabled"
@@ -331,6 +339,7 @@ export class MealEdit extends Component {
             )}
             <label htmlFor="mealMeatQuantityGram">משקל הבשר (בגרם):</label>
             <input
+              className={styles.mealInput}
               type="number"
               max="5000"
               min="200"
@@ -344,6 +353,7 @@ export class MealEdit extends Component {
             />
             <label htmlFor="mealPreparationTime">זמן הכנה (דקות):</label>
             <input
+              className={styles.mealInput}
               type="number"
               min="5"
               max="500"
@@ -369,6 +379,7 @@ export class MealEdit extends Component {
               לכמה אנשים זה מתאים:
             </label>
             <input
+              className={styles.mealInput}
               type="number"
               min="1"
               max="30"
@@ -380,6 +391,7 @@ export class MealEdit extends Component {
             />
             <label htmlFor="mealTotalPrice">מחיר:</label>
             <input
+              className={styles.mealInput}
               type="number"
               max='2000'
               min="5"
@@ -389,12 +401,16 @@ export class MealEdit extends Component {
               onChange={this.handleChange}
               required
             />
+            <button className={styles.btn} onClick={this.onSaveMeal}>
+              שמירה
+            </button>
+          </form>
+          <div className={styles.imagesBtn}>
             <label htmlFor="mealImage" className={styles.btn}>
               לחץ כדי להוסיף תמונות
               <input
                 type="file"
                 id="mealImage"
-                name="files[]"
                 hidden
                 onChange={this.handleFiles}
                 multiple
@@ -403,40 +419,43 @@ export class MealEdit extends Component {
             <button className={styles.btn} /*onClick={this.onSaveMeal}*/>
               שמירה
           </button>
-          </form>
-          {addOrEdit === "edit" && <div className={styles.images}>
-            {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
-              <div name="mealEditSlide" key={url}>
-                <img src={url} alt='' />
-              </div>
-            )}
-            {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
-              <img src={URL.createObjectURL(f)} alt='' />
-            </div>)}
-            {meal.mealImage.length + files.length > 0 && <div className={styles.prevNext}>
-              {meal.mealImage.length + files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
-              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
-              {meal.mealImage.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
-            </div>}
-          </div>}
-          {addOrEdit === "add" && <div className={styles.images}>
-            {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
-              <img src={URL.createObjectURL(f)} alt='' />
-            </div>)}
-            {files.length > 0 && <div className={styles.prevNext}>
-              {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
-              <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
-              {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
-            </div>}
-          </div>}
-        </div>
-        <div className={styles.buttons}>
 
-          <button className={styles.btn} onClick={this.goBack}>
-            חזרה לדף הקודם
+            {addOrEdit === "edit" && <div className={styles.images}>
+              {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
+                <div name="mealEditSlide" key={url}>
+                  <img src={url} alt='' />
+                </div>
+              )}
+              {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
+                <img src={URL.createObjectURL(f)} alt='' />
+              </div>)}
+              {meal.mealImage.length + files.length > 0 && <div className={styles.prevNext}>
+                {meal.mealImage.length + files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+                <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+                {meal.mealImage.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+              </div>}
+              {addOrEdit === "add" && <div className={styles.images}>
+                {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
+                  <img src={URL.createObjectURL(f)} alt='' />
+                </div>)}
+                {files.length > 0 && <div className={styles.prevNext}>
+                  {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+                  <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+                  {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
+                </div>}
+              </div>}
+            </div>}
+          </div>
+          <div className={styles.buttons}>
+
+            <button className={styles.btn} onClick={this.goBack}>
+              חזרה לדף הקודם
           </button>
-        </div>
-      </div>
+          </div >
+
+
+        </div >
+      </div >
     );
   }
 }

@@ -57,12 +57,11 @@
     font-weight: bold;
     font-size: 20px;
     /* transition: 0.6s ease; */
-    border-radius: 3px 0 0 3px;
+    border-radius: 5px;
 }
 
 .next {
     left: 0;
-    border-radius: 0 3px 3px 0;
 }
 
 .prev:hover,
@@ -119,10 +118,9 @@
 @media (max-width:700px) {
     .sideMeal {
         grid-template-columns: 2fr 1fr;
-        padding-inline-start: 0;
-        padding-bottom: 30px;
+        padding: 0 5px 30px;
     }
-    .btns {
+    .returnBtn {
         grid-row-start: 1;
         grid-row-end: 2;
         grid-column-start: 1;
@@ -150,7 +148,7 @@
         display: flex;
         flex-direction: column;
     }
-    .btns {
+    .returnBtn {
         order: -1
     }
 }
