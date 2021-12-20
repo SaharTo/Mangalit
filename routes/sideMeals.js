@@ -20,6 +20,9 @@ router
   .delete(isLoggedIn, isAuthor, sideMeals.deleteSideMeal)
   .put(isLoggedIn, isAuthor, validateSideMeal, sideMeals.updateSideMeal);
 
+router.get("/:id/reviews",sideMeals.sideMealsReviews)
+
+
 router
   .route("/:id/like")
   .put(isLoggedIn, sideMeals.addLike)

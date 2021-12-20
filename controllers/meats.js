@@ -21,7 +21,9 @@ module.exports.updateMeat = async(req, res) => {
     const { id } = req.params;
     const meat = await Meat.findByIdAndUpdate(id, {...req.body.meat });
     await meat.save();
-    res.redirect(`http://localhost:3000/admin/`)
+    console.log(meat);
+    // res.redirect(`http://localhost:3000/admin/`)
+    res.send("update Meat")
 };
 module.exports.deleteMeat = async(req, res) => {
     await Meat.findByIdAndDelete(req.params.id);

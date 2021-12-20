@@ -21,7 +21,7 @@ router
   .get(meals.mealById)
   .delete(isLoggedIn, isAuthor, meals.deleteMeal)
   .put(isLoggedIn, isAuthor, validateMeal, meals.updateMeal);
-
+router.get("/:id/reviews",meals.mealReviews)
 router
   .route("/:id/like")
   .put(isLoggedIn, meals.addLike)

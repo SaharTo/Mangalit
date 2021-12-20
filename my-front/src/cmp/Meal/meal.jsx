@@ -23,15 +23,21 @@ export class Meal extends Component {
   getMeal = async () => {
     const id = this.props.match.params.id;
     fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
-      .then((res) => res.json())
-      .then((meal) => {
-        this.setState({ meal });
-        this.checkLike();
+      .then((res) => {
+        if (res.ok) {
+          res.json()
+            .then((meal) => {
+              this.setState({ meal });
+              this.checkLike();
+            })
+        }
+        else res.text().then((data) => console.log(data));
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
 
   deleteMeal = async (mealId) => {
     fetch(`http://localhost:3030/meals/${mealId}`, {
@@ -121,8 +127,8 @@ export class Meal extends Component {
           <div>
             סוג בשר:
             {meal.mealMeatInfo.map((meat) => {
-              return <p key={meat._id}> - {meat.meatName}</p>;
-            })}
+            return <p key={meat._id}> - {meat.meatName}</p>;
+          })}
           </div>
           <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
           {meal.mealRecommendedSideMeals.map((sideMeal) => {

@@ -8,10 +8,52 @@ const Reviews = (props) => {
 
   const showReviewsHandler = () => {
     setReviewsIsShown(!reviewsIsShown);
-    setReviews(props.reviewList);
+    getReviews()
   };
   const getReviews = () => {
-    //bring from back 
+    //bring from back
+    if (props.mealId) {
+      fetch(`http://localhost:3030/meals/${props.mealId}/reviews`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        //body: JSON.stringify({ review: reviewToadd }),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            console.log("inside getReviews func, this is the return data ", data);
+            //adjust
+            //setReviews()
+            //console.log(data);
+            setReviews(data);
+            console.log("this is the reviews state ", reviews)
+            //
+          });
+        } else res.text().then((data) => console.log(data));
+      });
+    }
+    if (props.sideMealId) {
+      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/reviews`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        //body: JSON.stringify({ review: reviewToadd }),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            console.log("inside getReviews func, this is the return data ", data);
+            //adjust
+            setReviews(data);
+            console.log("this is the reviews state ", reviews);
+            //
+          });
+        } else res.text().then((data) => console.log(data));
+      });
+    }
   }
 
   const addReview = (ev) => {
@@ -27,9 +69,10 @@ const Reviews = (props) => {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            //adjust
             setReviewToadd({})
-            console.log(data);
+            //getReviews()
+            //adjust
+            //console.log(data);
             setReviews(data);
             //
           });
@@ -49,7 +92,9 @@ const Reviews = (props) => {
           res.json().then((data) => {
             //adjust
             setReviewToadd({})
-            console.log(data);
+            //getReviews()
+
+            /*console.log(data);*/
             setReviews(data);
             //
           });
@@ -88,7 +133,7 @@ const Reviews = (props) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
-               //adjust
+              //adjust
               console.log(data);
               setReviews(data);
               //

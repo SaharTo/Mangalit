@@ -30,6 +30,9 @@ module.exports.sideMealById = async(req, res) => {
             },
         })
         .populate("sideMealsAuthor", "fullName");
+        if (!sideMeal) {
+            res.status(401).send("Cannot find that sideMeal");
+        }
     res.send(sideMeal);
 };
 
@@ -39,6 +42,23 @@ module.exports.deleteSideMeal = async(req, res) => {
     res.send("delete");
     // res.redirect("/sideMeals");
 };
+
+
+module.exports.sideMealsReviews=async(req,res)=>{
+    const sideMeal = await SideMeal.findById(req.params.id)
+    .populate({
+        path: "sideMealsReviews",
+        populate: {
+            path: "reviewAuthor",
+            select: "fullName",
+        },
+    })
+    if (!sideMeal) {
+        res.status(401).send("Cannot find that sideMeal");
+    }
+res.send(sideMeal.sideMealsReviews);
+}
+
 
 module.exports.updateSideMeal = async(req, res) => {
     const { id } = req.params;

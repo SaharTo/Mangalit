@@ -17,8 +17,6 @@ export class DeleteMeat extends Component {
             .catch((error) => {
                 console.log(error);
             });
-
-
     };
 
     handleChangeMeat = ({ target }) => {

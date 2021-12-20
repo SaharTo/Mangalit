@@ -29,7 +29,34 @@ export class EditMeat extends Component {
     handleChangeMeat = ({ target }) => {
         const value = JSON.parse(target.value);
         this.setState({ meatToEdit: value });
-    };
+    }
+
+    updateMeat = async (ev) => {
+        ev.preventDefault();
+        // console.log("inside the update meat func")
+        const { meatToEdit } = this.state;
+        if (meatToEdit) {
+            fetch(`http://localhost:3030/meats/${meatToEdit._id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({ meat: meatToEdit }),
+            }).then((res) => {
+                if (res.ok) {
+                    res.text().then((data) => {
+                        // console.log("after res ok ", data);
+                        this.setState({ meatToEdit: null })
+                        this.getMeats();
+                    });
+                } else res.text().then((data) => console.log(data));
+
+            })
+        }
+        if (!meatToEdit) console.log('plz select meat')
+
+    }
     render() {
         const { meats, meatToEdit } = this.state;
         if (!meats) return <div>Loading...</div>;
@@ -48,9 +75,7 @@ export class EditMeat extends Component {
                 </label>
 
                 <h2> עדכון סוג בשר</h2>
-                {meatToEdit && <form
-                    method="POST"
-                    action={`http://localhost:3030/meats/${meatToEdit._id}/?_method=PUT`}
+                {meatToEdit && <form onSubmit={this.updateMeat}
                     className={styles.meat}
                 >
                     <label htmlFor="meatName">
@@ -85,7 +110,7 @@ export class EditMeat extends Component {
                     <label htmlFor="meatNumber">
                         <input type="number" value={meatToEdit.meatNumber} name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />
                     </label>
-                    <button className={styles.btn}>שמור</button>
+                    <button /*onClick={this.updateMeat}*/ className={styles.btn}>שמור</button>
                 </form>}
             </div >
         );

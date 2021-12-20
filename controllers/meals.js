@@ -8,6 +8,22 @@ module.exports.index = async(req, res) => {
     res.send(meals);
 };
 
+module.exports.mealReviews=async(req,res)=>{
+    const meal = await Meal.findById(req.params.id)
+    .populate({
+        path: "mealReviews",
+        populate: {
+            path: "reviewAuthor",
+            select: "fullName",
+        },
+    })
+    if (!meal) {
+        res.status(401).send("Cannot find that meal");
+    }
+    res.send(meal.mealReviews);
+}
+
+
 module.exports.rnd8Meals = async(rec, res) => {
     const meals = await Meal.find({});
     const rndMeals = meals;
