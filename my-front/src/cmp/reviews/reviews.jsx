@@ -45,10 +45,10 @@ const Reviews = (props) => {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            console.log("inside getReviews func, this is the return data ", data);
+            //console.log("inside getReviews func, this is the return data ", data);
             //adjust
             setReviews(data);
-            console.log("this is the reviews state ", reviews);
+            //console.log("this is the reviews state ", reviews);
             //
           });
         } else res.text().then((data) => console.log(data));
@@ -146,7 +146,7 @@ const Reviews = (props) => {
     const field = target.id;
     const value = target.value;
     reviewToadd[field] = value;
-    console.log(reviewToadd);
+    //console.log(reviewToadd);
     setReviewToadd(reviewToadd)
   };
 

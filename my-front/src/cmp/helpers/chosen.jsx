@@ -18,6 +18,7 @@ const Chosen = ({ opt, parentCallback }) => {
         onChange={onTrigger}
         labelledBy="Select"
         disableSearch="true"
+
       />
     </div>
   );

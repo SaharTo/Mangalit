@@ -55,14 +55,14 @@ h4.subtitle {
 }
 
 .recSideMeals {
-    width: 350px;
+    width: 300px;
     top: 55%;
     background-color: rgba(212, 212, 212, 0.445);
     text-align: center;
     border-radius: 5px;
     word-wrap: break-word;
     position: fixed;
-    left: 10%;
+    left: 5%;
     border-radius: 20px;
 }
 
@@ -76,20 +76,37 @@ h4.subtitle {
 }
 
 .recMeals {
-    width: 350px;
+    width: 300px;
     top: 14%;
     background-color: rgba(212, 212, 212, 0.445);
     text-align: center;
     border-radius: 5px;
     word-wrap: break-word;
     position: fixed;
-    left: 20%;
+    left: 25%;
     border-radius: 20px;
 }
+.randomMeal{
+    width: 300px;
+    top: 55%;
+    background-color: rgba(212, 212, 212, 0.445);
+    text-align: center;
+    border-radius: 5px;
+    word-wrap: break-word;
+    position: fixed;
+    left: 45%;
+    border-radius: 20px;
+    
+}
 
-@media (max-width: 700px) {
+@media (max-width: 860px) {
     h2 {
         margin: 0;
+    }
+    .randomMeal{
+        left: 20%;
+        width: 25%;
+        top: 35%;
     }
     .recMeals {
         left: 0;
@@ -98,7 +115,7 @@ h4.subtitle {
     }
     .recSideMeals {
         left: 0;
-        top: 50%;
+        top: 60%;
         width: 25%;
     }
     .recImage {
@@ -107,23 +124,35 @@ h4.subtitle {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
     .title {
         font-size: 120px;
     }
     h4.subtitle {
         font-size: 40px;
     }
+    .randomMeal{
+        left: 0;
+        width: 30%;
+        top: 15%;
+        font-size: 10px;
+        height: 20%;
+    }
     .recMeals {
         left: 0;
-        width: 25%;
-        top: 20%;
+        width: 30%;
+        top: 40%;
         font-size: 10px;
+        height: 20%;
+
     }
     .recSideMeals {
         left: 0;
-        width: 25%;
+        width: 30%;
         font-size: 10px;
+        top: 65%;
+        height: 20%;
+
     }
     .recImage {
         width: 100%;

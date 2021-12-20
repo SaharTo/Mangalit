@@ -156,7 +156,7 @@ export class SideMealEdit extends Component {
           <h1>יצירת מנה חדשה</h1>
         )}
         <div className={styles.formImage}>
-          <form className={styles.sideMeal} name="sideMeal">
+          <form className={styles.sideMeal} name="sideMeal" autoComplete="off" onSubmit={this.onSaveSideMeal}>
             <label htmlFor="sideMealName">שם המנה:</label>
             <input
               type="text"
@@ -164,6 +164,9 @@ export class SideMealEdit extends Component {
               id="sideMealName"
               name="sideMealName"
               onChange={this.handleChange}
+              pattern="[^0-9\x22]+.{1,15}"
+              title="שדה זה חייב להיות מתחת ל-15 אותיות וללא מספרים"
+              required
             />
             <label htmlFor="sideMealSummary">פירוט:</label>
             <input
@@ -172,6 +175,9 @@ export class SideMealEdit extends Component {
               name="sideMealSummary"
               id="sideMealSummary"
               onChange={this.handleChange}
+              pattern=".{5,}"
+              title="שדה זה חייב להיות מעל ל-5 תווים "
+              required
             />
             <label htmlFor="sideMealDifficult">רמת קושי:</label>
             <select
@@ -179,6 +185,8 @@ export class SideMealEdit extends Component {
               name="sideMealDifficult"
               value={sideMeal.sideMealDifficult}
               onChange={this.handleChange}
+              title="בחר אפשרות"
+              required
             >
               <option value="" disabled="disabled">
                 בחר
@@ -195,6 +203,9 @@ export class SideMealEdit extends Component {
               name="sideMealIngriedents"
               id="sideMealIngriedents"
               onChange={this.handleChange}
+              pattern=".{2,}"
+              title="שדה זה חייב להיות מעל ל-2 תווים "
+              required
             />
             <label htmlFor="sideMealPreperationDescription">אופן ההכנה:</label>
             <textarea
@@ -204,6 +215,9 @@ export class SideMealEdit extends Component {
               name="sideMealPreperationDescription"
               id="sideMealPreperationDescription"
               onChange={this.handleChange}
+              pattern=".{2,}"
+              title="שדה זה חייב להיות מעל ל-2 תווים "
+              required
             />
             <label htmlFor="sideMealPreperationEstimatedTime">זמן ההכנה:</label>
             <input
@@ -214,6 +228,8 @@ export class SideMealEdit extends Component {
               name="sideMealPreperationEstimatedTime"
               id="sideMealPreperationEstimatedTime"
               onChange={this.handleChange}
+              title="שדה זה חייב להיות אך ורק מספרים "
+              required
             />
             <label htmlFor="sideMealnumberOfPeopleItSuits">
               לכמה אנשים זה מתאים:
@@ -226,6 +242,8 @@ export class SideMealEdit extends Component {
               name="sideMealnumberOfPeopleItSuits"
               id="sideMealnumberOfPeopleItSuits"
               onChange={this.handleChange}
+              title="שדה זה חייב להיות אך ורק מספרים "
+              required
             />
             <label htmlFor="sideMealEstimatedPrice">מחיר:</label>
             <input
@@ -236,7 +254,12 @@ export class SideMealEdit extends Component {
               name="sideMealEstimatedPrice"
               id="sideMealEstimatedPrice"
               onChange={this.handleChange}
+              title="שדה זה חייב להיות אך ורק מספרים "
+              required
             />
+            <button className={styles.btn} /*onClick={this.onSaveSideMeal}*/>
+              שמירה
+          </button>
           </form>
           {id && <div className={styles.images}>
             {sideMeal.sideMealImageUrl.length > 0 && sideMeal.sideMealImageUrl.map((url) =>
@@ -271,9 +294,7 @@ export class SideMealEdit extends Component {
         </label>
 
         <div className={styles.buttons}>
-          <button className={styles.btn} onClick={this.onSaveSideMeal}>
-            שמירה
-          </button>
+
           <button className={styles.btn} onClick={this.goBack}>
             חזרה לדף הקודם
           </button>

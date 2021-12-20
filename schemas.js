@@ -37,8 +37,8 @@ module.exports.reviewSchema = Joi.object({
 
 module.exports.mealSchema = Joi.object({
     meal: Joi.object({
-        mealName: Joi.string().required().min(3).max(40).escapeHTML(),
-        mealSummary: Joi.string().required().min(10).max(200).escapeHTML(),
+        mealName: Joi.string().required().min(2).max(40).escapeHTML(),
+        mealSummary: Joi.string().required().min(5).max(200).escapeHTML(),
         mealMeatInfo: Joi.array().required(),
         mealPreparationTechniques: Joi.string()
             .required()
@@ -71,8 +71,8 @@ module.exports.mealSchema = Joi.object({
 
 module.exports.sideMealSchema = Joi.object({
     sideMeal: Joi.object({
-        sideMealName: Joi.string().required().min(3).max(40).escapeHTML(),
-        sideMealSummary: Joi.string().required().min(10).max(200).escapeHTML(),
+        sideMealName: Joi.string().required().min(2).max(40).escapeHTML(),
+        sideMealSummary: Joi.string().required().min(5).max(200).escapeHTML(),
         sideMealDifficult: Joi.string()
             .required()
             .valid("קל", "בינוני", "קשה")

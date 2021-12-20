@@ -221,7 +221,8 @@ export class MealEdit extends Component {
         {addOrEdit === "edit" && <h1>עדכון מנה</h1>}
         {addOrEdit === "add" && <h1>יצירת מנה חדשה</h1>}
         <div className={styles.formImage}>
-          <form className={styles.meal} name="meal">
+          <form className={styles.meal} name="meal" onSubmit={this.onSaveMeal} autoComplete="off"
+          >
             <label htmlFor="mealName">שם המנה:</label>
             <input
               type="text"
@@ -229,6 +230,9 @@ export class MealEdit extends Component {
               id="mealName"
               name="mealName"
               onChange={this.handleChange}
+              pattern="[^0-9\x22]+.{1,15}"
+              title="שדה זה חייב להיות מתחת ל-15 אותיות וללא מספרים"
+              required
             />
             <label htmlFor="mealSummary">פירוט המנה:</label>
             <input
@@ -237,6 +241,9 @@ export class MealEdit extends Component {
               name="mealSummary"
               id="mealSummary"
               onChange={this.handleChange}
+              pattern=".{5,}"
+              title="שדה זה חייב להיות מעל ל-5 תווים "
+              required
             />
             <label htmlFor="mealDescription">אופן ההכנה:</label>
             <textarea
@@ -246,6 +253,9 @@ export class MealEdit extends Component {
               name="mealDescription"
               id="mealDescription"
               onChange={this.handleChange}
+              pattern=".{2,}"
+              title="שדה זה חייב להיות מעל ל-2 תווים "
+              required
             />
             <label htmlFor="mealPreparationDifficult">רמת קושי:</label>
             <select
@@ -253,6 +263,8 @@ export class MealEdit extends Component {
               name="mealPreparationDifficult"
               value={meal.mealPreparationDifficult}
               onChange={this.handleChange}
+              title="בחר אפשרות"
+              required
             >
               <option value="" disabled="disabled">
                 בחר
@@ -267,6 +279,8 @@ export class MealEdit extends Component {
               name="mealPreparationTechniques"
               value={meal.mealPreparationTechniques}
               onChange={this.handleChange}
+              title="בחר אפשרות"
+              required
             >
               <option value="" disabled="disabled">
                 בחר
@@ -312,6 +326,7 @@ export class MealEdit extends Component {
               <Chosen
                 opt={optSideMeals}
                 parentCallback={this.handleSelectChangeSideMeals}
+                required
               />
             )}
             <label htmlFor="mealMeatQuantityGram">משקל הבשר (בגרם):</label>
@@ -323,6 +338,9 @@ export class MealEdit extends Component {
               name="mealMeatQuantityGram"
               id="mealMeatQuantityGram"
               onChange={this.handleChange}
+              /*pattern="[0-9]"*/
+              title="שדה זה חייב להיות אך ורק מספרים "
+              required
             />
             <label htmlFor="mealPreparationTime">זמן הכנה (דקות):</label>
             <input
@@ -333,7 +351,8 @@ export class MealEdit extends Component {
               name="mealPreparationTime"
               id="mealPreparationTime"
               onChange={this.handleChange}
-            />
+              title="שדה זה חייב להיות אך ורק מספרים "
+              required />
             <label htmlFor="mealAdditionalIngredients">מרכיבים נוספים:</label>
             <textarea
               rows="3"
@@ -342,6 +361,9 @@ export class MealEdit extends Component {
               name="mealAdditionalIngredients"
               id="mealAdditionalIngredients"
               onChange={this.handleChange}
+              pattern=".{2,}"
+              title="שדה זה חייב להיות מעל ל-2 תווים "
+              required
             />
             <label htmlFor="mealNumberOfPeopleItSuits">
               לכמה אנשים זה מתאים:
@@ -354,15 +376,18 @@ export class MealEdit extends Component {
               name="mealNumberOfPeopleItSuits"
               id="mealNumberOfPeopleItSuits"
               onChange={this.handleChange}
+              required
             />
             <label htmlFor="mealTotalPrice">מחיר:</label>
             <input
               type="number"
+              max='2000'
               min="5"
               value={meal.mealTotalPrice}
               name="mealTotalPrice"
               id="mealTotalPrice"
               onChange={this.handleChange}
+              required
             />
             <label htmlFor="mealImage" className={styles.btn}>
               לחץ כדי להוסיף תמונות
@@ -375,6 +400,9 @@ export class MealEdit extends Component {
                 multiple
               />
             </label>
+            <button className={styles.btn} /*onClick={this.onSaveMeal}*/>
+              שמירה
+          </button>
           </form>
           {addOrEdit === "edit" && <div className={styles.images}>
             {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
@@ -403,9 +431,7 @@ export class MealEdit extends Component {
           </div>}
         </div>
         <div className={styles.buttons}>
-          <button className={styles.btn} onClick={this.onSaveMeal}>
-            שמירה
-          </button>
+
           <button className={styles.btn} onClick={this.goBack}>
             חזרה לדף הקודם
           </button>
