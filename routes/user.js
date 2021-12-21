@@ -6,6 +6,7 @@ const { isAdmin } = require("../middleware");
 
 router.get("/", users.printUser);
 router.get("/checkIfLoggedIn", users.checkIfLoggedIn);
+router.get("/checkIfAdmin", users.checkIfIsAdmin);
 router
   .route("/:id")
   .get(users.userById)

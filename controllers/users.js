@@ -173,8 +173,15 @@ module.exports.register = async (req, res) => {
   }
 };
 module.exports.checkIfLoggedIn = async (req, res) => {
-  console.log("inside check if func ", req.session);
+  console.log("inside check ifLoggedIn func ", req.session);
   if (req.session && req.session.user) {
     res.send(req.session.user._id);
   } else res.status(401).send("no logged in user");
+};
+module.exports.checkIfIsAdmin = async (req, res) => {
+  console.log("inside check ifAdmin func ", req.session);
+  
+  if (req.session && req.session.user && req.session.user.isAdmin) {
+    res.send(req.session.user.isAdmin);
+  } else res.status(401).send("not admin");
 };

@@ -7,38 +7,64 @@ import { DeleteMeat } from "../helpers/deleteMeat";
 export class Admin extends Component {
   state = {
     page: null,
+    isAdmin: false,
   };
 
   componentDidMount() {
-    this.setState({ page: "add" });
+    this.setState({ page: "add", isAdmin: false });
+    this.checkIfAdmin();
   }
 
   handleChange({ target }) {
     this.setState({ page: target.value });
   }
+  checkIfAdmin() {
+    if (sessionStorage.getItem('loggedInUser')) {
+      console.log("inside checkif admin front")
+      fetch(`http://localhost:3030/users/checkIfAdmin`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }).then((res) => {
+        if (res.ok) {
+          this.setState({ isAdmin: true })
+
+        } else {
+          this.setState({ isAdmin: false })
+
+
+        }
+      });
+    } else this.setState({ isAdmin: false })
+  }
 
   render() {
-    const { page } = this.state;
+    const { page, isAdmin } = this.state;
+
     if (!page) return <h1 dir="rtl">טוען...</h1>;
-    return (
-      <div dir="rtl" className={styles.admin}>
-        <label htmlFor="page" className={styles.pageLabel}>
-          בחירת דף
+    if (isAdmin) {
+      return (
+        <div dir="rtl" className={styles.admin}>
+          <label htmlFor="page" className={styles.pageLabel}>
+            בחירת דף
           <select
-            className={styles.pageSelect}
-            id="page"
-            value={page}
-            onChange={this.handleChange.bind(this)}
-          >
-            <option value="add">add</option>
-            <option value="edit">edit</option>
-            <option value="delete">delete</option>
-          </select>
-        </label>
-        {page === "add" && <AddMeat />}
-        {page === "edit" && <EditMeat />}
-        {page === "delete" && <DeleteMeat />}
-      </div>
-    );
+              className={styles.pageSelect}
+              id="page"
+              value={page}
+              onChange={this.handleChange.bind(this)}
+            >
+              <option value="add">add</option>
+              <option value="edit">edit</option>
+              <option value="delete">delete</option>
+            </select>
+          </label>
+          {page === "add" && <AddMeat />}
+          {page === "edit" && <EditMeat />}
+          {page === "delete" && <DeleteMeat />}
+        </div>
+      );
+    } else return <h1 dir="rtl" >אדמין לא מחובר!</h1>
   }
 }
