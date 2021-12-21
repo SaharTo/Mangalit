@@ -115,7 +115,7 @@ export class SideMeal extends Component {
 
   render() {
     const { sideMeal, islike } = this.state;
-    if (!sideMeal) return <h1 dir="rtl">טוען...</h1>;
+    if (!sideMeal) return <h1 dir="rtl">מחפש מנת צד...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeal}>
         <div className={styles.continer}>

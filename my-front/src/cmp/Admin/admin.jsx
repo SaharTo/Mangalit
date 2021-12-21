@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import styles from "./admin.module.css";
 import { AddMeat } from "../helpers/addMeat";
 import { EditMeat } from "../helpers/editMeat";
@@ -49,7 +50,7 @@ export class Admin extends Component {
         <div dir="rtl" className={styles.admin}>
           <label htmlFor="page" className={styles.pageLabel}>
             בחירת דף
-          <select
+            <select
               className={styles.pageSelect}
               id="page"
               value={page}
@@ -65,6 +66,8 @@ export class Admin extends Component {
           {page === "delete" && <DeleteMeat />}
         </div>
       );
-    } else return <h1 dir="rtl" >אדמין לא מחובר!</h1>
+    } else return (<Redirect to={{
+      pathname: "/",
+    }}></Redirect>)
   }
 }

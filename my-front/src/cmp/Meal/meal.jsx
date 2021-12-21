@@ -117,7 +117,7 @@ export class Meal extends Component {
 
   render() {
     const { meal, islike } = this.state;
-    if (!meal) return <h1 dir="rtl">טוען...</h1>;
+    if (!meal) return <h1 dir="rtl">מחפש מנה...</h1>;
     return (
       <div dir="rtl" className={styles.meal}>
         <div className={styles.continer}>
