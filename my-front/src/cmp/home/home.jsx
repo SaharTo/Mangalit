@@ -9,7 +9,7 @@ import randImg from "../../assets/random.jpg";
 export class Home extends Component {
   render() {
     return (
-      <div dir="rtl" /*className={styles.homePage}*/>
+      <div dir="rtl" className={styles.homePage}>
         <h1 className={styles.title}>מנגלית</h1>
         <h4 className={styles.subtitle}>כל</h4>
         <h4 className={styles.subtitle}>שצריך</h4>{" "}

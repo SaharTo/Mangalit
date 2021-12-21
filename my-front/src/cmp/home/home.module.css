@@ -45,13 +45,18 @@ h4.subtitle {
   text-align: right;
 }*/
 
-.homePage label {
+
+/* .homePage label {
     margin: 0;
 }
 
 .homePage select {
     width: 80px;
     margin-inline-start: 10px;
+} */
+
+.homePage h2 {
+    margin: 0;
 }
 
 .recSideMeals {
@@ -86,7 +91,8 @@ h4.subtitle {
     left: 25%;
     border-radius: 20px;
 }
-.randomMeal{
+
+.randomMeal {
     width: 300px;
     top: 55%;
     background-color: rgba(212, 212, 212, 0.445);
@@ -96,14 +102,13 @@ h4.subtitle {
     position: fixed;
     left: 45%;
     border-radius: 20px;
-    
 }
 
 @media (max-width: 860px) {
     h2 {
         margin: 0;
     }
-    .randomMeal{
+    .randomMeal {
         left: 20%;
         width: 25%;
         top: 35%;
@@ -131,7 +136,7 @@ h4.subtitle {
     h4.subtitle {
         font-size: 40px;
     }
-    .randomMeal{
+    .randomMeal {
         left: 0;
         width: 30%;
         top: 15%;
@@ -144,7 +149,6 @@ h4.subtitle {
         top: 40%;
         font-size: 10px;
         height: 20%;
-
     }
     .recSideMeals {
         left: 0;
@@ -152,7 +156,6 @@ h4.subtitle {
         font-size: 10px;
         top: 65%;
         height: 20%;
-
     }
     .recImage {
         width: 100%;

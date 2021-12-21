@@ -39,6 +39,7 @@ module.exports.mealSchema = Joi.object({
     meal: Joi.object({
         mealName: Joi.string().required().min(2).max(40).escapeHTML(),
         mealSummary: Joi.string().required().min(5).max(200).escapeHTML(),
+        mealDescription: Joi.string().required().min(10).max(200).escapeHTML(),
         mealMeatInfo: Joi.array().required(),
         mealPreparationTechniques: Joi.string()
             .required()
@@ -62,7 +63,6 @@ module.exports.mealSchema = Joi.object({
             .escapeHTML(),
         //mealAdditionalsIngredientsPrice: Joi.number().min(5).max(50),
         mealTotalPrice: Joi.number().required(),
-        mealDescription: Joi.string().required().min(10).max(200).escapeHTML(),
         // mealAuthor: Joi.string().required().escapeHTML(),
         // mealIsRecommended: Joi.bool(),
         mealLikes: Joi.array(),
@@ -80,7 +80,7 @@ module.exports.sideMealSchema = Joi.object({
         sideMealEstimatedPrice: Joi.number().required().min(5).max(100),
         sideMealImageUrl: Joi.array(),
         sideMealIngriedents: Joi.string().required().min(3).max(200).escapeHTML(),
-        sideMealPreperationDescription: Joi.string().required().min(3).escapeHTML(),
+        sideMealPreperationDescription: Joi.string().required().min(10).escapeHTML(),
         sideMealPreperationEstimatedTime: Joi.number().required().min(5).max(60),
         sideMealnumberOfPeopleItSuits: Joi.number().required().min(1).max(30),
         //sideMealAuthor: Joi.string().required(),

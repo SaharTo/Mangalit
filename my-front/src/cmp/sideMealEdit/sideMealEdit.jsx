@@ -99,7 +99,10 @@ export class SideMealEdit extends Component {
         if (res.ok) {
           res.json().then((data) => console.log(data));
           this.goBack()
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((msg) => {
+          if (msg === 'sideMealPreperationDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
+          else if (msg === 'sideMealIngriedents') alert("מרכיבים צריך להיות מעל ל3 תווים")
+        });
       });
     }
   };
@@ -208,8 +211,8 @@ export class SideMealEdit extends Component {
               name="sideMealIngriedents"
               id="sideMealIngriedents"
               onChange={this.handleChange}
-              pattern=".{2,}"
-              title="שדה זה חייב להיות מעל ל-2 תווים "
+              pattern=".{3,}"
+              title="שדה זה חייב להיות מעל ל-3 תווים "
               required
             />
             <label htmlFor="sideMealPreperationDescription">אופן ההכנה:</label>
@@ -220,8 +223,8 @@ export class SideMealEdit extends Component {
               name="sideMealPreperationDescription"
               id="sideMealPreperationDescription"
               onChange={this.handleChange}
-              pattern=".{2,}"
-              title="שדה זה חייב להיות מעל ל-2 תווים "
+              pattern=".{10,}"
+              title="שדה זה חייב להיות מעל ל-10 תווים "
               required
             />
             <label htmlFor="sideMealPreperationEstimatedTime">זמן ההכנה:</label>

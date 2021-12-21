@@ -126,6 +126,7 @@
 label.btn {
     width: 160px;
     color: black;
+    margin: 0 auto;
 }
 
 @media (max-width:700px) {
@@ -133,5 +134,8 @@ label.btn {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .imagesBtn {
+        width: 80vw;
     }
 }

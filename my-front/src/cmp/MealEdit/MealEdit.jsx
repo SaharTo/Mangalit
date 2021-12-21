@@ -126,6 +126,7 @@ export class MealEdit extends Component {
       //uploadImg is a function that upload the following files to cloudinary and return the cloudinary url for this file
       meal.mealImage.push(url)
     }
+    // console.log(meal);
     if (id) {
       delete meal._id;
       delete meal.mealReviews;
@@ -162,7 +163,10 @@ export class MealEdit extends Component {
             res.text().then((data) => {
               this.goBack();
             });
-          } else res.text().then((data) => console.log(data));
+          } else res.text().then((msg) => {
+            if (msg === 'mealDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
+            else if (msg === 'mealAdditionalIngredients') alert("מרכיבים נוספים צריך להיות מעל ל3 תווים")
+          });
         });
     }
   };
@@ -207,6 +211,7 @@ export class MealEdit extends Component {
   }
 
   render() {
+    const id = this.props.match.params.id;
     const { meal, meat, addOrEdit, sideMeals, files } = this.state;
     if (!meal || !meat || !sideMeals) return <h1 dir="rtl">טוען...</h1>;
     const optMeat = meat.map((m) => {
@@ -259,8 +264,8 @@ export class MealEdit extends Component {
               name="mealDescription"
               id="mealDescription"
               onChange={this.handleChange}
-              pattern=".{2,}"
-              title="שדה זה חייב להיות מעל ל-2 תווים "
+              pattern=".{10,}"
+              title="שדה זה חייב להיות מעל ל-10 תווים "
               required
             />
             <label htmlFor="mealPreparationDifficult">רמת קושי:</label>
@@ -371,8 +376,8 @@ export class MealEdit extends Component {
               name="mealAdditionalIngredients"
               id="mealAdditionalIngredients"
               onChange={this.handleChange}
-              pattern=".{2,}"
-              title="שדה זה חייב להיות מעל ל-2 תווים "
+              pattern=".{3,}"
+              title="שדה זה חייב להיות מעל ל-3 תווים "
               required
             />
             <label htmlFor="mealNumberOfPeopleItSuits">
@@ -416,11 +421,7 @@ export class MealEdit extends Component {
                 multiple
               />
             </label>
-            {/*<button className={styles.btn} onClick={this.onSaveMeal}>
-              שמירה
-          </button>*/}
-
-            {addOrEdit === "edit" && <div className={styles.images}>
+            {addOrEdit === "edit" && <div className={styles.mealImages}>
               {meal.mealImage.length > 0 && meal.mealImage.map((url) =>
                 <div name="mealEditSlide" key={url}>
                   <img src={url} alt='' />
@@ -434,15 +435,15 @@ export class MealEdit extends Component {
                 <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
                 {meal.mealImage.length + files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
               </div>}
-              {addOrEdit === "add" && <div className={styles.images}>
-                {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
-                  <img src={URL.createObjectURL(f)} alt='' />
-                </div>)}
-                {files.length > 0 && <div className={styles.prevNext}>
-                  {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
-                  <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
-                  {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
-                </div>}
+            </div>}
+            {addOrEdit === "add" && <div className={styles.mealImages}>
+              {files.length > 0 && files.map(f => <div name="mealEditSlide" key={f.name}>
+                <img src={URL.createObjectURL(f)} alt='' />
+              </div>)}
+              {files.length > 0 && <div className={styles.prevNext}>
+                {files.length > 1 && <button className={styles.prev} onClick={this.prevSlides}>&#10094;</button>}
+                <button className={styles.deleteImg} onClick={this.deleteImg}>הסרת תמונה</button>
+                {files.length > 1 && <button className={styles.next} onClick={this.nextSlides}>&#10095;</button>}
               </div>}
             </div>}
           </div>
