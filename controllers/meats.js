@@ -14,16 +14,16 @@ module.exports.createMeat = async(req, res) => {
     // console.log(req.body.meat);
     const meat = new Meat(req.body.meat);
     await meat.save();
-    res.send('success');
+    res.send('נוצרה בהצלחה');
 };
 module.exports.updateMeat = async(req, res) => {
     const { id } = req.params;
     const meat = await Meat.findByIdAndUpdate(id, {...req.body.meat });
     await meat.save();
-    console.log(meat);
-    res.send("update Meat")
+    // console.log(meat);
+    res.send("בשר עודכן")
 };
 module.exports.deleteMeat = async(req, res) => {
     await Meat.findByIdAndDelete(req.params.id);
-    res.send("delete Meat")
+    res.send("בשר נמחק")
 };

@@ -20,7 +20,7 @@ export class SideMeals extends Component {
         this.setState({ smToshow: sideMeals });
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -44,7 +44,7 @@ export class SideMeals extends Component {
         )}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
-            חיפוש
+            מנות צד
           </label>
           <input
             className={styles.searchInput}
@@ -58,7 +58,8 @@ export class SideMeals extends Component {
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>
-              <img src={sideMeal.sideMealImageUrl[0]} />
+              {sideMeal.sideMealImageUrl.length===0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt=""/>}
+              {sideMeal.sideMealImageUrl.length>0 &&<img src={sideMeal.sideMealImageUrl[0]} alt="" />}
               <Link to={"/sideMeals/" + sideMeal._id}>
                 <h1>שם המנה: {sideMeal.sideMealName}</h1>
               </Link>

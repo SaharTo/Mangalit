@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import lambImage from "../../../assets/lamb.png";
+// import lambImage from "https://res.cloudinary.com/manglit/image/upload/v1640104954/assets/lamb_fy2nkd.png";
 import styles from "./lamb.module.css";
 // import meatInfo from "./meatInfoTemp";
 
@@ -77,7 +77,7 @@ const Lamb = () => {
   return (
     <div className={styles.meatMap}>
       <img
-        src={lambImage}
+        src="https://res.cloudinary.com/manglit/image/upload/v1640104954/assets/lamb_fy2nkd.png"
         useMap="#beefIt"
         alt="Lamb Image"
         className={styles.lambImage}

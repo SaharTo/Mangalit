@@ -30,7 +30,7 @@ export default function Register() {
             history.push("/");
             window.location.reload();
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
     } else console.log("please enter values");
   };
@@ -60,8 +60,8 @@ export default function Register() {
         />
         <input
           type="email"
-          pattern=".+@gmail\.com"
-          title=".+@gmail\.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          title="mangalit@example.com הכנס מייל תקין לפי "
           id="userEmail"
           className={styles.registerInput}
           value={user.userEmail}

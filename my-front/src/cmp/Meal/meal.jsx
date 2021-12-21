@@ -34,7 +34,7 @@ export class Meal extends Component {
         else res.text().then((data) => console.log(data));
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -46,7 +46,7 @@ export class Meal extends Component {
     })
       .then(() => this.goBack())
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
   prevSlides = () => {
@@ -94,7 +94,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log('cant like: ',err);
+        alert('cant like: ',err);
       });
   };
 
@@ -111,7 +111,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log('cant unlike: ',err);
+        alert('cant unlike: ',err);
       });
   };
 

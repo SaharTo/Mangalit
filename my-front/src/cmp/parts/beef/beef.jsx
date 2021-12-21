@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import beefImage from "../../../assets/beef.png";
+// import beefImage from "https://res.cloudinary.com/manglit/image/upload/v1640104953/assets/beef_p4bwdd.png";
 import styles from "./beef.module.css";
 // import meatInfo from "./meatInfoTemp";
 
@@ -16,12 +16,14 @@ const Beef = () => {
       });
     //console.log("meats list ", meats);
   });
-  /*componentDidMount() {
-    this.getMeats();
-    state = {
-    meats: null,
-  };
-  }*/
+
+  // const componentDidMount = async () => {
+  //   this.getMeats();
+  //   state = {
+  //     meats: null,
+  //   };
+  // }
+
   const onHoverDiv = async (el) => {
     // console.log("something in the console", el.target.id);
     if (meatState.meats) {
@@ -68,204 +70,212 @@ const Beef = () => {
   };
 
   return (
-    <div className={styles.meatMap}>
-      <img
-        src={beefImage}
-        useMap="#beefIt"
-        alt="Beef Image"
-        className={styles.beefImage}
-      ></img>
-      <map name="beefIt">
-        <div>
-          <h1 id="name" className={styles.name}>
-            רחף עם העכבר מעל לחלק מסויים
-          </h1>
-          <div id="desc" className={styles.hide} className={styles.name}></div>
-        </div>
+    <div>
+      <div className={styles.meatMap}>
+        <img
+          src="https://res.cloudinary.com/manglit/image/upload/v1640104953/assets/beef_p4bwdd.png"
+          useMap="#beefIt"
+          alt="Beef Image"
+          className={styles.beefImage}
+        ></img>
+        <map name="beefIt">
+          <div>
+            <h1 id="name" className={styles.name}>
+              רחף עם העכבר מעל לחלק מסויים
+            </h1>
+            <div id="desc" className={styles.hide} className={styles.name}></div>
+          </div>
 
-        <area
-          shape="poly"
-          coords="136,31,108,129,136,161,164,104,173,50"
-          className="numberTen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="10"
-          alt="number 10"
-        ></area>
-        <area
-          shape="poly"
-          coords="174,49,164,105,190,118,254,107,273,60,214,56"
-          className="numberTwo"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="2"
-          alt="number 2"
-        ></area>
-        <area
-          shape="poly"
-          coords="164,105,146,152,187,156,207,118,190,118"
-          className="numberNine"
-          onMouseOut={outHoverDiv}
-          onMouseOver={onHoverDiv}
-          id="9"
-          alt="number 9"
-        ></area>
-        <area
-          shape="poly"
-          coords="145,153,136,163,156,215,200,231,192,205,195,193,187,181,188,165,185,163,189,155"
-          className="numberThree"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="3"
-          alt="number 3"
-        ></area>
-        <area
-          shape="poly"
-          coords="188,165,189,182,197,193,192,207,212,269,243,267,257,230,260,208,256,198,248,203,233,205,237,155,217,149,205,159"
-          className="numberEight"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="8"
-          alt="number 8"
-        ></area>
-        <area
-          shape="poly"
-          coords="186,162,207,11,254,108,205,159"
-          className="numberSix"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="6"
-          alt="number 6"
-        ></area>
-        <area
-          shape="poly"
-          coords="218,149,237,156,268,141,283,138,282,109,255,107"
-          className="numberFive"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="5"
-          alt="number 5"
-        ></area>
-        <area
-          shape="poly"
-          coords="236,155,233,204,246,204,273,177,271,172,282,138,264,142"
-          className="numberFour"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="4"
-          alt="number 4"
-        ></area>
-        <area
-          shape="poly"
-          coords="285,134,347,135,346,92,334,5,273,62,256,107,283,110"
-          className="numberOne"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="1"
-          alt="number 1"
-        ></area>
-        <area
-          shape="poly"
-          coords="272,172,284,133,348,135,347,173"
-          className="numberNine"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="9"
-          alt="number 9"
-        ></area>
-        <area
-          //number three is marked twice becuse its still the breast part
-          shape="poly"
-          coords="271,173,272,177,257,198,260,207,257,230,329,218,341,201,346,173"
-          className="numberThree"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="3"
-          alt="number 3"
-        ></area>
-        <area
-          shape="poly"
-          coords="348,137,348,173,339,203,329,218,411,219,423,237,447,238,459,243,475,217,427,174,422,156,433,143"
-          className="numberSeventeen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="17"
-          alt="number 17"
-        ></area>
-        <area
-          shape="poly"
-          coords="334,58,345,92,348,135,467,145,469,113,486,90,454,84,416,104,394,103,396,90,367,83,404,64,387,56"
-          className="numberEleven"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="11"
-          alt="number 11"
-        ></area>
-        <area
-          //number twelve is inside number eleven, make sure its works fine, actually it doesnt worked, so I change a liitle bit number eleven
-          shape="poly"
-          coords="368,86,395,88,395,104,413,105,453,86,406,64"
-          className="numberTwelve"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="12"
-          alt="number 12"
-        ></area>
-        <area
-          shape="poly"
-          coords="385,55,411,64,453,84,486,88,518,47,473,42"
-          className="numberThirteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="13"
-          alt="number 13"
-        ></area>
-        <area
-          shape="poly"
-          coords="486,90,519,90,538,60,532,49,519,46"
-          className="numberSixteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="16"
-          alt="number 16"
-        ></area>
-        <area
-          shape="poly"
-          coords="467,191,459,173,464,145,467,145,469,115,486,90,520,92,514,102,511,146,534,220,505,198,481,190"
-          className="numberFifteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="15"
-          alt="number 15"
-        ></area>
-        <area
-          shape="poly"
-          coords="434,144,423,156,427,173,476,18,459,172,463,146"
-          className="numberFourteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="14"
-          alt="number 14"
-        ></area>
-        <area
-          shape="poly"
-          coords="468,191,478,220,498,244,539,276,559,262,543,235,510,200"
-          className="numberEighteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="18"
-          alt="number 18"
-        ></area>
-        <area
-          shape="poly"
-          coords="537,60,514,102,511,147,526,203,549,117"
-          className="numberNineteen"
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="19"
-          alt="number 19"
-        ></area>
-      </map>
+          <area
+            shape="poly"
+            coords="136,31,108,129,136,161,164,104,173,50"
+            className="numberTen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="10"
+            alt="number 10"
+          ></area>
+          <area
+            shape="poly"
+            coords="174,49,164,105,190,118,254,107,273,60,214,56"
+            className="numberTwo"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="2"
+            alt="number 2"
+          ></area>
+          <area
+            shape="poly"
+            coords="164,105,146,152,187,156,207,118,190,118"
+            className="numberNine"
+            onMouseOut={outHoverDiv}
+            onMouseOver={onHoverDiv}
+            id="9"
+            alt="number 9"
+          ></area>
+          <area
+            shape="poly"
+            coords="145,153,136,163,156,215,200,231,192,205,195,193,187,181,188,165,185,163,189,155"
+            className="numberThree"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="3"
+            alt="number 3"
+          ></area>
+          <area
+            shape="poly"
+            coords="188,165,189,182,197,193,192,207,212,269,243,267,257,230,260,208,256,198,248,203,233,205,237,155,217,149,205,159"
+            className="numberEight"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="8"
+            alt="number 8"
+          ></area>
+          <area
+            shape="poly"
+            coords="186,162,207,11,254,108,205,159"
+            className="numberSix"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="6"
+            alt="number 6"
+          ></area>
+          <area
+            shape="poly"
+            coords="218,149,237,156,268,141,283,138,282,109,255,107"
+            className="numberFive"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="5"
+            alt="number 5"
+          ></area>
+          <area
+            shape="poly"
+            coords="236,155,233,204,246,204,273,177,271,172,282,138,264,142"
+            className="numberFour"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="4"
+            alt="number 4"
+          ></area>
+          <area
+            shape="poly"
+            coords="285,134,347,135,346,92,334,5,273,62,256,107,283,110"
+            className="numberOne"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="1"
+            alt="number 1"
+          ></area>
+          <area
+            shape="poly"
+            coords="272,172,284,133,348,135,347,173"
+            className="numberNine"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="9"
+            alt="number 9"
+          ></area>
+          <area
+            //number three is marked twice becuse its still the breast part
+            shape="poly"
+            coords="271,173,272,177,257,198,260,207,257,230,329,218,341,201,346,173"
+            className="numberThree"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="3"
+            alt="number 3"
+          ></area>
+          <area
+            shape="poly"
+            coords="348,137,348,173,339,203,329,218,411,219,423,237,447,238,459,243,475,217,427,174,422,156,433,143"
+            className="numberSeventeen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="17"
+            alt="number 17"
+          ></area>
+          <area
+            shape="poly"
+            coords="334,58,345,92,348,135,467,145,469,113,486,90,454,84,416,104,394,103,396,90,367,83,404,64,387,56"
+            className="numberEleven"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="11"
+            alt="number 11"
+          ></area>
+          <area
+            //number twelve is inside number eleven, make sure its works fine, actually it doesnt worked, so I change a liitle bit number eleven
+            shape="poly"
+            coords="368,86,395,88,395,104,413,105,453,86,406,64"
+            className="numberTwelve"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="12"
+            alt="number 12"
+          ></area>
+          <area
+            shape="poly"
+            coords="385,55,411,64,453,84,486,88,518,47,473,42"
+            className="numberThirteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="13"
+            alt="number 13"
+          ></area>
+          <area
+            shape="poly"
+            coords="486,90,519,90,538,60,532,49,519,46"
+            className="numberSixteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="16"
+            alt="number 16"
+          ></area>
+          <area
+            shape="poly"
+            coords="467,191,459,173,464,145,467,145,469,115,486,90,520,92,514,102,511,146,534,220,505,198,481,190"
+            className="numberFifteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="15"
+            alt="number 15"
+          ></area>
+          <area
+            shape="poly"
+            coords="434,144,423,156,427,173,476,18,459,172,463,146"
+            className="numberFourteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="14"
+            alt="number 14"
+          ></area>
+          <area
+            shape="poly"
+            coords="468,191,478,220,498,244,539,276,559,262,543,235,510,200"
+            className="numberEighteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="18"
+            alt="number 18"
+          ></area>
+          <area
+            shape="poly"
+            coords="537,60,514,102,511,147,526,203,549,117"
+            className="numberNineteen"
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="19"
+            alt="number 19"
+          ></area>
+        </map>
+      </div>
+      <div className={styles.meatPhone}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'בקר').map(meat => <div>
+         <h3> {meat.meatNumber} -  {meat.meatName}</h3> 
+          מידע: {meat.meatDescription}
+        </div>)}
+      </div>
     </div>
   );
 };

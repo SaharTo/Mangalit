@@ -15,6 +15,8 @@ export default function Login() {
   };
   const forgetPassword = (ev) => {
     ev.preventDefault();
+    // console.log( window.confirm('dddd'));
+    if (window.confirm("האם הנך בטוח/ה שברצונך לאפס את הסיסמא שלך?") === false) return;
     if (user.userName) {
       fetch(`http://localhost:3030/users/sendMyPassword`, {
         method: "POST",
@@ -26,11 +28,12 @@ export default function Login() {
       }).then((res) => {
         if (res.ok) {
           //sent to email
+          res.text().then((data) => alert('סיסמא חדשה נשלחה למייל'));
         } else
-          res.text().then((data) => console.log("-------------------", data));
+          res.text().then((data) => alert(data));
       });
     } else {
-      console.log("please enter userName");
+      alert("נא להזין שם משתמש");
     }
   };
   const login = (ev) => {
@@ -55,9 +58,9 @@ export default function Login() {
             history.push("/");
             window.location.reload();
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
-    } else console.log("please enter values");
+    } else alert("נא להזין ערכים");
   };
 
   return (
@@ -88,13 +91,7 @@ export default function Login() {
         />
         <button className={styles.btn}>התחברות</button>
       </form>
-      <form
-        dir="rtl"
-        name="forget"
-        onSubmit={forgetPassword}
-      >
-        <button className={styles.btn}>שכחתי סיסמא</button>
-      </form>
+      <label className={styles.btn} onClick={forgetPassword}>שכחתי סיסמא</label>
     </div>
   );
 }

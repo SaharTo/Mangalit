@@ -29,7 +29,7 @@ export class SideMealEdit extends Component {
       .then((res) => res.json())
       .then((sideMeal) => this.setState({ sideMeal }))
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
   getEmptySideMeal = async () => {
@@ -84,9 +84,16 @@ export class SideMealEdit extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ sideMeal: sideMeal }),
-      })
-        .then(() => this.goBack())
-        .catch((err) => console.log(err));
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => console.log(data));
+          this.goBack()
+        } else res.text().then((msg) => {
+          if (msg === 'sideMealPreperationDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
+          else if (msg === 'sideMealIngriedents') alert("מרכיבים צריך להיות מעל ל3 תווים")
+          else alert(msg);
+        });
+      });
     } else {
       fetch(`http://localhost:3030/sideMeals/`, {
         method: "POST",
@@ -102,6 +109,7 @@ export class SideMealEdit extends Component {
         } else res.text().then((msg) => {
           if (msg === 'sideMealPreperationDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
           else if (msg === 'sideMealIngriedents') alert("מרכיבים צריך להיות מעל ל3 תווים")
+          else alert(msg);
         });
       });
     }

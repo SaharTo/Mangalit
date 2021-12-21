@@ -7,7 +7,7 @@ module.exports.sideMealIndex = async(req, res) => {
 };
 
 module.exports.topTenSideMeals = async(rec, res) => {
-    console.log("inside the top ten side meals controller function");
+    // console.log("inside the top ten side meals controller function");
     const sideMeals = await SideMeal.find({});
     const newSideMeals = sideMeals;
     newSideMeals.sort((a, b) => {
@@ -16,7 +16,7 @@ module.exports.topTenSideMeals = async(rec, res) => {
         return bLen - aLen;
     });
     newSideMeals.splice(10, newSideMeals.length);
-    console.log("backend topTenSideMeals data ");
+    // console.log("backend topTenSideMeals data ");
     res.send(newSideMeals);
 };
 
@@ -30,33 +30,33 @@ module.exports.sideMealById = async(req, res) => {
             },
         })
         .populate("sideMealsAuthor", "fullName");
-        if (!sideMeal) {
-            res.status(401).send("Cannot find that sideMeal");
-        }
+    if (!sideMeal) {
+        res.status(401).send("לא נמצאה מנת צד");
+    }
     res.send(sideMeal);
 };
 
 module.exports.deleteSideMeal = async(req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     await SideMeal.findByIdAndDelete(req.params.id);
-    res.send("delete");
+    res.send("מנת צד נמחקה");
     // res.redirect("/sideMeals");
 };
 
 
-module.exports.sideMealsReviews=async(req,res)=>{
+module.exports.sideMealsReviews = async(req, res) => {
     const sideMeal = await SideMeal.findById(req.params.id)
-    .populate({
-        path: "sideMealsReviews",
-        populate: {
-            path: "reviewAuthor",
-            select: "fullName",
-        },
-    })
+        .populate({
+            path: "sideMealsReviews",
+            populate: {
+                path: "reviewAuthor",
+                select: "fullName",
+            },
+        })
     if (!sideMeal) {
-        res.status(401).send("Cannot find that sideMeal");
+        res.status(401).send("לא נמצאה מנת צד");
     }
-res.send(sideMeal.sideMealsReviews);
+    res.send(sideMeal.sideMealsReviews);
 }
 
 
@@ -66,13 +66,13 @@ module.exports.updateSideMeal = async(req, res) => {
         ...req.body.sideMeal,
     });
     await sideMeal.save();
-    res.send("update");
+    res.send("מנת צד עודכנה");
     // res.redirect(`/sideMeals/${req.params.id}`)
 };
 
 module.exports.createSideMeal = async(req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
-    console.log("create sideMeal controller  ", req.session);
+    // console.log("create sideMeal controller  ", req.session);
     const sideMeal = new SideMeal(req.body.sideMeal);
     if (req.session.user) sideMeal.sideMealsAuthor = req.session.user._id;
     // else sideMeal.sideMealsAuthor = '61817186ca1fa6043ae22e90';
@@ -130,7 +130,7 @@ module.exports.addLike = async(req, res) => {
     res.send(sideMeal);
 };
 module.exports.deleteLike = async(req, res) => {
-    console.log("deleteLike");
+    // console.log("deleteLike");
     const sideMeal = await SideMeal.findById(req.params.id)
         .populate({
             path: "sideMealsReviews",
@@ -141,9 +141,9 @@ module.exports.deleteLike = async(req, res) => {
         })
         .populate("sideMealsAuthor", "fullName");
     const userId = req.session.user._id;
-    console.log(userId);
+    // console.log(userId);
     const index = sideMeal.sideMealLikes.indexOf(userId);
-    console.log(index);
+    // console.log(index);
     sideMeal.sideMealLikes.splice(index, 1);
     await sideMeal.save();
     res.send(sideMeal);

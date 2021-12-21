@@ -15,7 +15,7 @@ export class EditMeat extends Component {
             .then((res) => res.json())
             .then((meats) => this.setState({ meats }))
             .catch((error) => {
-                console.log(error);
+                alert(error);
             });
     };
 
@@ -50,11 +50,11 @@ export class EditMeat extends Component {
                         this.setState({ meatToEdit: null })
                         this.getMeats();
                     });
-                } else res.text().then((data) => console.log(data));
+                } else res.text().then((data) => alert(data));
 
             })
         }
-        if (!meatToEdit) console.log('plz select meat')
+        if (!meatToEdit) alert('plz select meat')
 
     }
     render() {

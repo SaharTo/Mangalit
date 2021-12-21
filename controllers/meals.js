@@ -8,17 +8,17 @@ module.exports.index = async(req, res) => {
     res.send(meals);
 };
 
-module.exports.mealReviews=async(req,res)=>{
+module.exports.mealReviews = async(req, res) => {
     const meal = await Meal.findById(req.params.id)
-    .populate({
-        path: "mealReviews",
-        populate: {
-            path: "reviewAuthor",
-            select: "fullName",
-        },
-    })
+        .populate({
+            path: "mealReviews",
+            populate: {
+                path: "reviewAuthor",
+                select: "fullName",
+            },
+        })
     if (!meal) {
-        res.status(401).send("Cannot find that meal");
+        res.status(401).send("מנה לא נמצאה");
     }
     res.send(meal.mealReviews);
 }
@@ -57,7 +57,7 @@ module.exports.deleteMeal = async(req, res) => {
     // console.log("deleteMeal", id);
     try {
         await Meal.findByIdAndDelete(id);
-        res.send("delete success");
+        res.send("מנה נמחקה");
     } catch (e) {
         res.status(401).send(e);
     }
@@ -106,13 +106,13 @@ module.exports.mealById = async(req, res) => {
         .populate("mealMeatInfo", "meatName")
         .populate("mealAuthor", "fullName");
     if (!meal) {
-        res.status(401).send("Cannot find that meal");
+        res.status(401).send("מנה לא נמצאה");
     }
     res.send(meal);
 };
 
 module.exports.addReview = async(req, res) => {
-    console.log("add review", req.body);
+    // console.log("add review", req.body);
     const meal = await Meal.findById(req.params.id);
     const review = new Review(req.body.review);
     review.reviewAuthor = req.session.user._id;

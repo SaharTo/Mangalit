@@ -31,7 +31,7 @@ const Reviews = (props) => {
             // console.log("this is the reviews state ", reviews)
             //
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
     }
     if (props.sideMealId) {
@@ -51,7 +51,7 @@ const Reviews = (props) => {
             //console.log("this is the reviews state ", reviews);
             //
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
     }
   }
@@ -76,7 +76,7 @@ const Reviews = (props) => {
             setReviews(data);
             //
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
     };
     if (props.sideMealId) {
@@ -97,7 +97,7 @@ const Reviews = (props) => {
             setReviews(data);
             //
           });
-        } else res.text().then((data) => console.log(data));
+        } else res.text().then((data) => alert(data));
       });
     };
   };
@@ -118,7 +118,7 @@ const Reviews = (props) => {
               setReviews(data);
               //
             });
-          } else res.text().then((data) => console.log(data));
+          } else res.text().then((data) => alert(data));
         });
     }
     if (props.sideMealId) {
@@ -137,7 +137,7 @@ const Reviews = (props) => {
               setReviews(data);
               //
             });
-          } else res.text().then((data) => console.log(data));
+          } else res.text().then((data) => alert(data));
         });
     }
   };

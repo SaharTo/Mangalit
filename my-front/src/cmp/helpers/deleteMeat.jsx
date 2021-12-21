@@ -32,7 +32,7 @@ export class DeleteMeat extends Component {
                     this.setState({ meatToDelete: null })
                     this.getMeats();
                 });
-            } else res.text().then((data) => console.log(data));
+            } else res.text().then((data) => alert(data));
         })
     }
 

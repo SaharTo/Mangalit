@@ -31,11 +31,8 @@ export class Admin extends Component {
       }).then((res) => {
         if (res.ok) {
           this.setState({ isAdmin: true })
-
         } else {
           this.setState({ isAdmin: false })
-
-
         }
       });
     } else this.setState({ isAdmin: false })

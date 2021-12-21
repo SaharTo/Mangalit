@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import logoSrc from "../../assets/logo.png";
+// import logoSrc from "https://res.cloudinary.com/manglit/image/upload/v1640104950/assets/logo_nlsu44.png";
 import { useHistory } from "react-router-dom";
 import styles from "./navBar.module.css";
 
@@ -22,7 +22,7 @@ export function Navbar() {
           history.push("/");
           window.location.reload();
         });
-      } else res.text().then((data) => console.log(data));
+      } else res.text().then((data) => alert(data));
     });
   };
 
@@ -34,7 +34,7 @@ export function Navbar() {
   return (
     <div id="header" className={styles.header}>
       <NavLink activeClassName="activeNav" to="/">
-        <img className={styles.logo} src={logoSrc} alt="miao" />
+        <img className={styles.logo} src="https://res.cloudinary.com/manglit/image/upload/v1640106848/assets/logo_nlsu44.png" alt="mangalit" />
       </NavLink>
       <div id="links" className={styles.links}>
         <NavLink activeClassName="activeNav" to="/">

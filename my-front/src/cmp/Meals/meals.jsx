@@ -21,7 +21,7 @@ export class Meals extends Component {
         this.setState({ mToshow: meals });
       })
       .catch((err) => {
-        console.log('cant get meals: ',err);
+        alert(err);
       });
   };
 
@@ -45,7 +45,7 @@ export class Meals extends Component {
         )}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
-            חיפוש
+            מנות
           </label>
           <input
             className={styles.searchInput}
@@ -63,7 +63,8 @@ export class Meals extends Component {
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
             <div dir="rtl" className={styles.preview} key={meal._id}>
-              <img src={meal.mealImage[0]} />
+              {meal.mealImage.length===0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt=""/>}
+              {meal.mealImage.length>0 &&<img src={meal.mealImage[0]} alt=''/>}
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>
               </Link>

@@ -12,7 +12,7 @@ export default function Roulette() {
     await fetch("http://localhost:3030/meals/rndMeals", { credentials: "include", })
       .then((res) => res.json())
       .then((meals) => setRouletteMeals(meals))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   }, []);
 
   const data = rouletteMeals.map((meal) => {

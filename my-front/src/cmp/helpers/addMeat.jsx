@@ -34,7 +34,7 @@ export class AddMeat extends Component {
                     // console.log(data)
                     this.getEmptyMeat();
                 });
-            } else res.text().then((data) => console.log(data));
+            } else res.text().then((data) => alert(data));
         });
     }
 

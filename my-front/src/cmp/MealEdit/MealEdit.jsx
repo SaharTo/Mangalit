@@ -42,7 +42,7 @@ export class MealEdit extends Component {
       .then((res) => res.json())
       .then((meat) => this.setState({ meat }))
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -51,7 +51,7 @@ export class MealEdit extends Component {
       .then((res) => res.json())
       .then((sideMeals) => this.setState({ sideMeals }))
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -60,7 +60,7 @@ export class MealEdit extends Component {
       .then((res) => res.json())
       .then((meal) => this.setState({ meal }))
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
     this.setState({
       meat: this.state.meal.mealMeatInfo,
@@ -146,7 +146,11 @@ export class MealEdit extends Component {
             res.text().then((data) => {
               this.goBack();
             });
-          } else res.text().then((data) => console.log(data));
+          } else res.text().then((msg) => {
+            if (msg === 'mealDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
+            else if (msg === 'mealAdditionalIngredients') alert("מרכיבים נוספים צריך להיות מעל ל3 תווים")
+            else alert(msg);
+          });
         });
     } else {
       // console.log("post meal ", meal);
@@ -166,6 +170,7 @@ export class MealEdit extends Component {
           } else res.text().then((msg) => {
             if (msg === 'mealDescription') alert("אופן ההכנה צריך להיות מעל ל10 תווים")
             else if (msg === 'mealAdditionalIngredients') alert("מרכיבים נוספים צריך להיות מעל ל3 תווים")
+            else alert(msg);
           });
         });
     }

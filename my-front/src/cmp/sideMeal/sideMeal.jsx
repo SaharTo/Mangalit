@@ -31,7 +31,7 @@ export class SideMeal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -42,7 +42,7 @@ export class SideMeal extends Component {
     })
       .then(() => this.goBack())
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -92,7 +92,7 @@ export class SideMeal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log("cant like: ", err);
+        alert(err);
       });
   };
 
@@ -109,7 +109,7 @@ export class SideMeal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        console.log("cant unlike: ", err);
+        alert(err);
       });
   };
 

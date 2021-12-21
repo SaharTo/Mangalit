@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import chickenImage from "../../../assets/chicken.png";
+// import chickenImage from "https://res.cloudinary.com/manglit/image/upload/v1640104956/assets/chicken_f3bmnq.png";
 import styles from "./chicken.module.css";
 // import meatInfo from "./meatInfoTemp";
 
@@ -77,7 +77,7 @@ const Chicken = () => {
   return (
     <div className={styles.meatMap}>
       <img
-        src={chickenImage}
+        src="https://res.cloudinary.com/manglit/image/upload/v1640104956/assets/chicken_f3bmnq.png"
         useMap="#beefIt"
         alt="Chicken Image"
         className={styles.chickenImage}

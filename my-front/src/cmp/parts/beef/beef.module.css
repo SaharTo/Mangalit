@@ -1,29 +1,46 @@
 .hide {
-  /*display: none;*/
-  visibility: hidden;
+    visibility: hidden;
 }
 
-.meatMap {
-  /*text-align: center;
-  color: white;
-  background-color: rgba(245, 158, 158, 0.116);*/
-}
+.meatMap {}
+
 .beefImage {
-  width: 600px;
-  height: 400px;
-  margin: auto;
+    width: 600px;
+    height: 400px;
+    margin: auto;
 }
+
+.meatPhone {
+    display: none;
+    padding: 5px;
+    direction: rtl;
+    text-align: right;
+}
+
+.meatPhone h3 {
+    margin: 0;
+}
+
+.meatPhone div {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {}
+
 @media (max-width: 600px) {
-  .beefImage {
-    width: 100%;
-    height: 50%;
-  }
-  .desc {
-    display: none;
-    color: tomato;
-  }
-  .name {
-    display: none;
-    color: tomato;
-  }
+    .beefImage {
+        width: 100%;
+        height: 50%;
+    }
+    .desc {
+        display: none;
+        color: tomato;
+    }
+    .name {
+        display: none;
+        color: tomato;
+    }
+    .meatPhone {
+        display: block;
+    }
 }

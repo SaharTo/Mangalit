@@ -15,7 +15,7 @@ function isLoggedIn(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-    console.log("inside isAdmin function ");
+    // console.log("inside isAdmin function ");
     if (!req.session.user || !req.session.user.isAdmin) {
         res.status(401).end("You are not not an admin, so you are not allowed to enter this function authenticated");
         return;
@@ -25,7 +25,7 @@ function isAdmin(req, res, next) {
 
 async function validateMeal(req, res, next) {
     const { error } = mealSchema.validate(req.body);
-    console.log('error.details ', error);
+    // console.log('error.details ', error);
     if (error) {
         const msg = error.details.map((el) => {
             return el.path[1];

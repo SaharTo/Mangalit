@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styles from "./changePassword.module.css";
+import { useHistory } from "react-router-dom";
 import logoSrc from "../../assets/logo.png";
 
 export default function ChangePassword() {
+  let history = useHistory();
   const [user, setUser] = useState({});
 
   const handleChange = ({ target }) => {
@@ -10,7 +12,7 @@ export default function ChangePassword() {
     const value = target.value;
     user[field] = value;
     setUser(user);
-    console.log("inside handlechange func ", user);
+    // console.log("inside handlechange func ", user);
   };
   const changePasswordHandler = (ev) => {
     ev.preventDefault();
@@ -25,11 +27,13 @@ export default function ChangePassword() {
       }).then((res) => {
         if (res.ok) {
           //popup message that password changed successfully
+          res.text().then((data) => alert(data));
+          history.push("/");
         } else
           res
             .text()
             .then((data) =>
-              console.log("we have a problem yaani bea'aia beli la'aliv", data)
+              alert("we have a problem yaani bea'aia beli la'aliv", data)
             );
       });
     }
@@ -56,6 +60,7 @@ export default function ChangePassword() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
+          required
         />
         <input
           type="password"
@@ -64,6 +69,7 @@ export default function ChangePassword() {
           value={user.password}
           onChange={handleChange}
           placeholder="סיסמה קודמת"
+          required
         />
         <input
           type="password"
@@ -71,6 +77,7 @@ export default function ChangePassword() {
           id="firstNewPassword"
           value={user.firstPassword}
           onChange={handleChange}
+          required
           placeholder="סיסמה חדשה"
         />
         <input
@@ -80,8 +87,9 @@ export default function ChangePassword() {
           value={user.secondPassword}
           onChange={handleChange}
           placeholder="סיסמה חדשה"
+          required
         />
-        <button onClick={changePasswordHandler} className={styles.btn}>
+        <button className={styles.btn}>
           שנה סיסמא
         </button>
       </form>
