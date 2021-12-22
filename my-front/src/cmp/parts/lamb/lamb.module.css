@@ -6,11 +6,9 @@
     display: block;
 }
 
-.meatMap {}
-
 .lambImage {
-    width: 450px;
-    height: 400px;
+    /*width: 450px;
+    height: 400px;*/
     margin: auto;
 }
 

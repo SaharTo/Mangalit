@@ -1,3 +1,4 @@
+import BaseComponent from "bootstrap/js/dist/base-component";
 import React, { useState, useEffect } from "react";
 // import beefImage from "https://res.cloudinary.com/manglit/image/upload/v1640104953/assets/beef_p4bwdd.png";
 import styles from "./beef.module.css";
@@ -6,7 +7,6 @@ import styles from "./beef.module.css";
 const Beef = () => {
   const [meatState, setMeatState] = useState([]);
   // const [markedMeat, setMarkedMeat] = useState([]);
-
   useEffect(async () => {
     await fetch("http://localhost:3030/meats", { credentials: "include" })
       .then((res) => res.json())
@@ -14,23 +14,16 @@ const Beef = () => {
       .catch((err) => {
         console.log(err);
       });
-    //console.log("meats list ", meats);
   });
 
-  // const componentDidMount = async () => {
-  //   this.getMeats();
-  //   state = {
-  //     meats: null,
-  //   };
-  // }
 
   const onHoverDiv = async (el) => {
-    // console.log("something in the console", el.target.id);
+    //console.log("something in the console", el.target.id);
     if (meatState.meats) {
       document.getElementById("name").classList.remove(`${styles.hide}`);
       document.getElementById("desc").classList.remove(`${styles.hide}`);
       const meatInfo = getMeatInfo(el.target.id);
-      //console.log(meatInfo);
+      console.log(meatInfo);
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;

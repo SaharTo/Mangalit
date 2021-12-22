@@ -83,7 +83,9 @@ function App() {
           <Route path="/roulette" component={Roulette} />
           <Route path="/" component={Home} />
         </Switch>
+
       </div>
+
     </Router>
   );
 }
