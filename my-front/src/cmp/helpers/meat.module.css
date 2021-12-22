@@ -5,7 +5,12 @@
 }
 
 .meatSelect {
+    margin: 0;
     width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px;
 }
 
 .meat {
@@ -17,8 +22,8 @@
     font-size: 16px;
 }
 
-.meat input,
 .meat select,
+.meat input,
 .meat textarea {
     margin: 0;
     width: 100%;

@@ -16,12 +16,12 @@
     grid-template-columns: 2fr 3fr;
     /* grid-template-columns: 200px 300px; */
     gap: 10px;
-    font-weight: bold;
-    font-size: 18px;
 }
 
 .meal label {
     margin: 0;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .mealInput,

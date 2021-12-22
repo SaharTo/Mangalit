@@ -68,9 +68,21 @@ export class EditMeat extends Component {
                         <option value="null" disabled="disabled">
                             בשר לעדכון
                         </option>
-                        {meats.map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
-                            {meat.meatName}
-                        </option>)}
+                        <optgroup label="בקר">
+                            {meats.filter(meat => meat.meatType === 'בקר').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
+                                {meat.meatName}
+                            </option>)}
+                        </optgroup>
+                        <optgroup label="כבש">
+                            {meats.filter(meat => meat.meatType === 'כבש').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
+                                {meat.meatName}
+                            </option>)}
+                        </optgroup>
+                        <optgroup label="עוף">
+                            {meats.filter(meat => meat.meatType === 'עוף').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
+                                {meat.meatName}
+                            </option>)}
+                        </optgroup>
                     </select>
                 </label>
 
