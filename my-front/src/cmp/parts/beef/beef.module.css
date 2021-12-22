@@ -2,30 +2,26 @@
     visibility: hidden;
 }
 
-.meatMap {}
-
 .beefImage {
     width: 600px;
     height: 400px;
     margin: auto;
 }
 
-.meatPhone {
+.beefPhone {
     display: none;
     padding: 5px;
     direction: rtl;
     text-align: right;
 }
 
-.meatPhone h3 {
+.beefPhone h3 {
     margin: 0;
 }
 
-.meatPhone div {
+.beefPhone div {
     margin-bottom: 10px;
 }
-
-@media (max-width: 600px) {}
 
 @media (max-width: 600px) {
     .beefImage {
@@ -40,7 +36,7 @@
         display: none;
         color: tomato;
     }
-    .meatPhone {
+    .beefPhone {
         display: block;
     }
 }

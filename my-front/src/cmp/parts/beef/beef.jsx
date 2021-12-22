@@ -36,7 +36,7 @@ const Beef = () => {
         document.getElementById("desc").innerText = meatInfo.meatDescription;
         // setMarkedMeat(meatInfo);
         // console.log("afterSetMeatInfo ", markedMeat);
-      } else console.log("please hover over exist meat");
+      } /*else console.log("please hover over exist meat");*/
       // <div>Hoveringgggg</div>;
     }
   };
@@ -64,13 +64,11 @@ const Beef = () => {
       };
       //console.log("relevant result ", relevantResult);
       return relevantResult;
-    } else console.log("error");
-
-    //console.log("miao ", result);
+    }/* else console.log("error");*/
   };
 
   return (
-    <div>
+    <div className={styles.beef}>
       <div className={styles.meatMap}>
         <img
           src="https://res.cloudinary.com/manglit/image/upload/v1640104953/assets/beef_p4bwdd.png"
@@ -83,7 +81,7 @@ const Beef = () => {
             <h1 id="name" className={styles.name}>
               רחף עם העכבר מעל לחלק מסויים
             </h1>
-            <div id="desc" className={styles.hide} className={styles.name}></div>
+            <div id="desc" className={styles.hide && styles.desc} ></div>
           </div>
 
           <area
@@ -270,9 +268,9 @@ const Beef = () => {
           ></area>
         </map>
       </div>
-      <div className={styles.meatPhone}>
-        {meatState.meats && meatState.meats.filter(m => m.meatType === 'בקר').map(meat => <div>
-         <h3> {meat.meatNumber} -  {meat.meatName}</h3> 
+      <div className={styles.beefPhone}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'בקר').map(meat => <div key={meat._id}>
+          <h3> {meat.meatNumber} -  {meat.meatName}</h3>
           מידע: {meat.meatDescription}
         </div>)}
       </div>

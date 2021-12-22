@@ -129,6 +129,7 @@ body.open .screen {
 }
 
 body.open [name='recMeals'],
+body.open [name='randomMeal'],
 body.open [name='add'],
 body.open [name='recSideMeals'] {
     z-index: -2;

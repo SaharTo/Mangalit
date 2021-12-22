@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "./mealEdit.module.css";
 import Chosen from "../helpers/chosen";
 import { uploadImg } from "../helpers/uploadImg";
-import { data } from "jquery";
 
 export class MealEdit extends Component {
   state = {
@@ -164,7 +163,7 @@ export class MealEdit extends Component {
       })
         .then((res) => {
           if (res.ok) {
-            res.text().then((data) => {
+            res.text().then(() => {
               this.goBack();
             });
           } else res.text().then((msg) => {
@@ -216,7 +215,6 @@ export class MealEdit extends Component {
   }
 
   render() {
-    const id = this.props.match.params.id;
     const { meal, meat, addOrEdit, sideMeals, files } = this.state;
     if (!meal || !meat || !sideMeals) return <h1 dir="rtl">טוען...</h1>;
     const optMeat = meat.map((m) => {

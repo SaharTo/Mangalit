@@ -1,24 +1,51 @@
 .hide {
-  /*display: none;*/
-  visibility: hidden;
+    visibility: hidden;
 }
 
-.numberTen:hover + .hide {
-  display: block;
+.numberTen:hover+.hide {
+    display: block;
 }
 
 .meatMap {
-  /*text-align: center;
-  color: white;
-
-  background-color: rgba(245, 158, 158, 0.116);
+    max-width: 600px;
+    height: 400px;
+    margin: auto;
 }
 
-.chickenImage {
-  /*width: 600px;
-  height: 390px;*/
-  /*background-color: rgba(219, 25, 25, 0.151);
-  margin: auto;
-  width: 350px;
-  height: 400px;*/
+.chickenPhone {
+    display: none;
+    padding: 5px;
+    direction: rtl;
+    text-align: right;
+}
+
+.chickenPhone h3 {
+    margin: 0;
+}
+
+.chickenPhone div {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 330px) {
+    .chickenImage {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .meatMap {
+        width: 100%;
+    }
+    .desc {
+        display: none;
+        color: tomato;
+    }
+    .name {
+        display: none;
+        color: tomato;
+    }
+    .chickenPhone {
+        display: block;
+    }
 }

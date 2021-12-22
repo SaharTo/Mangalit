@@ -14,7 +14,6 @@ export class Parts extends Component {
   }
 
   handleChange({ target }) {
-    console.log(target.value);
     this.setState({ type: target.value });
   }
   render() {

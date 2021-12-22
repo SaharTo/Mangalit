@@ -5,7 +5,7 @@ import styles from "./chicken.module.css";
 
 const Chicken = () => {
   const [meatState, setMeatState] = useState([]);
-  const [markedMeat, setMarkedMeat] = useState([]);
+  // const [markedMeat, setMarkedMeat] = useState([]);
   useEffect(async () => {
     await fetch("http://localhost:3030/meats", { credentials: "include" })
       .then((res) => res.json())
@@ -15,43 +15,26 @@ const Chicken = () => {
       });
     //console.log("meats list ", meats);
   });
-  /*componentDidMount() {
-    this.getMeats();
-    state = {
-    meats: null,
-  };
-  }*/
-  /*const getMeats = async () => {
-    await fetch("http://localhost:3030/meats", { credentials: "include" })
-      .then((res) => res.json())
-      .then((meats) => setMeatState({ meats }))
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log("meats list ", meats);
-  };*/
 
   const onHoverDiv = async (el) => {
-    // console.log("something in the console", el.target.id);
     if (meatState.meats) {
       document.getElementById("name").classList.remove(`${styles.hide}`);
       document.getElementById("desc").classList.remove(`${styles.hide}`);
       const meatInfo = getMeatInfo(el.target.id);
-      console.log(meatInfo);
+      // console.log(meatInfo);
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;
-        setMarkedMeat(meatInfo);
-        console.log("afterSetMeatInfo ", markedMeat);
-      } else console.log("please hover over exist meat");
-      // <div>Hoveringgggg</div>;
+        // setMarkedMeat(meatInfo);
+        // console.log("afterSetMeatInfo ", markedMeat);
+      } /*else console.log("please hover over exist meat");*/
     }
   };
   const outHoverDiv = (el) => {
     if (meatState.meats) {
       //document.getElementById("name").classList.add(`${styles.hide}`);
       document.getElementById("desc").classList.add(`${styles.hide}`);
-      setMarkedMeat("");
+      // setMarkedMeat("");
       document.getElementById("name").innerText =
         "רחף עם העכבר מעל לחלק מסויים לפירוט אודותיו";
       document.getElementById("desc").innerText = "";
@@ -69,36 +52,43 @@ const Chicken = () => {
       };
       console.log("relevant result ", relevantResult);
       return relevantResult;
-    } else console.log("error");
-
-    //console.log("miao ", result);
+    } /*else console.log("error");*/
   };
 
   return (
-    <div className={styles.meatMap}>
-      <img
-        src="https://res.cloudinary.com/manglit/image/upload/v1640104956/assets/chicken_f3bmnq.png"
-        useMap="#beefIt"
-        alt="Chicken Image"
-        className={styles.chickenImage}
-      ></img>
-      <map name="chickenIt">
-        <div>
-          <h1 id="name">רחף עם העכבר מעל לחלק מסויים</h1>
-          <div id="desc" className={styles.hide}></div>
-        </div>
+    <div className={styles.chicken}>
+      <div className={styles.meatMap}>
+        <img
+          src="https://res.cloudinary.com/manglit/image/upload/v1640104956/assets/chicken_f3bmnq.png"
+          useMap="#beefIt"
+          alt="Chicken Image"
+          className={styles.chickenImage}
+        ></img>
+        <map name="chickenIt">
+          <div>
+            <h1 id="name" className={styles.name}>רחף עם העכבר מעל לחלק מסויים</h1>
+            <div id="desc" className={styles.hide && styles.desc}></div>
+          </div>
 
-        <area
-          shape="poly"
-          coords="136,31,108,129,136,161,164,104,173,50"
-          className=""
-          onMouseOver={onHoverDiv}
-          onMouseOut={outHoverDiv}
-          id="חזה עוף"
-          alt="חזה עוף"
-        ></area>
-      </map>
+          <area
+            shape="poly"
+            coords="136,31,108,129,136,161,164,104,173,50"
+            className=""
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="חזה עוף"
+            alt="חזה עוף"
+          ></area>
+        </map>
+      </div>
+      <div className={styles.chickenPhone}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'עוף').map(meat => <div key={meat._id}>
+          <h3>{meat.meatName}</h3>
+          מידע: {meat.meatDescription}
+        </div>)}
+      </div>
     </div>
+
   );
 };
 export default Chicken;
