@@ -39,7 +39,7 @@ export default function ChangePassword() {
     }
   };
   return (
-    <div>
+    <div className={styles.changPage}>
       <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>

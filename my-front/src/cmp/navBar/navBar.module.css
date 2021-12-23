@@ -6,6 +6,7 @@
     height: 50px;
     width: 100%;
     position: sticky;
+    z-index: 1;
     top: 0;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .logo {
-    height: 50px;
+    height: 100%;
     padding-right: 10px;
 }
 

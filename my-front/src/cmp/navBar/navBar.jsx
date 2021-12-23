@@ -49,9 +49,9 @@ export function Navbar() {
         <NavLink activeClassName="activeNav" to="/sideMeals">
           מנות צד
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/about">
+        {/* <NavLink activeClassName="activeNav" to="/about">
           אודות
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="activeNav" to="/changePassword">
           שנה סיסמא
         </NavLink>

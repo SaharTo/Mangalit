@@ -1,3 +1,7 @@
+.mealPage {
+    min-height: 95vh;
+}
+
 .meal {
     padding-inline-start: 5px;
     display: grid;

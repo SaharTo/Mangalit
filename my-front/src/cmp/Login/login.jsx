@@ -64,7 +64,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className={styles.loginPage}>
       <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>
@@ -90,8 +90,8 @@ export default function Login() {
           placeholder="סיסמה"
         />
         <button className={styles.btn}>התחברות</button>
+        <label className={styles.forgot} onClick={forgetPassword}>שכחתי סיסמא</label>
       </form>
-      <label className={styles.btn} onClick={forgetPassword}>שכחתי סיסמא</label>
     </div>
   );
 }

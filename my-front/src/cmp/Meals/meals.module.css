@@ -70,12 +70,12 @@
 /* meals  */
 
 .meals {
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0 10px;
+    padding: 10px;
     gap: 10px;
+    min-height: 90vh;
 }
 
 .container {
@@ -83,7 +83,6 @@
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-    margin-bottom: 10px;
 }
 
 .preview {

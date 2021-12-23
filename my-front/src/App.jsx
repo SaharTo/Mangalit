@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import React, { useState } from "react";
 import "./App.css";
 import styles from "./cmp/navBar/navBar.module.css";
-import { About } from "./cmp/about";
+import About from "./cmp/About/about";
 import { Home } from "./cmp/home/home";
 import { Meals } from "./cmp/Meals/meals";
 import { Meal } from "./cmp/Meal/meal";
@@ -21,7 +21,7 @@ import { useState } from "react";
 import ChangePassword from "./cmp/changePassword/changePassword";
 import { topTenMeals } from "./cmp/topTenMeals/topTenMeals";
 import { topTenSideMeals } from "./cmp/topTenSideMeals/topTenSideMeals";
-
+import Footer from "./cmp/footer/footer";
 //import Beef from "./cmp/parts/beef";
 
 function App() {
@@ -59,14 +59,7 @@ function App() {
           מנגלבוט
         </button>
         {botIsShown && <SimpleForm />}
-        {/*<div id="mySidenav" class="sideBot">
-          <a href="#" id="mangalBot">
-            מנגלבוט
-          </a>{" "}
-        </div>*/}
-
-        {/* <Navbar isLogged={isLoggedIn}/> */}
-        <Switch>
+        <Switch >
           <Route path="/recommendedMeals" component={topTenMeals} />
           <Route path="/recommendedSideMeals" component={topTenSideMeals} />
           <Route path="/changePassword" component={ChangePassword} />
@@ -84,9 +77,8 @@ function App() {
           <Route path="/roulette" component={Roulette} />
           <Route path="/" component={Home} />
         </Switch>
-
+        <Footer />
       </div>
-
     </Router>
   );
 }

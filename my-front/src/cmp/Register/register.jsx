@@ -36,7 +36,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div className={styles.registerPage}>
       <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>
