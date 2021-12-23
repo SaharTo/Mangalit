@@ -7,13 +7,13 @@
     align-items: center;
 }
 
-.forget {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 60vh;
-    justify-content: center;
-    align-items: center;
+.forgot {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.forgot:hover {
+    color: lightblue;
 }
 
 .title {

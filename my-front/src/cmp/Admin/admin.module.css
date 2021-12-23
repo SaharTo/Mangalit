@@ -14,5 +14,6 @@
 
 .admin {
     width: 300px;
-    margin: 10px auto;
+    min-height: 100vh;
+    margin: 10px auto 0;
 }
