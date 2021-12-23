@@ -9,46 +9,46 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 //const { GridFSBucketReadStream } = require("mongodb");
 require("dotenv").config();
-
-const dbUrl =
-  "mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
+const dbUrl = process.env.DB_URL;
+//const dbUrl =
+//"mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
 
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
-  console.log("Database connected:", dbUrl);
-  // db.collection('Users').insertOne(user); //add user to DB
+    console.log("Database connected:", dbUrl);
+    // db.collection('Users').insertOne(user); //add user to DB
 });
 
 db.on("error", (err) => {
-  console.error("connection error:", err);
+    console.error("connection error:", err);
 });
 
 // for front accses
 const corsOptions = {
-  origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
-  credentials: true,
+    origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
 
 const store = new MongoStore({
-  mongoUrl: dbUrl,
-  autoRemove: "native",
+    mongoUrl: dbUrl,
+    autoRemove: "native",
 });
 store.on("error", (e) => {
-  console.log("store error", e);
+    console.log("store error", e);
 });
 
 app.use(
-  session({
-    secret: "mangalit", //later we will take it from env file
-    resave: false,
-    name: "session",
-    saveUninitialized: false,
-    cookie: { secure: false, httpOnly: false, maxAge: 24 * 3600 },
-    store,
-  })
+    session({
+        secret: process.env.SESSION_SECRET, //later we will take it from env file
+        resave: false,
+        name: "session",
+        saveUninitialized: false,
+        cookie: { secure: false, httpOnly: false, maxAge: 24 * 3600 },
+        store,
+    })
 );
 // Make sure you place body-parser before your CRUD handlers!/
 app.use(express.json()); // To parse the incoming requests with JSON payloads
@@ -58,8 +58,8 @@ app.use(methodOverride("_method"));
 
 //CRUD Handlers.
 app.get("/", (req, res) => {
-  res.send("Wellwou World");
-  //res.sendFile(__Dirname + './index.html')
+    res.send("Wellwou World");
+    //res.sendFile(__Dirname + './index.html')
 });
 
 // app.all("*", (req, res, next) => {
@@ -72,5 +72,5 @@ app.use("/meals/", require("./routes/meals"));
 app.use("/meats/", require("./routes/meats"));
 
 app.listen(3030, function() {
-  console.log("listening on port 3030");
+    console.log("listening on port 3030");
 });
