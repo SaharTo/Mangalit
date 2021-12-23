@@ -65,7 +65,7 @@ const Lamb = () => {
         <map name="lambIt">
           <div>
             <h1 id="name" className={styles.name}>רחף עם העכבר מעל לחלק מסויים</h1>
-            <div id="desc" className={styles.hide && styles.desc}></div>
+            <div dir="rtl" id="desc" className={styles.hide && styles.desc}></div>
           </div>
           <area
             shape="poly"
@@ -78,12 +78,12 @@ const Lamb = () => {
           ></area>
           <area
             shape="poly"
-            coords="95,58,105,77,101,84,99,94,83,122,73,123,66,136,63,135,54,139,40,141,37,140,37,126,39,120,36,118,37,98,41,92,51,91,85,73,96,56,103,74"
+            coords="39,144,39,191,47,200,52,199,64,222,68,227,74,251,70,271,59,298,73,298,76,284,80,282,82,244,90,252,86,279,73,313,96,308,92,293,98,293,96,232,105,221,110,204,111,178,109,162,100,138,84,123,71,127,63,136"
             className=""
             onMouseOver={onHoverDiv}
             onMouseOut={outHoverDiv}
-            id="זרוע טלה"
-            alt="זרוע טלה"
+            id="כתף טלה"
+            alt="כתף טלה"
           ></area>
           <area
             shape="poly"
@@ -118,8 +118,8 @@ const Lamb = () => {
             className=""
             onMouseOver={onHoverDiv}
             onMouseOut={outHoverDiv}
-            id="חזה טלה"
-            alt="חזה טלה"
+            id="חזה ספריבס טלה"
+            alt="חזה ספריבס טלה"
           ></area>
         </map>
       </div>

@@ -71,7 +71,7 @@ const Chicken = () => {
         <map name="chickenIt">
           <div>
             <h1 id="name" className={styles.name}>רחף עם העכבר מעל לחלק מסויים</h1>
-            <div id="desc" className={styles.hide && styles.desc}></div>
+            <div dir="rtl" id="desc" className={styles.hide && styles.desc}></div>
           </div>
           <area
             shape="poly"
@@ -123,7 +123,7 @@ const Chicken = () => {
         </map>
       </div>
       <div className={styles.chickenPhone}>
-        {meatState.meats && meatState.meats.filter(m => m.meatType === 'עוף').map(meat => <div key={meat._id}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'עוף').map(meat => <div dir="rtl" key={meat._id}>
           <h3>{meat.meatName}</h3>
           מידע: {meat.meatDescription}
         </div>)}

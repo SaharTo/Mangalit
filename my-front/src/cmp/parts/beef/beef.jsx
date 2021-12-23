@@ -74,7 +74,7 @@ const Beef = () => {
             <h1 id="name" className={styles.name}>
               רחף עם העכבר מעל לחלק מסויים
             </h1>
-            <div id="desc" className={styles.hide && styles.desc} ></div>
+            <div dir="rtl" id="desc" className={styles.hide && styles.desc} ></div>
           </div>
 
           <area

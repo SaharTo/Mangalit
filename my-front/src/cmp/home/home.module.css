@@ -1,4 +1,4 @@
-/* .homePage {
+        /* .homePage {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -7,33 +7,31 @@
     color: white;
     /* background-color: rgba(243, 212, 212, 0.281); \
 } */
-
-.title {
-    color: rgb(255, 255, 255);
-    font-family: "times New Roman", Arial;
-    font-size: 170px;
-    margin-top: 50px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 0.5;
-    text-align: right;
-    margin-bottom: 30px;
-}
-
-h4.subtitle {
-    color: rgb(255, 255, 255);
-    font-family: "times New Roman", Arial;
-    font-size: 60px;
-    margin-top: 15px;
-    margin-right: 0px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    line-height: 1;
-    text-align: right;
-}
-
-
-/*h5.subtitle {
+        
+        .title {
+            color: rgb(255, 255, 255);
+            font-family: "times New Roman", Arial;
+            font-size: 170px;
+            margin-top: 50px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 0.5;
+            text-align: right;
+            margin-bottom: 30px;
+        }
+        
+        h4.subtitle {
+            color: rgb(255, 255, 255);
+            font-family: "times New Roman", Arial;
+            font-size: 60px;
+            margin-top: 15px;
+            margin-right: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1;
+            text-align: right;
+        }
+        /*h5.subtitle {
   color: rgb(255, 255, 255);
   font-family: "times New Roman", Arial;
   font-size: 60px;
@@ -44,9 +42,7 @@ h4.subtitle {
   line-height: 0.5;
   text-align: right;
 }*/
-
-
-/* .homePage label {
+        /* .homePage label {
     margin: 0;
 }
 
@@ -54,111 +50,123 @@ h4.subtitle {
     width: 80px;
     margin-inline-start: 10px;
 } */
-
-.homePage h2 {
-    margin: 0;
-}
-
-.recSideMeals {
-    width: 300px;
-    top: 55%;
-    background-color: rgba(212, 212, 212, 0.445);
-    text-align: center;
-    border-radius: 5px;
-    word-wrap: break-word;
-    position: fixed;
-    left: 5%;
-    border-radius: 20px;
-}
-
-.recImage {
-    width: 100%;
-    height: 25vh;
-    background: none;
-    opacity: 0.9;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.recMeals {
-    width: 300px;
-    top: 14%;
-    background-color: rgba(212, 212, 212, 0.445);
-    text-align: center;
-    border-radius: 5px;
-    word-wrap: break-word;
-    position: fixed;
-    left: 25%;
-    border-radius: 20px;
-}
-
-.randomMeal {
-    width: 300px;
-    top: 55%;
-    background-color: rgba(212, 212, 212, 0.445);
-    text-align: center;
-    border-radius: 5px;
-    word-wrap: break-word;
-    position: fixed;
-    left: 45%;
-    border-radius: 20px;
-}
-
-@media (max-width: 860px) {
-    h2 {
-        margin: 0;
-    }
-    .randomMeal {
-        left: 20%;
-        width: 25%;
-        top: 35%;
-    }
-    .recMeals {
-        left: 0;
-        width: 25%;
-        top: 10%;
-    }
-    .recSideMeals {
-        left: 0;
-        top: 60%;
-        width: 25%;
-    }
-    .recImage {
-        width: 100%;
-        height: 15vh;
-    }
-}
-
-@media (max-width: 650px) {
-    .title {
-        font-size: 120px;
-    }
-    h4.subtitle {
-        font-size: 40px;
-    }
-    .randomMeal {
-        left: 0;
-        width: 30%;
-        top: 15%;
-        font-size: 10px;
-        height: 20%;
-    }
-    .recMeals {
-        left: 0;
-        width: 30%;
-        top: 40%;
-        font-size: 10px;
-        height: 20%;
-    }
-    .recSideMeals {
-        left: 0;
-        width: 30%;
-        font-size: 10px;
-        top: 65%;
-        height: 20%;
-    }
-    .recImage {
-        width: 100%;
-        height: 10vh;
-    }
-}
+        
+        .homePage h2 {
+            margin: 0;
+        }
+        
+        .recSideMeals {
+            width: 300px;
+            top: 55%;
+            background-color: rgba(212, 212, 212, 0.445);
+            text-align: center;
+            border-radius: 5px;
+            word-wrap: break-word;
+            position: fixed;
+            left: 5%;
+            border-radius: 20px;
+        }
+        
+        .recImage {
+            width: 100%;
+            height: 25vh;
+            background: none;
+            opacity: 0.9;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .recMeals {
+            width: 300px;
+            top: 14%;
+            background-color: rgba(212, 212, 212, 0.445);
+            text-align: center;
+            border-radius: 5px;
+            word-wrap: break-word;
+            position: fixed;
+            left: 25%;
+            border-radius: 20px;
+        }
+        
+        .randomMeal {
+            width: 300px;
+            top: 55%;
+            background-color: rgba(212, 212, 212, 0.445);
+            text-align: center;
+            border-radius: 5px;
+            word-wrap: break-word;
+            position: fixed;
+            left: 45%;
+            border-radius: 20px;
+        }
+        
+        @media (max-width: 860px) {
+            h2 {
+                margin: 0;
+            }
+            .randomMeal {
+                left: 20%;
+                width: 25%;
+                top: 35%;
+            }
+            .recMeals {
+                left: 0;
+                width: 25%;
+                top: 10%;
+            }
+            .recSideMeals {
+                left: 0;
+                top: 60%;
+                width: 25%;
+            }
+            .recImage {
+                width: 100%;
+                height: 15vh;
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .title {
+                font-size: 120px;
+            }
+            h4.subtitle {
+                font-size: 40px;
+            }
+            .randomMeal {
+                left: 0;
+                width: 30%;
+                top: 15%;
+                font-size: 10px;
+                height: 20%;
+            }
+            .recMeals {
+                left: 0;
+                width: 30%;
+                top: 40%;
+                font-size: 10px;
+                height: 20%;
+            }
+            .recSideMeals {
+                left: 0;
+                width: 30%;
+                font-size: 10px;
+                top: 65%;
+                height: 20%;
+            }
+            .recImage {
+                width: 100%;
+                height: 10vh;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .title {
+                font-size: 80px;
+            }
+            h2 {
+                font-size: 10px;
+            }
+            p {
+                font-size: 8px;
+            }
+        }
