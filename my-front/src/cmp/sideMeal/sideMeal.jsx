@@ -117,107 +117,109 @@ export class SideMeal extends Component {
     const { sideMeal, islike } = this.state;
     if (!sideMeal) return <h1 dir="rtl">מחפש מנת צד...</h1>;
     return (
-      <div dir="rtl" className={styles.sideMeal}>
-        <div className={styles.continer}>
-          <h1>שם המנה: {sideMeal.sideMealName}</h1>
-          <p>פירוט: {sideMeal.sideMealSummary}</p>
-          <p>רמת קושי: {sideMeal.sideMealDifficult}</p>
-          <p>מרכיבים: {sideMeal.sideMealIngriedents}</p>
-          <p>אופן ההכנה: {sideMeal.sideMealPreperationDescription}</p>
-          <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime} דקות</p>
-          <p>לכמה אנשים זה מתאים: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
-          <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
-          {sideMeal.sideMealsAuthor ? (
-            <p>יוצר: {sideMeal.sideMealsAuthor.fullName}</p>
-          ) : (
-            <p>יוצר: לא ידוע</p>
-          )}
-          {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
-            (!islike ? (
-              <div dir="ltr">
-                <button className={styles.btnLike} onClick={this.like}>
-                  🤍
-                </button>
-                <label>{sideMeal.sideMealLikes.length}</label>
-              </div>
+      <div className={styles.sideMealPage}>
+        <div dir="rtl" className={styles.sideMeal}>
+          <div className={styles.continer}>
+            <h1>שם המנה: {sideMeal.sideMealName}</h1>
+            <p>פירוט: {sideMeal.sideMealSummary}</p>
+            <p>רמת קושי: {sideMeal.sideMealDifficult}</p>
+            <p>מרכיבים: {sideMeal.sideMealIngriedents}</p>
+            <p>אופן ההכנה: {sideMeal.sideMealPreperationDescription}</p>
+            <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime} דקות</p>
+            <p>לכמה אנשים זה מתאים: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
+            <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
+            {sideMeal.sideMealsAuthor ? (
+              <p>יוצר: {sideMeal.sideMealsAuthor.fullName}</p>
             ) : (
-              <div dir="ltr">
-                <button className={styles.btnLike} onClick={this.unLike}>
-                  ❤️
-                </button>
-                <label>{sideMeal.sideMealLikes.length}</label>
-              </div>
-            ))}
-          {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
-            <div dir="ltr">❤️ {sideMeal.sideMealLikes.length}</div>
-          )}
-          <div className={styles.continerBtn}>
-            {(sideMeal.sideMealsAuthor &&
-              JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              sideMeal.sideMealsAuthor._id && (
-                <button
-                  className={styles.btn}
-                  onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
-                >
-                  מחיקה
-                </button>
-              )) ||
-              (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
-                true && (
+              <p>יוצר: לא ידוע</p>
+            )}
+            {JSON.parse(sessionStorage.getItem("loggedInUser")) &&
+              (!islike ? (
+                <div dir="ltr">
+                  <button className={styles.btnLike} onClick={this.like}>
+                    🤍
+                  </button>
+                  <label>{sideMeal.sideMealLikes.length}</label>
+                </div>
+              ) : (
+                <div dir="ltr">
+                  <button className={styles.btnLike} onClick={this.unLike}>
+                    ❤️
+                  </button>
+                  <label>{sideMeal.sideMealLikes.length}</label>
+                </div>
+              ))}
+            {JSON.parse(!sessionStorage.getItem("loggedInUser")) && (
+              <div dir="ltr">❤️ {sideMeal.sideMealLikes.length}</div>
+            )}
+            <div className={styles.continerBtn}>
+              {(sideMeal.sideMealsAuthor &&
+                JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+                sideMeal.sideMealsAuthor._id && (
                   <button
                     className={styles.btn}
                     onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
                   >
                     מחיקה
                   </button>
-                ))}
-            {(sideMeal.sideMealsAuthor &&
-              JSON.parse(sessionStorage.getItem("loggedInUser")) ===
-              sideMeal.sideMealsAuthor._id && (
-                <Link to={"/sideMeals/save/" + sideMeal._id}>
-                  <button className={styles.btn}>עריכה</button>
-                </Link>
-              )) ||
-              (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
-                true && (
+                )) ||
+                (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+                  true && (
+                    <button
+                      className={styles.btn}
+                      onClick={(ev) => this.deleteSideMeal(sideMeal._id)}
+                    >
+                      מחיקה
+                    </button>
+                  ))}
+              {(sideMeal.sideMealsAuthor &&
+                JSON.parse(sessionStorage.getItem("loggedInUser")) ===
+                sideMeal.sideMealsAuthor._id && (
                   <Link to={"/sideMeals/save/" + sideMeal._id}>
                     <button className={styles.btn}>עריכה</button>
                   </Link>
-                ))}
-          </div>
-        </div>
-        <div className={styles.returnBtn}>
-          <button className={styles.btn} onClick={this.goBack}>
-            חזרה למנות צד
-          </button>
-        </div>
-
-        <div className={styles.images}>
-          {sideMeal.sideMealImageUrl.length > 0 &&
-            sideMeal.sideMealImageUrl.map((url) => (
-              <div name="sideMealSlide" key={url}>
-                <img src={url} alt="" />
-              </div>
-            ))}
-          {sideMeal.sideMealImageUrl.length > 1 && (
-            <div className={styles.prevNext}>
-              <button className={styles.prev} onClick={this.prevSlides}>
-                &#10094;
-              </button>
-              <button className={styles.next} onClick={this.nextSlides}>
-                &#10095;
-              </button>
+                )) ||
+                (JSON.parse(sessionStorage.getItem("loggedInUserIsadmin")) ===
+                  true && (
+                    <Link to={"/sideMeals/save/" + sideMeal._id}>
+                      <button className={styles.btn}>עריכה</button>
+                    </Link>
+                  ))}
             </div>
-          )}
-        </div>
-        {
-          <Reviews
-            className={styles.reviews}
-            sideMealId={sideMeal._id}
-            reviewList={sideMeal.sideMealsReviews}
-          ></Reviews>
-        }
-      </div >
+          </div>
+          <div className={styles.returnBtn}>
+            <button className={styles.btn} onClick={this.goBack}>
+              חזרה למנות צד
+            </button>
+          </div>
+
+          <div className={styles.images}>
+            {sideMeal.sideMealImageUrl.length > 0 &&
+              sideMeal.sideMealImageUrl.map((url) => (
+                <div name="sideMealSlide" key={url}>
+                  <img src={url} alt="" />
+                </div>
+              ))}
+            {sideMeal.sideMealImageUrl.length > 1 && (
+              <div className={styles.prevNext}>
+                <button className={styles.prev} onClick={this.prevSlides}>
+                  &#10094;
+                </button>
+                <button className={styles.next} onClick={this.nextSlides}>
+                  &#10095;
+                </button>
+              </div>
+            )}
+          </div>
+          {
+            <Reviews
+              className={styles.reviews}
+              sideMealId={sideMeal._id}
+              reviewList={sideMeal.sideMealsReviews}
+            ></Reviews>
+          }
+        </div >
+      </div>
     );
   }
 }

@@ -1,9 +1,13 @@
+.sideMealPage {
+    min-height: 95vh;
+}
+
 .sideMeal {
-    padding-inline-start: 5px;
+    padding-top: 10px;
     display: grid;
     grid-template-columns: 105px 2fr 1fr;
     gap: 10px;
-    margin: 10px auto;
+    margin: 0 auto;
     max-width: 1200px;
 }
 
@@ -70,6 +74,7 @@
 }
 
 .returnBtn {
+    text-align: center;
     grid-row-start: 1;
     grid-column-start: 1;
     grid-column-end: 2;

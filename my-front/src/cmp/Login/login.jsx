@@ -64,7 +64,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className={styles.loginPage}>
       <div className={styles.logo}>
         <img src={logoSrc} alt="" />
       </div>

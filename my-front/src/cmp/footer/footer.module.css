@@ -21,5 +21,11 @@
 
 .links {
     display: flex;
+    align-items: center;
     gap: 10px;
+}
+
+.links img {
+    height: 30px;
+    border-radius: 10px;
 }
