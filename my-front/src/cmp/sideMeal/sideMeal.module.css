@@ -152,3 +152,9 @@
         order: -1
     }
 }
+
+@media (max-width:450px) {
+    .sideMeal {
+        display: block;
+    }
+}

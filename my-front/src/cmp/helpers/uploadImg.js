@@ -1,16 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const uploadImg = async(file) => {
-    const UPLOAD_PRESET = 'xtyivvh6' // Insert yours
-    const CLOUD_NAME = 'manglit' // Insert yours
-    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+    console.log("inside upload Image");
+    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
+
+    const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL;
+
     const FORM_DATA = new FormData();
-    FORM_DATA.append('file', file)
-    FORM_DATA.append('upload_preset', UPLOAD_PRESET)
+    FORM_DATA.append("file", file);
+    FORM_DATA.append("upload_preset", UPLOAD_PRESET);
     try {
-        const res = await axios.post(UPLOAD_URL, FORM_DATA)
+        const res = await axios.post(UPLOAD_URL, FORM_DATA);
         return res.data.url;
     } catch (err) {
-        console.error('ERROR!', err)
+        console.error("ERROR!", err);
     }
 };

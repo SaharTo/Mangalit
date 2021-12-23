@@ -94,7 +94,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        alert('cant like: ',err);
+        alert('cant like: ', err);
       });
   };
 
@@ -111,7 +111,7 @@ export class Meal extends Component {
         this.checkLike();
       })
       .catch((err) => {
-        alert('cant unlike: ',err);
+        alert('cant unlike: ', err);
       });
   };
 
@@ -121,14 +121,14 @@ export class Meal extends Component {
     return (
       <div dir="rtl" className={styles.meal}>
         <div className={styles.continer}>
-          <h1>שם המנה: {meal.mealName}</h1>
+          <h1>{meal.mealName}</h1>
           <p>פירוט: {meal.mealSummary}</p>
           <p>רמת קושי: {meal.mealPreparationDifficult}</p>
           <div>
             סוג בשר:
             {meal.mealMeatInfo.map((meat) => {
-            return <p key={meat._id}> - {meat.meatName}</p>;
-          })}
+              return <p key={meat._id}> - {meat.meatName}</p>;
+            })}
           </div>
           <p>משקל הבשר (בגרם): {meal.mealMeatQuantityGram}</p>
           {meal.mealRecommendedSideMeals.map((sideMeal) => {

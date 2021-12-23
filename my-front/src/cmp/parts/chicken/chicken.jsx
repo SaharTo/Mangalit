@@ -82,15 +82,7 @@ const Chicken = () => {
             id="גב עוף"
             alt="גב עוף"
           ></area>
-          <area
-            shape="poly"
-            coords="107,103,68,131,83,167,105,161,133,174,158,186,179,208,194,207,197,167,203,154,166,159,135,151,121,133"
-            className=""
-            onMouseOver={onHoverDiv}
-            onMouseOut={outHoverDiv}
-            id="חזה עוף"
-            alt="חזה עוף"
-          ></area>
+
 
           <area
             shape="poly"
@@ -98,8 +90,8 @@ const Chicken = () => {
             className=""
             onMouseOver={onHoverDiv}
             onMouseOut={outHoverDiv}
-            id="רגל עוף"
-            alt="רגל עוף"
+            id="שוקיים פולקע עוף"
+            alt="שוקיים פולקע עוף"
           ></area>
           <area
             shape="poly"
@@ -107,8 +99,8 @@ const Chicken = () => {
             className=""
             onMouseOver={onHoverDiv}
             onMouseOut={outHoverDiv}
-            id="ישבן עוף"
-            alt="ישבן עוף"
+            id="ירכיים עוף"
+            alt="ירכיים עוף"
           ></area>
           <area
             shape="poly"
@@ -118,6 +110,15 @@ const Chicken = () => {
             onMouseOut={outHoverDiv}
             id="כנפיים עוף"
             alt="כנפיים עוף"
+          ></area>
+          <area
+            shape="poly"
+            coords="84,281,89,261,113,245,90,234,70,218,65,200,68,182,83,167,66,133,49,136,32,135,32,146,35,143,31,199,36,198,43,218,53,236,67,248,74,269,83,279"
+            className=""
+            onMouseOver={onHoverDiv}
+            onMouseOut={outHoverDiv}
+            id="חזה עוף"
+            alt="חזה עוף"
           ></area>
         </map>
       </div>
