@@ -1,4 +1,5 @@
 .parts {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     min-height: 95vh;
@@ -14,4 +15,8 @@
 .parts select {
     width: 80px;
     margin-inline-start: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px;
 }

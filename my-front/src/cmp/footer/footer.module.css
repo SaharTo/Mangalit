@@ -29,3 +29,16 @@
     height: 30px;
     border-radius: 10px;
 }
+
+@media (max-width:500px) {
+    .footer img {
+        height: 40px;
+    }
+    .links {
+        font-size: 10px;
+    }
+    .links img {
+        height: 20px;
+        border-radius: 5px;
+    }
+}

@@ -23,7 +23,7 @@ const Beef = () => {
       document.getElementById("name").classList.remove(`${styles.hide}`);
       document.getElementById("desc").classList.remove(`${styles.hide}`);
       const meatInfo = getMeatInfo(el.target.id);
-      console.log(meatInfo);
+      // console.log(meatInfo);
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;
@@ -262,7 +262,7 @@ const Beef = () => {
         </map>
       </div>
       <div className={styles.beefPhone}>
-        {meatState.meats && meatState.meats.filter(m => m.meatType === 'בקר').map(meat => <div key={meat._id}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'בקר').filter(m => m.meatNumber).map(meat => <div key={meat._id}>
           <h3> {meat.meatNumber} -  {meat.meatName}</h3>
           מידע: {meat.meatDescription}
         </div>)}

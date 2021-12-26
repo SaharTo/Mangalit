@@ -21,7 +21,7 @@ const Lamb = () => {
       document.getElementById("name").classList.remove(`${styles.hide}`);
       document.getElementById("desc").classList.remove(`${styles.hide}`);
       const meatInfo = getMeatInfo(el.target.id);
-      console.log(meatInfo)
+      // console.log(meatInfo)
       if (meatInfo) {
         document.getElementById("name").innerText = meatInfo.meatName;
         document.getElementById("desc").innerText = meatInfo.meatDescription;
@@ -124,8 +124,8 @@ const Lamb = () => {
         </map>
       </div>
       <div className={styles.lambPhone}>
-        {meatState.meats && meatState.meats.filter(m => m.meatType === 'כבש').map(meat => <div key={meat._id}>
-          <h3>{meat.meatNumber} - {meat.meatName}</h3>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'כבש').filter(m => m.meatNumber).map(meat => <div key={meat._id}>
+          <h3>{meat.meatName}</h3>
           מידע: {meat.meatDescription}
         </div>)}
       </div>

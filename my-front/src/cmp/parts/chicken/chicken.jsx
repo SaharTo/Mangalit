@@ -123,7 +123,7 @@ const Chicken = () => {
         </map>
       </div>
       <div className={styles.chickenPhone}>
-        {meatState.meats && meatState.meats.filter(m => m.meatType === 'עוף').map(meat => <div dir="rtl" key={meat._id}>
+        {meatState.meats && meatState.meats.filter(m => m.meatType === 'עוף').filter(m => m.meatNumber).map(meat => <div dir="rtl" key={meat._id}>
           <h3>{meat.meatName}</h3>
           מידע: {meat.meatDescription}
         </div>)}
