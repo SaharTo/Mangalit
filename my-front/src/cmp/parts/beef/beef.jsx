@@ -234,7 +234,7 @@ const Beef = () => {
           ></area>
           <area
             shape="poly"
-            coords="434,144,423,156,427,173,476,18,459,172,463,146"
+            coords="478,216,466,176,468,147,439,146,428,159,431,177"
             className="numberFourteen"
             onMouseOver={onHoverDiv}
             onMouseOut={outHoverDiv}
