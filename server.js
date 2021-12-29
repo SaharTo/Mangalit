@@ -23,6 +23,8 @@ db.once("open", (_) => {
 db.on("error", (err) => {
     console.error("connection error:", err);
 });
+//app.use(express.static("public"));
+const port = process.env.PORT || 3030;
 
 // for front accses
 const corsOptions = {
@@ -71,6 +73,6 @@ app.use("/reviews/", require("./routes/review"));
 app.use("/meals/", require("./routes/meals"));
 app.use("/meats/", require("./routes/meats"));
 
-app.listen(3030, function() {
-    console.log("listening on port 3030");
+app.listen(port, function() {
+    console.log("listening on port: ", port);
 });
