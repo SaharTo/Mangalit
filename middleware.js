@@ -7,7 +7,6 @@ function isLoggedIn(req, res, next) {
     // console.log("isLoggedIn middleware session", req.session.user);
     // console.log("isLoggedIn middleware session", req);
     // if (!sessionStorage.getItem('logedInUser')) {
-    //console.log("nadav");
     if (!req.session || !req.session.user) {
         res.status(401).send("Not authenticated, Please Login");
         return;
