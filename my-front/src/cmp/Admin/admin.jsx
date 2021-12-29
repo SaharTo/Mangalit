@@ -19,6 +19,7 @@ export class Admin extends Component {
     this.setState({ page: target.value });
   }
   checkIfAdmin() {
+    //console.log(sessionStorage)
     if (sessionStorage.getItem('loggedInUser')) {
       fetch(`https://immense-inlet-06578.herokuapp.com/users/checkIfAdmin`, {
         method: "GET",
