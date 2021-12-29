@@ -9,7 +9,7 @@ function isLoggedIn(req, res, next) {
     // if (!sessionStorage.getItem('logedInUser')) {
     //console.log("nadav");
     if (!req.session || !req.session.user) {
-        res.status(401).send("Not authenticated, Please Login Nadav");
+        res.status(401).send("Not authenticated, Please Login");
         return;
     }
     next();

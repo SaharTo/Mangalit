@@ -44,7 +44,7 @@ app.use(
         secret: process.env.SESSION_SECRET, //later we will take it from env file
         resave: false,
         name: "session",
-        saveUninitialized: false,
+        saveUninitialized: true,
         cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
         store,
     })
