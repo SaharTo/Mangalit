@@ -42,7 +42,7 @@ store.on("error", (e) => {
 app.use(
     session({
         secret: process.env.SESSION_SECRET, //later we will take it from env file
-        resave: false,
+        resave: true,
         name: "session",
         saveUninitialized: true,
         cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
