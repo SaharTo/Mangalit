@@ -1,29 +1,22 @@
 //console.log("May Node be with you");
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-//const { GridFSBucketReadStream } = require("mongodb");
 require("dotenv").config();
 const dbUrl = process.env.DB_URL;
-//const dbUrl =
-//"mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
-
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
     console.log("Database connected:", dbUrl);
-    // db.collection('Users').insertOne(user); //add user to DB
 });
 
 db.on("error", (err) => {
     console.error("connection error:", err);
 });
-//app.use(express.static("public"));
 const port = process.env.PORT || 3030;
 
 // for front accses
