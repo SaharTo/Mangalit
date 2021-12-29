@@ -21,7 +21,11 @@ const port = process.env.PORT || 3030;
 
 // for front accses
 const corsOptions = {
-    origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
+    origin: [
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+        "https://mangal-it.com/",
+    ],
     credentials: true,
 };
 
