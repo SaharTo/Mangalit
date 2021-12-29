@@ -13,7 +13,7 @@ export class SideMeals extends Component {
   }
 
   getSideMeals = async () => {
-    fetch("http://localhost:3030/sideMeals", { credentials: "include" })
+    fetch("https://immense-inlet-06578.herokuapp.com/sideMeals", { credentials: "include" })
       .then((res) => res.json())
       .then((sideMeals) => {
         this.setState({ sideMeals });

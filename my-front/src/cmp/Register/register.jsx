@@ -16,7 +16,7 @@ export default function Register() {
   const register = (ev) => {
     ev.preventDefault();
     if (user.password && user.userName && user.userEmail && user.fullName) {
-      fetch(`http://localhost:3030/users/register`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

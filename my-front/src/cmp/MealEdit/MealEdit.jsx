@@ -37,7 +37,7 @@ export class MealEdit extends Component {
   };
 
   getMeatInfo = async () => {
-    fetch(`http://localhost:3030/meats`, { credentials: "include" })
+    fetch(`https://immense-inlet-06578.herokuapp.com/meats`, { credentials: "include" })
       .then((res) => res.json())
       .then((meat) => this.setState({ meat }))
       .catch((error) => {
@@ -46,7 +46,7 @@ export class MealEdit extends Component {
   };
 
   getRecommendeSideMeals = async () => {
-    fetch(`http://localhost:3030/sideMeals`, { credentials: "include" })
+    fetch(`https://immense-inlet-06578.herokuapp.com/sideMeals`, { credentials: "include" })
       .then((res) => res.json())
       .then((sideMeals) => this.setState({ sideMeals }))
       .catch((error) => {
@@ -55,7 +55,7 @@ export class MealEdit extends Component {
   };
 
   getMeal = async (id) => {
-    await fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
+    await fetch(`https://immense-inlet-06578.herokuapp.com/meals/${id}`, { credentials: "include" })
       .then((res) => res.json())
       .then((meal) => this.setState({ meal }))
       .catch((err) => {
@@ -132,7 +132,7 @@ export class MealEdit extends Component {
       delete meal.mealAuthor;
       delete meal.mealIsRecommended;
       delete meal.__v;
-      fetch(`http://localhost:3030/meals/${id}`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/meals/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ export class MealEdit extends Component {
         });
     } else {
       // console.log("post meal ", meal);
-      fetch(`http://localhost:3030/meals/`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/meals/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

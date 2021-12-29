@@ -140,7 +140,7 @@ module.exports.login = async(req, res, next) => {
                 req.session.user = newUser;
                 await req.session.save();
                 //req.session.user.save();
-                // console.log("login controller session ", req.session);
+                //console.log("login controller session ", req.session);
                 res.send({ id: newUser._id, isAdmin: newUser.isAdmin });
             } else {
                 res.status(404).send("סיסמא לא נכונה");

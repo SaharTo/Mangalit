@@ -24,7 +24,7 @@ const corsOptions = {
     origin: [
         "http://127.0.0.1:3000",
         "http://localhost:3000",
-        "https://mangal-it.com/",
+        "https://mangal-it.com",
     ],
     credentials: true,
 };

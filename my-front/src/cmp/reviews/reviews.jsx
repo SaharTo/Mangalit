@@ -13,7 +13,7 @@ const Reviews = (props) => {
   const getReviews = () => {
     //bring from back
     if (props.mealId) {
-      fetch(`http://localhost:3030/meals/${props.mealId}/reviews`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/meals/${props.mealId}/reviews`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const Reviews = (props) => {
       });
     }
     if (props.sideMealId) {
-      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/reviews`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/sideMeals/${props.sideMealId}/reviews`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Reviews = (props) => {
   const addReview = (ev) => {
     ev.preventDefault();
     if (props.mealId) {
-      fetch(`http://localhost:3030/meals/${props.mealId}/review`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/meals/${props.mealId}/review`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Reviews = (props) => {
       });
     };
     if (props.sideMealId) {
-      fetch(`http://localhost:3030/sideMeals/${props.sideMealId}/review`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/sideMeals/${props.sideMealId}/review`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const Reviews = (props) => {
     ev.preventDefault();
     // console.log(`${props.mealId}/review/${id}`);
     if (props.mealId) {
-      fetch(`http://localhost:3030/meals/${props.mealId}/review/${id}`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/meals/${props.mealId}/review/${id}`, {
         method: "DELETE",
         credentials: "include",
       })
@@ -123,7 +123,7 @@ const Reviews = (props) => {
     }
     if (props.sideMealId) {
       fetch(
-        `http://localhost:3030/sideMeals/${props.sideMealId}/review/${id}`,
+        `https://immense-inlet-06578.herokuapp.com/sideMeals/${props.sideMealId}/review/${id}`,
         {
           method: "DELETE",
           credentials: "include",

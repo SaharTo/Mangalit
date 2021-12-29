@@ -20,7 +20,7 @@ export class Admin extends Component {
   }
   checkIfAdmin() {
     if (sessionStorage.getItem('loggedInUser')) {
-      fetch(`http://localhost:3030/users/checkIfAdmin`, {
+      fetch(`https://immense-inlet-06578.herokuapp.com/users/checkIfAdmin`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

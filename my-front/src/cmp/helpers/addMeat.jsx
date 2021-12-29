@@ -21,7 +21,7 @@ export class AddMeat extends Component {
     creatMeat = async (ev) => {
         ev.preventDefault();
         const { meat } = this.state;
-        fetch(`http://localhost:3030/meats/`, {
+        fetch(`https://immense-inlet-06578.herokuapp.com/meats/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
