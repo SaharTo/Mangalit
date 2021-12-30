@@ -34,9 +34,9 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     /*res.header(
-                "Access-Control-Allow-Headers"
-                "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-HTTP-Method-Override, Set-Cookie, Cookie"
-            );*/
+                    "Access-Control-Allow-Headers"
+                    "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-HTTP-Method-Override, Set-Cookie, Cookie"
+                );*/
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     next();
 });
@@ -59,7 +59,7 @@ app.use(
         resave: false,
         name: "session",
         saveUninitialized: false,
-        cookie: { secure: true, httpOnly: true, maxAge: 24 * 360000 },
+        cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
         store,
     })
 );
