@@ -14,6 +14,7 @@ const dbUrl = process.env.DB_URL;
 //const dbUrl =
 //"mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
 
+const port = process.env.PORT || 3030
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
@@ -84,6 +85,6 @@ app.get("/**", (req, res) => {
     res.sendFile('index.html', { root });
 })
 
-app.listen(3030, function() {
-    console.log("listening on port 3030");
+app.listen(port, function() {
+    console.log("listening on port ", port);
 });
