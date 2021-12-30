@@ -117,7 +117,7 @@ module.exports.logout = async(req, res, next) => {
 };
 
 module.exports.login = async(req, res, next) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true");
+    //res.setHeader("Access-Control-Allow-Credentials", "true");
     // then validate the response from a database or external api
     // console.log("entered the login controller func");
     const users = await User.find({});
