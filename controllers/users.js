@@ -138,7 +138,7 @@ module.exports.login = async(req, res, next) => {
                 };
                 // console.log("before userController ", req.session);
                 req.session.user = newUser;
-                await req.session.save();
+                await req.session.save((err) => console.log(err));
                 res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
 
                 //req.session.user.save();

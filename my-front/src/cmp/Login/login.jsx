@@ -55,7 +55,7 @@ export default function Login() {
                 "loggedInUserIsadmin",
                 JSON.stringify(data.isAdmin)
               );
-            history.push("/");
+            history.push("/home");
             window.location.reload();
           });
         } else res.text().then((data) => alert(data));
