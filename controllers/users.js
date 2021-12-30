@@ -143,7 +143,11 @@ module.exports.login = async(req, res, next) => {
 
                 //req.session.user.save();
                 //console.log("login controller session ", req.session);
-                res.send({ id: newUser._id, isAdmin: newUser.isAdmin });
+                res.send({
+                    id: newUser._id,
+                    isAdmin: newUser.isAdmin,
+                    sessionId: req.sessionId,
+                });
             } else {
                 res.status(404).send("סיסמא לא נכונה");
             }
@@ -188,5 +192,5 @@ module.exports.checkIfIsAdmin = async(req, res) => {
     // console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
-    } else res.status(401).send(req.session);
+    } else res.status(401).send(req.sessionId);
 };

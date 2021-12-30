@@ -50,6 +50,7 @@ export default function Login() {
         if (res.ok) {
           res.json().then((data) => {
             sessionStorage.setItem("loggedInUser", JSON.stringify(data.id));
+            sessionStorage.setItem("sessionID", JSON.stringify(data.sessionId));
             if (data.isAdmin)
               sessionStorage.setItem(
                 "loggedInUserIsadmin",
