@@ -186,5 +186,5 @@ module.exports.checkIfIsAdmin = async(req, res) => {
     // console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
-    } else res.status(401).send("לא אדמין");
+    } else res.status(401).send(req.session);
 };
