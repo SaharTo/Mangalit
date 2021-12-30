@@ -60,6 +60,7 @@ app.use(
         name: "session",
         saveUninitialized: true,
         cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
+        store,
     })
 );
 // Make sure you place body-parser before your CRUD handlers!/
