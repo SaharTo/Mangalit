@@ -140,6 +140,7 @@ module.exports.login = async(req, res, next) => {
                 req.session.user = newUser;
                 /*await */
                 req.session.save((err) => console.log(err));
+                console.log(req.session);
                 // res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
 
                 //req.session.user.save();
