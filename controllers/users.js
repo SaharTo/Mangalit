@@ -190,7 +190,7 @@ module.exports.checkIfLoggedIn = async(req, res) => {
     } else res.status(401).send("אין משתמש מחובר");
 };
 module.exports.checkIfIsAdmin = async(req, res) => {
-    // console.log("inside check ifAdmin func ", req.session);
+    console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
     } else res.status(401).send(req.session);
