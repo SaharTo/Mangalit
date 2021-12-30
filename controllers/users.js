@@ -138,7 +138,7 @@ module.exports.login = async(req, res, next) => {
                 };
                 // console.log("before userController ", req.session);
                 req.session.user = newUser;
-                await req.session.save((err) => console.log(err));
+                await req.session.save((err) => res.status(404).send(err));
                 res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
 
                 //req.session.user.save();
@@ -146,7 +146,6 @@ module.exports.login = async(req, res, next) => {
                 res.send({
                     id: newUser._id,
                     isAdmin: newUser.isAdmin,
-                    sessionId: req.session.sessionId,
                 });
             } else {
                 res.status(404).send("סיסמא לא נכונה");
@@ -192,5 +191,5 @@ module.exports.checkIfIsAdmin = async(req, res) => {
     // console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
-    } else res.status(401).send(req.session.sessionId);
+    } else res.status(401).send(req.session);
 };
