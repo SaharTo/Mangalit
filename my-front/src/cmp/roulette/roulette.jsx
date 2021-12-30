@@ -9,7 +9,7 @@ export default function Roulette() {
   const [rouletteMeals, setRouletteMeals] = useState([]);
 
   useEffect(async () => {
-    await fetch("http://localhost:3030/meals/rndMeals", { credentials: "include", })
+    await fetch("/meals/rndMeals", { credentials: "include", })
       .then((res) => res.json())
       .then((meals) => setRouletteMeals(meals))
       .catch((err) => alert(err));

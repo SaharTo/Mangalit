@@ -18,7 +18,7 @@ export default function Login() {
     // console.log( window.confirm('dddd'));
     if (window.confirm("האם הנך בטוח/ה שברצונך לאפס את הסיסמא שלך?") === false) return;
     if (user.userName) {
-      fetch(`http://localhost:3030/users/sendMyPassword`, {
+      fetch(`/users/sendMyPassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function Login() {
   const login = (ev) => {
     ev.preventDefault();
     if (user.password && user.userName) {
-      fetch(`http://localhost:3030/users/login`, {
+      fetch(`/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

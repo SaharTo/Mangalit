@@ -22,7 +22,7 @@ export class Meal extends Component {
 
   getMeal = async () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/meals/${id}`, { credentials: "include" })
+    fetch(`/meals/${id}`, { credentials: "include" })
       .then((res) => {
         if (res.ok) {
           res.json()
@@ -40,7 +40,7 @@ export class Meal extends Component {
 
 
   deleteMeal = async (mealId) => {
-    fetch(`http://localhost:3030/meals/${mealId}`, {
+    fetch(`/meals/${mealId}`, {
       method: "DELETE",
       credentials: "include",
     })
@@ -84,7 +84,7 @@ export class Meal extends Component {
 
   like = () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/meals/${id}/like`, {
+    fetch(`/meals/${id}/like`, {
       method: "PUT",
       credentials: "include",
     })
@@ -100,7 +100,7 @@ export class Meal extends Component {
 
   unLike = () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3030/meals/${id}/like`, {
+    fetch(`/meals/${id}/like`, {
       method: "DELETE",
       credentials: "include",
     })

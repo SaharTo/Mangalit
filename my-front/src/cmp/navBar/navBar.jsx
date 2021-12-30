@@ -7,7 +7,7 @@ export function Navbar() {
   let history = useHistory();
 
   const logout = () => {
-    fetch(`http://localhost:3030/users/logout`, {
+    fetch(`/users/logout`, {
       method: "POST",
       /*headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,7 @@ const Chicken = () => {
   // const [markedMeat, setMarkedMeat] = useState([]);
 
   useEffect(async () => {
-    await fetch("http://localhost:3030/meats", { credentials: "include" })
+    await fetch("/meats", { credentials: "include" })
       .then((res) => res.json())
       .then((meats) => setMeatState({ meats }))
       .catch((err) => {

@@ -20,7 +20,7 @@ export class Admin extends Component {
   }
   checkIfAdmin() {
     if (sessionStorage.getItem('loggedInUser')) {
-      fetch(`http://localhost:3030/users/checkIfAdmin`, {
+      fetch(`/users/checkIfAdmin`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
