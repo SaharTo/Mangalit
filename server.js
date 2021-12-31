@@ -1,6 +1,5 @@
 //console.log("May Node be with you");
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
 const path = require('path')
 const mongoose = require("mongoose");
@@ -8,27 +7,29 @@ const cors = require("cors");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-//const { GridFSBucketReadStream } = require("mongodb");
 require("dotenv").config();
+
 const dbUrl = process.env.DB_URL;
-//const dbUrl =
-//"mongodb+srv://Toledanos:s318720034@cluster0.jd0ti.mongodb.net/Mangalit?retryWrites=true&w=majority";
 
 const port = process.env.PORT || 3030
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
     console.log("Database connected:", dbUrl);
-    // db.collection('Users').insertOne(user); //add user to DB
 });
 
 db.on("error", (err) => {
     console.error("connection error:", err);
 });
+const port = process.env.PORT || 3030;
 
 // for front accses
 const corsOptions = {
-    origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
+    origin: [
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+        // "https://mangal-it.com",
+    ],
     credentials: true,
 };
 
@@ -47,9 +48,8 @@ app.use(
         secret: process.env.SESSION_SECRET, //later we will take it from env file
         resave: false,
         name: "session",
-        saveUninitialized: false,
+        saveUninitialized: true,
         cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
-        store,
     })
 );
 // Make sure you place body-parser before your CRUD handlers!/
@@ -69,11 +69,11 @@ app.use(methodOverride("_method"));
 // app.all("*", (req, res, next) => {
 //     // next(new ExpressError("Page Not Found", 404));
 // });
-app.use("/users/", require("./routes/user"));
-app.use("/sideMeals/", require("./routes/sideMeals"));
-app.use("/reviews/", require("./routes/review"));
-app.use("/meals/", require("./routes/meals"));
-app.use("/meats/", require("./routes/meats"));
+app.use("/api/users/", require("./routes/user"));
+app.use("/api/sideMeals/", require("./routes/sideMeals"));
+app.use("/api/reviews/", require("./routes/review"));
+app.use("/api/meals/", require("./routes/meals"));
+app.use("/api/meats/", require("./routes/meats"));
 
 // app.get('/**', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'))

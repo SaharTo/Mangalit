@@ -21,7 +21,7 @@ export class AddMeat extends Component {
     creatMeat = async (ev) => {
         ev.preventDefault();
         const { meat } = this.state;
-        fetch(`/meats/`, {
+        fetch(`/api/meats/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export class AddMeat extends Component {
                                 בקר
                             </option>
                             <option value="כבש">
-                                כבש
+                                טלה
                             </option>
                             <option value="עוף">
                                 עוף

@@ -20,7 +20,7 @@ module.exports.changePassword = async(req, res, next) => {
         // console.log("the new hashed password is :     " + hashedPaswword);
         user.password = hashedPaswword;
         await user.save();
-        res.send('סיסמא שונתה')
+        res.send("סיסמא שונתה");
     } else res.status(400).send("נתונים לא נכונים");
 };
 module.exports.forgotPassword = async(req, res, next) => {
@@ -31,9 +31,9 @@ module.exports.forgotPassword = async(req, res, next) => {
     // console.log("mangalitEmail ", mangalitEmail);
     const userName = req.body.user.userName;
     const user = await User.findOne({ userName });
-    if (!user) res.status(400).send('משתמש לא קיים')
-        // console.log("inside forgotpassword func ", user);
-        //here I need to send to the User Email his new password
+    if (!user) res.status(400).send("משתמש לא קיים");
+    // console.log("inside forgotpassword func ", user);
+    //here I need to send to the User Email his new password
     const salt = await bcrypt.genSalt();
     // console.log("The salt is:  " + salt);
     const newPassword = Math.random()
@@ -140,7 +140,7 @@ module.exports.login = async(req, res, next) => {
                 req.session.user = newUser;
                 await req.session.save();
                 //req.session.user.save();
-                // console.log("login controller session ", req.session);
+                //console.log("login controller session ", req.session);
                 res.send({ id: newUser._id, isAdmin: newUser.isAdmin });
             } else {
                 res.status(404).send("סיסמא לא נכונה");

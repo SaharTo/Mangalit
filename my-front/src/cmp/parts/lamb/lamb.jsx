@@ -7,14 +7,14 @@ const Lamb = () => {
   const [meatState, setMeatState] = useState([]);
   //const [markedMeat, setMarkedMeat] = useState([]);
   useEffect(async () => {
-    await fetch("/meats", { credentials: "include" })
+    await fetch("/api/meats", { credentials: "include" })
       .then((res) => res.json())
       .then((meats) => setMeatState({ meats }))
       .catch((err) => {
         console.log(err);
       });
     //console.log("meats list ", meats);
-  });
+  }, []);
 
   const onHoverDiv = async (el) => {
     if (meatState.meats) {

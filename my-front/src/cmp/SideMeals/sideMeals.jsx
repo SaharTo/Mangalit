@@ -13,7 +13,7 @@ export class SideMeals extends Component {
   }
 
   getSideMeals = async () => {
-    fetch("/sideMeals", { credentials: "include" })
+    fetch("/api/sideMeals", { credentials: "include" })
       .then((res) => res.json())
       .then((sideMeals) => {
         this.setState({ sideMeals });

@@ -37,7 +37,7 @@ export class MealEdit extends Component {
   };
 
   getMeatInfo = async () => {
-    fetch(`/meats`, { credentials: "include" })
+    fetch(`/api/meats`, { credentials: "include" })
       .then((res) => res.json())
       .then((meat) => this.setState({ meat }))
       .catch((error) => {
@@ -46,7 +46,7 @@ export class MealEdit extends Component {
   };
 
   getRecommendeSideMeals = async () => {
-    fetch(`/sideMeals`, { credentials: "include" })
+    fetch(`/api/sideMeals`, { credentials: "include" })
       .then((res) => res.json())
       .then((sideMeals) => this.setState({ sideMeals }))
       .catch((error) => {
@@ -55,7 +55,7 @@ export class MealEdit extends Component {
   };
 
   getMeal = async (id) => {
-    await fetch(`/meals/${id}`, { credentials: "include" })
+    await fetch(`/api/meals/${id}`, { credentials: "include" })
       .then((res) => res.json())
       .then((meal) => this.setState({ meal }))
       .catch((err) => {
@@ -132,7 +132,7 @@ export class MealEdit extends Component {
       delete meal.mealAuthor;
       delete meal.mealIsRecommended;
       delete meal.__v;
-      fetch(`/meals/${id}`, {
+      fetch(`/api/meals/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ export class MealEdit extends Component {
         });
     } else {
       // console.log("post meal ", meal);
-      fetch(`/meals/`, {
+      fetch(`/api/meals/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
