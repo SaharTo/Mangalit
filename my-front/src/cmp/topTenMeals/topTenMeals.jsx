@@ -14,7 +14,7 @@ export class topTenMeals extends Component {
   }
 
   getMeals = async () => {
-    fetch("/api/meals/topTenMeals", { credentials: "include" })
+    fetch("/meals/topTenMeals", { credentials: "include" })
       .then((res) => res.json())
       .then((meals) => {
         this.setState({ meals });

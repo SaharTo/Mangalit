@@ -21,7 +21,6 @@ db.once("open", (_) => {
 db.on("error", (err) => {
     console.error("connection error:", err);
 });
-const port = process.env.PORT || 3030;
 
 // for front accses
 const corsOptions = {
@@ -69,11 +68,11 @@ app.use(methodOverride("_method"));
 // app.all("*", (req, res, next) => {
 //     // next(new ExpressError("Page Not Found", 404));
 // });
-app.use("/api/users/", require("./routes/user"));
-app.use("/api/sideMeals/", require("./routes/sideMeals"));
-app.use("/api/reviews/", require("./routes/review"));
-app.use("/api/meals/", require("./routes/meals"));
-app.use("/api/meats/", require("./routes/meats"));
+app.use("/users/", require("./routes/user"));
+app.use("/sideMeals/", require("./routes/sideMeals"));
+app.use("/reviews/", require("./routes/review"));
+app.use("/meals/", require("./routes/meals"));
+app.use("/meats/", require("./routes/meats"));
 
 // app.get('/**', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'))

@@ -11,7 +11,7 @@ export class DeleteMeat extends Component {
     }
 
     getMeats = async () => {
-        fetch(`/api/meats`, { credentials: "include" })
+        fetch(`/meats`, { credentials: "include" })
             .then((res) => res.json())
             .then((meats) => this.setState({ meats }))
             .catch((error) => {
@@ -22,7 +22,7 @@ export class DeleteMeat extends Component {
     deleteMeat = async (ev) => {
         ev.preventDefault();
         const { meatToDelete } = this.state;
-        fetch(`/api/meats/${meatToDelete._id}/`, {
+        fetch(`/meats/${meatToDelete._id}/`, {
             method: "DELETE",
             credentials: "include",
         }).then((res) => {

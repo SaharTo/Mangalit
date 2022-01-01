@@ -22,7 +22,7 @@ export class SideMeal extends Component {
 
   getSideMeal = async () => {
     const id = this.props.match.params.id;
-    fetch(`/api/sideMeals/${id}`, {
+    fetch(`/sideMeals/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -36,7 +36,7 @@ export class SideMeal extends Component {
   };
 
   deleteSideMeal = async (sideMealId) => {
-    fetch(`/api/sideMeals/${sideMealId}`, {
+    fetch(`/sideMeals/${sideMealId}`, {
       credentials: "include",
       method: "DELETE",
     })
@@ -82,7 +82,7 @@ export class SideMeal extends Component {
 
   like = () => {
     const id = this.props.match.params.id;
-    fetch(`/api/sideMeals/${id}/like`, {
+    fetch(`/sideMeals/${id}/like`, {
       method: "PUT",
       credentials: "include",
     })
@@ -98,7 +98,7 @@ export class SideMeal extends Component {
 
   unLike = () => {
     const id = this.props.match.params.id;
-    fetch(`/api/sideMeals/${id}/like`, {
+    fetch(`/sideMeals/${id}/like`, {
       method: "DELETE",
       credentials: "include",
     })

@@ -14,7 +14,7 @@ const Reviews = (props) => {
   const getReviews = () => {
     //bring from back
     if (props.mealId) {
-      fetch(`/api/meals/${props.mealId}/reviews`, {
+      fetch(`/meals/${props.mealId}/reviews`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const Reviews = (props) => {
       });
     }
     if (props.sideMealId) {
-      fetch(`/api/sideMeals/${props.sideMealId}/reviews`, {
+      fetch(`/sideMeals/${props.sideMealId}/reviews`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Reviews = (props) => {
   const addReview = (ev) => {
     ev.preventDefault();
     if (props.mealId) {
-      fetch(`/api/meals/${props.mealId}/review`, {
+      fetch(`/meals/${props.mealId}/review`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const Reviews = (props) => {
       });
     };
     if (props.sideMealId) {
-      fetch(`/api/sideMeals/${props.sideMealId}/review`, {
+      fetch(`/sideMeals/${props.sideMealId}/review`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const Reviews = (props) => {
     ev.preventDefault();
     // console.log(`${props.mealId}/review/${id}`);
     if (props.mealId) {
-      fetch(`/api/meals/${props.mealId}/review/${id}`, {
+      fetch(`/meals/${props.mealId}/review/${id}`, {
         method: "DELETE",
         credentials: "include",
       })
@@ -123,7 +123,7 @@ const Reviews = (props) => {
         });
     }
     if (props.sideMealId) {
-      fetch(`/api/sideMeals/${props.sideMealId}/review/${id}`,
+      fetch(`/sideMeals/${props.sideMealId}/review/${id}`,
         {
           method: "DELETE",
           credentials: "include",

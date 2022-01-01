@@ -23,7 +23,7 @@ export class SideMealEdit extends Component {
   };
 
   getSideMeal = async (id) => {
-    fetch(`/api/sideMeals/${id}`, {
+    fetch(`/sideMeals/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -77,7 +77,7 @@ export class SideMealEdit extends Component {
       delete sideMeal.sideMealsReviews;
       delete sideMeal.sideMealsAuthor;
       delete sideMeal.__v;
-      fetch(`/api/sideMeals/${id}`, {
+      fetch(`/sideMeals/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -95,7 +95,7 @@ export class SideMealEdit extends Component {
         });
       });
     } else {
-      fetch(`/api/sideMeals/`, {
+      fetch(`/sideMeals/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
