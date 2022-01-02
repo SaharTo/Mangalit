@@ -1,5 +1,6 @@
 .sideMealPage {
     min-height: 95vh;
+    font-size: 20px;
 }
 
 .sideMeal {
@@ -12,12 +13,12 @@
 }
 
 .continer {
-    color: black;
+    color: rgb(255, 251, 241);
     display: flex;
     gap: 5px;
     flex-direction: column;
     justify-content: space-around;
-    background-color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(70, 49, 49, 0.432);
     padding-inline-start: 10px;
     border-radius: 10px;
 }
@@ -25,7 +26,7 @@
 .sideMeal img {
     width: 100%;
     max-width: 500px;
-    height: 300px;
+    height: 250px;
     object-fit: contain;
 }
 
