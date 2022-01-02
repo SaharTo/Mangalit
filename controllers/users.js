@@ -117,7 +117,7 @@ module.exports.logout = async(req, res, next) => {
 };
 
 module.exports.login = async(req, res, next) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true");
+    //res.setHeader("Access-Control-Allow-Credentials", "true");
     // then validate the response from a database or external api
     // console.log("entered the login controller func");
     const users = await User.find({});
@@ -138,10 +138,17 @@ module.exports.login = async(req, res, next) => {
                 };
                 // console.log("before userController ", req.session);
                 req.session.user = newUser;
-                await req.session.save();
+                /*await */
+                req.session.save((err) => console.log(err));
+                console.log(req.session);
+                // res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
+
                 //req.session.user.save();
                 //console.log("login controller session ", req.session);
-                res.send({ id: newUser._id, isAdmin: newUser.isAdmin });
+                res.send({
+                    id: newUser._id,
+                    isAdmin: newUser.isAdmin,
+                });
             } else {
                 res.status(404).send("סיסמא לא נכונה");
             }
@@ -183,8 +190,8 @@ module.exports.checkIfLoggedIn = async(req, res) => {
     } else res.status(401).send("אין משתמש מחובר");
 };
 module.exports.checkIfIsAdmin = async(req, res) => {
-    // console.log("inside check ifAdmin func ", req.session);
+    console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
-    } else res.status(401).send("לא אדמין");
+    } else res.status(401).send(req.session);
 };

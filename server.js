@@ -1,4 +1,5 @@
 //console.log("May Node be with you");
+
 const express = require("express");
 const app = express();
 const path = require('path')
@@ -30,7 +31,21 @@ const corsOptions = {
         // "https://mangal-it.com",
     ],
     credentials: true,
+    methods: "GET, POST, PUT, DELETE",
 };
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    /*res.header(
+                              "Access-Control-Allow-Headers"
+                              "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-HTTP-Method-Override, Set-Cookie, Cookie"
+                          );*/
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    next();
+});
+
+app.set("trust proxy", 1);
 
 app.use(cors(corsOptions));
 
@@ -44,6 +59,7 @@ store.on("error", (e) => {
 
 app.use(
     session({
+        store: store,
         secret: process.env.SESSION_SECRET, //later we will take it from env file
         resave: false,
         name: "session",
