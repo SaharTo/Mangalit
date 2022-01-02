@@ -10,9 +10,8 @@ const MongoStore = require("connect-mongo");
 
 require("dotenv").config();
 
-const dbUrl = process.env.DB_URL;
-
 const port = process.env.PORT || 3030
+const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
@@ -83,7 +82,7 @@ app.use("/meats/", require("./routes/meats"));
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 // })
 
-const root = require('path').join(__dirname, 'public')
+const root = path.join(__dirname, 'public')
 app.use(express.static(root));
 app.get("/**", (req, res) => {
     res.sendFile('index.html', { root });

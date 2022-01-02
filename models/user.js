@@ -6,24 +6,25 @@ const Schema = mongoose.Schema;
 //const passportLocalMongoose = require("passport-local-mongoose");
 
 const UserSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  fullName: {
-    type: String,
-    // required: true,
-  },
-  userEmail: {
-    type: String,
-    // required: true,
-  },
-  isAdmin: Boolean,
+    userName: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    fullName: {
+        type: String,
+        // required: true,
+    },
+    userEmail: {
+        type: String,
+        unique: true,
+        // required: true,
+    },
+    isAdmin: Boolean,
 });
 
 //UserSchema.plugin(passportLocalMongoose); //This will add automatically the username and password to the schema
