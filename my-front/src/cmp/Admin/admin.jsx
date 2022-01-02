@@ -21,7 +21,7 @@ export class Admin extends Component {
   checkIfAdmin() {
     //console.log(sessionStorage)
     if (sessionStorage.getItem('loggedInUser')) {
-      fetch(`https://immense-inlet-06578.herokuapp.com/users/checkIfAdmin`, {
+      fetch(`/users/checkIfAdmin`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +50,9 @@ export class Admin extends Component {
             value={page}
             onChange={this.handleChange.bind(this)}
           >
-            <option value="add">add</option>
-            <option value="edit">edit</option>
-            <option value="delete">delete</option>
+            <option value="add">הוספה</option>
+            <option value="edit">עדכון</option>
+            <option value="delete">מחיקה</option>
           </select>
         </label>
         {page === "add" && <AddMeat />}

@@ -7,7 +7,7 @@ export function Navbar() {
   let history = useHistory();
 
   const logout = () => {
-    fetch(`https://immense-inlet-06578.herokuapp.com/users/logout`, {
+    fetch(`/users/logout`, {
       method: "POST",
       /*headers: {
         "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export class DeleteMeat extends Component {
     }
 
     getMeats = async () => {
-        fetch(`https://immense-inlet-06578.herokuapp.com/meats`, { credentials: "include" })
+        fetch(`/meats`, { credentials: "include" })
             .then((res) => res.json())
             .then((meats) => this.setState({ meats }))
             .catch((error) => {
@@ -22,7 +22,7 @@ export class DeleteMeat extends Component {
     deleteMeat = async (ev) => {
         ev.preventDefault();
         const { meatToDelete } = this.state;
-        fetch(`https://immense-inlet-06578.herokuapp.com/meats/${meatToDelete._id}/`, {
+        fetch(`/meats/${meatToDelete._id}/`, {
             method: "DELETE",
             credentials: "include",
         }).then((res) => {
@@ -57,7 +57,7 @@ export class DeleteMeat extends Component {
                                 {meat.meatName}
                             </option>)}
                         </optgroup>
-                        <optgroup label="כבש">
+                        <optgroup label="טלה">
                             {meats.filter(meat => meat.meatType === 'כבש').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
                                 {meat.meatName}
                             </option>)}

@@ -2,13 +2,18 @@
 
 const express = require("express");
 const app = express();
+const path = require('path')
 const mongoose = require("mongoose");
 const cors = require("cors");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+
 require("dotenv").config();
+
 const dbUrl = process.env.DB_URL;
+
+const port = process.env.PORT || 3030
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
@@ -18,14 +23,13 @@ db.once("open", (_) => {
 db.on("error", (err) => {
     console.error("connection error:", err);
 });
-const port = process.env.PORT || 3030;
 
 // for front accses
 const corsOptions = {
     origin: [
         "http://127.0.0.1:3000",
         "http://localhost:3000",
-        "https://mangal-it.com",
+        // "https://mangal-it.com",
     ],
     credentials: true,
     methods: "GET, POST, PUT, DELETE",
@@ -62,8 +66,12 @@ app.use(
         name: "session",
         saveUninitialized: false,
         cookie: { secure: false, httpOnly: false, maxAge: 24 * 360000 },
+        store,
     })
 );
+
+app.set("trust proxy", 1); //backend in heroku 
+
 // Make sure you place body-parser before your CRUD handlers!/
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 
@@ -71,10 +79,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //CRUD Handlers.
-app.get("/", (req, res) => {
-    res.send(port);
-    //res.sendFile(__Dirname + './index.html')
-});
+// app.get("/", (req, res) => {
+//     // res.send("Wellwou World");
+//     // res.sendFile(__Dirname + './index.html')
+//     // res.sendFile(path.join(__dirname, 'public', 'index.html'))
+
+// });
 
 // app.all("*", (req, res, next) => {
 //     // next(new ExpressError("Page Not Found", 404));
@@ -85,6 +95,16 @@ app.use("/reviews/", require("./routes/review"));
 app.use("/meals/", require("./routes/meals"));
 app.use("/meats/", require("./routes/meats"));
 
+// app.get('/**', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// })
+
+const root = require('path').join(__dirname, 'public')
+app.use(express.static(root));
+app.get("/**", (req, res) => {
+    res.sendFile('index.html', { root });
+})
+
 app.listen(port, function() {
-    console.log("listening on port: ", port);
+    console.log("listening on port ", port);
 });

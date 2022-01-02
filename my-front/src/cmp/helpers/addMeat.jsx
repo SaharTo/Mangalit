@@ -21,7 +21,7 @@ export class AddMeat extends Component {
     creatMeat = async (ev) => {
         ev.preventDefault();
         const { meat } = this.state;
-        fetch(`https://immense-inlet-06578.herokuapp.com/meats/`, {
+        fetch(`/meats/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export class AddMeat extends Component {
                                 בקר
                             </option>
                             <option value="כבש">
-                                כבש
+                                טלה
                             </option>
                             <option value="עוף">
                                 עוף
