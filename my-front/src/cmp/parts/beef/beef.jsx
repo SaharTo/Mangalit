@@ -7,14 +7,15 @@ import styles from "./beef.module.css";
 const Beef = () => {
   const [meatState, setMeatState] = useState([]);
   // const [markedMeat, setMarkedMeat] = useState([]);
+
   useEffect(async () => {
-    await fetch("https://immense-inlet-06578.herokuapp.com/meats", { credentials: "include" })
+    await fetch("/meats", { credentials: "include" })
       .then((res) => res.json())
       .then((meats) => setMeatState({ meats }))
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
 
   const onHoverDiv = async (el) => {

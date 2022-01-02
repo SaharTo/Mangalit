@@ -17,7 +17,7 @@ export default function ChangePassword() {
   const changePasswordHandler = (ev) => {
     ev.preventDefault();
     if (user.oldPassword && user.firstPassword === user.secondPassword) {
-      fetch(`https://immense-inlet-06578.herokuapp.com/users/changePassword`, {
+      fetch(`/users/changePassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

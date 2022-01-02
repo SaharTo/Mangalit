@@ -11,7 +11,7 @@ export class EditMeat extends Component {
     }
 
     getMeats = async () => {
-        fetch(`https://immense-inlet-06578.herokuapp.com/meats`, { credentials: "include" })
+        fetch(`/meats`, { credentials: "include" })
             .then((res) => res.json())
             .then((meats) => this.setState({ meats }))
             .catch((error) => {
@@ -36,7 +36,7 @@ export class EditMeat extends Component {
         // console.log("inside the update meat func")
         const { meatToEdit } = this.state;
         if (meatToEdit) {
-            fetch(`https://immense-inlet-06578.herokuapp.com/meats/${meatToEdit._id}`, {
+            fetch(`/meats/${meatToEdit._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export class EditMeat extends Component {
                                 {meat.meatName}
                             </option>)}
                         </optgroup>
-                        <optgroup label="כבש">
+                        <optgroup label="טלה">
                             {meats.filter(meat => meat.meatType === 'כבש').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
                                 {meat.meatName}
                             </option>)}
@@ -102,7 +102,7 @@ export class EditMeat extends Component {
                                 בקר
                             </option>
                             <option value="כבש">
-                                כבש
+                                טלה
                             </option>
                             <option value="עוף">
                                 עוף

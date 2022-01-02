@@ -28,7 +28,7 @@ function App() {
   //const [isLoggedIn, setIsLoggedIn] = useState("");`
   //const ss = sessionStorage.getItem("loggedInUser");
   if (!sessionStorage.getItem("loggedInUser")) {
-    fetch(`https://immense-inlet-06578.herokuapp.com/users/checkIfLoggedIn`, {
+    fetch(`/users/checkIfLoggedIn`, {
       method: "GET",
       credentials: "include",
     }).then((res) => {

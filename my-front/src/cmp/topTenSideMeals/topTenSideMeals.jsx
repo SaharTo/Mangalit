@@ -13,7 +13,7 @@ export class topTenSideMeals extends Component {
   }
 
   getSideMeals = async () => {
-    fetch("https://immense-inlet-06578.herokuapp.com/sideMeals/topTenSideMeals", {
+    fetch("/sideMeals/topTenSideMeals", {
       credentials: "include",
     })
       .then((res) => res.json())

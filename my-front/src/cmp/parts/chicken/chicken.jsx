@@ -8,14 +8,14 @@ const Chicken = () => {
   // const [markedMeat, setMarkedMeat] = useState([]);
 
   useEffect(async () => {
-    await fetch("https://immense-inlet-06578.herokuapp.com/meats", { credentials: "include" })
+    await fetch("/meats", { credentials: "include" })
       .then((res) => res.json())
       .then((meats) => setMeatState({ meats }))
       .catch((err) => {
         console.log(err);
       });
     //console.log("meats list ", meatState);
-  });
+  }, []);
 
   const onHoverDiv = async (el) => {
     //console.log("entered on hover func")
