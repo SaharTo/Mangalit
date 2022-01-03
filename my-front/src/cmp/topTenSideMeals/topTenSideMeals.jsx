@@ -13,7 +13,7 @@ export class topTenSideMeals extends Component {
   }
 
   getSideMeals = async () => {
-    fetch("/sideMeals/topTenSideMeals", {
+    fetch("/mangal/sideMeals/topTenSideMeals", {
       credentials: "include",
     })
       .then((res) => res.json())

@@ -88,11 +88,11 @@ app.use(methodOverride("_method"));
 // app.all("*", (req, res, next) => {
 //     // next(new ExpressError("Page Not Found", 404));
 // });
-app.use("/users/", require("./routes/user"));
-app.use("/sideMeals/", require("./routes/sideMeals"));
-app.use("/reviews/", require("./routes/review"));
-app.use("/meals/", require("./routes/meals"));
-app.use("/meats/", require("./routes/meats"));
+app.use("/mangal/users/", require("./routes/user"));
+app.use("/mangal/sideMeals/", require("./routes/sideMeals"));
+app.use("/mangal/reviews/", require("./routes/review"));
+app.use("/mangal/meals/", require("./routes/meals"));
+app.use("/mangal/meats/", require("./routes/meats"));
 
 // app.get('/**', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'))

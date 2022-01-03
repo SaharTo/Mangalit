@@ -7,7 +7,7 @@ const Lamb = () => {
   const [meatState, setMeatState] = useState([]);
   //const [markedMeat, setMarkedMeat] = useState([]);
   useEffect(async () => {
-    await fetch("/meats", { credentials: "include" })
+    await fetch("/mangal/meats", { credentials: "include" })
       .then((res) => res.json())
       .then((meats) => setMeatState({ meats }))
       .catch((err) => {

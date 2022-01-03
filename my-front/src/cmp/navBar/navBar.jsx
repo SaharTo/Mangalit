@@ -7,7 +7,7 @@ export function Navbar() {
   let history = useHistory();
 
   const logout = () => {
-    fetch(`/users/logout`, {
+    fetch(`/mangal/users/logout`, {
       method: "POST",
       /*headers: {
         "Content-Type": "application/json",

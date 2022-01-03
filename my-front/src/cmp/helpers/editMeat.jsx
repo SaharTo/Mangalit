@@ -11,7 +11,7 @@ export class EditMeat extends Component {
     }
 
     getMeats = async () => {
-        fetch(`/meats`, { credentials: "include" })
+        fetch(`/mangal/meats`, { credentials: "include" })
             .then((res) => res.json())
             .then((meats) => this.setState({ meats }))
             .catch((error) => {
@@ -36,7 +36,7 @@ export class EditMeat extends Component {
         // console.log("inside the update meat func")
         const { meatToEdit } = this.state;
         if (meatToEdit) {
-            fetch(`/meats/${meatToEdit._id}`, {
+            fetch(`/mangal/meats/${meatToEdit._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
