@@ -103,8 +103,7 @@
 
 .continerBtn {
     margin-right: auto;
-    width: 110px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
 
 .continerBtn button:last-child {
