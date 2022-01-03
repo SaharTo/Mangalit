@@ -21,8 +21,8 @@ const UserSchema = new Schema({
     },
     userEmail: {
         type: String,
+        required: true,
         unique: true,
-        // required: true,
     },
     isAdmin: Boolean,
 });
