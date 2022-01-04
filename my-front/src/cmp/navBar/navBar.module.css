@@ -20,7 +20,7 @@
 }
 
 .links a {
-    color: white;
+    color: white !important;
 }
 
 .logOut {
