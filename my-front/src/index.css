@@ -33,7 +33,7 @@ a {
 }
 
 a[x-apple-data-detectors] {
-    color: inherit;
+    color: black;
     text-decoration: inherit;
 }
 
