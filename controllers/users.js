@@ -139,8 +139,8 @@ module.exports.login = async(req, res, next) => {
                 // console.log("before userController ", req.session);
                 req.session.user = newUser;
                 /*await */
-                req.session.save((err) => console.log(err));
-                console.log(req.session);
+                req.session.save((err) => console.log('req.session.save', err));
+                // console.log(req.session);
                 // res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
 
                 //req.session.user.save();
@@ -167,9 +167,9 @@ module.exports.register = async(req, res) => {
         const hashedPaswword = await bcrypt.hash(req.body.user.password, salt);
         // console.log("the hashed password is :     " + hashedPaswword);
         const user = new User({
+            userEmail: req.body.user.userEmail,
             userName: req.body.user.userName,
             password: hashedPaswword,
-            userEmail: req.body.user.userEmail,
             fullName: req.body.user.fullName,
             isAdmin: false,
             // pay attention to the fact that we need to insert the rest of the fields (userEmail, fullName)
@@ -179,8 +179,9 @@ module.exports.register = async(req, res) => {
         // console.log("success this is the hashed password" + hashedPaswword);
         res.send(user);
     } catch (e) {
-        // console.log(e);
-        res.status(401).send("שם משתמש לא תקין");
+        if (e.keyValue.userName) res.status(401).send("שם משתמש לא תקין");
+        else if (e.keyValue.userEmail) res.status(401).send("מייל לא תקין");
+        else res.status(401).send("משהו השתבש");
     }
 };
 module.exports.checkIfLoggedIn = async(req, res) => {

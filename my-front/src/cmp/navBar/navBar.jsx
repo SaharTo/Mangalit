@@ -7,7 +7,7 @@ export function Navbar() {
   let history = useHistory();
 
   const logout = () => {
-    fetch(`/users/logout`, {
+    fetch(`/mangal/users/logout`, {
       method: "POST",
       /*headers: {
         "Content-Type": "application/json",
@@ -17,6 +17,7 @@ export function Navbar() {
     }).then((res) => {
       if (res.ok) {
         res.text().then(() => {
+          closeSideNav();
           sessionStorage.removeItem("loggedInUser");
           sessionStorage.removeItem("loggedInUserIsadmin");
           history.push("/");
@@ -30,43 +31,47 @@ export function Navbar() {
     document.getElementById("links").classList.toggle(styles.open);
     document.body.classList.toggle("open");
   };
+  const closeSideNav = () => {
+    document.getElementById("links").classList.remove(styles.open);
+    document.body.classList.remove("open");
+  }
 
   return (
     <div id="header" className={styles.header}>
-      <NavLink activeClassName="activeNav" to="/">
+      <NavLink activeClassName="activeNav" to="/" onClick={closeSideNav}>
         <img className={styles.logo} src="https://res.cloudinary.com/manglit/image/upload/v1640106848/assets/logo_nlsu44.png" alt="mangalit" />
       </NavLink>
       <div id="links" className={styles.links}>
-        <NavLink activeClassName="activeNav" to="/">
+        <NavLink activeClassName="activeNav" to="/" onClick={closeSideNav}>
           דף הבית
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/parts">
+        <NavLink activeClassName="activeNav" to="/parts" onClick={closeSideNav}>
           מידע על חלקים
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/meals">
+        <NavLink activeClassName="activeNav" to="/meals" onClick={closeSideNav}>
           מנות
         </NavLink>
-        <NavLink activeClassName="activeNav" to="/sideMeals">
+        <NavLink activeClassName="activeNav" to="/sideMeals" onClick={closeSideNav}>
           מנות צד
         </NavLink>
         {/* <NavLink activeClassName="activeNav" to="/about">
           אודות
         </NavLink> */}
-        <NavLink activeClassName="activeNav" to="/changePassword">
+        <NavLink activeClassName="activeNav" to="/changePassword" onClick={closeSideNav}>
           שנה סיסמא
         </NavLink>
         {!sessionStorage.getItem("loggedInUser") && (
-          <NavLink activeClassName="activeNav" to="/signup">
+          <NavLink activeClassName="activeNav" to="/signup" onClick={closeSideNav}>
             הרשמה
           </NavLink>
         )}
         {!sessionStorage.getItem("loggedInUser") && (
-          <NavLink activeClassName="activeNav" to="/login">
+          <NavLink activeClassName="activeNav" to="/login" onClick={closeSideNav}>
             התחברות
           </NavLink>
         )}
         {sessionStorage.getItem("loggedInUserIsadmin") && (
-          <NavLink activeClassName="activeNav" to="/admin">
+          <NavLink activeClassName="activeNav" to="/admin" onClick={closeSideNav}>
             אדמין
           </NavLink>
         )}

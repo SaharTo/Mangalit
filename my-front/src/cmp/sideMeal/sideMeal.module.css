@@ -75,7 +75,6 @@
 }
 
 .returnBtn {
-    text-align: center;
     grid-row-start: 1;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -104,16 +103,12 @@
 
 .continerBtn {
     margin-right: auto;
-    width: 110px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
 
 .continerBtn button:last-child {
     margin-inline-start: 10px;
 }
-
-
-/*  */
 
 .reviews {
     text-align: center;
@@ -156,11 +151,5 @@
     }
     .returnBtn {
         order: -1
-    }
-}
-
-@media (max-width:450px) {
-    .sideMeal {
-        display: block;
     }
 }

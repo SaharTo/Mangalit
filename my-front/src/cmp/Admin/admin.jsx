@@ -21,7 +21,7 @@ export class Admin extends Component {
   checkIfAdmin() {
     //console.log(sessionStorage)
     if (sessionStorage.getItem('loggedInUser')) {
-      fetch(`/users/checkIfAdmin`, {
+      fetch(`/mangal/users/checkIfAdmin`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

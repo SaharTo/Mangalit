@@ -28,7 +28,7 @@ function App() {
   //const [isLoggedIn, setIsLoggedIn] = useState("");`
   //const ss = sessionStorage.getItem("loggedInUser");
   if (!sessionStorage.getItem("loggedInUser")) {
-    fetch(`/users/checkIfLoggedIn`, {
+    fetch(`/mangal/users/checkIfLoggedIn`, {
       method: "GET",
       credentials: "include",
     }).then((res) => {
