@@ -32,7 +32,7 @@ a {
     text-decoration: none;
 }
 
-a[href^="x-apple-data-detectors:"] {
+a[x-apple-data-detectors] {
     color: inherit;
     text-decoration: inherit;
 }
