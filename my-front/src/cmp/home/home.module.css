@@ -139,16 +139,28 @@ h4.subtitle {
     .title {
         font-size: 80px;
     }
-    h2 {
+    .homePage h2 {
         font-size: 11px;
     }
-    p {
+    .homePage p {
         font-size: 10px;
+    }
+    .randomMeal {
+        height: auto;
+        padding-bottom: 5px;
+    }
+    .recMeals {
+        height: auto;
+        padding-bottom: 5px;
+    }
+    .recSideMeals {
+        height: auto;
+        padding-bottom: 5px;
     }
 }
 
 @media (max-width: 260px) {
-    p {
+    .homePage p {
         font-size: 8px;
     }
 }
