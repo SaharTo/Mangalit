@@ -2,7 +2,7 @@
     padding: 10px;
     margin: 5px auto;
     width: 75%;
-    background-color: rgb(7 10 13 / 71%);
+    background-color: rgb(101 112 128 / 57%);
     border-radius: 40px;
     display: flex;
     gap: 5px;
@@ -26,11 +26,14 @@ p {
     margin: 0;
 }
 
-.author {
-    /* color: black; */
-}
 
-.grid {}
+/*.author {
+     color: black; 
+}*/
+
+.grid {
+    color: black;
+}
 
 .grid input:nth-child(2) {
     width: 50%;
