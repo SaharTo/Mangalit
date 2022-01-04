@@ -62,8 +62,11 @@ export class topTenSideMeals extends Component {
         <div dir="rtl" className={styles.container}>
           {smToshow.map((sideMeal) => (
             <div dir="rtl" className={styles.preview} key={sideMeal._id}>
-              {sideMeal.sideMealImageUrl.length === 0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt="" />}
-              {sideMeal.sideMealImageUrl.length > 0 && <img src={sideMeal.sideMealImageUrl[0]} alt="" />}              <Link to={"/sideMeals/" + sideMeal._id}>
+              <Link to={"/sideMeals/" + sideMeal._id}>
+                {sideMeal.sideMealImageUrl.length === 0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt="" />}
+                {sideMeal.sideMealImageUrl.length > 0 && <img src={sideMeal.sideMealImageUrl[0]} alt="" />}
+              </Link>
+              <Link to={"/sideMeals/" + sideMeal._id}>
                 <h1>שם המנה: {sideMeal.sideMealName}</h1>
               </Link>
               <p>פירוט על המנה: {sideMeal.sideMealSummary}</p>

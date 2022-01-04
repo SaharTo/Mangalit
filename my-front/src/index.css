@@ -32,11 +32,11 @@ a {
     text-decoration: none;
 }
 
+a[href^="x-apple-data-detectors:"] {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .multiSelect {
     color: black;
 }
-
-
-/*.open .links {
-  transform: translateX(0);
-}*/

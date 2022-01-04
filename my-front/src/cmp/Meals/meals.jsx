@@ -63,8 +63,10 @@ export class Meals extends Component {
         <div dir="rtl" className={styles.container}>
           {mToshow.map((meal) => (
             <div dir="rtl" className={styles.preview} key={meal._id}>
-              {meal.mealImage.length === 0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt="" />}
-              {meal.mealImage.length > 0 && <img src={meal.mealImage[0]} alt='' />}
+              <Link to={"/meals/" + meal._id}>
+                {meal.mealImage.length === 0 && <img className={styles.noImg} src="https://res.cloudinary.com/manglit/image/upload/v1640108564/assets/noImage_p7jtki.jpg" alt="" />}
+                {meal.mealImage.length > 0 && <img src={meal.mealImage[0]} alt='' />}
+              </Link>
               <Link to={"/meals/" + meal._id}>
                 <h1>שם המנה: {meal.mealName}</h1>
               </Link>
