@@ -139,7 +139,6 @@ h4.subtitle {
     .title {
         font-size: 80px;
     }
-<<<<<<< HEAD
     h2 {
         font-size: 11px;
     }
@@ -150,12 +149,6 @@ h4.subtitle {
 
 @media (max-width: 260px) {
     p {
-=======
-    .homePage h2 {
-        font-size: 12px;
-    }
-    /* .homePage p {
->>>>>>> bad13647417ebc2785318957ba7d7a305b68aa61
         font-size: 8px;
-    } */
+    }
 }
