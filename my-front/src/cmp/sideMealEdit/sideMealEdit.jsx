@@ -169,7 +169,7 @@ export class SideMealEdit extends Component {
         {id ? (
           <h1>עריכת מנת צד</h1>
         ) : (
-          <h1>יצירת מנה חדשה</h1>
+          <h1>יצירת מנת צד חדשה</h1>
         )}
         <div className={styles.formImage}>
           <form className={styles.sideMeal} name="sideMeal" autoComplete="off" onSubmit={this.onSaveSideMeal}>
