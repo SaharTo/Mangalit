@@ -80,6 +80,9 @@
 }
 
 .preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 30%;
     color: black;
     display: flex;
@@ -88,6 +91,10 @@
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.35);
     word-wrap: break-word;
+}
+
+.preview p {
+    font-weight: 500;
 }
 
 .preview img {
