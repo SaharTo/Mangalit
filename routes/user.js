@@ -3,12 +3,12 @@ const router = express.Router();
 const users = require("../controllers/users");
 const { isAdmin } = require("../middleware");
 
-router.get("/", users.printUser);
+// router.get("/", users.printUser);
 router.get("/checkIfLoggedIn", users.checkIfLoggedIn);
 router.get("/checkIfAdmin", users.checkIfIsAdmin);
 router
     .route("/:id")
-    .get(users.userById)
+    // .get(users.userById)
     .put(isAdmin, users.updateUser)
     .delete(isAdmin, users.deleteUser);
 
