@@ -312,7 +312,7 @@ export class MealEdit extends Component {
                 className={styles.mealInput}
                 type="text"
                 value={meal.mealMeatInfo.map((m) => m.meatName)}
-              //disabled="disabled"
+                disabled="disabled"
               />
             )}
             {addOrEdit === "add" && (
