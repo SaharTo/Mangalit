@@ -83,6 +83,11 @@ export class EditMeat extends Component {
                                 {meat.meatName}
                             </option>)}
                         </optgroup>
+                        <optgroup label="אחר">
+                            {meats.filter(meat => meat.meatType !== 'עוף' && meat.meatType !== 'כבש' && meat.meatType !== 'בקר').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
+                                {meat.meatName}
+                            </option>)}
+                        </optgroup>
                     </select>
                 </label>
 
@@ -91,10 +96,10 @@ export class EditMeat extends Component {
                     className={styles.meat}
                 >
                     <label htmlFor="meatName">
-                        <input type="text" name="meat[meatName]" id="meatName" value={meatToEdit.meatName} placeholder="שם הבשר" onChange={this.handleChange} />
+                        <input type="text" name="meat[meatName]" id="meatName" value={meatToEdit.meatName} placeholder="שם הבשר" onChange={this.handleChange} required />
                     </label>
                     <label htmlFor="meatType">
-                        <select id="meatType" name="meat[meatType]" value={meatToEdit.meatType} onChange={this.handleChange}>
+                        <select id="meatType" name="meat[meatType]" value={meatToEdit.meatType} onChange={this.handleChange} required>
                             <option value="" disabled="disabled">
                                 סוג בשר
                             </option>
@@ -117,7 +122,7 @@ export class EditMeat extends Component {
                             name="meat[meatDescription]"
                             id="meatDescription"
                             placeholder="פירוט על הבשר"
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange} required />
                     </label>
                     <label htmlFor="meatNumber">
                         <input type="number" value={meatToEdit.meatNumber} name="meat[meatNumber]" id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />

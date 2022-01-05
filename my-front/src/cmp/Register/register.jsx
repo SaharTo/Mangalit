@@ -56,6 +56,7 @@ export default function Register() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
+          autoComplete="off"
           required
         />
         <input
@@ -67,6 +68,7 @@ export default function Register() {
           value={user.userEmail}
           onChange={handleChange}
           placeholder="מייל"
+          autoComplete="off"
           required
         />
         <input
@@ -76,6 +78,7 @@ export default function Register() {
           value={user.fullName}
           onChange={handleChange}
           placeholder="שם מלא"
+          autoComplete="off"
           required
         />
         <input
@@ -85,6 +88,7 @@ export default function Register() {
           value={user.password}
           onChange={handleChange}
           placeholder="סיסמה"
+          autoComplete="off"
           required
         />
         <button className={styles.btn}>הרשמה</button>

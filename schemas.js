@@ -39,7 +39,7 @@ module.exports.mealSchema = Joi.object({
     meal: Joi.object({
         mealName: Joi.string().required().min(2).max(40).escapeHTML(),
         mealSummary: Joi.string().required().min(5).max(200).escapeHTML(),
-        mealDescription: Joi.string().required().min(10).max(200).escapeHTML(),
+        mealDescription: Joi.string().required().min(10).escapeHTML(),
         mealMeatInfo: Joi.array().required(),
         mealPreparationTechniques: Joi.string()
             .required()

@@ -80,6 +80,7 @@ export default function Login() {
           value={user.userName}
           onChange={handleChange}
           placeholder="שם משתמש"
+          autoComplete="off"
           required
         />
         <input
@@ -89,6 +90,7 @@ export default function Login() {
           value={user.password}
           onChange={handleChange}
           placeholder="סיסמה"
+          autoComplete="off"
         />
         <button className={styles.btn}>התחברות</button>
         <label className={styles.forgot} onClick={forgetPassword}>שכחתי סיסמא</label>
