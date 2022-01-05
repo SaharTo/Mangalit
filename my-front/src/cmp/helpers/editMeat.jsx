@@ -83,11 +83,6 @@ export class EditMeat extends Component {
                                 {meat.meatName}
                             </option>)}
                         </optgroup>
-                        <optgroup label="אחר">
-                            {meats.filter(meat => meat.meatType !== 'עוף' && meat.meatType !== 'כבש' && meat.meatType !== 'בקר').map((meat) => <option key={meat._id} value={JSON.stringify(meat)}>
-                                {meat.meatName}
-                            </option>)}
-                        </optgroup>
                     </select>
                 </label>
 
