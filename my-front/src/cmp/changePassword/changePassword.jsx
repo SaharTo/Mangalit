@@ -33,7 +33,7 @@ export default function ChangePassword() {
           res
             .text()
             .then((data) =>
-              alert("we have a problem yaani bea'aia beli la'aliv", data)
+              alert("חלה שגיאה, אנא נסה שנית", data)
             );
       });
     }
