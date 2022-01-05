@@ -7,12 +7,7 @@ const reviewSchema = new Schema({
     reviewAuthor: {
         type: Schema.Types.ObjectId,
         ref: "User"
-            /*   populate method - Population is the 
-                      process of automatically replacing the specified paths in the document with document(s) 
-                      from other collection(s).
-              */
     },
-    // reviewAuthor: String,
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

@@ -1,5 +1,3 @@
-//console.log("May Node be with you");
-
 const express = require("express");
 const app = express();
 const path = require('path')
@@ -28,7 +26,6 @@ const corsOptions = {
     origin: [
         "http://127.0.0.1:3000",
         "http://localhost:3000",
-        // "https://mangal-it.com",
     ],
     credentials: true,
     methods: "GET, POST, PUT, DELETE",
@@ -37,7 +34,6 @@ const corsOptions = {
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-HTTP-Method-Override, Set-Cookie, Cookie");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     next();
 });
@@ -77,23 +73,13 @@ app.use(methodOverride("_method"));
 //CRUD Handlers.
 // app.get("/", (req, res) => {
 //     // res.send("Wellwou World");
-//     // res.sendFile(__Dirname + './index.html')
-//     // res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// }
 
-// });
-
-// app.all("*", (req, res, next) => {
-//     // next(new ExpressError("Page Not Found", 404));
-// });
 app.use("/mangal/users/", require("./routes/user"));
 app.use("/mangal/sideMeals/", require("./routes/sideMeals"));
 app.use("/mangal/reviews/", require("./routes/review"));
 app.use("/mangal/meals/", require("./routes/meals"));
 app.use("/mangal/meats/", require("./routes/meats"));
-
-// app.get('/**', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
-// })
 
 const root = path.join(__dirname, 'public')
 app.use(express.static(root));

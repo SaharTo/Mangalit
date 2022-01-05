@@ -49,22 +49,17 @@ module.exports.mealSchema = Joi.object({
         mealPreparationDifficult: Joi.string()
             .required()
             .valid("קל", "בינוני", "קשה")
-            //.valid("easy", "medium", "hard")
             .escapeHTML(),
         mealNumberOfPeopleItSuits: Joi.number().min(1).max(15).required(),
         mealRecommendedSideMeals: Joi.array(),
         mealImage: Joi.array(),
         mealMeatQuantityGram: Joi.number().min(200).max(5000),
-        //mealEstimatedMeatPrice: Joi.number() /*.required()*/,
         mealAdditionalIngredients: Joi.string()
             .required()
             .min(3)
             .max(200)
             .escapeHTML(),
-        //mealAdditionalsIngredientsPrice: Joi.number().min(5).max(50),
         mealTotalPrice: Joi.number().required(),
-        // mealAuthor: Joi.string().required().escapeHTML(),
-        // mealIsRecommended: Joi.bool(),
         mealLikes: Joi.array(),
     }).required(),
 });
@@ -83,7 +78,6 @@ module.exports.sideMealSchema = Joi.object({
         sideMealPreperationDescription: Joi.string().required().min(10).escapeHTML(),
         sideMealPreperationEstimatedTime: Joi.number().required().min(5).max(60),
         sideMealnumberOfPeopleItSuits: Joi.number().required().min(1).max(30),
-        //sideMealAuthor: Joi.string().required(),
         sideMealLikes: Joi.array(),
     }).required(),
 });

@@ -139,3 +139,13 @@ label.btn {
         width: 80vw;
     }
 }
+
+@media (max-width:450px) {
+    .sideMeal {
+        display: block;
+        width: 100%;
+    }
+    .sideMeal :last-child {
+        margin-top: 5px;
+    }
+}

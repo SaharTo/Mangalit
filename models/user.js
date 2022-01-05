@@ -17,7 +17,6 @@ const UserSchema = new Schema({
     },
     fullName: {
         type: String,
-        // required: true,
     },
     userEmail: {
         type: String,
@@ -27,5 +26,4 @@ const UserSchema = new Schema({
     isAdmin: Boolean,
 });
 
-//UserSchema.plugin(passportLocalMongoose); //This will add automatically the username and password to the schema
 module.exports = mongoose.model("User", UserSchema);

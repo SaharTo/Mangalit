@@ -140,5 +140,9 @@ label.btn {
 @media (max-width:450px) {
     .meal {
         display: block;
+        width: 100%;
+    }
+    .meal :last-child {
+        margin-top: 5px;
     }
 }

@@ -54,10 +54,10 @@ export class AddMeat extends Component {
                 <h2> הוספת סוג בשר</h2>
                 <form className={styles.meat} onSubmit={this.creatMeat}>
                     <label htmlFor="meatName">
-                        <input type="text" id="meatName" value={meat.meatName} placeholder="שם הבשר" onChange={this.handleChange} />
+                        <input type="text" id="meatName" value={meat.meatName} placeholder="שם הבשר" onChange={this.handleChange} required />
                     </label>
                     <label htmlFor="meatType">
-                        <select id="meatType" value={meat.meatType} onChange={this.handleChange}>
+                        <select id="meatType" value={meat.meatType} onChange={this.handleChange} required>
                             <option value="" disabled="disabled">
                                 סוג בשר
                             </option>
@@ -79,7 +79,8 @@ export class AddMeat extends Component {
                             cols="50"
                             id="meatDescription"
                             placeholder="פירוט על הבשר"
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange}
+                            required />
                     </label>
                     <label htmlFor="meatNumber">
                         <input type="number" value={meat.meatNumber} id="meatNumber" min='1' max='20' placeholder="מספר הבשר" onChange={this.handleChange} />

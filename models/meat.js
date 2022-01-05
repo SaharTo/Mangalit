@@ -9,8 +9,6 @@ const meatScema = new Schema({
     meatName: String,
     meatDescription: String,
     meatNumber: String,
-    //meatPricePerOneKg: String,
-    meatImage: [String],
 });
 
 module.exports = mongoose.model("Meat", meatScema);

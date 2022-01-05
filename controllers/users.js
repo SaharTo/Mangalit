@@ -2,22 +2,16 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 
-//functions that handle the render register and login pages an handle
-//the register, login and logout functions issues.
-//const userModel = mongoose.model("User");
+
 module.exports.changePassword = async(req, res, next) => {
     const userName = req.body.user.userName;
     const user = await User.findOne({ userName });
-    // console.log("inside changePassword func ", user);
     if (user.oldPassword == req.body.user.password) {
         const salt = await bcrypt.genSalt();
-        // console.log("The salt is:  " + salt);
-        // console.log("The new password: ", req.body.user.firstNewPassword);
         const hashedPaswword = await bcrypt.hash(
             req.body.user.firstNewPassword,
             salt
         );
-        // console.log("the new hashed password is :     " + hashedPaswword);
         user.password = hashedPaswword;
         await user.save();
         res.send("סיסמא שונתה");
@@ -28,20 +22,15 @@ module.exports.forgotPassword = async(req, res, next) => {
         user: process.env.EMAIL_USER,
         password: process.env.EMAIL_PASS,
     };
-    // console.log("mangalitEmail ", mangalitEmail);
     const userName = req.body.user.userName;
     const user = await User.findOne({ userName });
     if (!user) res.status(400).send("משתמש לא קיים");
-    // console.log("inside forgotpassword func ", user);
     //here I need to send to the User Email his new password
     const salt = await bcrypt.genSalt();
-    // console.log("The salt is:  " + salt);
     const newPassword = Math.random()
         .toString(36)
         .slice(-8);
-    // console.log("This is the new random password ", newPassword);
     const hashedPaswword = await bcrypt.hash(newPassword, salt);
-    // console.log("the hashed password is :     " + hashedPaswword);
     user.password = hashedPaswword;
     await user.save();
 
@@ -109,7 +98,6 @@ module.exports.logout = async(req, res, next) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     try {
         req.session.destroy();
-        //res.json(req.session);
         res.send("התנתקות");
     } catch {
         res.status(400).send("משהו השתבש");
@@ -117,9 +105,6 @@ module.exports.logout = async(req, res, next) => {
 };
 
 module.exports.login = async(req, res, next) => {
-    //res.setHeader("Access-Control-Allow-Credentials", "true");
-    // then validate the response from a database or external api
-    // console.log("entered the login controller func");
     const users = await User.find({});
     const user = await users.find(
         (user1) => user1.userName == req.body.user.userName
@@ -136,15 +121,8 @@ module.exports.login = async(req, res, next) => {
                     isAdmin: user.isAdmin,
                     _id: user._id,
                 };
-                // console.log("before userController ", req.session);
                 req.session.user = newUser;
-                /*await */
-                req.session.save((err) => console.log('req.session.save', err));
-                // console.log(req.session);
-                // res.header("Content-Type", "application/json"); // ------- THIRD CHANGE --------
-
-                //req.session.user.save();
-                //console.log("login controller session ", req.session);
+                req.session.save();
                 res.send({
                     id: newUser._id,
                     isAdmin: newUser.isAdmin,
@@ -154,7 +132,6 @@ module.exports.login = async(req, res, next) => {
             }
         } catch (e) {
             res.status(404).send(e);
-            // console.log(e);
         }
     }
 };
@@ -162,21 +139,15 @@ module.exports.login = async(req, res, next) => {
 module.exports.register = async(req, res) => {
     try {
         const salt = await bcrypt.genSalt();
-        // console.log("The salt is:  " + salt);
-        // console.log(req.body.user.password);
         const hashedPaswword = await bcrypt.hash(req.body.user.password, salt);
-        // console.log("the hashed password is :     " + hashedPaswword);
         const user = new User({
             userEmail: req.body.user.userEmail,
             userName: req.body.user.userName,
             password: hashedPaswword,
             fullName: req.body.user.fullName,
             isAdmin: false,
-            // pay attention to the fact that we need to insert the rest of the fields (userEmail, fullName)
         });
-        // console.log(user);
         await user.save();
-        // console.log("success this is the hashed password" + hashedPaswword);
         res.send(user);
     } catch (e) {
         if (e.keyValue.userName) res.status(401).send("שם משתמש לא תקין");
@@ -185,14 +156,12 @@ module.exports.register = async(req, res) => {
     }
 };
 module.exports.checkIfLoggedIn = async(req, res) => {
-    // console.log("inside check ifLoggedIn func ", req.session);
     if (req.session && req.session.user) {
         res.send(req.session.user._id);
     } else res.status(401).send("אין משתמש מחובר");
 };
 module.exports.checkIfIsAdmin = async(req, res) => {
-    console.log("inside check ifAdmin func ", req.session);
     if (req.session && req.session.user && req.session.user.isAdmin) {
         res.send(req.session.user.isAdmin);
-    } else res.status(401).send(req.session);
+    } else res.status(401).send("לא אדמין");
 };

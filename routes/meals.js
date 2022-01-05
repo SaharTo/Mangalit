@@ -19,9 +19,11 @@ router.get("/topTenMeals", meals.topTenMeals);
 router
     .route("/:id")
     .get(meals.mealById)
-    .delete( /*isLoggedIn, isAuthor,*/ meals.deleteMeal)
+    .delete(isLoggedIn, isAuthor, meals.deleteMeal)
     .put(isLoggedIn, isAuthor, validateMeal, meals.updateMeal);
+
 router.get("/:id/reviews", meals.mealReviews);
+
 router
     .route("/:id/like")
     .put(isLoggedIn, meals.addLike)
