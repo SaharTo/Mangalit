@@ -5,6 +5,10 @@
     min-height: 95vh;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .formImage {
     display: grid;
     grid-template-columns: 2fr 1fr;

@@ -66,6 +66,8 @@ export class SideMealEdit extends Component {
 
   onSaveSideMeal = async (ev) => {
     ev.preventDefault();
+    document.getElementById("saveBtn").classList.add(`${styles.hidden}`);
+
     const { sideMeal, files } = this.state;
     const id = this.props.match.params.id;
     for (let i = 0; i < files.length; i++) {
@@ -113,6 +115,8 @@ export class SideMealEdit extends Component {
         });
       });
     }
+    document.getElementById("saveBtn").classList.remove(`${styles.hidden}`);
+
   };
 
   deleteImg = () => {
@@ -273,7 +277,7 @@ export class SideMealEdit extends Component {
               title="שדה זה חייב להיות אך ורק מספרים "
               required
             />
-            <button className={styles.btn} /*onClick={this.onSaveSideMeal}*/>
+            <button id="saveBtn" className={styles.btn} /*onClick={this.onSaveSideMeal}*/>
               שמירה
             </button>
           </form>
