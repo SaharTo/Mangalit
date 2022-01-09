@@ -68,7 +68,7 @@ export class Meals extends Component {
                 {meal.mealImage.length > 0 && <img src={meal.mealImage[0]} alt='' />}
               </Link>
               <Link to={"/meals/" + meal._id}>
-                <h1>שם המנה: {meal.mealName}</h1>
+                <h1>{meal.mealName}</h1>
               </Link>
               <p>פירוט על המנה: {meal.mealSummary}</p>
               <p>טכניקת ההכנה: {meal.mealPreparationDifficult}</p>
