@@ -67,7 +67,7 @@ export class topTenSideMeals extends Component {
                 {sideMeal.sideMealImageUrl.length > 0 && <img src={sideMeal.sideMealImageUrl[0]} alt="" />}
               </Link>
               <Link to={"/sideMeals/" + sideMeal._id}>
-                <h1>שם המנה: {sideMeal.sideMealName}</h1>
+                <h1>{sideMeal.sideMealName}</h1>
               </Link>
               <p>פירוט על המנה: {sideMeal.sideMealSummary}</p>
               <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
