@@ -12,7 +12,6 @@ const Reviews = (props) => {
   };
 
   const getReviews = () => {
-    //bring from back
     if (props.mealId) {
       fetch(`/mangal/meals/${props.mealId}/reviews`, {
         method: "GET",
@@ -20,17 +19,10 @@ const Reviews = (props) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        //body: JSON.stringify({ review: reviewToadd }),
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            // console.log("inside getReviews func, this is the return data ", data);
-            //adjust
-            //setReviews()
-            //console.log(data);
             setReviews(data);
-            // console.log("this is the reviews state ", reviews)
-            //
           });
         } else res.text().then((data) => alert(data));
       });
@@ -42,15 +34,10 @@ const Reviews = (props) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        //body: JSON.stringify({ review: reviewToadd }),
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            //console.log("inside getReviews func, this is the return data ", data);
-            //adjust
             setReviews(data);
-            //console.log("this is the reviews state ", reviews);
-            //
           });
         } else res.text().then((data) => alert(data));
       });
@@ -70,12 +57,8 @@ const Reviews = (props) => {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            setReviewToadd({})
-            //getReviews()
-            //adjust
-            //console.log(data);
             setReviews(data);
-            //
+            setReviewToadd({})
           });
         } else res.text().then((data) => alert(data));
       });
@@ -91,12 +74,8 @@ const Reviews = (props) => {
       }).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            //adjust
-            setReviewToadd({})
-            //getReviews()
-            /*console.log(data);*/
             setReviews(data);
-            //
+            setReviewToadd({})
           });
         } else res.text().then((data) => alert(data));
       });
@@ -107,7 +86,6 @@ const Reviews = (props) => {
 
   const deleteReview = (ev, id) => {
     ev.preventDefault();
-    // console.log(`${props.mealId}/review/${id}`);
     if (props.mealId) {
       fetch(`/mangal/meals/${props.mealId}/review/${id}`, {
         method: "DELETE",
@@ -116,10 +94,7 @@ const Reviews = (props) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
-              //adjust
-              // console.log(data);
               setReviews(data);
-              //
             });
           } else res.text().then((data) => alert(data));
         });
@@ -134,10 +109,7 @@ const Reviews = (props) => {
         .then((res) => {
           if (res.ok) {
             res.json().then((data) => {
-              //adjust
-              // console.log(data);
               setReviews(data);
-              //
             });
           } else res.text().then((data) => alert(data));
         });
@@ -148,7 +120,6 @@ const Reviews = (props) => {
     const field = target.id;
     const value = target.value;
     reviewToadd[field] = value;
-    //console.log(reviewToadd);
     setReviewToadd(reviewToadd)
   };
 
@@ -182,7 +153,9 @@ const Reviews = (props) => {
           <button className={styles.btn} > הוסף תגובה</button>
         </form>
       )}
-      <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>
+      {
+        (props.reviewList.length > 0 && <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>) ||
+        (reviews.length > 0 && <button className={styles.btn} onClick={showReviewsHandler}>לחץ כאן כדי לצפות בתגובות </button>)}
       {
         reviews.length > 0 && reviews.map(
           (r) =>
