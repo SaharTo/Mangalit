@@ -39,11 +39,11 @@ export class topTenSideMeals extends Component {
     if (!sideMeals || !smToshow) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.sideMeals}>
-        {sessionStorage.getItem("loggedInUser") && (
+        {/*sessionStorage.getItem("loggedInUser") && (
           <Link className={styles.add} to="/sideMeals/save/">
             הוספת מנת צד
           </Link>
-        )}
+        )*/}
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
             מנות צד מומלצות

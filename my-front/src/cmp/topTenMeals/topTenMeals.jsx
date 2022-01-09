@@ -38,16 +38,18 @@ export class topTenMeals extends Component {
     if (!meals || !mToshow) return <h1 dir="rtl">טוען...</h1>;
     return (
       <div dir="rtl" className={styles.meals}>
-        {/* {sessionStorage.getItem("loggedInUser") && (
+        {/*sessionStorage.getItem("loggedInUser") && (
           <Link className={styles.add} to="/meals/save/">
             הוספת מנה
           </Link>
-        )} */}
+        )*/}
+
         <div className={styles.searchDiv}>
           <label className={styles.searchLabel} htmlFor="filter">
             מנות מומלצות
           </label>
         </div>
+
         <div className={styles.searchDiv}>
           <input
             className={styles.searchInput}
