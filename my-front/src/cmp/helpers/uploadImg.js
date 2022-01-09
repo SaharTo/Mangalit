@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const uploadImg = async(file) => {
-    console.log("inside upload Image");
+    //console.log("inside upload Image");
     const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
 
     const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL;

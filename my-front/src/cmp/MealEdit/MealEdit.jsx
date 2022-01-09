@@ -118,7 +118,7 @@ export class MealEdit extends Component {
   onSaveMeal = async (ev) => {
     ev.preventDefault();
     // console.log("after     ", this.state);
-    document.getElementsByClassName("saveBtn").classList.add(`${styles.hidden}`);
+    document.getElementById("saveBtn").classList.add(`${styles.hidden}`);
 
     const { meal, files } = this.state;
     const id = this.props.match.params.id;
@@ -175,7 +175,7 @@ export class MealEdit extends Component {
           });
         });
     }
-    document.getElementsByClassName("saveBtn").classList.remove(`${styles.hidden}`);
+    document.getElementById("saveBtn").classList.remove(`${styles.hidden}`);
   };
 
   deleteImg = () => {
@@ -412,7 +412,7 @@ export class MealEdit extends Component {
               onChange={this.handleChange}
               required
             />
-            <button className={styles.saveBtn} /*onClick={this.onSaveMeal}*/>
+            <button id="saveBtn" className={styles.saveBtn} /*onClick={this.onSaveMeal}*/>
               שמירה
             </button>
           </form>
