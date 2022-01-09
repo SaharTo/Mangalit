@@ -129,7 +129,7 @@ class SimpleForm extends Component {
             },
             {
               id: "1",
-              message: "מה השם שלך?",
+              message: "?מה השם שלך",
               trigger: "name",
             },
             {
