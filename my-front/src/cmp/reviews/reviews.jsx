@@ -101,6 +101,8 @@ const Reviews = (props) => {
         } else res.text().then((data) => alert(data));
       });
     };
+
+
   };
 
   const deleteReview = (ev, id) => {
