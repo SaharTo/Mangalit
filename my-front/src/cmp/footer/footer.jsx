@@ -10,11 +10,11 @@ export default function Footer() {
             <div className={styles.links}>
                 <a href="https://www.instagram.com/mangal_it" title="אינסטגרם">
                     {/* אינסטגרם */}
-                    <img src="https://res.cloudinary.com/manglit/image/upload/v1640262810/inst_ghjerq.png" alt="אינסטגרם" />
+                    <img src="https://res.cloudinary.com/manglit/image/upload/v1640262810/assets/inst_ghjerq.png" alt="אינסטגרם" />
                 </a>
                 <a href="https://www.facebook.com/STMangalit" title="פייסבוק">
                     {/* פייסבוק */}
-                    <img src="https://res.cloudinary.com/manglit/image/upload/v1640263095/facebooklogo_qog6ke.png" alt="פייסבוק" />
+                    <img src="https://res.cloudinary.com/manglit/image/upload/v1640263095/assets/facebooklogo_qog6ke.png" alt="פייסבוק" />
                 </a>
                 <NavLink title="אודות" activeClassName="activeNav" to="/about">
                     אודות
