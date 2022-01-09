@@ -155,6 +155,12 @@ class SimpleForm extends Component {
                 if (isNaN(value)) {
                   return "נא לבחור מספר";
                 }
+                if (value < 0) {
+                  return "נא לבחור מספר חיובי או 0"
+                }
+                if (value % 1 !== 0) {
+                  return "נא לבחור מספר שלם"
+                }
                 return true;
               },
               trigger: "6",
@@ -170,6 +176,12 @@ class SimpleForm extends Component {
               validator: (value) => {
                 if (isNaN(value)) {
                   return "נא לבחור מספר";
+                }
+                if (value < 0) {
+                  return "נא לבחור מספר חיובי"
+                }
+                if (value % 1 !== 0) {
+                  return "נא לבחור מספר שלם"
                 }
                 return true;
               },
