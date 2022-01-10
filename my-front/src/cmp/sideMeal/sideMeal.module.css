@@ -44,6 +44,15 @@
     display: block;
 }
 
+.sideMealDes {
+    width: 100%;
+    resize: none;
+    background: none;
+    border: none;
+    font: inherit;
+    color: white;
+}
+
 .prevNext {
     display: flex;
     justify-content: space-between;

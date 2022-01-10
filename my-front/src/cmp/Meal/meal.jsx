@@ -139,10 +139,15 @@ export class Meal extends Component {
                 </div>
               );
             })}
+            <p>מרכיבים נוספים: {meal.mealAdditionalIngredients}</p>
             <p>טכניקת הכנה: {meal.mealPreparationTechniques}</p>
             <p>זמן הכנה: {meal.mealPreparationTime}</p>
-            <p>מרכיבים נוספים: {meal.mealAdditionalIngredients}</p>
-            <p>אופן ההכנה: {meal.mealDescription}</p>
+            <p>אופן ההכנה:
+              <br />
+              <textarea className={styles.mealDes} name="mealDescription" id="mealDescription" cols="50" rows="10" readonly>
+                {meal.mealDescription}
+              </textarea>
+            </p>
             <p>לכמה אנשים זה מתאים: {meal.mealNumberOfPeopleItSuits}</p>
             <p>מחיר: {meal.mealTotalPrice}₪</p>
             {meal.mealAuthor ? (

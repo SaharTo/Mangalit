@@ -44,6 +44,15 @@
     display: block;
 }
 
+.mealDes {
+    width: 100%;
+    resize: none;
+    background: none;
+    border: none;
+    font: inherit;
+    color: white;
+}
+
 .prevNext {
     display: flex;
     justify-content: space-between;

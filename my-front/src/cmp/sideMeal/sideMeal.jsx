@@ -124,7 +124,12 @@ export class SideMeal extends Component {
             <p>פירוט: {sideMeal.sideMealSummary}</p>
             <p>רמת קושי: {sideMeal.sideMealDifficult}</p>
             <p>מרכיבים: {sideMeal.sideMealIngriedents}</p>
-            <p>אופן ההכנה: {sideMeal.sideMealPreperationDescription}</p>
+            <p>אופן ההכנה:
+              <br />
+              <textarea className={styles.sideMealDes} name="sideMealPreperationDescription" id="sideMealPreperationDescription" cols="50" rows="10" readonly>
+                {sideMeal.sideMealPreperationDescription}
+              </textarea>
+            </p>
             <p>זמן ההכנה: {sideMeal.sideMealPreperationEstimatedTime} דקות</p>
             <p>לכמה אנשים זה מתאים: {sideMeal.sideMealnumberOfPeopleItSuits}</p>
             <p>מחיר: {sideMeal.sideMealEstimatedPrice}₪</p>
